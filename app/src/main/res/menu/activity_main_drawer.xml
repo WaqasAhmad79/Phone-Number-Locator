@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    tools:showIn= "navigation_view"
+    >
+
+        <item
+            android:id= "@+id/nav_privacy"
+
+            android:title= "@string/privacy_policy"
+            />
+        <item
+            android:id= "@+id/nav_share"
+
+            android:title= "@string/share"
+            />
+        <item
+            android:id= "@+id/nav_rate"
+
+            android:title= "@string/rate_us"
+            />
+        <item
+            android:id= "@+id/nav_language"
+
+            android:title= "@string/language_setting"
+            />
+</menu>
+
+  <!--  android:icon="@drawable/privacy_policy_icon"
+    android:icon="@drawable/share_icon"
+    android:icon="@drawable/rate_us_icon"
+    android:icon="@drawable/language_icon"-->

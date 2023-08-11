@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="stroke">#66FFFFFF</color>
+
+    <color name="transparent">@android:color/transparent</color>
+    <color name="main_status">#F2F5F8</color>
+    <color name="app_color">#F2F5F8</color>
+    <color name="text_color">#3A4968</color>
+    <color name="main_card_bg">#2D3258</color>
+    <color name="blue">#228CFA</color>
+    <color name="selected_num">#FF9800</color>
+    <color name="bottom_nav_icon">#6588A4</color>
+    <color name="gray">#AAAAAA</color>
+    <color name="search_bg">#192636</color>
+    <color name="buttonColor">#192636</color>
+    <color name="clickColor">#2A2F33</color>
+</resources>

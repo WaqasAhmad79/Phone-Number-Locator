@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="shortcut_size">@dimen/_20sdp</dimen>
+    <dimen name="normal_icon_size">50dp</dimen>
+
+    //margins
+    <dimen name="tiny_margin">@dimen/_2sdp</dimen>
+    <dimen name="small_margin">@dimen/_4sdp</dimen>
+    <dimen name="small5_margin">@dimen/_5sdp</dimen>
+    <dimen name="medium_margin">@dimen/_10sdp</dimen>
+    <dimen name="large_margin">@dimen/_12sdp</dimen>
+    <dimen name="activity_margin">@dimen/_10sdp</dimen>
+
+    //Padding
+    <dimen name="small_padding">@dimen/_4sdp</dimen>
+    <dimen name="medium_padding">@dimen/_8sdp</dimen>
+    <dimen name="large_padding">@dimen/_12sdp</dimen>
+
+
+   <!-- &lt;!&ndash; BubbleLevelActivity &ndash;&gt;
+    <dimen name="level_border_width">5dip</dimen>
+    <dimen name="level_border_height">0dip</dimen>
+    &lt;!&ndash; Display &ndash;&gt;
+    <dimen name="display_padding">6dip</dimen>
+    <dimen name="display_border">1dip</dimen>
+    <dimen name="display_gap">10dip</dimen>
+    &lt;!&ndash; Sensor &ndash;&gt;
+    <dimen name="sensor_gap">5dip</dimen>
+    &lt;!&ndash; Marker &ndash;&gt;
+    <dimen name="marker_thickness">2dip</dimen>
+    &lt;!&ndash; Bubble &ndash;&gt;
+    <dimen name="bubble_padding">2dip</dimen>
+    <dimen name="bubble_padding_top">0dip</dimen>
+    <dimen name="bubble_padding_bottom">10dip</dimen>
+    <dimen name="bubble_padding_right">2dip</dimen>
+    <dimen name="bubble_padding_left">2dip</dimen>
+    &lt;!&ndash; LCD &ndash;&gt;
+    <dimen name="lcd_text">22dip</dimen>
+    <dimen name="lcd">42dip</dimen>
+    &lt;!&ndash; LOCK &ndash;&gt;
+    <dimen name="lock_text">32dip</dimen>
+    &lt;!&ndash; INFO &ndash;&gt;
+    <dimen name="info_text">12dip</dimen>
+    <dimen name="arrow_padding">1dip</dimen>
+-->
+</resources>

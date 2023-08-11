@@ -1,0 +1,137 @@
+<resources>
+    <string name="app_name">Phone Number Locator</string>
+
+    <string name="privacy_policy_link" translatable="false">https://sites.google.com/view/onelocately-privacypolicy/home</string>
+    <string name="account_name" translatable="false">OneLocate.ly</string>
+
+    <!--splash-->
+    <string name="let_s_start">Let\'s start</string>
+    <string name="splash_text">This action can contain ads</string>
+
+    <!--context-->
+    <string name="no_app_found">No app found</string>
+    <string name="no_post_notifications_permissions">Permission to post notifications is required</string>
+    <string name="unknown_error_occurred">An unknown error occurred</string>
+    <string name="current_location">Current Location</string>
+    <string name="simple_commons" translatable="false">Simple Commons</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="no_address_found">No Address Found</string>
+    <string name="number_blocked">Number Blocked</string>
+    <string name="permission_required">Permission Required</string>
+    <!--main screen-->
+    <string name="call_locator">Call Locator</string>
+    <string name="contact_list">Phone Contact</string>
+    <string name="live_weather">Live Weather</string>
+    <string name="area_calculator">Area Calculator</string>
+    <string name="share_loc">Share Location</string>
+    <string name="live_traffic">Live Traffic</string>
+    <string name="device_info">Device Info</string>
+    <string name="nearby_places">Nearby Places</string>
+    <string name="isd_std_code">ISD / STD Code</string>
+    <string name="cam_address">Cam Address</string>
+    <string name="recommend_for_you">Recommended for you</string>
+    <string name="num_track_more_option">Number Tracker More Option</string>
+
+    <!--drawer-->
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="share">Share</string>
+    <string name="rate_us">Rate us</string>
+    <string name="language_setting">Language Setting</string>
+    <string name="more">More Apps</string>
+    <!--contacts-->
+    <string name="contacts">Contacts</string>
+    <string name="search_contact">Search Number</string>
+    <!--live traffic-->
+    <string name="live_traffic_header">Live Traffic</string>
+    <string name="low">Normal</string>
+    <string name="moderate">Medium</string>
+    <string name="heavy">Heavy</string>
+    <string name="copy">Copy</string>
+    <string name="address_copied">Address copied</string>
+    <string name="please_wait">Please wait</string>
+
+    <!--share location-->
+    <string name="copy_share">Copy to Clipboard</string>
+    <string name="whatsapp">Whatsapp</string>
+    <string name="share_location_header">Share Location</string>
+    <string name="share_location">Share</string>
+    <string name="address">Address : </string>
+    <string name="city">City : </string>
+    <string name="country">Country : </string>
+    <string name="navigate">Navigate</string>
+    <string name="already_on_destination">Already on Destination</string>
+
+    <!--permission-->
+    <string name="check_internet_connection">Please check internet connection</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="location_permission_denied">Permission denied</string>
+    <string name="delete_str">Are you sure you want to delete?</string>
+    <string name="already_destination">You are already at the destination.</string>
+
+    <!--gps coordinates-->
+    <string name="gps_coordinates_header">Find Address</string>
+    <string name="lati">Lat :</string>
+    <string name="longi">Long :</string>
+    <string name="get_location">Get Location</string>
+    <string name="copy_to_clipboard">Copy</string>
+    <string name="navigation">Navigation</string>
+    <string name="lat_long">latitude/longitude</string>
+    <string name="degrees">Degrees (DMS)</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="empty_measurement">Empty measurements</string>
+    <string name="saved_measures">Saved Measures</string>
+    <string name="item_saved">Item saved successfully!</string>
+    <string name="no_history">No History found</string>
+    <string name="loading_ads">Loading Ad...</string>
+    <string name="exit_text">Are you sure you want to exit?</string>
+    <string name="exit">Exit</string>
+    <string name="enter_lat">Enter Latitude</string>
+    <string name="enter_long">Enter Longitude</string>
+
+    <!--number locator-->
+    <string name="search_number">Number Tracker</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="network_name">Mobile Network</string>
+    <string name="call">Call</string>
+    <string name="message">Message</string>
+    <string name="create">Edit</string>
+    <string name="block">Block</string>
+    <string name="name">Unknown</string>
+    <string name="country_">Country</string>
+    <string name="network">Network</string>
+    <string name="edit">Edit</string>
+    <string name="invalid_number">Invalid number</string>
+    <string name="a" translatable="false">A</string>
+    <string name="location">Location</string>
+    <!--area calculator-->
+    <string name="area_calculator_header">Area Calculator</string>
+    <string name="area1">Area : </string>
+    <string name="error">Error: %s</string>
+    <string name="area">Area</string>
+    <string name="perimeter">Perimeter :</string>
+    <string name="available_units_of_area">Available Units of Area</string>
+
+    <!--cam address-->
+    <string name="cam_address_header">Cam Address</string>
+    <string name="lat">Lat :</string>
+    <string name="log">Long :</string>
+    <string name="congo">Congratulation</string>
+    <string name="image_saved_successfully">Image Saved Successfully</string>
+    <string name="done">Done</string>
+    <string name="saved">Saved in Gallery</string>
+    <string name="language">Language</string>
+
+    <!--isd code-->
+    <string name="isd_code_header">ISD Code</string>
+    <string name="find_isd_code">Find the ISD Codes</string>
+    <string name="select_country">Select Country</string>
+    <string name="select_your_country">Select your Country</string>
+    <string name="search_country_by_name">Search country by name</string>
+    <string name="country_name">Country Name :</string>
+    <string name="isd">ISD Code :</string>
+    <string name="search">Search</string>
+    <string name="below_track_text">Search any Phone Number LOcation</string>
+
+</resources>
