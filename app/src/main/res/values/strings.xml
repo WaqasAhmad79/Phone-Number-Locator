@@ -32,6 +32,23 @@
     <string name="recommend_for_you">Recommended for you</string>
     <string name="num_track_more_option">Number Tracker More Option</string>
 
+    <!--live weather-->
+    <string name="live_weather_header">Live Weather</string>
+    <string name="pressure">Pressure</string>
+    <string name="visibility">Visibility</string>
+    <string name="cloud_cover">Cloud Cover</string>
+    <string name="wind">Wind</string>
+    <string name="temp">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="loading">loading...</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="cannot_find_data">Can\'t find data</string>
+    <string name="turn_on_location">Turn on location</string>
+    <string name="enable_location">Enable Location</string>
+    <string name="search_countries">Search Countries</string>
+    <string name="time_format" translatable="false">EEEE, dd MMMM yyyy hh:mm a</string>
+
     <!--drawer-->
     <string name="privacy_policy">Privacy policy</string>
     <string name="share">Share</string>
