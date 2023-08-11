@@ -1,11 +1,15 @@
 package com.example.phonenumberlocator.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.phonenumberlocator.PNLBaseClass
@@ -31,6 +35,11 @@ import com.google.android.material.navigation.NavigationView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
 
@@ -271,7 +280,7 @@ class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
 //                startActivity(Intent(this, PNLCamAddressActivity::class.java))
 //            }
 //            else{
-                startActivity(Intent(this, PNLCamAddressActivity::class.java))
+            dispatchTakePictureIntent()
 //            }
 
         }
@@ -299,6 +308,60 @@ class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
             }
         }
     }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (takePictureIntent.resolveActivity(packageManager) != null) {
+            // Create the File where the photo should go
+            val photoFile: File? = try {
+                createImageFile()
+            } catch (ex: IOException) {
+                // Error occurred while creating the File
+                ex.printStackTrace()
+                null
+            }
+            // Continue only if the File was successfully created
+            photoFile?.also {
+                val photoURI: Uri = FileProvider.getUriForFile(
+                    this,
+                    "com.example.locationtracker.fileProvider",
+                    it
+                )
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String =
+            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            // The image was captured successfully
+            // Pass the image path to the next screen or process it as needed
+            val intent = Intent(this, PNLCamAddressActivity::class.java)
+            intent.putExtra("imagePath", currentPhotoPath)
+            startActivity(intent)
+        }
+    }
+
+
+
   /*  private fun loadAd() {
         if (isNetworkAvailable()) {
             binding.content.ads.beVisible()
