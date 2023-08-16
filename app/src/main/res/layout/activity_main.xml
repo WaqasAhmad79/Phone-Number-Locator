@@ -24,6 +24,6 @@
         app:itemIconSize="@dimen/_25sdp"
         app:headerLayout="@layout/nav_header_main"
         app:itemTextAppearance="@font/poppins_medium"
-        app:itemTextColor="@color/white"
+        app:itemTextColor="@color/text_color"
         app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.PNLCallLocatorActivity">
+    tools:context=".ui.activities.callLocator.PNLCallLocatorActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

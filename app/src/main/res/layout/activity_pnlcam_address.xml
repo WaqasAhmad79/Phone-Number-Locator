@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_color"
     android:layoutDirection="ltr"
-    tools:context=".ui.activities.PNLCamAddressActivity">
+    tools:context=".ui.activities.camAddress.PNLGpsAddressActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"

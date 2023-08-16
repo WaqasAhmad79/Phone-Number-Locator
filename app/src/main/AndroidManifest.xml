@@ -37,34 +37,44 @@
         android:theme="@style/Base.Theme.PhoneNumberLocator"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.PNLIsdStdActivity"
+            android:name=".ui.activities.camAddress.PNLDistanceFinderActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLDeviceInfoActivity"
+            android:name=".ui.activities.gpsTracker.PNLFindAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLLiveTrafficActivity"
+            android:name=".ui.activities.CamAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLShareLocationActivity"
+            android:name=".ui.activities.GpsTrackActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLLiveWeatherActivity"
+            android:name=".ui.activities.CallLocActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLNearbyPlacesActivity"
+            android:name=".ui.activities.gpsTracker.GpsLocationActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.activities.callLocator.PNLIsdStdActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLCamAddressActivity"
+            android:name=".ui.activities.gpsTracker.PNLShareLocationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLAreaCalculatorActivity"
+            android:name=".ui.activities.camAddress.PNLGpsAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLPhoneContactsActivity"
+            android:name=".ui.activities.camAddress.PNLSavedImageConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.PNLCallLocatorActivity"
+            android:name=".ui.activities.camAddress.PNLAreaCalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.callLocator.PNLPhoneContactsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.callLocator.PNLCallLocatorActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.PNLLanguageActivity"
@@ -81,20 +91,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--
  <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.locationtracker.fileProvider"
+            android:authorities="com.example.phonenumberlocator.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/pic_provider_paths" />
         </provider>
-        <meta-data
+      <!--  <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
-        -->
+            android:value="ca-app-pub-3940256099942544~3347511713" />-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

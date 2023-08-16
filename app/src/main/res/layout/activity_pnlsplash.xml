@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:background="#54B7FF"
+        android:background="@color/app_color"
         android:layout_marginBottom="-4dp" />
 
     <!--  <ImageView
@@ -58,7 +58,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="@color/white"
+        android:textColor="@color/text_color"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintVertical_bias="0.86"
         app:layout_constraintBottom_toTopOf="@+id/splash_text"
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/splash_text"
-        android:textColor="@color/app_color"
+        android:textColor="@color/text_color"
         app:layout_constraintEnd_toEndOf="@+id/progress_bar"
         app:layout_constraintStart_toStartOf="@+id/progress_bar"
         app:layout_constraintTop_toBottomOf="@+id/progress_bar" />

@@ -21,14 +21,15 @@
     <!--main screen-->
     <string name="call_locator">Call Locator</string>
     <string name="contact_list">Phone Contact</string>
-    <string name="live_weather">Live Weather</string>
+    <string name="gps_tracker">GPS Tracker</string>
     <string name="area_calculator">Area Calculator</string>
     <string name="share_loc">Share Location</string>
-    <string name="live_traffic">Live Traffic</string>
-    <string name="device_info">Device Info</string>
-    <string name="nearby_places">Nearby Places</string>
     <string name="isd_std_code">ISD / STD Code</string>
     <string name="cam_address">Cam Address</string>
+    <string name="gps_location">GPS Location</string>
+    <string name="find_address">Find Address</string>
+    <string name="gps_address">GPS Address</string>
+    <string name="distance_finder">Distance Finder</string>
     <string name="recommend_for_you">Recommended for you</string>
     <string name="num_track_more_option">Number Tracker More Option</string>
 
@@ -108,7 +109,7 @@
     <string name="enter_long">Enter Longitude</string>
 
     <!--number locator-->
-    <string name="search_number">Number Tracker</string>
+    <string name="search_number">Search Number</string>
     <string name="enter_phone_number">Enter phone number</string>
     <string name="network_name">Mobile Network</string>
     <string name="call">Call</string>
@@ -150,5 +151,6 @@
     <string name="isd">ISD Code :</string>
     <string name="search">Search</string>
     <string name="below_track_text">Search any Phone Number LOcation</string>
+
 
 </resources>
