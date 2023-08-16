@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.phonenumberlocator.pnlAppCallModels.RecentCallsDetailModel
-import com.example.tracklocation.tlModel.PNLMyContact
+import com.example.phonenumberlocator.pnlModel.PNLMyContact
 import com.example.tracklocation.tlRepo.PNLContactRepo
 
 import dagger.hilt.android.lifecycle.HiltViewModel

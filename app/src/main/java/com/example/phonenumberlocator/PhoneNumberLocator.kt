@@ -11,8 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LifecycleObserver
 import com.example.phonenumberlocator.pnlExtensionFun.countryIso
-import com.example.tracklocation.tlModel.PNLCountryData
-import com.example.tracklocation.tlModel.PNLCountryModel
+import com.example.phonenumberlocator.pnlModel.PNLCountryData
+import com.example.phonenumberlocator.pnlModel.PNLCountryModel
 import com.google.gson.Gson
 import dagger.hilt.android.HiltAndroidApp
 import java.io.BufferedReader

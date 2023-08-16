@@ -38,8 +38,8 @@ import com.example.phonenumberlocator.pnlExtensionFun.hasPermission
 import com.example.phonenumberlocator.pnlExtensionFun.normalizePhoneNumber
 import com.example.phonenumberlocator.pnlExtensionFun.queryCursor
 import com.example.phonenumberlocator.pnlExtensionFun.showErrorToast
-import com.example.tracklocation.tlModel.PNLLocatorPhoneNumber
-import com.example.tracklocation.tlModel.PNLMyContact
+import com.example.phonenumberlocator.pnlModel.PNLLocatorPhoneNumber
+import com.example.phonenumberlocator.pnlModel.PNLMyContact
 import kotlin.math.abs
 
 class PNLMyContactsHelper(val context: Context) {

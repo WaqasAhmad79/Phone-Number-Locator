@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentActivity
 import com.example.phonenumberlocator.R
 import com.example.tracklocation.tlHelper.PNLMyContactsHelper
 import com.example.phonenumberlocator.pnlHelper.ensureBackgroundThread
-import com.example.tracklocation.tlModel.PNLMyContact
+import com.example.phonenumberlocator.pnlModel.PNLMyContact
 import com.google.android.gms.maps.model.LatLng
 import com.permissionx.guolindev.PermissionX
 

@@ -158,6 +158,8 @@
     <string name="postal_code">Postal Code :</string>
     <string name="show_location_on_map">Show Location on map</string>
     <string name="current_postal_address">Current Postal Address</string>
+    <string name="enter_city_name">Enter city name</string>
+    <string name="search_hint_dialog">Search...</string>
 
 
 </resources>

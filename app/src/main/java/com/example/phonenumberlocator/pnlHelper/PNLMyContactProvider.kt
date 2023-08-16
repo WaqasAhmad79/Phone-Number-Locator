@@ -5,8 +5,8 @@ import android.net.Uri
 import com.airbnb.lottie.BuildConfig
 import com.example.phonenumberlocator.pnlExtensionFun.getIntValue
 import com.example.phonenumberlocator.pnlExtensionFun.getStringValue
-import com.example.tracklocation.tlModel.PNLLocatorPhoneNumber
-import com.example.tracklocation.tlModel.PNLMyContact
+import com.example.phonenumberlocator.pnlModel.PNLLocatorPhoneNumber
+import com.example.phonenumberlocator.pnlModel.PNLMyContact
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

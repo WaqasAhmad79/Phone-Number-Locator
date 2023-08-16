@@ -1,4 +1,4 @@
-package com.example.tracklocation.tlModel
+package com.example.phonenumberlocator.pnlModel
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
