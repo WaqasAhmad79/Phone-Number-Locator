@@ -151,6 +151,13 @@
     <string name="isd">ISD Code :</string>
     <string name="search">Search</string>
     <string name="below_track_text">Search any Phone Number LOcation</string>
+    <!--gps location-->
+    <string name="current_gps_location">Current GPS Location</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="postal_code">Postal Code :</string>
+    <string name="show_location_on_map">Show Location on map</string>
+    <string name="current_postal_address">Current Postal Address</string>
 
 
 </resources>

@@ -37,6 +37,9 @@
         android:theme="@style/Base.Theme.PhoneNumberLocator"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.gpsTracker.ShowOnMapActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.camAddress.PNLDistanceFinderActivity"
             android:exported="false" />
         <activity
@@ -54,7 +57,6 @@
         <activity
             android:name=".ui.activities.gpsTracker.GpsLocationActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.callLocator.PNLIsdStdActivity"
             android:exported="false" />
@@ -91,7 +93,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
- <provider
+
+        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.phonenumberlocator.fileProvider"
             android:exported="false"
@@ -100,9 +103,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/pic_provider_paths" />
         </provider>
-      <!--  <meta-data
+        <!--
+  <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />-->
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
