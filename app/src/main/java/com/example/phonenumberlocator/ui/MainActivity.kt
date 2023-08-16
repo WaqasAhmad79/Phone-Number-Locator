@@ -34,7 +34,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
+class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
@@ -58,85 +58,124 @@ class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         initViews()
         handleClicks()
-        permissionLocation()
-       /* val adControl = intent.getBooleanExtra("LanguageActivity", false)
-        if (adControl) {
-            permissionLocation()
-        } else if (!adControl) {
-            dialog = PNLResumeLoadingDialog(this)
-            Log.d("testing", "onCreate: 1")
-            if (isNetworkAvailable()) {
-                Log.d("testing", "onCreate: 2")
-                dialog?.show()
-                Log.d("testing", "onCreate: 3")
-                showHighSplashAdmobInterstitial({
-                    permissionLocation()
-                    Log.d("testing", "onCreate: 4")
-                }, {
-                    Log.d("testing", "onCreate: 5")
-                    showLowSplashAdmobInterstitial({
-                        permissionLocation()
-                        Log.d("Hamza", "onCreate: 6")
-                    }, {
-                        permissionLocation()
-                        dialog?.dismiss()
-                    }, {
-                        Handler().postDelayed({
-                            dialog?.dismiss()
-                        }, 1000)
-                    })
-                }, {
-                    Handler().postDelayed({
-                        dialog?.dismiss()
-                    }, 1000)
-                })
+        runtimePer()
+        /* val adControl = intent.getBooleanExtra("LanguageActivity", false)
+         if (adControl) {
+             permissionLocation()
+         } else if (!adControl) {
+             dialog = PNLResumeLoadingDialog(this)
+             Log.d("testing", "onCreate: 1")
+             if (isNetworkAvailable()) {
+                 Log.d("testing", "onCreate: 2")
+                 dialog?.show()
+                 Log.d("testing", "onCreate: 3")
+                 showHighSplashAdmobInterstitial({
+                     permissionLocation()
+                     Log.d("testing", "onCreate: 4")
+                 }, {
+                     Log.d("testing", "onCreate: 5")
+                     showLowSplashAdmobInterstitial({
+                         permissionLocation()
+                         Log.d("Hamza", "onCreate: 6")
+                     }, {
+                         permissionLocation()
+                         dialog?.dismiss()
+                     }, {
+                         Handler().postDelayed({
+                             dialog?.dismiss()
+                         }, 1000)
+                     })
+                 }, {
+                     Handler().postDelayed({
+                         dialog?.dismiss()
+                     }, 1000)
+                 })
 
-            }
-        }
+             }
+         }
 
-        loadAndReturnAd(
-            this@MainActivity,
-            resources.getString(R.string.admob_native_others)
-        ) { it2 ->
-            if (it2 != null) {
-                TrackLocationAppClass.instance.nativeAdOther.value = it2
-            }
-        }
-*/
+         loadAndReturnAd(
+             this@MainActivity,
+             resources.getString(R.string.admob_native_others)
+         ) { it2 ->
+             if (it2 != null) {
+                 TrackLocationAppClass.instance.nativeAdOther.value = it2
+             }
+         }
+ */
         EventBus.getDefault().register(this)
 
     }
 
-    /** this code also worked for get permissions **/
-    private fun permissionLocation() {
-        handlePermission(PERMISSION_ACCESS_FINE_LOCATION) { locationGranted ->
-            if (locationGranted) {
-                handlePermission(PERMISSION_CAMERA) { camGranted ->
-                    if (camGranted) {
-                        handlePermission(PERMISSION_READ_CONTACTS)  { contactsGranted ->
-                            if (contactsGranted) {
-                                // All permissions granted, proceed with showing ads
-//                            binding.content.ads.beVisible()
-//                            loadAd()
-                            } else {
-                                Toast.makeText(
-                                    this@MainActivity, R.string.permission_required,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                    } else {
-                        Toast.makeText(
-                            this@MainActivity, R.string.permission_required,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
+    private fun runtimePer() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) {
+
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_MEDIA_IMAGES
+                ) != PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.CAMERA
+                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.READ_CONTACTS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.READ_MEDIA_IMAGES
+
+                    ), 1
+                )
             } else {
-                Toast.makeText(
-                    this@MainActivity, R.string.permission_required,
-                    Toast.LENGTH_SHORT
-                ).show()
+                binding.content.ads.beVisible()
+//                loadAd()
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.CAMERA
+                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.READ_CONTACTS
+                ) != PackageManager.PERMISSION_GRANTED
+
+            ) {
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ), 1
+                )
+            } else {
+                binding.content.ads.beVisible()
+//                loadAd()
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    binding.content.ads.beVisible()
+//                    loadAd()
+                } else {
+                    Toast.makeText(this, "You denied the permission", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -198,7 +237,7 @@ class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
 //                startActivity(Intent(this, PNLCallLocatorActivity::class.java))
 //            }
 //            else{
-                startActivity(Intent(this, CallLocActivity::class.java))
+            startActivity(Intent(this, CallLocActivity::class.java))
 //            }
 
         }
@@ -208,7 +247,7 @@ class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
 //                startActivity(Intent(this, PNLPhoneContactsActivity::class.java))
 //            }
 //            else{
-                startActivity(Intent(this, GpsTrackActivity::class.java))
+            startActivity(Intent(this, GpsTrackActivity::class.java))
 //           }
 
         }
@@ -222,7 +261,6 @@ class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
 //            }
 
         }
-
 
 
     }
@@ -240,17 +278,16 @@ class MainActivity  : PNLBaseClass<ActivityMainBinding>() {
     }
 
 
-
-  /*  private fun loadAd() {
-        if (isNetworkAvailable()) {
-            binding.content.ads.beVisible()
-            TrackLocationAppClass.instance.nativeAdMain.observe(this){
-                showLoadedNativeAd(this,binding.content.ads, R.layout.layout_admob_native_ad,it)
-            }
-        } else {
-            binding.content.ads.beGone()
-        }
-    }*/
+    /*  private fun loadAd() {
+          if (isNetworkAvailable()) {
+              binding.content.ads.beVisible()
+              TrackLocationAppClass.instance.nativeAdMain.observe(this){
+                  showLoadedNativeAd(this,binding.content.ads, R.layout.layout_admob_native_ad,it)
+              }
+          } else {
+              binding.content.ads.beGone()
+          }
+      }*/
 
 
 }
