@@ -50,17 +50,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/mainJson"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
-                android:src="@drawable/cam_address_img"
-                android:scaleType="fitXY"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
 
             <LinearLayout
                 android:id="@+id/ll_1"
@@ -177,17 +166,6 @@
 
             </LinearLayout>
 
-
-            <!--<FrameLayout
-                android:id="@+id/ads"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_5sdp"
-                android:layout_marginVertical="@dimen/_5sdp"
-                app:layout_constraintTop_toBottomOf="@id/camAddress"
-                app:layout_constraintEnd_toEndOf="@+id/camAddress"
-                app:layout_constraintStart_toStartOf="@+id/camAddress" />-->
-
             <LinearLayout
                 android:id="@+id/ll_2"
                 android:layout_width="0dp"
@@ -250,6 +228,17 @@
 
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/mainJson"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                android:src="@drawable/cam_address_img"
+                android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
 
             <FrameLayout
                 android:id="@+id/ads"
