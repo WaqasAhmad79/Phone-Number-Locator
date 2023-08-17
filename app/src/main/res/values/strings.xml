@@ -117,8 +117,9 @@
     <string name="create">Edit</string>
     <string name="block">Block</string>
     <string name="name">Unknown</string>
+    <string name="name_title">Name :</string>
     <string name="country_">Country</string>
-    <string name="network">Network</string>
+    <string name="network">Network : </string>
     <string name="edit">Edit</string>
     <string name="invalid_number">Invalid number</string>
     <string name="a" translatable="false">A</string>
@@ -160,6 +161,8 @@
     <string name="current_postal_address">Current Postal Address</string>
     <string name="enter_city_name">Enter city name</string>
     <string name="search_hint_dialog">Search...</string>
+    <string name="search_contatct">Search phone number..</string>
+    <string name="mobile_number">Mobile Num :</string>
 
 
 </resources>

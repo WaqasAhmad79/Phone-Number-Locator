@@ -2,6 +2,7 @@ package com.example.phonenumberlocator.pnlHiltFolder
 
 import android.content.Context
 import com.example.phonenumberlocator.pnlAdapter.PNLIsdStdAdapter
+import com.example.phonenumberlocator.pnlAdapter.PNLPhoneContactsAdapter
 import com.example.tracklocation.tlHelper.PNLMyContactsHelper
 import com.example.tracklocation.tlRepo.PNLContactRepo
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
@@ -44,10 +45,10 @@ object HiltSingletonModule {
     }
 
 
-//    @Provides
-//    fun providesContactsAdapter(@ApplicationContext context: Context): TLContactsAdapter {
-//        return TLContactsAdapter(context)
-//    }
+    @Provides
+    fun providesPNLPhoneContactsAdapter(@ApplicationContext context: Context): PNLPhoneContactsAdapter {
+        return PNLPhoneContactsAdapter(context)
+    }
 //
 //    @Provides
 //    fun providesDialogContactsAdapter(@ApplicationContext context: Context): DialogContactsAdapter {

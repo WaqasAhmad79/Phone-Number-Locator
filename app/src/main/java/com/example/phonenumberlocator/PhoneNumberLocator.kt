@@ -13,8 +13,15 @@ import androidx.lifecycle.LifecycleObserver
 import com.example.phonenumberlocator.pnlExtensionFun.countryIso
 import com.example.phonenumberlocator.pnlModel.PNLCountryData
 import com.example.phonenumberlocator.pnlModel.PNLCountryModel
+import com.example.tracklocation.tlUtil.readToObjectList
 import com.google.gson.Gson
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 import java.io.BufferedReader
 import java.util.ArrayList
 
@@ -45,15 +52,15 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
 //        PreferenceHelper.initPrefs(this)
         instance = this
 
-//        startKoin {
-//            androidLogger()
-//            androidContext(this@PhoneNumberLocator)
-////            modules(appModules)
-//            countries = "isdcodes.json".readToObjectList(context, PNLCountryModel::class.java)
-//            CoroutineScope(Dispatchers.IO).launch {
-//                countryDataList = getDetailLanguageCategory()
-//            }
-//        }
+        startKoin {
+            androidLogger()
+            androidContext(this@PhoneNumberLocator)
+//            modules(appModules)
+            countries = "isdcodes.json".readToObjectList(context, PNLCountryModel::class.java)
+            CoroutineScope(Dispatchers.IO).launch {
+                countryDataList = getDetailLanguageCategory()
+            }
+        }
         app_class = this@PhoneNumberLocator
 //        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 //        OpenApp(this)
