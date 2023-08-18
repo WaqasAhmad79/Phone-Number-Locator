@@ -315,6 +315,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/drop_down"
                 app:tint="@color/white"
+
                 android:padding="@dimen/_5sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 />

@@ -57,6 +57,9 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     private lateinit var file: File
     private var isScreenshotTaken = false
     private var is3DViewEnabled = false
+    private var selectedDistanceUnits = "m" // Default units
+
+
 //    private var dialog: PNLResumeLoadingDialog?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -188,8 +191,8 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
 //        }
         updateDistancesAndPolyline()
     }
-
-    private fun updateDistancesAndPolyline() {
+/** update distance without units**/
+   /* private fun updateDistancesAndPolyline() {
         // Calculate the distances between all pairs of consecutive markers
         distances.clear()
         var totalDistance = 0f
@@ -224,7 +227,59 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
                 polyline = null
             }
         }
-    }
+    }*/
+
+
+    /** update distance with units**/
+   private fun updateDistancesAndPolyline() {
+       // Calculate the distances between all pairs of consecutive markers
+       distances.clear()
+       var totalDistance = 0f
+       for (i in 0 until markers.size - 1) {
+           val start = markers[i].position
+           val end = markers[i + 1].position
+           val distance = calculateDistance(start, end)
+           totalDistance += distance
+           distances.add(distance)
+       }
+
+       // Calculate the distances based on the selected units
+       val distancesInSelectedUnits = distances.map { distance ->
+           when (selectedDistanceUnits) {
+               "mm" -> distance * 1000 // Convert to millimeters
+               "Cm" -> distance * 100 // Convert to centimeters
+               "m" -> distance // Already in meters
+               "km" -> distance / 1000 // Convert to kilometers
+               else -> distance // Default to meters
+           }
+       }
+
+       // Calculate the total distance in the selected units
+       val totalDistanceInSelectedUnits = distancesInSelectedUnits.sum()
+
+       // Update the UI with the distances in the selected units
+       val totalDistanceText = "${formatter_two_dec.format(totalDistanceInSelectedUnits)} $selectedDistanceUnits"
+       binding.tvDistance.text = totalDistanceText
+
+       // Draw a polyline between all pairs of consecutive markers
+       if (markers.size >= 2) {
+           val polylineOptions = PolylineOptions()
+           polylineOptions.color(COLOR_OF_LINE)
+           polylineOptions.width(MAP_LINE_WIDTH)
+           for (i in 0 until markers.size) {
+               polylineOptions.add(markers[i].position)
+           }
+           if (polyline != null) {
+               polyline!!.remove()
+           }
+           polyline = map.addPolyline(polylineOptions)
+       } else {
+           if (polyline != null) {
+               polyline!!.remove()
+               polyline = null
+           }
+       }
+   }
 
     private fun deleteAll(){
         markers.forEach { it.remove() }
@@ -355,6 +410,16 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
         }
         binding.cardRedo.setOnClickListener {
             redoMarker()
+        }
+        binding.cardUnit.setOnClickListener {
+            val units = arrayOf("mm", "Cm", "m", "Km")
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Select Units")
+            builder.setItems(units) { _, which ->
+                selectedDistanceUnits = units[which]
+                updateDistancesAndPolyline()
+            }
+            builder.show()
         }
 
        /* binding.cardDelete.setOnClickListener {
