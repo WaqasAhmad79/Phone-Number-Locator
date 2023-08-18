@@ -374,23 +374,32 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
     */
 
     private fun removeLastPoint() {
-
-
         if (trace.isEmpty()) return
-        val removedMarker = points.pop()
-        val removedPoint = trace.pop()
 
+        // Pop the last marker from the points stack and remove it from the map
+        val removedMarker = points.pop()
+        removedMarker?.remove()
+
+        // Pop the last point from the trace stack
+        val remove = trace.pop()
+
+        // Update distance if there's another point in the trace
         if (!trace.isEmpty()) {
-            distance -= PNLSphericalUnitsUtil.computeDistanceBetween(removedPoint, trace.peek())
-                .toFloat()
+            distance -= PNLSphericalUnitsUtil.computeDistanceBetween(remove, trace.peek()).toFloat()
         }
 
-        if (!lines.isEmpty()) lines.pop()?.remove()
+        // Pop the last polyline from the lines stack and remove it from the map
+        if (!lines.isEmpty()) {
+            lines.pop()?.remove()
+        }
 
         // Push the removed marker onto the redo stack
         redoStack.push(removedMarker)
 
+        // Update text values and redraw the lines/polygon
         updateValueText()
+        updatePolylinesWithMarkers()
+        updatePolygon()
     }
 
     // Create a function to redo a point
@@ -400,17 +409,21 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
 
             if (redoMarker != null) {
                 val redoPoint = redoMarker.position
+
+                // Add the marker back to the map
+                val restoredMarker = drawMapMarker(redoPoint)
                 trace.push(redoPoint)
-                points.push(redoMarker)
-                updateValueText()
+                points.push(restoredMarker)
 
                 // Recreate the line to the new point
                 updatePolylinesWithMarkers()
                 updatePolygon()
+
+                // Update text values
+                updateValueText()
             }
         }
     }
-
 
 
     @RequiresApi(Build.VERSION_CODES.M)
