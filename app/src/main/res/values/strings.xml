@@ -159,13 +159,21 @@
     <string name="postal_code">Postal Code :</string>
     <string name="show_location_on_map">Show Location on map</string>
     <string name="current_postal_address">Current Postal Address</string>
+    <!--isd/std-->
     <string name="enter_city_name">Enter city name</string>
+    <!--search number-->
     <string name="search_hint_dialog">Search...</string>
     <string name="search_contatct">Search phone number..</string>
     <string name="mobile_number">Mobile Num :</string>
     <string name="select_country_code">Select Country Code</string>
     <string name="find_location">Find Location</string>
     <string name="whatsapp_not_installed">WhatsApp is not installed on this device.</string>
+
+    <!--distance finder-->
+    <string name="distance1">Distance :</string>
+    <string name="_0m">0m</string>
+    <string name="delete">Delete</string>
+    <string name="undo">Undo</string>
 
 
 </resources>
