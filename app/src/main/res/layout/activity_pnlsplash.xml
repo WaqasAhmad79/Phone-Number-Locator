@@ -11,8 +11,11 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_390sdp"
+        android:layout_height="match_parent"
         android:background="@drawable/splash_img"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--  <ImageView
@@ -41,7 +44,8 @@
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_150sdp"
         android:src="@drawable/splash_icon"
-        android:padding="@dimen/_15sdp"
+        android:padding="@dimen/_14sdp"
+        app:layout_constraintVertical_bias="0.6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +61,7 @@
         android:text="@string/app_name"
         android:textColor="@color/text_color"
         android:textSize="@dimen/_20ssp"
-        app:layout_constraintVertical_bias="0.86"
+        app:layout_constraintVertical_bias="0.9"
         app:layout_constraintBottom_toTopOf="@+id/splash_text"
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/button"
@@ -65,8 +69,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="@dimen/_170sdp"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_40sdp"
         android:text="@string/let_s_start"
         android:textAllCaps="false"
         android:visibility="invisible"
@@ -75,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.93" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

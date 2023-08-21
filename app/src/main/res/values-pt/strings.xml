@@ -17,7 +17,7 @@
     <string name="number_blocked">Número Bloqueado</string>
     <string name="permission_required">Permissão Necessária</string>
     <!--main screen-->
-    <string name="call_locator">Localizador de Chamadas</string>
+    <string name="call_locator">Chamada Localizador</string>
     <string name="contact_list">Lista de Contatos</string>
     <string name="gps_tracker">Rastreador GPS</string>
     <string name="area_calculator">Calculadora de Área</string>

@@ -3,6 +3,7 @@ package com.example.phonenumberlocator.ui.activities.callLocator
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.CorrectionInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phonenumberlocator.pnlAdapter.ISDDialogAdapter
@@ -49,15 +50,7 @@ class PNLIsdStdActivity  : AppCompatActivity() {
         binding.rvAreaCode.adapter = adapter
 
         updateAdapter()
-        val id = TinyDB.getInstance(this).getIntArea(SELECTED_COUNTRY)
-        Log.d("TAG", "init: $id")
-        for (i in country_list!!) {
-            if (i.id == id) {
-                binding.iso2.text = i.iso2
-                binding.phoneCode.text = i.phonecode
-            }
-        }
-        updateCities(id)
+
     }
 
     private fun handleClicks() {
@@ -93,13 +86,27 @@ class PNLIsdStdActivity  : AppCompatActivity() {
     }
 
     private fun updateAdapter() {
-        code_list = getCities(this)
-        country_list = getCountries(this)
-        Log.d("TAG", "updateAdapter: ${country_list!!.size}")
-        Log.d("TAG", "updateAdapter: ${code_list!!.size}")
-        if (code_list?.isNotEmpty() == true) {
-         binding.progressBar.beGone()
-            adapter.updateData(code_list!!)
+        CoroutineScope(Dispatchers.IO).launch {
+            code_list = getCities(this@PNLIsdStdActivity)
+            country_list = getCountries(this@PNLIsdStdActivity)
+        }.invokeOnCompletion {
+            CoroutineScope(Dispatchers.Main).launch {
+                Log.d("TAG", "updateAdapter: ${country_list!!.size}")
+                Log.d("TAG", "updateAdapter: ${code_list!!.size}")
+                if (code_list?.isNotEmpty() == true) {
+                    binding.progressBar.beGone()
+                    adapter.updateData(code_list!!)
+                }
+            }
+            val id = TinyDB.getInstance(this).getIntArea(SELECTED_COUNTRY)
+            Log.d("TAG", "init: $id")
+            for (i in country_list!!) {
+                if (i.id == id) {
+                    binding.iso2.text = i.iso2
+                    binding.phoneCode.text = i.phonecode
+                }
+            }
+            updateCities(id)
         }
     }
 

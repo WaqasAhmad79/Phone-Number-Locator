@@ -40,6 +40,9 @@ class PNLLanguageActivity : AppCompatActivity() {
         binding = ActivityPnllanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val lang =intent.getBooleanExtra("setting",false )
+
+
+
        /* dialog = PNLResumeLoadingDialog(this)
         if (isNetworkAvailable() && lang) {
             dialog?.show()
@@ -59,50 +62,51 @@ class PNLLanguageActivity : AppCompatActivity() {
 
         loadAd()
 */
-        langName = "English"
-        binding.clEnglish.background = resources.getDrawable(R.drawable.drawablestroke)
+        langName = baseConfig.appLanguage
+        langName?.let { updateLanguageSelection(it) }
+        //binding.clEnglish.background = resources.getDrawable(R.drawable.drawablestroke)
 
         initListeners()
 
         binding.tick.setOnClickListener {
             when (langName) {
-                "English" -> setLocaleAndChangeLanguage("en")
-                "Hindi" -> setLocaleAndChangeLanguage("hi")
-                "Portuguese" -> setLocaleAndChangeLanguage("pt")
-                "Spanish" -> setLocaleAndChangeLanguage("es")
-                "Afrikaans" -> setLocaleAndChangeLanguage("af")
-                "Arabic" -> setLocaleAndChangeLanguage("ar")
-                "French" -> setLocaleAndChangeLanguage("fr")
-                "Urdu" -> setLocaleAndChangeLanguage("ur")
-                "Indonesian" -> setLocaleAndChangeLanguage("in")
-                "Russian" -> setLocaleAndChangeLanguage("ru")
-                "Vietnamese" -> setLocaleAndChangeLanguage("vi")
-                "Chinese" -> setLocaleAndChangeLanguage("zh")
-                "German" -> setLocaleAndChangeLanguage("de")
-                "Japanese" -> setLocaleAndChangeLanguage("ja")
-                "Korean" -> setLocaleAndChangeLanguage("ko")
-                "Thai" -> setLocaleAndChangeLanguage("th")
+                "en"->    setLocaleAndChangeLanguage("en")
+                "hi"    ->        setLocaleAndChangeLanguage("hi")
+                "ar"       -> setLocaleAndChangeLanguage("pt")
+                "af" -> setLocaleAndChangeLanguage("es")
+                "pt"   -> setLocaleAndChangeLanguage("af")
+                "es"    -> setLocaleAndChangeLanguage("ar")
+                "fr"   -> setLocaleAndChangeLanguage("fr")
+                "ur"-> setLocaleAndChangeLanguage("ur")
+                "in"     -> setLocaleAndChangeLanguage("in")
+                "ru"-> setLocaleAndChangeLanguage("ru")
+                "vi"    -> setLocaleAndChangeLanguage("vi")
+                "zh" -> setLocaleAndChangeLanguage("zh")
+                "de"  -> setLocaleAndChangeLanguage("de")
+                "ja"  -> setLocaleAndChangeLanguage("ja")
+                "ko"  -> setLocaleAndChangeLanguage("ko")
+                "th" -> setLocaleAndChangeLanguage("th")
             }
         }
     }
 
     private fun initListeners() {
-        binding.english.setOnClickListener { updateLanguageSelection("English") }
-        binding.espanol.setOnClickListener { updateLanguageSelection("Spanish") }
-        binding.hindi.setOnClickListener { updateLanguageSelection("Hindi") }
-        binding.arabic.setOnClickListener { updateLanguageSelection("Arabic") }
-        binding.afrikaans.setOnClickListener { updateLanguageSelection("Afrikaans") }
-        binding.portuguese.setOnClickListener { updateLanguageSelection("Portuguese") }
-        binding.french.setOnClickListener { updateLanguageSelection("French") }
-        binding.urdu.setOnClickListener { updateLanguageSelection("Urdu") }
-        binding.indonesia.setOnClickListener { updateLanguageSelection("Indonesian") }
-        binding.russian.setOnClickListener { updateLanguageSelection("Russian") }
-        binding.vietnamese.setOnClickListener { updateLanguageSelection("Vietnamese") }
-        binding.china.setOnClickListener { updateLanguageSelection("Chinese") }
-        binding.german.setOnClickListener { updateLanguageSelection("German") }
-        binding.japanese.setOnClickListener { updateLanguageSelection("Japanese") }
-        binding.korean.setOnClickListener { updateLanguageSelection("Korean") }
-        binding.thai.setOnClickListener { updateLanguageSelection("Thai") }
+        binding.english.setOnClickListener { updateLanguageSelection("en") }
+        binding.espanol.setOnClickListener { updateLanguageSelection("es") }
+        binding.hindi.setOnClickListener { updateLanguageSelection("hi") }
+        binding.arabic.setOnClickListener { updateLanguageSelection("ar") }
+        binding.afrikaans.setOnClickListener { updateLanguageSelection("af") }
+        binding.portuguese.setOnClickListener { updateLanguageSelection("pt") }
+        binding.french.setOnClickListener { updateLanguageSelection("fr") }
+        binding.urdu.setOnClickListener { updateLanguageSelection("ur") }
+        binding.indonesia.setOnClickListener { updateLanguageSelection("in") }
+        binding.russian.setOnClickListener { updateLanguageSelection("ru") }
+        binding.vietnamese.setOnClickListener { updateLanguageSelection("vi") }
+        binding.china.setOnClickListener { updateLanguageSelection("zh") }
+        binding.german.setOnClickListener { updateLanguageSelection("de") }
+        binding.japanese.setOnClickListener { updateLanguageSelection("ja") }
+        binding.korean.setOnClickListener { updateLanguageSelection("ko") }
+        binding.thai.setOnClickListener { updateLanguageSelection("th") }
     }
 
     private fun updateLanguageSelection(selectedLanguage: String) {
@@ -126,6 +130,9 @@ class PNLLanguageActivity : AppCompatActivity() {
         )
 
         langName = selectedLanguage
+
+
+
         clIds.forEach { it.background = null }
         clIds[langNameIndex(selectedLanguage)].background =
             resources.getDrawable(R.drawable.drawablestroke)
@@ -133,22 +140,22 @@ class PNLLanguageActivity : AppCompatActivity() {
 
     private fun langNameIndex(language: String): Int =
         listOf(
-            "English",
-            "Hindi",
-            "Arabic",
-            "Afrikaans",
-            "Portuguese",
-            "Spanish",
-            "French",
-            "Urdu",
-            "Indonesian",
-            "Russian",
-            "Vietnamese",
-            "Chinese",
-            "German",
-            "Japanese",
-            "Korean",
-            "Thai"
+            "en",
+            "hi",
+            "ar",
+            "af",
+            "pt",
+            "es",
+            "fr",
+            "ur",
+            "in",
+            "ru",
+            "vi",
+            "zh",
+            "de",
+            "ja",
+            "ko",
+            "th"
         ).indexOf(language)
 
     private fun setLocaleAndChangeLanguage(language: String) {

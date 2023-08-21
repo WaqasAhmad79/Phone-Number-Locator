@@ -17,17 +17,17 @@
     <string name="number_blocked">Número bloqueado</string>
     <string name="permission_required">Permiso requerido</string>
     <!--main screen-->
-    <string name="call_locator">Localizador de Llamadas</string>
-    <string name="contact_list">Lista de Contactos</string>
+    <string name="call_locator">Llamada Localizador</string>
+    <string name="contact_list">Contacto Lista</string>
     <string name="gps_tracker">Seguimiento GPS</string>
-    <string name="area_calculator">Calculadora de Área</string>
+    <string name="area_calculator">Área Calculadora</string>
     <string name="share_loc">Compartir Ubicación</string>
     <string name="isd_std_code">Código ISD / STD</string>
-    <string name="cam_address">Dirección de la Cámara</string>
+    <string name="cam_address">Cámara Dirección</string>
     <string name="gps_location">Ubicación GPS</string>
     <string name="find_address">Encontrar Dirección</string>
     <string name="gps_address">Dirección GPS</string>
-    <string name="distance_finder">Localizador de Distancia</string>
+    <string name="distance_finder">Distancia Localizador</string>
     <string name="recommend_for_you">Recomendado para ti</string>
     <string name="num_track_more_option">Opciones adicionales del Localizador de Números</string>
 
