@@ -18,6 +18,10 @@ import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityPnldistanceFinderBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlHelper.UNIT_CM
+import com.example.phonenumberlocator.pnlHelper.UNIT_KILOMETERS
+import com.example.phonenumberlocator.pnlHelper.UNIT_METERS
+import com.example.phonenumberlocator.pnlHelper.UNIT_MILES
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -243,23 +247,21 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
            distances.add(distance)
        }
 
-       // Calculate the distances based on the selected units
-       val distancesInSelectedUnits = distances.map { distance ->
-           when (selectedDistanceUnits) {
-               "mm" -> distance * 1000 // Convert to millimeters
-               "Cm" -> distance * 100 // Convert to centimeters
-               "m" -> distance // Already in meters
-               "km" -> distance / 1000 // Convert to kilometers
-               else -> distance // Default to meters
-           }
-       }
+        // Calculate the distances based on the selected units
+        val distancesInSelectedUnits = distances.map { distance ->
+            when (selectedDistanceUnits) {
+                UNIT_METERS -> distance // Already in meters
+                UNIT_KILOMETERS -> distance / 1000 // Convert to kilometers
+//                UNIT_MILES -> distance / 1609.344 // Convert to miles
+                else -> distance // Default to meters
+            }
+        }
+        // Calculate the total distance in the selected units
+        val totalDistanceInSelectedUnits = distancesInSelectedUnits.sum()
 
-       // Calculate the total distance in the selected units
-       val totalDistanceInSelectedUnits = distancesInSelectedUnits.sum()
-
-       // Update the UI with the distances in the selected units
-       val totalDistanceText = "${formatter_two_dec.format(totalDistanceInSelectedUnits)} $selectedDistanceUnits"
-       binding.tvDistance.text = totalDistanceText
+        // Update the UI with the distances in the selected units
+        val totalDistanceText = "${formatter_two_dec.format(totalDistanceInSelectedUnits)} $selectedDistanceUnits"
+        binding.tvDistance.text = totalDistanceText
 
        // Draw a polyline between all pairs of consecutive markers
        if (markers.size >= 2) {
@@ -412,11 +414,16 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
             redoMarker()
         }
         binding.cardUnit.setOnClickListener {
-            val units = arrayOf("mm", "Cm", "m", "Km")
+            val units = arrayOf("Meters", "Kilometers")
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Select Units")
             builder.setItems(units) { _, which ->
-                selectedDistanceUnits = units[which]
+                selectedDistanceUnits = when (which) {
+                    0 -> UNIT_METERS
+                    1 -> UNIT_KILOMETERS
+//                    2 -> UNIT_MILES
+                    else -> UNIT_METERS // Default to meters
+                }
                 updateDistancesAndPolyline()
             }
             builder.show()

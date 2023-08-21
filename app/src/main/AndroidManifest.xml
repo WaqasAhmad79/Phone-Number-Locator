@@ -90,7 +90,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.PNLLanguageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.lang"/>
         <activity
             android:name=".ui.MainActivity"
             android:exported="false" />

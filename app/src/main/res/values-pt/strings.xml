@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Phone Number Locator</string>
+
+    <!--splash-->
+    <string name="let_s_start">Vamos começar</string>
+    <string name="splash_text">Esta ação pode conter anúncios</string>
+
+    <!--context-->
+    <string name="no_app_found">Nenhum aplicativo encontrado</string>
+    <string name="no_post_notifications_permissions">É necessário permissão para enviar notificações</string>
+    <string name="unknown_error_occurred">Ocorreu um erro desconhecido</string>
+    <string name="current_location">Localização Atual</string>
+    <string name="simple_commons" translatable="false">Commons Simples</string>
+    <string name="copied_to_clipboard">Copiado para a área de transferência</string>
+    <string name="no_address_found">Nenhum Endereço Encontrado</string>
+    <string name="number_blocked">Número Bloqueado</string>
+    <string name="permission_required">Permissão Necessária</string>
+    <!--main screen-->
+    <string name="call_locator">Localizador de Chamadas</string>
+    <string name="contact_list">Lista de Contatos</string>
+    <string name="gps_tracker">Rastreador GPS</string>
+    <string name="area_calculator">Calculadora de Área</string>
+    <string name="share_loc">Compartilhar Localização</string>
+    <string name="isd_std_code">Código ISD / STD</string>
+    <string name="cam_address">Endereço da Câmera</string>
+    <string name="gps_location">Localização GPS</string>
+    <string name="find_address">Encontrar Endereço</string>
+    <string name="gps_address">Endereço GPS</string>
+    <string name="distance_finder">Localizador de Distância</string>
+    <string name="recommend_for_you">Recomendado para Você</string>
+    <string name="num_track_more_option">Mais Opções do Rastreador de Números</string>
+
+    <!--drawer-->
+    <string name="privacy_policy">Política de Privacidade</string>
+    <string name="share">Compartilhar</string>
+    <string name="rate_us">Avalie-nos</string>
+    <string name="language_setting">Configuração de Idioma</string>
+    <string name="more">Mais Aplicativos</string>
+    <!--contacts-->
+    <string name="contacts">Contatos</string>
+    <string name="search_contact">Buscar Número</string>
+    <!--live traffic-->
+    <string name="live_traffic_header">Tráfego ao Vivo</string>
+    <string name="low">Normal</string>
+    <string name="moderate">Moderado</string>
+    <string name="heavy">Intenso</string>
+    <string name="copy">Copiar</string>
+    <string name="address_copied">Endereço copiado</string>
+    <string name="please_wait">Aguarde, por favor</string>
+
+    <!--share location-->
+    <string name="copy_share">Copiar para a Área de Transferência</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="share_location_header">Compartilhar Localização</string>
+    <string name="share_location">Compartilhar</string>
+    <string name="address">Endereço : </string>
+    <string name="city">Cidade : </string>
+    <string name="country">País : </string>
+    <string name="navigate">Navegar</string>
+    <string name="already_on_destination">Já na Destinação</string>
+
+    <!--permission-->
+    <string name="check_internet_connection">Verifique a conexão com a internet</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="location_permission_denied">Permissão negada</string>
+    <string name="delete_str">Tem certeza de que deseja excluir?</string>
+    <string name="already_destination">Você já está na destinação.</string>
+
+    <!--gps coordinates-->
+    <string name="gps_coordinates_header">Encontrar Endereço</string>
+    <string name="lati">Latitude :</string>
+    <string name="longi">Longitude :</string>
+    <string name="get_location">Obter Localização</string>
+    <string name="copy_to_clipboard">Copiar</string>
+    <string name="navigation">Navegação</string>
+    <string name="lat_long">latitude/longitude</string>
+    <string name="degrees">Graus (DMS)</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Ok</string>
+    <string name="empty_measurement">Medições vazias</string>
+    <string name="saved_measures">Medições Salvas</string>
+    <string name="item_saved">Item salvo com sucesso!</string>
+    <string name="no_history">Nenhum histórico encontrado</string>
+    <string name="loading_ads">Carregando Anúncio...</string>
+    <string name="exit_text">Tem certeza de que deseja sair?</string>
+    <string name="exit">Sair</string>
+    <string name="enter_lat">Digite a Latitude</string>
+    <string name="enter_long">Digite a Longitude</string>
+
+    <!--number locator-->
+    <string name="search_number">Buscar Número</string>
+    <string name="enter_phone_number">Digite o número de telefone</string>
+    <string name="network_name">Rede Móvel</string>
+    <string name="call">Chamada</string>
+    <string name="message">Mensagem</string>
+    <string name="create">Editar</string>
+    <string name="block">Bloquear</string>
+    <string name="name">Desconhecido</string>
+    <string name="name_title">Nome :</string>
+    <string name="country_">País</string>
+    <string name="network">Rede : </string>
+    <string name="edit">Editar</string>
+    <string name="invalid_number">Número inválido</string>
+    <string name="a" translatable="false">A</string>
+    <string name="location">Localização</string>
+    <!--area calculator-->
+    <string name="area_calculator_header">Calculadora de Área</string>
+    <string name="area1">Área : </string>
+    <string name="error">Erro: %s</string>
+    <string name="area">Área</string>
+    <string name="perimeter">Perímetro :</string>
+    <string name="available_units_of_area">Unidades Disponíveis de Área</string>
+
+    <!--cam address-->
+    <string name="cam_address_header">Endereço da Câmera</string>
+    <string name="lat">Latitude :</string>
+    <string name="log">Longitude :</string>
+    <string name="congo">Parabéns</string>
+    <string name="image_saved_successfully">Imagem Salva com Sucesso</string>
+    <string name="done">Concluído</string>
+    <string name="saved">Salvo na Galeria</string>
+    <string name="language">Idioma</string>
+
+    <!--isd code-->
+    <string name="isd_code_header">Código ISD</string>
+    <string name="find_isd_code">Encontre os Códigos ISD</string>
+    <string name="select_country">Selecionar País</string>
+    <string name="select_your_country">Selecione o seu País</string>
+    <string name="search_country_by_name">Buscar país por nome</string>
+    <string name="country_name">Nome do País :</string>
+    <string name="isd">Código ISD :</string>
+    <string name="search">Buscar</string>
+    <string name="below_track_text">Buscar qualquer Número de Telefone Localização</string>
+    <!--gps location-->
+    <string name="current_gps_location">Localização GPS Atual</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="postal_code">Código Postal :</string>
+    <string name="show_location_on_map">Mostrar Localização no mapa</string>
+    <string name="current_postal_address">Endereço Postal Atual</string>
+    <!--isd/std-->
+    <string name="enter_city_name">Digite o nome da cidade</string>
+    <!--search number-->
+    <string name="search_hint_dialog">Buscar...</string>
+    <string name="search_contatct">Buscar número de telefone..</string>
+    <string name="mobile_number">Número de Celular :</string>
+    <string name="select_country_code">Selecionar Código de País</string>
+    <string name="find_location">Encontrar Localização</string>
+    <string name="whatsapp_not_installed">O WhatsApp não está instalado neste dispositivo.</string>
+
+    <!--distance finder-->
+    <string name="distance1">Distância :</string>
+    <string name="_0m">0m</string>
+    <string name="delete">Excluir</string>
+    <string name="undo">Desfazer</string>
+
+</resources>

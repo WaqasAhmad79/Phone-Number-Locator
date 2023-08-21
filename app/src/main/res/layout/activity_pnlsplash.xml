@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="ltr"
+    android:background="@color/app_color"
     tools:context=".ui.activities.PNLSplashActivity">
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:background="@color/app_color"
-        android:layout_marginBottom="-4dp" />
+        android:layout_height="@dimen/_390sdp"
+        android:background="@drawable/splash_img"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--  <ImageView
           android:id="@+id/imageView2"
@@ -35,21 +36,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />-->
-    <com.airbnb.lottie.LottieAnimationView
+    <ImageView
         android:id="@+id/splashJson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:src="@drawable/splash_icon"
+        android:padding="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="splash.json"
-        app:lottie_loop="true"
-        app:lottie_speed="1"
-        tools:ignore="ContentDescription"
-        app:layout_constraintVertical_bias="0.3"/>
+       />
 
     <TextView
         android:id="@+id/textView6"

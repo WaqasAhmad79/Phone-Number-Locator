@@ -36,6 +36,12 @@ const val UNIT_ACRE = "Acre"
 const val UNIT_KILLA = "Killa"
 const val UNIT_MURABBA = "Murabba"
 
+
+
+const val UNIT_METERS = "m"
+const val UNIT_KILOMETERS = "km"
+const val UNIT_MILES = "miles"
+
 //const val PERMISSION_ACCESS_FINE_LOCATION = 16
 
 const val APP_NAME = "app_name"

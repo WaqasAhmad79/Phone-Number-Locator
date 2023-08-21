@@ -135,7 +135,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/first_map">
+                        android:background="@drawable/second_map">
 
                         <ImageView
                             android:id="@+id/iv_shareLocation"
@@ -210,7 +210,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/second_map">
+                        android:background="@drawable/third_map">
 
                         <ImageView
                             android:id="@+id/iv_findAddress"

@@ -5,48 +5,42 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.RadioButton
+import android.os.Handler
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.BuildCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
+import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.pnlUtil.changeLanguage
 import com.example.phonenumberlocator.pnlUtil.refreshLanguageStrings
 import com.example.phonenumberlocator.ui.MainActivity
+import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import com.example.tracklocation.tlSharedPreferencesLang.PNLMySharePreferences
-import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import java.util.Locale
+
 
 class PNLLanguageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPnllanguageBinding
-    var lang: String = "English"
-    val mySharePreferences = PNLMySharePreferences(this)
-    var started = false
+    private var lang: String = "English"
+    private val mySharePreferences = PNLMySharePreferences(this@PNLLanguageActivity)
+    private var langName: String? = null
 
-    lateinit var checkInternetConnection: PNLCheckInternetConnection
-    var buttonsIds: ArrayList<RadioButton> = arrayListOf()
 //    private var dialog: PNLResumeLoadingDialog?=null
 
-    @SuppressLint("UnsafeOptInUsageError")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val lang =intent.getBooleanExtra("setting",false )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = resources.getColor(R.color.app_color)
-        }
-        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
         binding = ActivityPnllanguageBinding.inflate(layoutInflater)
-        loadLocale()
         setContentView(binding.root)
-       /* dialog = TLResumeLoadingDialog(this)
+        val lang =intent.getBooleanExtra("setting",false )
+       /* dialog = PNLResumeLoadingDialog(this)
         if (isNetworkAvailable() && lang) {
             dialog?.show()
             showHighSplashAdmobInterstitial({}, {
@@ -63,222 +57,116 @@ class PNLLanguageActivity : AppCompatActivity() {
 
         }
 
-        loadAd()*/
+        loadAd()
+*/
+        langName = "English"
+        binding.clEnglish.background = resources.getDrawable(R.drawable.drawablestroke)
 
-        checkInternetConnection = PNLCheckInternetConnection(this)
         initListeners()
-        if (BuildCompat.isAtLeastT()) {
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(
-                OnBackInvokedDispatcher.PRIORITY_DEFAULT
-            ) {
-                finish()
 
-
+        binding.tick.setOnClickListener {
+            when (langName) {
+                "English" -> setLocaleAndChangeLanguage("en")
+                "Hindi" -> setLocaleAndChangeLanguage("hi")
+                "Portuguese" -> setLocaleAndChangeLanguage("pt")
+                "Spanish" -> setLocaleAndChangeLanguage("es")
+                "Afrikaans" -> setLocaleAndChangeLanguage("af")
+                "Arabic" -> setLocaleAndChangeLanguage("ar")
+                "French" -> setLocaleAndChangeLanguage("fr")
+                "Urdu" -> setLocaleAndChangeLanguage("ur")
+                "Indonesian" -> setLocaleAndChangeLanguage("in")
+                "Russian" -> setLocaleAndChangeLanguage("ru")
+                "Vietnamese" -> setLocaleAndChangeLanguage("vi")
+                "Chinese" -> setLocaleAndChangeLanguage("zh")
+                "German" -> setLocaleAndChangeLanguage("de")
+                "Japanese" -> setLocaleAndChangeLanguage("ja")
+                "Korean" -> setLocaleAndChangeLanguage("ko")
+                "Thai" -> setLocaleAndChangeLanguage("th")
             }
-        } else {
-            onBackPressedDispatcher.addCallback(
-                this, // lifecycle owner
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        finish()
-
-                    }
-                })
         }
     }
 
     private fun initListeners() {
-        binding.tvTitle.text = resources.getString(R.string.language)
-        binding.tick.setOnClickListener {
-            when (lang) {
-                "English" -> {
-                    baseConfig.appLanguage = "en"
-                    next()
+        binding.english.setOnClickListener { updateLanguageSelection("English") }
+        binding.espanol.setOnClickListener { updateLanguageSelection("Spanish") }
+        binding.hindi.setOnClickListener { updateLanguageSelection("Hindi") }
+        binding.arabic.setOnClickListener { updateLanguageSelection("Arabic") }
+        binding.afrikaans.setOnClickListener { updateLanguageSelection("Afrikaans") }
+        binding.portuguese.setOnClickListener { updateLanguageSelection("Portuguese") }
+        binding.french.setOnClickListener { updateLanguageSelection("French") }
+        binding.urdu.setOnClickListener { updateLanguageSelection("Urdu") }
+        binding.indonesia.setOnClickListener { updateLanguageSelection("Indonesian") }
+        binding.russian.setOnClickListener { updateLanguageSelection("Russian") }
+        binding.vietnamese.setOnClickListener { updateLanguageSelection("Vietnamese") }
+        binding.china.setOnClickListener { updateLanguageSelection("Chinese") }
+        binding.german.setOnClickListener { updateLanguageSelection("German") }
+        binding.japanese.setOnClickListener { updateLanguageSelection("Japanese") }
+        binding.korean.setOnClickListener { updateLanguageSelection("Korean") }
+        binding.thai.setOnClickListener { updateLanguageSelection("Thai") }
+    }
 
-                }
-
-                "Hindi" -> {
-                    baseConfig.appLanguage = "hi"
-                    next()
-
-                }
-
-                "Spanish" -> {
-                    baseConfig.appLanguage = "es"
-                    next()
-
-                }
-
-                "French" -> {
-                    baseConfig.appLanguage = "fr"
-                    next()
-
-                }
-
-                "Arabic" -> {
-                    baseConfig.appLanguage = "ar"
-                    next()
-
-                }
-
-                "Urdu" -> {
-                    baseConfig.appLanguage = "ur"
-                    next()
-
-                }
-
-                "Indonesia" -> {
-                    baseConfig.appLanguage = "in"
-                    next()
-
-                }
-
-                "Russia" -> {
-                    baseConfig.appLanguage = "ru"
-                    next()
-
-                }
-
-                "Afrikaans" -> {
-                    baseConfig.appLanguage = "af"
-                    next()
-
-                }
-
-                "Vietnamese" -> {
-                    baseConfig.appLanguage = "vi"
-                    next()
-
-                }
-                "Chinese" -> {
-                    baseConfig.appLanguage = "zh"
-                    next()
-
-                }
-
-                "German" -> {
-                    baseConfig.appLanguage = "de"
-                    next()
-
-                }
-
-                "Japanese" -> {
-                    baseConfig.appLanguage = "ja"
-                    next()
-
-                }
-
-                "Korean" -> {
-                    baseConfig.appLanguage = "ko"
-                    next()
-
-                }
-
-                "Thai" -> {
-                    baseConfig.appLanguage = "th"
-                    next()
-
-                }
-                "Portuguese" -> {
-                    baseConfig.appLanguage = "pt"
-                    next()
-
-                }
-
-            }
-        }
-
-        buttonsIds = arrayListOf(
-            binding.english,
-            binding.hindi,
-            binding.spanish,
-            binding.french,
-            binding.arabic,
-            binding.urdu,
-            binding.indonesia,
-            binding.russia,
-            binding.african,
-            binding.vietnamese,
-            binding.china,
-            binding.german,
-            binding.japanese,
-            binding.korean,
-            binding.thailand ,
-            binding.portuguese
-        )
-
-        buttonsIds.forEachIndexed { index, mRadioButton ->
-            mRadioButton.setOnClickListener {
-                mRadioButton.isChecked = true
-                lang = mRadioButton.text.toString()
-                buttonsIds.forEachIndexed { index, radioButton ->
-                    if (radioButton.id != mRadioButton.id) {
-                        radioButton.isChecked = false
-                    }
-                }
-
-            }
-
-        }
-        arrayListOf(
+    private fun updateLanguageSelection(selectedLanguage: String) {
+        val clIds = listOf(
             binding.clEnglish,
             binding.clHindi,
-            binding.clSpanish,
-            binding.clFrench,
             binding.clArabic,
+            binding.clAfrikaans,
+            binding.clPortuguese,
+            binding.clEspanol,
+            binding.clFrench,
             binding.clUrdu,
-            binding.clIndonesia,
-            binding.clRussia,
-            binding.clAfrican,
+            binding.clIndonesian,
+            binding.clRussian,
             binding.clVietnamese,
             binding.clChina,
-            binding.clGermany,
+            binding.clGerman,
             binding.clJapanese,
             binding.clKorean,
-            binding.clThailand,
-            binding.clPortuguese
-        ).forEachIndexed { index, constraintLayout ->
-            constraintLayout.setOnClickListener {
-                handleRadioButton(buttonsIds[index])
-            }
-        }
+            binding.clThai
+        )
 
+        langName = selectedLanguage
+        clIds.forEach { it.background = null }
+        clIds[langNameIndex(selectedLanguage)].background =
+            resources.getDrawable(R.drawable.drawablestroke)
     }
 
-    private fun handleRadioButton(mButton: RadioButton) {
-        buttonsIds.forEach { button ->
-            if (button.id == mButton.id) {
-                button.isChecked = true
-                lang = button.text.toString()
-            } else {
-                button.isChecked = false
-            }
+    private fun langNameIndex(language: String): Int =
+        listOf(
+            "English",
+            "Hindi",
+            "Arabic",
+            "Afrikaans",
+            "Portuguese",
+            "Spanish",
+            "French",
+            "Urdu",
+            "Indonesian",
+            "Russian",
+            "Vietnamese",
+            "Chinese",
+            "German",
+            "Japanese",
+            "Korean",
+            "Thai"
+        ).indexOf(language)
 
-        }
-
-    }
-
-    fun next() {
-        changeLanguage(baseConfig.appLanguage.toString())
+    private fun setLocaleAndChangeLanguage(language: String) {
+        baseConfig.appLanguage = language
+        setLocale(language)
+        changeLanguage(language)
         refreshLanguageStrings()
+
         if (!baseConfig.appStarted) {
             baseConfig.appStarted = true
-            startActivity(Intent(this, MainActivity::class.java).putExtra("LanguageActivity",true))
+            startActivity(Intent(this@PNLLanguageActivity, MainActivity::class.java))
             finish()
-            return
+        } else {
+            finish()
         }
-        finish()
-    }
-
-    fun radio_button_click(view: View) {
-        // Get the clicked radio button instance
-//        val radio: RadioButton = findViewById(binding.radioGroup.checkedRadioButtonId)
-//        Toast.makeText(applicationContext,"On click : ${radio.text}",
-//            Toast.LENGTH_SHORT).show()
     }
 
     private fun setLocale(language: String) {
-
         val locale = Locale(language)
         Locale.setDefault(locale)
 
@@ -293,80 +181,7 @@ class PNLLanguageActivity : AppCompatActivity() {
         editor.putString("app_lang", language)
         editor.apply()
     }
-
-    private fun loadLocale() {
-//        val preferences: SharedPreferences = getSharedPreferences("Settings", MODE_PRIVATE)
-//        val language = preferences.getString("app_lang", "")
-        val language = baseConfig.appLanguage
-        language?.let {
-            setLocale(it)
-            when (it) {
-                "en" -> {
-                    binding.english.isChecked = true
-                }
-
-                "hi" -> {
-                    binding.hindi.isChecked = true
-
-                }
-
-                "es" -> {
-                    binding.spanish.isChecked = true
-
-                }
-
-                "fr" -> {
-                    binding.french.isChecked = true
-
-                }
-
-                "ar" -> {
-                    binding.arabic.isChecked = true
-
-                }
-
-                "ur" -> {
-                    binding.urdu.isChecked = true
-                }
-
-                "in" -> {
-                    binding.indonesia.isChecked = true
-                }
-                "ru" -> {
-                    binding.russia.isChecked = true
-                }
-                "af" -> {
-                    binding.african.isChecked = true
-                }
-                "vi" -> {
-                    binding.vietnamese.isChecked = true
-                }
-
-                "zh" -> {
-                    binding.china.isChecked = true
-                }
-
-                "de" -> {
-                    binding.german.isChecked = true
-                }
-                "ja" -> {
-                    binding.japanese.isChecked = true
-                }
-                "ko" -> {
-                    binding.korean.isChecked = true
-                }
-                "th" -> {
-                    binding.thailand.isChecked = true
-                }
-                "pt" -> {
-                    binding.portuguese.isChecked = true
-                }
-            }
-
-        }
-    }
-
-   /* private fun loadAd() {
+    /* private fun loadAd() {
         if (isNetworkAvailable()) {
             binding.ads.visibility = View.VISIBLE
             PhoneNumberLocator.instance.nativeAdLang.observe(this){
