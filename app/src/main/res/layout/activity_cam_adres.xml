@@ -86,13 +86,13 @@
                             android:id="@+id/iv_gpsAddress"
                             android:layout_width="@dimen/_42sdp"
                             android:layout_height="@dimen/_42sdp"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:padding="@dimen/_2sdp"
                             android:src="@drawable/cam_icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.15" />
+                            app:layout_constraintVertical_bias="0.2" />
 
                         <TextView
                             android:id="@+id/gpsAddress_text"
@@ -134,13 +134,13 @@
                             android:id="@+id/iv_areaCalculator"
                             android:layout_width="@dimen/_42sdp"
                             android:layout_height="@dimen/_42sdp"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:padding="@dimen/_2sdp"
                             android:src="@drawable/area_calculator_icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.15" />
+                            app:layout_constraintVertical_bias="0.2" />
 
                         <TextView
                             android:id="@+id/areaCalculator_text"
@@ -198,13 +198,13 @@
                             android:id="@+id/iv_distanceFinder"
                             android:layout_width="@dimen/_42sdp"
                             android:layout_height="@dimen/_42sdp"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:padding="@dimen/_2sdp"
                             android:src="@drawable/distance_finder_icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.15" />
+                            app:layout_constraintVertical_bias="0.2" />
 
                         <TextView
                             android:id="@+id/distanceFinder_text"

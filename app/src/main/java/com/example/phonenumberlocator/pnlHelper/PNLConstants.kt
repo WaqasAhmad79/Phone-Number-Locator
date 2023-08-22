@@ -13,6 +13,8 @@ import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.pnlOverloads.times
 import java.util.*
 
+var IS_PERMISSION_ON="ispermissionon"
+
 const val CURRENT_THEME_TYPE = "current_theme_name_type"
 const val IS_REWARDED = "is_rewarded_ad"
 const val CURRENT_THEME = "current_theme_name"

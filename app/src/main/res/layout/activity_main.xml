@@ -21,7 +21,7 @@
         android:layout_gravity="start"
         android:background="@color/app_color"
         android:fitsSystemWindows="false"
-
+        app:itemIconSize="@dimen/_30sdp"
         app:headerLayout="@layout/nav_header_main"
         app:itemTextAppearance="@font/poppins_medium"
         app:itemTextColor="@color/text_color"

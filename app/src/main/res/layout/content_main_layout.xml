@@ -93,13 +93,13 @@
                             android:id="@+id/iv_callLocator"
                             android:layout_width="@dimen/_42sdp"
                             android:layout_height="@dimen/_42sdp"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:padding="@dimen/_2sdp"
                             android:src="@drawable/call_locator_icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.15" />
+                            app:layout_constraintVertical_bias="0.2" />
 
                         <TextView
                             android:id="@+id/callLocator_text"
@@ -141,13 +141,13 @@
                             android:id="@+id/iv_gpsTracker"
                             android:layout_width="@dimen/_42sdp"
                             android:layout_height="@dimen/_42sdp"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:padding="@dimen/_2sdp"
                             android:src="@drawable/gps_tracker_icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.15" />
+                            app:layout_constraintVertical_bias="0.2" />
 
                         <TextView
                             android:id="@+id/gpsTracker_text"
@@ -216,13 +216,13 @@
                             android:id="@+id/iv_camAddress"
                             android:layout_width="@dimen/_42sdp"
                             android:layout_height="@dimen/_42sdp"
-                            android:layout_marginStart="@dimen/_5sdp"
                             android:src="@drawable/cam_icon"
+                            android:padding="@dimen/_2sdp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.15" />
+                            app:layout_constraintVertical_bias="0.2" />
 
                         <TextView
                             android:id="@+id/camAddress_text"

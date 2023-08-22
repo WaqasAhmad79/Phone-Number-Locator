@@ -7,6 +7,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -39,29 +40,28 @@ class PNLLanguageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPnllanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val lang =intent.getBooleanExtra("setting",false )
+        val lang = intent.getBooleanExtra("setting", false)
 
 
+        /* dialog = PNLResumeLoadingDialog(this)
+         if (isNetworkAvailable() && lang) {
+             dialog?.show()
+             showHighSplashAdmobInterstitial({}, {
+                 showLowSplashAdmobInterstitial({ }, { dialog?.dismiss() }, {
+                     Handler().postDelayed({
+                         dialog?.dismiss()
+                     }, 1000)
+                 })
+             }, {
+                 Handler().postDelayed({
+                     dialog?.dismiss()
+                 }, 1000)
+             })
 
-       /* dialog = PNLResumeLoadingDialog(this)
-        if (isNetworkAvailable() && lang) {
-            dialog?.show()
-            showHighSplashAdmobInterstitial({}, {
-                showLowSplashAdmobInterstitial({ }, { dialog?.dismiss() }, {
-                    Handler().postDelayed({
-                        dialog?.dismiss()
-                    }, 1000)
-                })
-            }, {
-                Handler().postDelayed({
-                    dialog?.dismiss()
-                }, 1000)
-            })
+         }
 
-        }
-
-        loadAd()
-*/
+         loadAd()
+ */
         langName = baseConfig.appLanguage
         langName?.let { updateLanguageSelection(it) }
         //binding.clEnglish.background = resources.getDrawable(R.drawable.drawablestroke)
@@ -70,21 +70,21 @@ class PNLLanguageActivity : AppCompatActivity() {
 
         binding.tick.setOnClickListener {
             when (langName) {
-                "en"->    setLocaleAndChangeLanguage("en")
-                "hi"    ->        setLocaleAndChangeLanguage("hi")
-                "ar"       -> setLocaleAndChangeLanguage("pt")
-                "af" -> setLocaleAndChangeLanguage("es")
-                "pt"   -> setLocaleAndChangeLanguage("af")
-                "es"    -> setLocaleAndChangeLanguage("ar")
-                "fr"   -> setLocaleAndChangeLanguage("fr")
-                "ur"-> setLocaleAndChangeLanguage("ur")
-                "in"     -> setLocaleAndChangeLanguage("in")
-                "ru"-> setLocaleAndChangeLanguage("ru")
-                "vi"    -> setLocaleAndChangeLanguage("vi")
+                "en" -> setLocaleAndChangeLanguage("en")
+                "hi" -> setLocaleAndChangeLanguage("hi")
+                "ar" -> setLocaleAndChangeLanguage("ar")
+                "af" -> setLocaleAndChangeLanguage("af")
+                "pt" -> setLocaleAndChangeLanguage("pt")
+                "es" -> setLocaleAndChangeLanguage("es")
+                "fr" -> setLocaleAndChangeLanguage("fr")
+                "ur" -> setLocaleAndChangeLanguage("ur")
+                "in" -> setLocaleAndChangeLanguage("in")
+                "ru" -> setLocaleAndChangeLanguage("ru")
+                "vi" -> setLocaleAndChangeLanguage("vi")
                 "zh" -> setLocaleAndChangeLanguage("zh")
-                "de"  -> setLocaleAndChangeLanguage("de")
-                "ja"  -> setLocaleAndChangeLanguage("ja")
-                "ko"  -> setLocaleAndChangeLanguage("ko")
+                "de" -> setLocaleAndChangeLanguage("de")
+                "ja" -> setLocaleAndChangeLanguage("ja")
+                "ko" -> setLocaleAndChangeLanguage("ko")
                 "th" -> setLocaleAndChangeLanguage("th")
             }
         }
@@ -130,16 +130,19 @@ class PNLLanguageActivity : AppCompatActivity() {
         )
 
         langName = selectedLanguage
-
-
-
+        val lowercaseLangName = langName?.toLowerCase(Locale.ROOT) ?: ""
+        Log.d(
+            "LanguageDebug",
+            "Selected Language Name: $langName, Lowercase Language Name: $lowercaseLangName"
+        )
+        val langIndex = langNameIndex(lowercaseLangName)
         clIds.forEach { it.background = null }
-        clIds[langNameIndex(selectedLanguage)].background =
+        clIds[langIndex].background =
             resources.getDrawable(R.drawable.drawablestroke)
     }
 
-    private fun langNameIndex(language: String): Int =
-        listOf(
+    private fun langNameIndex(language: String): Int {
+        val languageCodes = listOf(
             "en",
             "hi",
             "ar",
@@ -156,7 +159,11 @@ class PNLLanguageActivity : AppCompatActivity() {
             "ja",
             "ko",
             "th"
-        ).indexOf(language)
+        )
+        val index = languageCodes.indexOf(language)
+        return if (index >= 0) index else 0 // Fallback to the first language if not found
+    }
+
 
     private fun setLocaleAndChangeLanguage(language: String) {
         baseConfig.appLanguage = language
@@ -166,7 +173,7 @@ class PNLLanguageActivity : AppCompatActivity() {
 
         if (!baseConfig.appStarted) {
             baseConfig.appStarted = true
-            startActivity(Intent(this@PNLLanguageActivity, MainActivity::class.java))
+            startActivity(Intent(this@PNLLanguageActivity, PNLIntroSliderActivity::class.java))
             finish()
         } else {
             finish()

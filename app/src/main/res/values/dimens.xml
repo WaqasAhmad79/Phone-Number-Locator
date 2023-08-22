@@ -16,6 +16,13 @@
     <dimen name="small_padding">@dimen/_4sdp</dimen>
     <dimen name="medium_padding">@dimen/_8sdp</dimen>
     <dimen name="large_padding">@dimen/_12sdp</dimen>
+<!--slider-->
+    <dimen name="dots_height">30dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30dp</dimen>
+    <dimen name="slide_desc">16dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
 
 
    <!-- &lt;!&ndash; BubbleLevelActivity &ndash;&gt;

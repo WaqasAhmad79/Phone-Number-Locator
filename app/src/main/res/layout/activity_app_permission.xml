@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_color"
+
+    tools:context=".ui.activities.AppPermissionActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_image1"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:src="@drawable/app_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            >
+        </ImageView>
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slide_4_title"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:textSize="20sp"
+            android:textColor="@color/buttonColor"
+            app:layout_constraintTop_toBottomOf="@+id/iv_image1"
+            app:layout_constraintStart_toStartOf="@+id/iv_image1"
+            app:layout_constraintEnd_toEndOf="@+id/iv_image1"
+            android:layout_marginTop="@dimen/_5sdp"
+          />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/permission"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/action_button"
+            android:backgroundTint="@color/white"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_9sdp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_image1"
+            app:layout_constraintStart_toStartOf="@+id/iv_image1"
+            app:layout_constraintTop_toBottomOf="@+id/text1">
+
+            <TextView
+                android:id="@+id/per_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/device_location"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="6dp" />
+
+
+            <com.github.angads25.toggle.widget.LabeledSwitch
+                android:id="@+id/permission_switch"
+                android:layout_width="55dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:textSize="8sp"
+                app:colorBorder="@color/buttonColor"
+                app:colorOn="@color/buttonColor"
+                app:layout_constraintBottom_toBottomOf="@+id/per_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/per_text"
+                app:on="false" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
+            android:text="@string/slide_3_title"
+            android:textColor="@color/dark_gray"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/permission"
+            app:layout_constraintStart_toStartOf="@+id/permission"
+            app:layout_constraintTop_toBottomOf="@+id/permission">
+        </TextView>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:text="@string/slide_4_desc"
+            android:textColor="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="@+id/text"
+            app:layout_constraintStart_toStartOf="@+id/text"
+            app:layout_constraintTop_toBottomOf="@+id/text">
+        </TextView>
+
+
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65"
+            android:text="@string/go"
+            android:backgroundTint="@color/buttonColor"
+            android:textColor="@android:color/white" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:background="@drawable/ad_place_holder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
