@@ -1,29 +1,17 @@
 package com.example.phonenumberlocator.ui.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.window.OnBackInvokedDispatcher
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.os.BuildCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
-import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.pnlUtil.changeLanguage
 import com.example.phonenumberlocator.pnlUtil.refreshLanguageStrings
-import com.example.phonenumberlocator.ui.MainActivity
-import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
+import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
 import com.example.tracklocation.tlSharedPreferencesLang.PNLMySharePreferences
 import java.util.Locale
 

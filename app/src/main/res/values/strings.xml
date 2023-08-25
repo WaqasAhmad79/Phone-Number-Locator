@@ -175,20 +175,20 @@
     <string name="delete">Delete</string>
     <string name="undo">Undo</string>
     <!--intro slider-->
-    <string name="next">Next</string>
-    <string name="start">Start</string>
-    <string name="slide_1_title">Find Number Location</string>
-    <string name="slide_1_desc">Allow Phone Number Tracker to access this\ndevices location know where you are</string>
-    <string name="slide_2_title">Location Of friends</string>
-    <string name="slide_2_desc">Connect With friends Number Location</string>
-    <string name="slide_3_title">Get Location</string>
-    <string name="slide_3_desc">Find Location Coordinates of any Place\nUsing just its name or address</string>
-    <string name="slide_4_title">Mobile Number\nLocation</string>
-    <string name="device_location">Device\'s Location</string>
-    <string name="slide_4_desc">Mobile Number Location requires\npermission to access device\'s  Location</string>
-    <string name="go">Go</string>
-    <string name="grant_all_permissions">Grant all permissions to continue</string>
-    <string name="permission_denied">You denied the permission</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="start" translatable="false">Start</string>
+    <string name="slide_1_title" translatable="false">Find Number Location</string>
+    <string name="slide_1_desc" translatable="false">Allow Phone Number Tracker to access this\ndevices location know where you are</string>
+    <string name="slide_2_title" translatable="false">Location</string>
+    <string name="slide_2_desc" translatable="false">Phone Tracker and GPS Location</string>
+    <string name="slide_3_title" translatable="false">Get Location</string>
+    <string name="slide_3_desc" translatable="false">Find Location Coordinates of any Place\nUsing just its name or address</string>
+    <string name="slide_4_title" translatable="false">Mobile Number\nLocation</string>
+    <string name="device_location" translatable="false">Device\'s Location</string>
+    <string name="slide_4_desc" translatable="false">Mobile Number Location requires\npermission to access device\'s  Location</string>
+    <string name="go" translatable="false">Go</string>
+    <string name="grant_all_permissions" translatable="false">Grant all permissions to continue</string>
+    <string name="permission_denied" translatable="false">You denied the permission</string>
 
 
 </resources>

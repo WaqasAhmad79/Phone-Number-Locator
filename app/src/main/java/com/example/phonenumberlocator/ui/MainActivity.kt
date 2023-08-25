@@ -2,6 +2,7 @@ package com.example.phonenumberlocator.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -17,6 +18,7 @@ import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityMainBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlHelper.PERMISSION_ACCESS_FINE_LOCATION
 import com.example.phonenumberlocator.pnlHelper.PERMISSION_CAMERA
 import com.example.phonenumberlocator.pnlHelper.PERMISSION_READ_CONTACTS
@@ -56,9 +58,15 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (checkPermission()){
+
+        }
+        else{
+            requestPermission()
+        }
+
         initViews()
         handleClicks()
-        runtimePer()
         /* val adControl = intent.getBooleanExtra("LanguageActivity", false)
          if (adControl) {
              permissionLocation()
@@ -107,75 +115,46 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     }
 
-    private fun runtimePer() {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2) {
+    private fun checkPermission(): Boolean {
+        val permissionsToCheck = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_CONTACTS
+        )
 
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.READ_MEDIA_IMAGES
-                ) != PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.CAMERA
-                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.READ_CONTACTS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this, arrayOf(
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.READ_CONTACTS,
-                        Manifest.permission.READ_MEDIA_IMAGES
-
-                    ), 1
-                )
-            } else {
-                binding.content.ads.beVisible()
-//                loadAd()
-            }
-        } else {
-            if (ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.READ_EXTERNAL_STORAGE
-                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.CAMERA
-                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.READ_CONTACTS
-                ) != PackageManager.PERMISSION_GRANTED
-
-            ) {
-                ActivityCompat.requestPermissions(
-                    this, arrayOf(
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.READ_CONTACTS,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    ), 1
-                )
-            } else {
-                binding.content.ads.beVisible()
-//                loadAd()
-            }
+        return permissionsToCheck.all {
+            ContextCompat.checkSelfPermission(applicationContext, it) == PackageManager.PERMISSION_GRANTED
         }
     }
 
+    private fun requestPermission() {
+        val permissionsToRequest = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_CONTACTS
+        )
+
+        requestPermissions(permissionsToRequest, 1)
+    }
+
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            1 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    binding.content.ads.beVisible()
-//                    loadAd()
-                } else {
-                    Toast.makeText(this, "You denied the permission", Toast.LENGTH_SHORT).show()
-                }
+
+        if (requestCode == 1 && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+            Toast.makeText(
+                applicationContext,
+                "Permission Granted, Now you can access Number Tracker.",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+                shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+            ) {
+                requestPermission()
             }
         }
     }
