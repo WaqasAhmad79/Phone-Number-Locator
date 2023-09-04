@@ -21,6 +21,7 @@ import androidx.core.content.PermissionChecker
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityPnlareaCalculatorBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlHelper.CURRENT_UNIT
 import com.example.phonenumberlocator.pnlHelper.UNIT_ACRE
@@ -284,17 +285,16 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
             setCurrentLocation()
         }
 
-        binding.cardMapSimple.setOnClickListener {
+        binding.cardMap3d.setOnClickListener {
+            it.beInvisible()
+            binding.cardMap2d.beVisible()
             onSwitch3DButtonClicked(it)
-//            it.beGone()
-//            binding.cardMapSatellite.beVisible()
-//            map?.mapType = GoogleMap.MAP_TYPE_HYBRID
         }
-//        binding.cardMapSatellite.setOnClickListener {
-//            it.beGone()
-//            binding.cardMapSimple.beVisible()
-//            map?.mapType = GoogleMap.MAP_TYPE_NORMAL
-//        }
+        binding.cardMap2d.setOnClickListener {
+            it.beInvisible()
+            binding.cardMap3d.beVisible()
+            onSwitch3DButtonClicked(it)
+        }
 
     }
     private fun onSwitch3DButtonClicked(view: View) {

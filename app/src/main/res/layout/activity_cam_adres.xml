@@ -39,13 +39,25 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/mainJson"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_150sdp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="cam_address.json"
+        app:lottie_loop="true"
+        app:lottie_speed="1"
+        tools:ignore="ContentDescription"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        app:layout_constraintTop_toBottomOf="@id/mainJson">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -62,7 +74,7 @@
                 android:weightSum="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainJson">
+               app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/gpsAddress"
@@ -228,28 +240,6 @@
 
 
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/mainJson"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_180sdp"
-                android:src="@drawable/cam_address_img"
-                android:scaleType="fitXY"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <FrameLayout
-                android:id="@+id/ads"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_13sdp"
-                android:layout_marginVertical="@dimen/_5sdp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll_2" />
 
             <!--   <LinearLayout
                    android:id="@+id/ll_3"
@@ -600,5 +590,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:visibility="gone"
+        android:background="@drawable/ad_place_holder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

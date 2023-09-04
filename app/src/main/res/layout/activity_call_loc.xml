@@ -39,14 +39,28 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/mainJson"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/_150sdp"
-        android:src="@drawable/call_loc_img"
+        android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="call_loc.json"
+        app:lottie_loop="true"
+        app:lottie_speed="1"
+        tools:ignore="ContentDescription" />
+
+    <!--  <ImageView
+          android:id="@+id/mainJson"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/_150sdp"
+          android:src="@drawable/call_loc_img"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/header" />-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -85,8 +99,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/first_map"
-                        >
+                        android:background="@drawable/first_map">
 
 
                         <ImageView
@@ -244,18 +257,6 @@
 
 
             </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/ads"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_13sdp"
-                android:layout_marginVertical="@dimen/_5sdp"
-                android:visibility="gone"
-                android:background="@drawable/ad_place_holder"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll_2" />
 
             <!--   <LinearLayout
                    android:id="@+id/ll_3"
@@ -606,5 +607,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:background="@drawable/ad_place_holder"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

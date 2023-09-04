@@ -41,12 +41,6 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
     private lateinit var navDrawerView: NavigationView
-
-
-    private val CAMERA_PERMISSION_REQUEST_CODE = 1001
-
-//    private var dialog: PNLResumeLoadingDialog? = null
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun refreshLanguageStrings(event: PNLEvents.RefreshLanguageStrings) {
         Log.d("refreshLanguageStrings", "RefreshLanguageStrings implemented ")
@@ -55,7 +49,6 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
         finish()
         startActivity(intent)
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (checkPermission()){
@@ -65,53 +58,39 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
             requestPermission()
         }
 
+      /*  Log.d("isComingFromSplash", "onCreate: $isShowAD")
+        if (!isShowAD) {
+            requestPermission()
+        }else{
+            Log.d(TAG, "onCreate: ")
+            showPriorityAdmobInterstitial(true, getString(R.string.admob_interistitial_search_high),
+                getString(R.string.admob_interistitial_search_low), {
+                    interstitialAdPriority = it
+                    requestPermission()
+                })
+        }
+
+        loadAndReturnAd(
+            this@MainActivity,
+            resources.getString(R.string.admob_native_small)
+        ) { it2 ->
+            if (it2 != null) {
+                LocationTrackerAppClass.instance.nativeAdSmall.value = it2
+            }
+        }
+        loadAndReturnAd(
+            this@MainActivity,
+            resources.getString(R.string.admob_native_large)
+        ) { it2 ->
+            if (it2 != null) {
+                LocationTrackerAppClass.instance.nativeAdLarge.value = it2
+            }
+        }*/
+
+        EventBus.getDefault().register(this)
+
         initViews()
         handleClicks()
-        /* val adControl = intent.getBooleanExtra("LanguageActivity", false)
-         if (adControl) {
-             permissionLocation()
-         } else if (!adControl) {
-             dialog = PNLResumeLoadingDialog(this)
-             Log.d("testing", "onCreate: 1")
-             if (isNetworkAvailable()) {
-                 Log.d("testing", "onCreate: 2")
-                 dialog?.show()
-                 Log.d("testing", "onCreate: 3")
-                 showHighSplashAdmobInterstitial({
-                     permissionLocation()
-                     Log.d("testing", "onCreate: 4")
-                 }, {
-                     Log.d("testing", "onCreate: 5")
-                     showLowSplashAdmobInterstitial({
-                         permissionLocation()
-                         Log.d("Hamza", "onCreate: 6")
-                     }, {
-                         permissionLocation()
-                         dialog?.dismiss()
-                     }, {
-                         Handler().postDelayed({
-                             dialog?.dismiss()
-                         }, 1000)
-                     })
-                 }, {
-                     Handler().postDelayed({
-                         dialog?.dismiss()
-                     }, 1000)
-                 })
-
-             }
-         }
-
-         loadAndReturnAd(
-             this@MainActivity,
-             resources.getString(R.string.admob_native_others)
-         ) { it2 ->
-             if (it2 != null) {
-                 TrackLocationAppClass.instance.nativeAdOther.value = it2
-             }
-         }
- */
-        EventBus.getDefault().register(this)
 
     }
 
@@ -198,7 +177,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
                     startActivity(
                         Intent(
                             this@MainActivity, PNLLanguageActivity::class.java
-                        ).putExtra("setting", false)
+                        ).putExtra("setting", true)
                     )
                     true
                 }
@@ -211,33 +190,18 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     @SuppressLint("SuspiciousIndentation")
     private fun handleClicks() {
         binding.content.callLocator.setOnClickListener {
-//            if (!delayAdShown){
-//                interstitialCounter++
-//                startActivity(Intent(this, PNLCallLocatorActivity::class.java))
-//            }
-//            else{
             startActivity(Intent(this, CallLocActivity::class.java))
-//            }
 
         }
         binding.content.gpsTracker.setOnClickListener {
-//            if (!delayAdShown){
-//                interstitialCounter++
-//                startActivity(Intent(this, PNLPhoneContactsActivity::class.java))
-//            }
-//            else{
+
             startActivity(Intent(this, GpsTrackActivity::class.java))
-//           }
+
 
         }
         binding.content.camAddress.setOnClickListener {
-//            if (!delayAdShown){
-//                interstitialCounter++
-//                startActivity(Intent(this, PNLCamAddressActivity::class.java))
-//            }
-//            else{
+
             startActivity(Intent(this, CamAddressActivity::class.java))
-//            }
 
         }
 
@@ -267,6 +231,10 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
               binding.content.ads.beGone()
           }
       }*/
+   /* override fun onPause() {
+        super.onPause()
+        isShowAD=false
+    }*/
 
 
 }

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_color"
+    android:layoutDirection="ltr"
     tools:context=".ui.activities.camAddress.PNLDistanceFinderActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -124,8 +126,8 @@
                     android:layout_height="@dimen/_24sdp"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:padding="2dp"
-                    android:src="@drawable/three_d_icon"
+                    android:padding="@dimen/small_margin"
+                    android:src="@drawable/three_d"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -141,6 +143,7 @@
             app:cardBackgroundColor="@color/transparent"
             app:cardCornerRadius="@dimen/_14sdp"
             app:cardElevation="@dimen/_8sdp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/distanceMap"
             app:layout_constraintEnd_toEndOf="@+id/card_myLocation"
             app:layout_constraintTop_toBottomOf="@+id/clDistanceResult"
@@ -158,8 +161,8 @@
                     android:layout_height="@dimen/_24sdp"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:src="@drawable/three_d_icon"
+                    android:padding="@dimen/small_margin"
+                    android:src="@drawable/two_d"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -16,7 +16,7 @@
     <LinearLayout
         android:id="@+id/layoutDots"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dots_height"
+        android:layout_height="30dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/_3sdp"
@@ -24,18 +24,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_next"/>
 
-    <Button
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_next"
         android:layout_width="@dimen/_150sdp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65"
-        android:text="@string/next"
-        android:backgroundTint="@color/buttonColor"
-        android:textColor="@android:color/white" />
+        app:layout_constraintVertical_bias="0.6"
+        android:background="@drawable/next_button"
+        android:backgroundTint="@color/blue"
+        android:textColor="@android:color/white" >
+
+        <TextView
+            android:id="@+id/btn_next1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/ads"
@@ -43,11 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_13sdp"
         android:layout_marginVertical="@dimen/_5sdp"
-        android:background="@drawable/ad_place_holder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutDots" />
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

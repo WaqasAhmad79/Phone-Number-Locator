@@ -118,12 +118,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.65"
             android:text="@string/go"
+            android:visibility="gone"
             android:backgroundTint="@color/buttonColor"
             android:textColor="@android:color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <FrameLayout
         android:id="@+id/ads"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_13sdp"

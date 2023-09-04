@@ -56,7 +56,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_230sdp"
+            android:layout_height="@dimen/_210sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -310,7 +310,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/edit"
+                        android:text="@string/block"
                         android:textColor="@color/text_color"
                         android:textSize="@dimen/_9sdp"
                         app:layout_constraintEnd_toEndOf="@+id/block_icon"
@@ -325,10 +325,13 @@
 
 
     <FrameLayout
-        android:id="@+id/fl_banner"
+        android:id="@+id/ads"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:background="@drawable/ad_place_holder"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 

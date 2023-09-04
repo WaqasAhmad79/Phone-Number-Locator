@@ -165,6 +165,10 @@ open class BaseConfigPNL(val context: Context) {
     }
 
     var appStarted: Boolean
+        get() = prefs.getBoolean("show_splash_prefs", false)
+        set(appStarted) = prefs.edit().putBoolean("show_splash_prefs", appStarted).apply()
+
+    var isAppIntroComplete: Boolean
         get() = prefs.getBoolean("show_onboarding_screens_prefs", false)
         set(appStarted) = prefs.edit().putBoolean("show_onboarding_screens_prefs", appStarted).apply()
 

@@ -13,6 +13,7 @@ import com.example.phonenumberlocator.databinding.ActivityPnlsplashBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlUtil.setCurrentLocale
 import com.example.phonenumberlocator.ui.MainActivity
+import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
 import com.example.tracklocation.tlSharedPreferencesLang.PNLMySharePreferences
 
 class PNLSplashActivity : AppCompatActivity() {
@@ -79,14 +80,27 @@ class PNLSplashActivity : AppCompatActivity() {
 
             if (!baseConfig.appStarted) {
                 // The user has seen the Onboard
-                startActivity(Intent(this, PNLLanguageActivity::class.java))
-                finish()
-            } else {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this@PNLSplashActivity, PNLLanguageActivity::class.java))
                 finish()
             }
-
-        }, 8000)
+            else if (!baseConfig.isAppIntroComplete) { startActivity(Intent(
+                this@PNLSplashActivity,
+                PNLIntroSliderActivity::class.java
+            ).putExtra("isComingFromSplash", true)
+            )
+                finish()
+            }
+            else {
+//                isShowAD=true
+                startActivity(
+                    Intent(
+                        this@PNLSplashActivity,
+                        MainActivity::class.java
+                    )
+                )
+                finish()
+            }
+        }, 5000)
     }
 
 }

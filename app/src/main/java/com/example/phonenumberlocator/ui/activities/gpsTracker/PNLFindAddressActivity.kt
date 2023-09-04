@@ -13,6 +13,7 @@ import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityPnlfindAddressBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.copyText
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
@@ -131,24 +132,16 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
                 true
             } else false
         }
-        binding.cardMapSimple.setOnClickListener {
+        binding.cardMap3d.setOnClickListener {
+            it.beInvisible()
+            binding.cardMap2d.beVisible()
             onSwitch3DButtonClicked(it)
         }
-
-        /*  binding.cardMapSimple.setOnClickListener {
-              it.beInvisible()
-              binding.cardMapSatellite.beVisible()
-              smf?.getMapAsync { map ->
-                  map.mapType = GoogleMap.MAP_TYPE_HYBRID
-              }
-          }
-          binding.cardMapSatellite.setOnClickListener {
-              it.beInvisible()
-              binding.cardMapSimple.beVisible()
-              smf?.getMapAsync { map ->
-                  map.mapType = GoogleMap.MAP_TYPE_NORMAL
-              }
-          }*/
+        binding.cardMap2d.setOnClickListener {
+            it.beInvisible()
+            binding.cardMap3d.beVisible()
+            onSwitch3DButtonClicked(it)
+        }
 
 
         binding.cardPlus.setOnClickListener {

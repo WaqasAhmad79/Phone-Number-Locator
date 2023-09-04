@@ -15,6 +15,8 @@ import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityPnlshareLocationBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.copyText
 import com.example.phonenumberlocator.pnlExtensionFun.gpsStatusCheck
 import com.example.phonenumberlocator.pnlExtensionFun.shareCurrentLocation
@@ -138,16 +140,16 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
             if (zoom > 3) zoom--
             latLng?.let { it1 -> moveMapCamera(it1, zoom) }
         }
-        binding.cardMapSimple.setOnClickListener {
+        binding.cardMap3d.setOnClickListener {
+            it.beInvisible()
+            binding.cardMap2d.beVisible()
             onSwitch3DButtonClicked(it)
         }
-//        binding.cardMapSatellite.setOnClickListener {
-//            it.beInvisible()
-//            binding.cardMapSimple.beVisible()
-//            smf?.getMapAsync { map ->
-//                map.mapType = GoogleMap.MAP_TYPE_NORMAL
-//            }
-//        }
+        binding.cardMap2d.setOnClickListener {
+            it.beInvisible()
+            binding.cardMap3d.beVisible()
+            onSwitch3DButtonClicked(it)
+        }
 
         binding.cardShare.setOnClickListener {
 //            isAppOpenEnable =true

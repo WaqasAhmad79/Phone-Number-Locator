@@ -1,8 +1,8 @@
-package com.example.tracklocation.tlHelper
+package com.example.phonenumberlocator.pnlHelper
 
 import android.database.Cursor
 import android.net.Uri
-import com.airbnb.lottie.BuildConfig
+import com.example.phonenumberlocator.BuildConfig
 import com.example.phonenumberlocator.pnlExtensionFun.getIntValue
 import com.example.phonenumberlocator.pnlExtensionFun.getStringValue
 import com.example.phonenumberlocator.pnlModel.PNLLocatorPhoneNumber

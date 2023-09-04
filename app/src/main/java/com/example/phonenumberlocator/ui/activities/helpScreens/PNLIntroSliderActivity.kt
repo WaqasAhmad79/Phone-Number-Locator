@@ -13,43 +13,62 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.databinding.ActivityPnlintroSliderBinding
+import com.example.phonenumberlocator.pnlDatabases.TinyDB
 import com.example.phonenumberlocator.pnlExtensionFun.PrefManager
+import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
+import com.example.phonenumberlocator.pnlExtensionFun.toast
+import com.example.phonenumberlocator.pnlHelper.IS_PERMISSION_ON
 import com.example.phonenumberlocator.ui.MainActivity
+import com.github.angads25.toggle.widget.LabeledSwitch
 
 class PNLIntroSliderActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityPnlintroSliderBinding
+    private lateinit var binding: ActivityPnlintroSliderBinding
     private var prefManager: PrefManager? = null
     private lateinit var dots: Array<TextView?>
     private lateinit var layouts: IntArray
     private var myViewPagerAdapter: MyViewPagerAdapter? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityPnlintroSliderBinding.inflate(layoutInflater)
+        binding = ActivityPnlintroSliderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        loadAd()
         prefManager = PrefManager(this)
         if (!prefManager!!.isFirstTimeLaunch) {
             launchHomeScreen()
             finish()
         }
 
+
         // Making notification bar transparent
-        if (Build.VERSION.SDK_INT >= 21) { window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        if (Build.VERSION.SDK_INT >= 21) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
 
+      /*  val isShowAD = intent.getBooleanExtra("isComingFromSplash", false)
+        if (isShowAD) {
+            showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
+                getString(R.string.admob_interistitial_search_low)
+                , {
+                    interstitialAdPriority = it
+                })
+        }*/
 
         // layouts of all welcome sliders
         // add few more layouts if you want
         layouts = intArrayOf(
             R.layout.welcome_slide1,
+            R.layout.welcome_slide3,
             R.layout.welcome_slide2,
-            R.layout.welcome_slide3
+            R.layout.activity_app_permission
         )
 
 
@@ -86,7 +105,8 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             dots[i]!!.setTextColor(colorsInactive[currentPage])
             binding.layoutDots.addView(dots[i])
         }
-        if (dots.size > 0) dots[currentPage]!!.setTextColor(colorsActive[currentPage])
+        if (dots.isNotEmpty()) dots[currentPage]!!.setTextColor(colorsActive[currentPage])
+
     }
 
     private fun getItem(i: Int): Int {
@@ -94,19 +114,14 @@ class PNLIntroSliderActivity : AppCompatActivity() {
     }
 
     private fun launchHomeScreen() {
-        prefManager!!.isFirstTimeLaunch = false
-        // if perm are granted -> jump to main
-        // if perm are not  granted -> jump to permissions activity
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED){
-
-            startActivity(Intent(this, AppPermissionActivity::class.java))
+        baseConfig.isAppIntroComplete=true
+        val arePermissionsGranted = areAllPermissionsGranted()
+        val permissionSwitch =findViewById<LabeledSwitch>(R.id.permission_switch)
+        if (permissionSwitch.isOn && arePermissionsGranted) {
+            startActivity(Intent(this@PNLIntroSliderActivity, MainActivity::class.java))
             finish()
-        }else{
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-
+        } else {
+            toast(R.string.grant_all_permissions)
         }
 
     }
@@ -121,11 +136,11 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             // changing the next button text 'NEXT' / 'GOT IT'
             if (position == layouts.size - 1) {
                 // last page. make button text to Get Started
-                binding.btnNext.text = getString(R.string.start)
+                binding.btnNext1.text = getString(R.string.go)
 
             } else {
                 // still pages are left
-                binding.btnNext.text = getString(R.string.next)
+                binding.btnNext1.text = getString(R.string.next)
 
             }
         }
@@ -143,6 +158,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = Color.TRANSPARENT
         }
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
 
     /**
@@ -150,15 +166,32 @@ class PNLIntroSliderActivity : AppCompatActivity() {
      */
     inner class MyViewPagerAdapter : PagerAdapter() {
         private var layoutInflater: LayoutInflater? = null
+        override fun getCount(): Int {
+            return layouts.size
+        }
+
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             layoutInflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = layoutInflater!!.inflate(layouts[position], container, false)
             container.addView(view)
-            return view
-        }
 
-        override fun getCount(): Int {
-            return layouts.size
+            // Handle the permission layout
+            if (position == layouts.size - 1) { // Check if it's the permission layout
+                val permissionSwitch = view.findViewById<LabeledSwitch>(R.id.permission_switch)
+
+                // Handle switch state changes
+                permissionSwitch.setOnToggledListener { _, isOn ->
+                    if (isOn){
+                        TinyDB.getInstance(this@PNLIntroSliderActivity).putBoolean(IS_PERMISSION_ON, true)
+                        runtimePer(isOn)
+                    }
+                    else{
+                        TinyDB.getInstance(this@PNLIntroSliderActivity).putBoolean(IS_PERMISSION_ON, false)
+                    }
+                }
+            }
+
+            return view
         }
 
         override fun isViewFromObject(view: View, obj: Any): Boolean {
@@ -170,4 +203,65 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             container.removeView(view)
         }
     }
+    private fun areAllPermissionsGranted(): Boolean {
+        val requiredPermissions = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+        )
+        return requiredPermissions.all {
+            ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+    private fun runtimePer(isSwitchOn: Boolean) {
+        val requiredPermissions = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+
+        if (!requiredPermissions.all {
+                ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+            }) {
+            ActivityCompat.requestPermissions(
+                this, requiredPermissions, 1
+            )
+        } else {
+            // Handle permissions granted
+        }
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                    // Permissions are granted, set the switch to ON
+                    val permissionSwitch = findViewById<LabeledSwitch>(R.id.permission_switch)
+                    permissionSwitch.isOn = true
+                    // Handle any other actions you need to perform when permissions are granted
+                } else {
+                    // Permissions are denied, set the switch to OFF
+                    val permissionSwitch = findViewById<LabeledSwitch>(R.id.permission_switch)
+                    permissionSwitch.isOn = false
+                    // Handle any other actions you need to perform when permissions are denied
+                }
+            }
+        }
+    }
+
+   /* private fun loadAd() {
+        if (isNetworkAvailable()) {
+            binding.ads.visibility = View.VISIBLE
+            LocationTrackerAppClass.instance.nativeAdBoarding.observe(this) {
+                showLoadedNativeAd(
+                    this,
+                    binding.ads,
+                    R.layout.layout_admob_native_ad_withou_tmedia,
+                    it
+                )
+            }
+        } else {
+            binding.ads.visibility = View.GONE
+        }
+    }*/
 }

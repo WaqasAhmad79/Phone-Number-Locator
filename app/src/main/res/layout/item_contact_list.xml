@@ -64,7 +64,7 @@
                 android:text="Name"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/text_color"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toEndOf="@+id/user_icon"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.1"
@@ -88,7 +88,7 @@
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/text_color"
-                android:textSize="@dimen/_7sdp"
+                android:textSize="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="@+id/contact_name"
                 app:layout_constraintTop_toBottomOf="@+id/contact_name" />
 

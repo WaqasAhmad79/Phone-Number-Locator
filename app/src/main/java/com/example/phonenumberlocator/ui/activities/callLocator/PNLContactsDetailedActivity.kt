@@ -1,6 +1,8 @@
 package com.example.phonenumberlocator.ui.activities.callLocator
 
 import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -52,6 +54,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
 
     private var userContact: PNLMyContact? = null
     private var numberData: RecentCallsDetailModel? = null
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -173,6 +176,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
                 }
             }
         }
+
         binding.blockContact.setOnClickListener {
             val telecomManager= getSystemService(Context.TELECOM_SERVICE) as TelecomManager
             startActivity(telecomManager.createManageBlockedNumbersIntent(), null);
@@ -181,7 +185,6 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
         binding.sendMessage.setOnClickListener {
             userContact?.let {
                 val phoneNumber = it.phoneNumbers.first().normalizedNumber
-
                 if (isWhatsAppInstalled()) {
                     sendWhatsAppMessage(phoneNumber)
                 } else {

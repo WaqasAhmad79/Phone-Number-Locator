@@ -22,7 +22,6 @@ class PNLLanguageActivity : AppCompatActivity() {
     private val mySharePreferences = PNLMySharePreferences(this@PNLLanguageActivity)
     private var langName: String? = null
 
-//    private var dialog: PNLResumeLoadingDialog?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,26 +29,16 @@ class PNLLanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
         val lang = intent.getBooleanExtra("setting", false)
 
+       /* if (!lang){
+            showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
+                getString(R.string.admob_interistitial_search_low)
+                , {
+                    interstitialAdPriority = it
+                })
+        }
 
-        /* dialog = PNLResumeLoadingDialog(this)
-         if (isNetworkAvailable() && lang) {
-             dialog?.show()
-             showHighSplashAdmobInterstitial({}, {
-                 showLowSplashAdmobInterstitial({ }, { dialog?.dismiss() }, {
-                     Handler().postDelayed({
-                         dialog?.dismiss()
-                     }, 1000)
-                 })
-             }, {
-                 Handler().postDelayed({
-                     dialog?.dismiss()
-                 }, 1000)
-             })
+        loadAd()*/
 
-         }
-
-         loadAd()
- */
         langName = baseConfig.appLanguage
         langName?.let { updateLanguageSelection(it) }
         //binding.clEnglish.background = resources.getDrawable(R.drawable.drawablestroke)

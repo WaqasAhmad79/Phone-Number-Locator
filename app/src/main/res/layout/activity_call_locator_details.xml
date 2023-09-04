@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_color"
     android:layoutDirection="ltr"
-    tools:context=".ui.activities.callLocator.PNLCallLocatorActivity">
+ tools:context=".ui.activities.callLocator.CallLocatorDetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
@@ -40,26 +40,38 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
- <!--   <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/ntJson"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:adjustViewBounds="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:padding="@dimen/_6sdp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/view_searchResult"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="invalid.json"
-        app:lottie_loop="true"
-        app:lottie_speed="1"
-        tools:ignore="ContentDescription" />-->
+        app:layout_constraintTop_toTopOf="@+id/view_searchResult" />
+
+    <!--   <com.airbnb.lottie.LottieAnimationView
+           android:id="@+id/ntJson"
+           android:layout_width="@dimen/_100sdp"
+           android:layout_height="@dimen/_100sdp"
+           android:adjustViewBounds="true"
+           android:visibility="gone"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:lottie_autoPlay="true"
+           app:lottie_fileName="invalid.json"
+           app:lottie_loop="true"
+           app:lottie_speed="1"
+           tools:ignore="ContentDescription" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clEnterNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_5sdp"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,16 +177,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/findLocation"
-            app:layout_constraintEnd_toEndOf="@+id/findLocation"
-            app:layout_constraintStart_toStartOf="@+id/findLocation"
-            app:layout_constraintTop_toTopOf="@+id/findLocation" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/findLocation"
@@ -182,9 +184,11 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_marginVertical="@dimen/_30sdp"
             android:background="@drawable/search_btn_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llEnterNumber">
+            app:layout_constraintTop_toBottomOf="@+id/llEnterNumber"
+            app:layout_constraintVertical_bias="0.15">
 
             <TextView
                 android:id="@+id/findLocation_text"
@@ -203,27 +207,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:id="@+id/ads"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_50sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/findLocation"
-            />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--<androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view_searchResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginVertical="@dimen/_10sdp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header">
@@ -261,7 +251,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_230sdp"
+                android:layout_height="@dimen/_200sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
@@ -372,11 +362,9 @@
                     android:id="@+id/bottomLayoutCard"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_15sdp"
                     android:orientation="horizontal"
                     android:weightSum="4"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/networkTitle">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -516,7 +504,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_3sdp"
                             android:fontFamily="@font/poppins_regular"
-                            android:text="@string/edit"
+                            android:text="@string/block"
                             android:textColor="@color/text_color"
                             android:textSize="@dimen/_9sdp"
                             app:layout_constraintEnd_toEndOf="@+id/block_icon"
@@ -529,6 +517,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <FrameLayout
+            android:id="@+id/ads"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_searchresult1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
