@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Phone Number Locator</string>
 
-    <string name="privacy_policy_link" translatable="false">https://sites.google.com/view/onelocately-privacypolicy/home</string>
+    <string name="privacy_policy_link" translatable="false">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
     <string name="account_name" translatable="false">OneLocate.ly</string>
 
     <!--splash-->
@@ -177,12 +177,12 @@
     <!--intro slider-->
     <string name="next" translatable="false">Next</string>
     <string name="start" translatable="false">Start</string>
-    <string name="slide_1_title" translatable="false">Find Number Location</string>
-    <string name="slide_1_desc" translatable="false">Allow Phone Number Tracker to access this\ndevices location know where you are</string>
-    <string name="slide_2_title" translatable="false">Location</string>
-    <string name="slide_2_desc" translatable="false">Phone Tracker and GPS Location</string>
-    <string name="slide_3_title" translatable="false">Get Location</string>
-    <string name="slide_3_desc" translatable="false">Find Location Coordinates of any Place\nUsing just its name or address</string>
+    <string name="slide_1_title" translatable="false">Find Phone Location</string>
+    <string name="slide_1_desc" translatable="false">Easily Find and Locate any Phone Number\nLocation Show Details of Number on Map </string>
+    <string name="slide_2_title" translatable="false">GPS Tracker</string>
+    <string name="slide_2_desc" translatable="false">Locate GPS Location and find Coordinates\n of any Location with Live Map</string>
+    <string name="slide_3_title" translatable="false">Get Current Location</string>
+    <string name="slide_3_desc" translatable="false">Find  Your Current Location by different ways \nUsing just its name or address</string>
     <string name="slide_4_title" translatable="false">Mobile Number\nLocation</string>
     <string name="device_location" translatable="false">Device\'s Location</string>
     <string name="slide_4_desc" translatable="false">Mobile Number Location requires\npermission to access device\'s  Location</string>

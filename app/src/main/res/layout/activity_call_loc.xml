@@ -228,7 +228,7 @@
                             android:id="@+id/iv_isd_std"
                             android:layout_width="@dimen/_42sdp"
                             android:layout_height="@dimen/_42sdp"
-                            android:src="@drawable/cam_icon"
+                            android:src="@drawable/isd_std_icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -608,7 +608,7 @@
 
     </ScrollView>
 
-    <FrameLayout
+<!--    <FrameLayout
         android:id="@+id/ads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -618,6 +618,6 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

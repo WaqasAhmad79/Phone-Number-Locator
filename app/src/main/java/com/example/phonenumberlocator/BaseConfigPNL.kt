@@ -174,7 +174,7 @@ open class BaseConfigPNL(val context: Context) {
 
 //for Localization
     var appLanguage: String?
-        get() = prefs.getString("Language_Name", "English")
+        get() = prefs.getString("Language_Name", "en")
         set(appLanguage) = prefs.edit().putString("Language_Name", appLanguage).apply()
 
 

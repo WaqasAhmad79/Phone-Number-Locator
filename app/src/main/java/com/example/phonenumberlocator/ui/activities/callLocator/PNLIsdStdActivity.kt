@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.inputmethod.CorrectionInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.pnlAdapter.ISDDialogAdapter
 import com.example.phonenumberlocator.pnlAdapter.PNLIsdStdAdapter
 import com.example.phonenumberlocator.databinding.ActivityPnlisdStdBinding
@@ -42,7 +43,7 @@ class PNLIsdStdActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPnlisdStdBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        showSimpleInterstitialAdWithTimeAndCounter()
     }
 
     private fun initViews() {

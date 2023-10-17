@@ -9,14 +9,14 @@ plugins {
 
 android {
     namespace 'com.example.phonenumberlocator'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.phonenumberlocator"
+        applicationId "mobile.number.trackerapp"
         minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,12 +27,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "admob_app_id", "ca-app-pub-2671630045633194~9175619855"
             resValue "string", "admob_app_open_id", "ca-app-pub-3940256099942544/3419835294"
-            resValue "string", "admob_interistitial_main_high", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "admob_interistitial_main_low", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "admob_interistitial_others", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "admob_interistitial_search_high", "ca-app-pub-3940256099942544/1033173712"
+            resValue "string", "admob_interistitial_others_one", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "admob_native_lang_low", "ca-app-pub-3940256099942544/1044960115"
             resValue "string", "admob_native_lang_high", "ca-app-pub-3940256099942544/1044960115"
-            resValue "string", "admob_native_others", "ca-app-pub-3940256099942544/1044960115"
+            resValue "string", "admob_native_large", "ca-app-pub-3940256099942544/1044960115"
+            resValue "string", "admob_native_small", "ca-app-pub-3940256099942544/1044960115"
+            resValue "string", "admob_native_boarding_high", "ca-app-pub-3940256099942544/1044960115"
+            resValue "string", "admob_native_boarding_low", "ca-app-pub-3940256099942544/1044960115"
             resValue "string", "admob_native_main_low", "ca-app-pub-3940256099942544/1044960115"
             resValue "string", "admob_native_main_high", "ca-app-pub-3940256099942544/1044960115"
             resValue "string", "admob_splash_interistitial_low", "ca-app-pub-3940256099942544/1033173712"
@@ -43,19 +45,22 @@ android {
         release {
             minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            resValue "string", "admob_app_id", "ca-app-pub-2671630045633194~9175619855"
-            resValue "string", "admob_app_open_id", "ca-app-pub-3940256099942544/3419835294"
-            resValue "string", "admob_interistitial_main_high", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "admob_interistitial_main_low", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "admob_interistitial_others", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "admob_native_lang_low", "ca-app-pub-3940256099942544/1044960115"
-            resValue "string", "admob_native_lang_high", "ca-app-pub-3940256099942544/1044960115"
-            resValue "string", "admob_native_others", "ca-app-pub-3940256099942544/1044960115"
-            resValue "string", "admob_native_main_low", "ca-app-pub-3940256099942544/1044960115"
-            resValue "string", "admob_native_main_high", "ca-app-pub-3940256099942544/1044960115"
+            resValue "string", "admob_app_id", "ca-app-pub-8956129614272596~8167802112"
+            resValue "string", "admob_app_open_id", "ca-app-pub-8956129614272596/6663148756"
+            resValue "string", "admob_interistitial_search_high", "ca-app-pub-8956129614272596/4975496713"
+            resValue "string", "admob_interistitial_others_one", "ca-app-pub-8956129614272596/9123744840"
+            resValue "string", "admob_native_lang_low", "ca-app-pub-8956129614272596/9110182845"
+            resValue "string", "admob_native_lang_high", "ca-app-pub-8956129614272596/9289312098"
+            resValue "string", "admob_native_large", "ca-app-pub-8956129614272596/2705961563"
+            resValue "string", "admob_native_small", "ca-app-pub-8956129614272596/5704494145"
+            resValue "string", "admob_native_boarding_high", "ca-app-pub-8956129614272596/6463838203"
+            resValue "string", "admob_native_boarding_low", "ca-app-pub-8956129614272596/7793231749"
+            resValue "string", "admob_native_main_low", "ca-app-pub-8956129614272596/7605529487"
+            resValue "string", "admob_native_main_high", "ca-app-pub-8956129614272596/2544774490"
             resValue "string", "admob_splash_interistitial_low", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "admob_splash_interistitial_high", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "ad_mob_banner_id", "ca-app-pub-3940256099942544/6300978111"
+            resValue "string", "ad_mob_banner_id", "ca-app-pub-8956129614272596/1628398204"
+
 
         }
     }
@@ -156,8 +161,8 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10'
     //weather
     implementation 'com.github.KwabenBerko:OpenWeatherMap-Android-Library:2.1.0'
-/*//admobs
-    implementation 'com.google.android.gms:play-services-ads:22.0.0'*/
+//admobs
+    implementation 'com.google.android.gms:play-services-ads:22.0.0'
 
 // animation like lottie
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'

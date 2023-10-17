@@ -85,7 +85,7 @@
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"
                 android:text="@string/exit_text"
-                android:textColor="@color/blue"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_yes"
                 app:layout_constraintStart_toStartOf="@+id/tv_no"

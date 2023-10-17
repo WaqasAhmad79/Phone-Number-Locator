@@ -18,10 +18,16 @@ import androidx.core.content.ContextCompat
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlcontactsDetailedBinding
 import com.example.phonenumberlocator.pnlAppCallModels.RecentCallsDetailModel
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.checkIsValidNumber
 import com.example.phonenumberlocator.pnlExtensionFun.countryIso
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.launchEditContactIntent
 import com.example.phonenumberlocator.pnlExtensionFun.normalizePhoneNumber
 import com.example.phonenumberlocator.pnlModel.PNLMyContact
@@ -59,8 +65,11 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        showSimpleInterstitialAdWithTimeAndCounter()
 
 //        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
+        loadAd()
 
         initViews()
         val myContactsHelper = PNLMyContactsHelper(this)
@@ -151,14 +160,14 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
         binding.backArrow.setOnClickListener { finish() }
 
         binding.editContact.setOnClickListener {
-//            isAppOpenEnable = true
+            canShowAppOpen=true
             userContact?.let {
                 launchEditContactIntent(it)
             }
         }
 
         binding.makeCall.setOnClickListener {
-//            isAppOpenEnable=true
+            canShowAppOpen=true
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.CALL_PHONE
@@ -170,19 +179,18 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
                     CALL_PERMISSION_REQUEST_CODE
                 )
             } else {
-                userContact?.let {
-                    val phoneNumber = it.phoneNumbers.first().normalizedNumber
-                    startCallIntent(phoneNumber)
-                }
+                userContact?.phoneNumbers?.first()?.normalizedNumber?.let { it1 -> dialNumber(it1) }
             }
         }
 
         binding.blockContact.setOnClickListener {
+            canShowAppOpen=true
             val telecomManager= getSystemService(Context.TELECOM_SERVICE) as TelecomManager
             startActivity(telecomManager.createManageBlockedNumbersIntent(), null);
         }
 
         binding.sendMessage.setOnClickListener {
+            canShowAppOpen=true
             userContact?.let {
                 val phoneNumber = it.phoneNumbers.first().normalizedNumber
                 if (isWhatsAppInstalled()) {
@@ -211,8 +219,19 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     }
 
     override fun onResume() {
-//        isAppOpenEnable=false
+        canShowAppOpen=false
         super.onResume()
+    }
+
+    private fun loadAd() {
+        if (isNetworkAvailable()) {
+            binding.ads.beVisible()
+            PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
+                showLoadedNativeAd(this, binding.ads, R.layout.native_large_2, it)
+            }
+        } else {
+            binding.ads.beGone()
+        }
     }
 
 }

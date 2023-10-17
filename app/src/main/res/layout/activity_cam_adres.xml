@@ -591,7 +591,7 @@
 
     </ScrollView>
 
-    <FrameLayout
+    <!--<FrameLayout
         android:id="@+id/ads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -601,6 +601,6 @@
         android:background="@drawable/ad_place_holder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent" />
+       app:layout_constraintBottom_toBottomOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

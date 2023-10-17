@@ -11,6 +11,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
 import com.example.phonenumberlocator.databinding.ActivitySavedImageConfirmationBinding
 import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import java.io.File
@@ -25,23 +27,9 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySavedImageConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-       /* dialog = PNLResumeLoadingDialog(this)
-        if (isTimeDifferenceGreaterThan30Seconds()) {
-            if (isNetworkAvailable()) {
-                dialog?.show()
-                showAdmobInterstitial({
-                }, { dialog?.dismiss() }, {
-                    if(delayAdShown)
-                    {
-                        interstitialCounter =0
-                    }
 
-                    Handler().postDelayed({
-                        dialog?.dismiss()
-                    }, 1000)
-                })
-            }
-        }*/
+        showSimpleInterstitial()
+
         val imagePath = intent.getStringExtra("imagePath")
         if (imagePath != null) {
             val imageFile = File(imagePath)
@@ -56,6 +44,7 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.share.setOnClickListener {
+            canShowAppOpen=true
             if (imageBitmap != null) {
                 share(imageBitmap!!)
             }
@@ -105,6 +94,11 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
         } ?: run {
             Toast.makeText(this, "Failed to save image", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onResume() {
+        canShowAppOpen=false
+        super.onResume()
     }
 
 }

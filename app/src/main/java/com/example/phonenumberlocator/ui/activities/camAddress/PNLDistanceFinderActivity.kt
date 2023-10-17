@@ -15,6 +15,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.showBannerAdmob
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnldistanceFinderBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -64,38 +66,12 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     private var selectedDistanceUnits = "m" // Default units
 
 
-//    private var dialog: PNLResumeLoadingDialog?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-     /*   dialog = PNLResumeLoadingDialog(this)
-        if (isTimeDifferenceGreaterThan30Seconds()) {
-            if (isNetworkAvailable()) {
-                dialog?.show()
-                showHighMainAdmobInterstitial({
-                    previousAdClosedTime = System.currentTimeMillis()
-                }, {
-                    showLowMainAdmobInterstitial({
-                        previousAdClosedTime = System.currentTimeMillis()
-                    }, { dialog?.dismiss() }, {
-                        interstitialCounter =0
-                        delayAdShown = true
-                        Handler().postDelayed({
-                            dialog?.dismiss()
-                        }, 1000)
-                    })
-                }, {
-                    interstitialCounter =0
-                    delayAdShown = true
-                    Handler().postDelayed({
-                        dialog?.dismiss()
-                    }, 1000)
-                })
+    showSimpleInterstitialAdWithTimeAndCounter()
 
-            }
-        }
-
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)*/
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
 
         mapView = findViewById(R.id.distanceMap)
         mapView.onCreate(savedInstanceState)

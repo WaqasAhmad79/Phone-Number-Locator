@@ -18,11 +18,17 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
+import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
+import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.showPriorityAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnlintroSliderBinding
 import com.example.phonenumberlocator.pnlDatabases.TinyDB
 import com.example.phonenumberlocator.pnlExtensionFun.PrefManager
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlHelper.IS_PERMISSION_ON
 import com.example.phonenumberlocator.ui.MainActivity
@@ -39,37 +45,49 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         binding = ActivityPnlintroSliderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        loadAd()
+        loadAd()
         prefManager = PrefManager(this)
         if (!prefManager!!.isFirstTimeLaunch) {
             launchHomeScreen()
             finish()
         }
 
-
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
-
-      /*  val isShowAD = intent.getBooleanExtra("isComingFromSplash", false)
+        val isShowAD = intent.getBooleanExtra("isComingFromSplash", false)
         if (isShowAD) {
             showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
-                getString(R.string.admob_interistitial_search_low)
+                getString(R.string.admob_interistitial_others_one)
                 , {
                     interstitialAdPriority = it
                 })
-        }*/
-
+        }
         // layouts of all welcome sliders
         // add few more layouts if you want
         layouts = intArrayOf(
             R.layout.welcome_slide1,
-            R.layout.welcome_slide3,
             R.layout.welcome_slide2,
+            R.layout.welcome_slide3,
             R.layout.activity_app_permission
         )
+
+      /*  loadAndReturnAd(this@PNLIntroSliderActivity, resources.getString(R.string.admob_native_main_high)) {
+            if (it != null) {
+                PhoneNumberLocator.instance.nativeAdMain.value = it
+            } else {
+                loadAndReturnAd(
+                    this@PNLIntroSliderActivity,
+                    resources.getString(R.string.admob_native_main_low)
+                ) { it2 ->
+                    if (it2 != null) {
+                        PhoneNumberLocator.instance.nativeAdMain.value = it2
+                    }
+                }
+            }
+        }*/
 
 
         // adding bottom dots
@@ -123,6 +141,22 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         } else {
             toast(R.string.grant_all_permissions)
         }
+        /* // if perm are granted -> jump to main
+         // if perm are not  granted -> jump to permissions activity
+         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+             != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(
+                 this,
+                 Manifest.permission.WRITE_EXTERNAL_STORAGE
+             )
+             != PackageManager.PERMISSION_GRANTED
+         ) {
+             startActivity(Intent(this, AppPermissionActivity::class.java))
+             finish()
+         } else {
+             startActivity(Intent(this, MainActivity::class.java).putExtra("LanguageActivity", true))
+             finish()
+
+         }*/
 
     }
 
@@ -159,6 +193,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+
     }
 
     /**
@@ -189,6 +224,11 @@ class PNLIntroSliderActivity : AppCompatActivity() {
                         TinyDB.getInstance(this@PNLIntroSliderActivity).putBoolean(IS_PERMISSION_ON, false)
                     }
                 }
+//                if (TinyDB.getInstance(this@PNLIntroSliderActivity).getBoolean(IS_PERMISSION_ON)){
+//                    runtimePer(true)
+//                }else{
+//                    runtimePer(false)
+//                }
             }
 
             return view
@@ -249,19 +289,20 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         }
     }
 
-   /* private fun loadAd() {
+
+    private fun loadAd() {
         if (isNetworkAvailable()) {
             binding.ads.visibility = View.VISIBLE
-            LocationTrackerAppClass.instance.nativeAdBoarding.observe(this) {
+            PhoneNumberLocator.instance.nativeAdBoarding.observe(this@PNLIntroSliderActivity) {
                 showLoadedNativeAd(
-                    this,
+                    this@PNLIntroSliderActivity,
                     binding.ads,
-                    R.layout.layout_admob_native_ad_withou_tmedia,
+                    R.layout.layout_admob_native_ad,
                     it
                 )
             }
         } else {
             binding.ads.visibility = View.GONE
         }
-    }*/
+    }
 }

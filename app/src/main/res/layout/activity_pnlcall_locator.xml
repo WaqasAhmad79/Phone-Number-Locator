@@ -40,21 +40,19 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
- <!--   <com.airbnb.lottie.LottieAnimationView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/ntJson"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_130sdp"
         android:adjustViewBounds="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/header"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="invalid.json"
+        app:lottie_fileName="search_number.json"
         app:lottie_loop="true"
         app:lottie_speed="1"
-        tools:ignore="ContentDescription" />-->
+        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clEnterNumber"
@@ -63,7 +61,7 @@
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_5sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header">
+        app:layout_constraintTop_toBottomOf="@+id/ntJson">
 
         <TextView
             android:id="@+id/textView2"
@@ -165,6 +163,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
@@ -208,10 +207,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/findLocation"
             />
 

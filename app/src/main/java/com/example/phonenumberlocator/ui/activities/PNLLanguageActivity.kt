@@ -5,15 +5,23 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
+import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
+import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.showPriorityAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlUtil.changeLanguage
 import com.example.phonenumberlocator.pnlUtil.refreshLanguageStrings
 import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
-import com.example.tracklocation.tlSharedPreferencesLang.PNLMySharePreferences
+import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
 import java.util.Locale
+import kotlin.math.log
 
 
 class PNLLanguageActivity : AppCompatActivity() {
@@ -29,15 +37,52 @@ class PNLLanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
         val lang = intent.getBooleanExtra("setting", false)
 
-       /* if (!lang){
+        if (!lang){
             showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
-                getString(R.string.admob_interistitial_search_low)
+                getString(R.string.admob_interistitial_others_one)
                 , {
+                    Log.d("TAG", "onCreateAD: $it")
                     interstitialAdPriority = it
                 })
+            loadAndReturnAd(
+                this@PNLLanguageActivity,
+                resources.getString(R.string.admob_native_boarding_high)
+            ) {
+                if (it != null) {
+                    PhoneNumberLocator.instance.nativeAdBoarding.value = it
+                } else {
+                    loadAndReturnAd(
+                        this@PNLLanguageActivity,
+                        resources.getString(R.string.admob_native_boarding_low)
+                    ) { it2 ->
+                        if (it2 != null) {
+                            PhoneNumberLocator.instance.nativeAdBoarding.value = it2
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            loadAndReturnAd(
+                this@PNLLanguageActivity,
+                resources.getString(R.string.admob_native_lang_high)
+            ) {
+                if (it != null) {
+                    PhoneNumberLocator.instance.nativeAdLang.value = it
+                } else {
+                    loadAndReturnAd(
+                        this@PNLLanguageActivity,
+                        resources.getString(R.string.admob_native_lang_low)
+                    ) { it2 ->
+                        if (it2 != null) {
+                            PhoneNumberLocator.instance.nativeAdLang.value = it2
+                        }
+                    }
+                }
+            }
         }
 
-        loadAd()*/
+        loadAd()
 
         langName = baseConfig.appLanguage
         langName?.let { updateLanguageSelection(it) }
@@ -172,7 +217,8 @@ class PNLLanguageActivity : AppCompatActivity() {
         editor.putString("app_lang", language)
         editor.apply()
     }
-    /* private fun loadAd() {
+
+     private fun loadAd() {
         if (isNetworkAvailable()) {
             binding.ads.visibility = View.VISIBLE
             PhoneNumberLocator.instance.nativeAdLang.observe(this){
@@ -181,5 +227,5 @@ class PNLLanguageActivity : AppCompatActivity() {
         } else {
             binding.ads.visibility = View.GONE
         }
-    }*/
+    }
 }

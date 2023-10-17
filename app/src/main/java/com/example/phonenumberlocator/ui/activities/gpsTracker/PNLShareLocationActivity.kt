@@ -13,6 +13,9 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.showBannerAdmob
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlshareLocationBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
@@ -47,7 +50,6 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
     @Inject
     lateinit var checkInternetConnection: PNLCheckInternetConnection
 
-    //    private var loadingDialog: LoadingDialog? = null
     private var zoom = 16
 
     private var contactLocation: LatLng? = null
@@ -62,33 +64,15 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
     private var address: String? = null
     private var is3DViewEnabled = false
     var url = ""
-    //    private var dialog: ResumeLoadingDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        /*  dialog = ResumeLoadingDialog(this)
-
-          if (isTimeDifferenceGreaterThan20Seconds()) {
-              if (isNetworkAvailable()) {
-                  dialog?.show()
-                  showAdmobInterstitial({
-                  }, { dialog?.dismiss() }, {
-                      if(delayAdShown)
-                      {
-                          interstitialCounter =0
-                      }
-
-                      Handler().postDelayed({
-                          dialog?.dismiss()
-                      }, 1000)
-                  })
-              }
-          }*/
+        showSimpleInterstitialAdWithTimeAndCounter()
 
         gpsStatusCheck() {
             if (it) {
                 initView()
-//                showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+                showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
             }
         }
 
@@ -96,10 +80,8 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
     }
 
     private fun initView() {
-//        loadingDialog = LoadingDialog(this)
         smf = supportFragmentManager.findFragmentById(R.id.locationMap) as SupportMapFragment?
         client = LocationServices.getFusedLocationProviderClient(this)
-//        loadingDialog?.showDialog()
         Dexter.withContext(applicationContext)
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             .withListener(object : com.karumi.dexter.listener.single.PermissionListener {
@@ -152,7 +134,7 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
         }
 
         binding.cardShare.setOnClickListener {
-//            isAppOpenEnable =true
+            canShowAppOpen =true
             latLng?.let {
                 address?.let { add -> shareCurrentLocation(it, add) }
             }
@@ -283,7 +265,7 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
 
     override fun onResume() {
         super.onResume()
-//        isAppOpenEnable=false
+        canShowAppOpen=false
 
     }
 

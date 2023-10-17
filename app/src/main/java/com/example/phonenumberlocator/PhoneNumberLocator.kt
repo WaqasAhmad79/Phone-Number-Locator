@@ -7,13 +7,19 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.StrictMode
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ProcessLifecycleOwner
+import com.example.phonenumberlocator.admob_ads.OpenApp
 import com.example.phonenumberlocator.pnlExtensionFun.countryIso
 import com.example.phonenumberlocator.pnlModel.PNLCountryData
 import com.example.phonenumberlocator.pnlModel.PNLCountryModel
 import com.example.tracklocation.tlUtil.readToObjectList
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.nativead.NativeAd
 import com.google.gson.Gson
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -31,9 +37,13 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
     var countries = mutableListOf<PNLCountryModel>()
 
     var countryDataList: List<PNLCountryData> = ArrayList()
-//    val nativeAdLang: MutableLiveData<NativeAd> = MutableLiveData()
+    val nativeAdLang: MutableLiveData<NativeAd> = MutableLiveData()
 //    val nativeAdMain: MutableLiveData<NativeAd> = MutableLiveData()
-//    val nativeAdOther: MutableLiveData<NativeAd> = MutableLiveData()
+//    val nativeAdSearchHigh: MutableLiveData<NativeAd> = MutableLiveData()
+//    val nativeAdSearchLow :MutableLiveData<NativeAd> = MutableLiveData()
+    val nativeAdSmall: MutableLiveData<NativeAd> = MutableLiveData()
+    val nativeAdLarge: MutableLiveData<NativeAd> = MutableLiveData()
+    val nativeAdBoarding: MutableLiveData<NativeAd> = MutableLiveData()
 
     fun getDetailLanguageCategory(): List<PNLCountryData> {
         val inputStream = assets.open("country_codes.json")
@@ -62,16 +72,11 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
             }
         }
         app_class = this@PhoneNumberLocator
-//        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-//        OpenApp(this)
-//        // Log the Mobile Ads SDK version.
-//        Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
-//        MobileAds.initialize(this) { }
-//        loadHighSplashAdmobInterstitial()
-//        loadLowSplashAdmobInterstitial()
-//        loadHighMainAdmobInterstitial()
-//        loadLowMainAdmobInterstitial()
-//        loadAdmobInterstitial()
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+        OpenApp(this)
+        // Log the Mobile Ads SDK version.
+        Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
+        MobileAds.initialize(this) { }
 
         applicationInstance = this@PhoneNumberLocator
         instance = this@PhoneNumberLocator
@@ -80,7 +85,7 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
 
         StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder().build())
 
-//        app_class = this@PhoneNumberLocator
+        app_class = this@PhoneNumberLocator
     }
 
     //used to get default country code like=PK

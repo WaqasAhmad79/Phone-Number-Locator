@@ -56,26 +56,6 @@ class ShowOnMapActivity : PNLBaseClass<ActivityShowOnMapBinding>() {
     //    private var dialog: ResumeLoadingDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        /*  dialog = ResumeLoadingDialog(this)
-
-          if (isTimeDifferenceGreaterThan20Seconds()) {
-              if (isNetworkAvailable()) {
-                  dialog?.show()
-                  showAdmobInterstitial({
-                  }, { dialog?.dismiss() }, {
-                      if(delayAdShown)
-                      {
-                          interstitialCounter =0
-                      }
-
-                      Handler().postDelayed({
-                          dialog?.dismiss()
-                      }, 1000)
-                  })
-              }
-          }*/
-
         gpsStatusCheck() {
             if (it) {
                 initView()

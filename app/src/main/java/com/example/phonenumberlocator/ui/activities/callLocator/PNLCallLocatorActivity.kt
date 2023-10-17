@@ -24,7 +24,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
+import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.showPriorityInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlcallLocatorBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -67,13 +72,13 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-      /*  showPriorityInterstitialAdWithTimeAndCounter(
+        showPriorityInterstitialAdWithTimeAndCounter(
             true,
             getString(R.string.admob_interistitial_search_high),
-            getString(R.string.admob_interistitial_search_low), {
+            getString(R.string.admob_interistitial_others_one), {
                 interstitialAdPriority = it
             })
-        loadAd()*/
+        loadAd()
 
 
         initViews()
@@ -86,7 +91,7 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         Log.d(TAG, "initViews: $phoneNumber")
         binding.etPhoneNumber.setText(phoneNumber)
         binding.ccp.setDialogBackgroundColor(resources.getColor(R.color.app_color));
-        binding.ccp.setDialogTextColor(Color.WHITE);
+        binding.ccp.setDialogTextColor(resources.getColor(R.color.text_color));
         binding.ccp.registerCarrierNumberEditText(binding.etPhoneNumber)
         Log.d(TAG, "initViews valid:${binding.ccp.isValidFullNumber} ")
         binding.ccp.setPhoneNumberValidityChangeListener {}
@@ -152,25 +157,20 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         }
     }
 
-   /* private fun loadAd() {
+    private fun loadAd() {
         if (isNetworkAvailable()) {
             binding.ads.beVisible()
-            LocationTrackerAppClass.instance.nativeAdLarge.observe(this) {
-                showLoadedNativeAd(
-                    this,
-                    binding.ads,
-                    R.layout.native_large_2,
-                    it
-                )
+            PhoneNumberLocator.instance.nativeAdSmall.observe(this) {
+                showLoadedNativeAd(this, binding.ads, R.layout.layout_admob_native_ad_withou_tmedia, it)
             }
         } else {
             binding.ads.beGone()
         }
-    }*/
+    }
 
     override fun onResume() {
         super.onResume()
-//        canShowAppOpen = false
+        canShowAppOpen = false
     }
 
 }

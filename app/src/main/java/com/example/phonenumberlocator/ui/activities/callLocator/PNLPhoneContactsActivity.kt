@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlphoneContactsBinding
 import com.example.phonenumberlocator.pnlAdapter.PNLPhoneContactsAdapter
 import com.example.phonenumberlocator.pnlAppCallModels.RecentCallsDetailModel
@@ -43,36 +44,11 @@ class PNLPhoneContactsActivity : PNLBaseClass<ActivityPnlphoneContactsBinding>()
 
     @Inject
     lateinit var contactsAdapter: PNLPhoneContactsAdapter
-//    private var dialog: ResumeLoadingDialog?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      /*  dialog = ResumeLoadingDialog(this)
-        if (isTimeDifferenceGreaterThan30Seconds()) {
-            if (isNetworkAvailable()) {
-                dialog?.show()
-                showHighMainAdmobInterstitial({
-                    previousAdClosedTime = System.currentTimeMillis()
-                }, {
-                    showLowMainAdmobInterstitial({
-                        previousAdClosedTime = System.currentTimeMillis()
-                    }, { dialog?.dismiss() }, {
-                        interstitialCounter =0
-                        delayAdShown = true
-                        Handler().postDelayed({
-                            dialog?.dismiss()
-                        }, 1000)
-                    })
-                }, {
-                    interstitialCounter =0
-                    delayAdShown = true
-                    Handler().postDelayed({
-                        dialog?.dismiss()
-                    }, 1000)
-                })
-
-            }
-        }*/
+        showSimpleInterstitialAdWithTimeAndCounter()
         initViews()
         handleClicks()
     }
@@ -206,9 +182,5 @@ class PNLPhoneContactsActivity : PNLBaseClass<ActivityPnlphoneContactsBinding>()
 
     }
 
-//    fun init() {
-//        binding.textView.text = resources.getString(R.string.contact_list_header)
-//        binding.etSearch.hint = resources.getString(R.string.search_contatct)
-//    }
 
 }

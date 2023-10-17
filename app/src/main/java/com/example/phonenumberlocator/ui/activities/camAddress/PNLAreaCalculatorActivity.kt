@@ -20,6 +20,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.showBannerAdmob
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlareaCalculatorBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -107,7 +109,6 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
     private val redoStack = Stack<Marker?>()
     private lateinit var file: File
     private var isScreenshotTaken = false
-//    private var dialog: PNLResumeLoadingDialog?=null
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
@@ -148,35 +149,10 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       /* dialog = ResumeLoadingDialog(this)
-        if (isTimeDifferenceGreaterThan30Seconds()) {
-            if (isNetworkAvailable()) {
-                dialog?.show()
-                showHighMainAdmobInterstitial({
-                    previousAdClosedTime = System.currentTimeMillis()
-                }, {
-                    showLowMainAdmobInterstitial({
-                        previousAdClosedTime = System.currentTimeMillis()
-                    }, { dialog?.dismiss() }, {
-                        interstitialCounter =0
-                        delayAdShown = true
-                        Handler().postDelayed({
-                            dialog?.dismiss()
-                        }, 1000)
-                    })
-                }, {
-                    interstitialCounter =0
-                    delayAdShown = true
-                    Handler().postDelayed({
-                        dialog?.dismiss()
-                    }, 1000)
-                })
-
-            }
-        }
+        showSimpleInterstitialAdWithTimeAndCounter()
 
         showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
-*/
+
         initViews()
         clickListeners()
     }

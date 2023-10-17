@@ -15,6 +15,21 @@
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/main_status</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="theme.splash" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dark_gray</item>
+        <item name="colorPrimaryVariant">@color/app_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/selected_num</item>
+        <item name="colorSecondaryVariant">@color/app_color</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/app_color</item>
+        <!-- Customize your theme here. -->
+    </style>
 
     <style name="Theme.mainScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityGpsTrackBinding
 import com.example.phonenumberlocator.ui.activities.camAddress.PNLAreaCalculatorActivity
 import com.example.phonenumberlocator.ui.activities.camAddress.PNLDistanceFinderActivity
@@ -20,6 +21,7 @@ class GpsTrackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityGpsTrackBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        showSimpleInterstitialAdWithTimeAndCounter()
         handleClicks()
 
     }

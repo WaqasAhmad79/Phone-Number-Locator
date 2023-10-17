@@ -15,14 +15,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityGpsLocationBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.ui.pnlDialog.PNLLoadingDialog
 import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.model.LatLng
 import dagger.hilt.android.AndroidEntryPoint
 import org.jetbrains.anko.toast
 import java.util.Locale
@@ -47,7 +53,10 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
         binding = ActivityGpsLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        loadAd()
+        showSimpleInterstitialAdWithTimeAndCounter()
+
+//        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id_one))
 
         // Set click listener on take picture button
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -155,7 +164,7 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
     }
 
     override fun onResume() {
-//        isAppOpenEnable=false
+        canShowAppOpen=false
         super.onResume()
     }
     private fun shareGetAddressFromLatLong(latitude: Double, longitude: Double, callBack: (() -> Unit)? = null): String {
@@ -196,6 +205,23 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
         callBack?.invoke()
         return addressText
     }
+
+    private fun loadAd() {
+        if (isNetworkAvailable()) {
+            binding.ads.beVisible()
+            PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
+                showLoadedNativeAd(
+                    this,
+                    binding.ads,
+                    R.layout.layout_admob_native_ad_withou_tmedia,
+                    it
+                )
+            }
+        } else {
+            binding.ads.beGone()
+        }
+    }
+
 }
 
 

@@ -460,7 +460,7 @@
                 android:id="@+id/fl_banner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:background="@drawable/ad_place_holder"
+                android:background="@drawable/ads_stroke_bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>

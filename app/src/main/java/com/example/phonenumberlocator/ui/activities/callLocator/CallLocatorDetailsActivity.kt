@@ -25,6 +25,10 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
+import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.showPriorityInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityCallLocatorDetailsBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -75,14 +79,14 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-      /*  showPriorityInterstitialAdWithTimeAndCounter(
+        showPriorityInterstitialAdWithTimeAndCounter(
             true,
             getString(R.string.admob_interistitial_search_high),
-            getString(R.string.admob_interistitial_search_low), {
+            getString(R.string.admob_interistitial_others_one), {
                 interstitialAdPriority = it
             })
 
-        loadAd()*/
+        loadAd()
 
         initViews()
         clickListeners()
@@ -134,7 +138,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
             onBackPressed()
         }
         binding.makeCall.setOnClickListener {
-//            canShowAppOpen = true
+            canShowAppOpen = true
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.CALL_PHONE
@@ -150,14 +154,15 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
             }
         }
         binding.sendMessage.setOnClickListener {
-//            canShowAppOpen = true
+           canShowAppOpen = true
             handleCLicks("Message")
         }
         binding.editContact.setOnClickListener {
-//            canShowAppOpen = true
+           canShowAppOpen = true
             handleCLicks("AddNumber")
         }
         binding.blockContact.setOnClickListener {
+            canShowAppOpen = true
             val telecomManager = getSystemService(Context.TELECOM_SERVICE) as TelecomManager
             startActivity(telecomManager.createManageBlockedNumbersIntent(), null);
         }
@@ -240,7 +245,8 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
             val phoneNumber = binding.ccp.fullNumberWithPlus
             when (action) {
                 "Call" -> {
-                    initCall(phoneNumber)
+//                    initCall(phoneNumber)
+                    dialNumber(phoneNumber)
                 }
                 "Message" -> {
 //                    launchSendSMSIntent(phoneNumber)
@@ -359,10 +365,10 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
         }
     }
 
-   /* private fun loadAd() {
+    private fun loadAd() {
         if (isNetworkAvailable()) {
             binding.ads.beVisible()
-            PhoneNumberLocator.instance.nativeAdSmall.observe(this) {
+            PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
                 showLoadedNativeAd(
                     this,
                     binding.ads,
@@ -373,11 +379,11 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
         } else {
             binding.ads.beGone()
         }
-    }*/
+    }
 
     override fun onResume() {
         super.onResume()
-//        canShowAppOpen =false
+        canShowAppOpen =false
     }
 
 }

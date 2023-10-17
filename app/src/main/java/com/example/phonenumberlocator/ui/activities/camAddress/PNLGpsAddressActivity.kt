@@ -20,6 +20,10 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.showBannerAdmob
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlcamAddressBinding
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
@@ -61,7 +65,9 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
         binding = ActivityPnlcamAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        showSimpleInterstitial()
+
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
 
         helper = OpenWeatherMapHelper("6d08bf86106efb9db72c176a21d23ebf")
         val imagePath = intent.getStringExtra("imagePath")
@@ -98,19 +104,6 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
  //            binding.cardShare.beVisible()
          }*/
         binding.ivSave.setOnClickListener {
-         /*   if (!delayAdShown){
-                interstitialCounter++
-                val filePath = takeScreenshot(this)
-                if (filePath != null) {
-                    startActivity(
-                        Intent(this@CamAddressActivity, PNLSavedImageConfirmationActivity::class.java)
-                        .putExtra("imagePath", filePath))
-                    finish()
-                } else {
-                    Toast.makeText(this, "Failed to save the screenshot", Toast.LENGTH_SHORT).show()
-                }
-            }
-            else{*/
                 val filePath = takeScreenshot(this)
                 if (filePath != null) {
                     startActivity(
@@ -120,7 +113,6 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
                 } else {
                     Toast.makeText(this, "Failed to save the screenshot", Toast.LENGTH_SHORT).show()
                 }
-//            }
 
         }
         /*  binding.cardShare.setOnClickListener {
@@ -280,7 +272,6 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
     }
 
     override fun onResume() {
-//        isAppOpenEnable=false
         super.onResume()
     }
     private fun convertMetersPerSecondToKilometersPerHour(speedInMetersPerSecond: Double): Double {
