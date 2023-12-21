@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
@@ -35,54 +36,8 @@ class PNLLanguageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPnllanguageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val lang = intent.getBooleanExtra("setting", false)
 
-        if (!lang){
-            showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
-                getString(R.string.admob_interistitial_others_one)
-                , {
-                    Log.d("TAG", "onCreateAD: $it")
-                    interstitialAdPriority = it
-                })
-            loadAndReturnAd(
-                this@PNLLanguageActivity,
-                resources.getString(R.string.admob_native_boarding_high)
-            ) {
-                if (it != null) {
-                    PhoneNumberLocator.instance.nativeAdBoarding.value = it
-                } else {
-                    loadAndReturnAd(
-                        this@PNLLanguageActivity,
-                        resources.getString(R.string.admob_native_boarding_low)
-                    ) { it2 ->
-                        if (it2 != null) {
-                            PhoneNumberLocator.instance.nativeAdBoarding.value = it2
-                        }
-                    }
-                }
-            }
-        }
-        else{
-            loadAndReturnAd(
-                this@PNLLanguageActivity,
-                resources.getString(R.string.admob_native_lang_high)
-            ) {
-                if (it != null) {
-                    PhoneNumberLocator.instance.nativeAdLang.value = it
-                } else {
-                    loadAndReturnAd(
-                        this@PNLLanguageActivity,
-                        resources.getString(R.string.admob_native_lang_low)
-                    ) { it2 ->
-                        if (it2 != null) {
-                            PhoneNumberLocator.instance.nativeAdLang.value = it2
-                        }
-                    }
-                }
-            }
-        }
-
-        loadAd()
+        handleAds()
 
         langName = baseConfig.appLanguage
         langName?.let { updateLanguageSelection(it) }
@@ -109,6 +64,60 @@ class PNLLanguageActivity : AppCompatActivity() {
                 "ko" -> setLocaleAndChangeLanguage("ko")
                 "th" -> setLocaleAndChangeLanguage("th")
             }
+        }
+    }
+
+    private fun handleAds(){
+        if (isNetworkAvailable()&& canLoadAndShowAd){
+            val lang = intent.getBooleanExtra("setting", false)
+
+            if (!lang){
+                showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
+                    getString(R.string.admob_interistitial_others_one)
+                    , {
+                        Log.d("TAG", "onCreateAD: $it")
+                        interstitialAdPriority = it
+                    })
+                loadAndReturnAd(
+                    this@PNLLanguageActivity,
+                    resources.getString(R.string.admob_native_boarding_high)
+                ) {
+                    if (it != null) {
+                        PhoneNumberLocator.instance.nativeAdBoarding.value = it
+                    } else {
+                        loadAndReturnAd(
+                            this@PNLLanguageActivity,
+                            resources.getString(R.string.admob_native_boarding_low)
+                        ) { it2 ->
+                            if (it2 != null) {
+                                PhoneNumberLocator.instance.nativeAdBoarding.value = it2
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+                loadAndReturnAd(
+                    this@PNLLanguageActivity,
+                    resources.getString(R.string.admob_native_lang_high)
+                ) {
+                    if (it != null) {
+                        PhoneNumberLocator.instance.nativeAdLang.value = it
+                    } else {
+                        loadAndReturnAd(
+                            this@PNLLanguageActivity,
+                            resources.getString(R.string.admob_native_lang_low)
+                        ) { it2 ->
+                            if (it2 != null) {
+                                PhoneNumberLocator.instance.nativeAdLang.value = it2
+                            }
+                        }
+                    }
+                }
+            }
+
+            showAd()
+
         }
     }
 
@@ -218,8 +227,10 @@ class PNLLanguageActivity : AppCompatActivity() {
         editor.apply()
     }
 
-     private fun loadAd() {
-        if (isNetworkAvailable()) {
+
+
+     private fun showAd() {
+        if (isNetworkAvailable() && canLoadAndShowAd) {
             binding.ads.visibility = View.VISIBLE
             PhoneNumberLocator.instance.nativeAdLang.observe(this){
                 showLoadedNativeAd(this,binding.ads, R.layout.native_large_2,it)

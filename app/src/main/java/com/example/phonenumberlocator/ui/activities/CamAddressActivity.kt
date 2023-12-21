@@ -30,7 +30,6 @@ class CamAddressActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCamAdresBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        showSimpleInterstitialAdWithTimeAndCounter()
         handleClicks()
     }
 

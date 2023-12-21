@@ -9,6 +9,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlphoneContactsBinding
@@ -16,6 +17,7 @@ import com.example.phonenumberlocator.pnlAdapter.PNLPhoneContactsAdapter
 import com.example.phonenumberlocator.pnlAppCallModels.RecentCallsDetailModel
 import com.example.phonenumberlocator.pnlExtensionFun.beVisibleIf
 import com.example.phonenumberlocator.pnlExtensionFun.countryIso
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.normalizeString
 import com.example.phonenumberlocator.pnlExtensionFun.onTextChangeListener
 import com.example.phonenumberlocator.pnlHelper.PERMISSION_READ_CONTACTS
@@ -48,7 +50,10 @@ class PNLPhoneContactsActivity : PNLBaseClass<ActivityPnlphoneContactsBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        showSimpleInterstitialAdWithTimeAndCounter()
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            showSimpleInterstitialAdWithTimeAndCounter()
+        }
+
         initViews()
         handleClicks()
     }

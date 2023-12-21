@@ -17,7 +17,7 @@
     </style>
     <style name="theme.splash" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/dark_gray</item>
+        <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/app_color</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

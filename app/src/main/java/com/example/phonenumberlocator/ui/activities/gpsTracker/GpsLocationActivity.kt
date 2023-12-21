@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
@@ -53,10 +54,12 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
         binding = ActivityGpsLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadAd()
-        showSimpleInterstitialAdWithTimeAndCounter()
+        showAd()
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            showSimpleInterstitialAdWithTimeAndCounter()
+        }
 
-//        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id_one))
+
 
         // Set click listener on take picture button
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -206,8 +209,8 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
         return addressText
     }
 
-    private fun loadAd() {
-        if (isNetworkAvailable()) {
+    private fun showAd() {
+        if (isNetworkAvailable() && canLoadAndShowAd) {
             binding.ads.beVisible()
             PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
                 showLoadedNativeAd(

@@ -21,7 +21,6 @@ class GpsTrackActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityGpsTrackBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        showSimpleInterstitialAdWithTimeAndCounter()
         handleClicks()
 
     }

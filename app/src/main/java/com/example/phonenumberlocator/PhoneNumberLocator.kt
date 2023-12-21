@@ -124,7 +124,7 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
 
     companion object {
         lateinit var instance: PhoneNumberLocator
-        var isAlready = false
+        var canLoadAndShowAd = false
 
         @SuppressLint("StaticFieldLeak")
         @get:Synchronized

@@ -25,6 +25,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
@@ -72,17 +73,23 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        showPriorityInterstitialAdWithTimeAndCounter(
-            true,
-            getString(R.string.admob_interistitial_search_high),
-            getString(R.string.admob_interistitial_others_one), {
-                interstitialAdPriority = it
-            })
-        loadAd()
+        handleAds()
+        showAd()
 
 
         initViews()
         clickListeners()
+    }
+
+    private fun handleAds(){
+        if(isNetworkAvailable() && canLoadAndShowAd){
+            showPriorityInterstitialAdWithTimeAndCounter(
+                true,
+                getString(R.string.admob_interistitial_search_high),
+                getString(R.string.admob_interistitial_others_one), {
+                    interstitialAdPriority = it
+                })
+        }
     }
 
 
@@ -157,8 +164,8 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         }
     }
 
-    private fun loadAd() {
-        if (isNetworkAvailable()) {
+    private fun showAd() {
+        if (isNetworkAvailable() && canLoadAndShowAd) {
             binding.ads.beVisible()
             PhoneNumberLocator.instance.nativeAdSmall.observe(this) {
                 showLoadedNativeAd(this, binding.ads, R.layout.layout_admob_native_ad_withou_tmedia, it)

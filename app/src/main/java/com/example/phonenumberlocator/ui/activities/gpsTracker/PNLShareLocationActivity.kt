@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
@@ -22,6 +23,7 @@ import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.copyText
 import com.example.phonenumberlocator.pnlExtensionFun.gpsStatusCheck
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.shareCurrentLocation
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
@@ -67,16 +69,23 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        showSimpleInterstitialAdWithTimeAndCounter()
+        handleAds()
 
         gpsStatusCheck() {
             if (it) {
                 initView()
-                showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
             }
         }
 
         clickListeners()
+    }
+
+    fun handleAds(){
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            showSimpleInterstitialAdWithTimeAndCounter()
+            showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        }
     }
 
     private fun initView() {

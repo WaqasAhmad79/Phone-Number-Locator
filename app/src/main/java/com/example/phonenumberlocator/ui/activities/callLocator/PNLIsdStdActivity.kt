@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.inputmethod.CorrectionInfo
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.pnlAdapter.ISDDialogAdapter
 import com.example.phonenumberlocator.pnlAdapter.PNLIsdStdAdapter
@@ -13,6 +14,7 @@ import com.example.phonenumberlocator.databinding.ActivityPnlisdStdBinding
 import com.example.phonenumberlocator.pnlDatabases.TinyDB
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.normalizeString
 import com.example.phonenumberlocator.pnlExtensionFun.onTextChangeListener
 import com.example.phonenumberlocator.pnlHelper.SELECTED_COUNTRY
@@ -43,7 +45,10 @@ class PNLIsdStdActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPnlisdStdBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        showSimpleInterstitialAdWithTimeAndCounter()
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            showSimpleInterstitialAdWithTimeAndCounter()
+        }
+
     }
 
     private fun initViews() {

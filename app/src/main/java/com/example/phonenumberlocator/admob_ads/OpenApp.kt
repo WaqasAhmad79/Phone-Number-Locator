@@ -10,6 +10,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.ui.activities.PNLSplashActivity
 import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
@@ -48,29 +49,32 @@ class OpenApp(private val globalClass: PhoneNumberLocator) : Application.Activit
         if (isAdAvailable()) {
             return
         }
-        val loadCallback: AppOpenAd.AppOpenAdLoadCallback =
-            object : AppOpenAd.AppOpenAdLoadCallback() {
-                override fun onAdLoaded(ad: AppOpenAd) {
-                    appOpenAd = ad
-                    Log.d(TAG, "onAdLoaded: ")
-                }
+        if (canLoadAndShowAd){
+            val loadCallback: AppOpenAd.AppOpenAdLoadCallback =
+                object : AppOpenAd.AppOpenAdLoadCallback() {
+                    override fun onAdLoaded(ad: AppOpenAd) {
+                        appOpenAd = ad
+                        Log.d(TAG, "onAdLoaded: ")
+                    }
 
-                override fun onAdFailedToLoad(p0: LoadAdError) {
-                    super.onAdFailedToLoad(p0)
-                    Log.d(TAG, "onAdFailedToLoad: $p0")
+                    override fun onAdFailedToLoad(p0: LoadAdError) {
+                        super.onAdFailedToLoad(p0)
+                        Log.d(TAG, "onAdFailedToLoad: $p0")
+                    }
                 }
+            val request: AdRequest = getAdRequest()
+
+            myApplication?.applicationContext?.apply {
+                AppOpenAd.load(
+                    this,
+                    globalClass.getString(R.string.admob_app_open_id),
+                    request,
+                    AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
+                    loadCallback
+                )
             }
-        val request: AdRequest = getAdRequest()
-
-        myApplication?.applicationContext?.apply {
-            AppOpenAd.load(
-                this,
-                globalClass.getString(R.string.admob_app_open_id),
-                request,
-                AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
-                loadCallback
-            )
         }
+
     }
 
     private fun showAdIfAvailable() {

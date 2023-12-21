@@ -21,14 +21,7 @@ class CallLocActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCallLocBinding.inflate(layoutInflater)
         setContentView(binding.root)
-       /* showPriorityInterstitialAdWithTimeAndCounter(
-            true,
-            getString(R.string.admob_interistitial_search_high),
-            getString(R.string.admob_interistitial_others_one)
-            , {
-                interstitialAdPriority=it
-            })*/
-//        showSimpleInterstitialAdWithTimeAndCounter()
+
         handleClicks()
 
     }

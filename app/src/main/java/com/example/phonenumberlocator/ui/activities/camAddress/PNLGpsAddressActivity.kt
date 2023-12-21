@@ -19,6 +19,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
@@ -26,6 +27,7 @@ import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlcamAddressBinding
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.ui.pnlDialog.PNLLoadingDialog
 import com.google.android.gms.location.LocationListener
@@ -65,9 +67,7 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
         binding = ActivityPnlcamAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showSimpleInterstitial()
-
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        handleAds()
 
         helper = OpenWeatherMapHelper("6d08bf86106efb9db72c176a21d23ebf")
         val imagePath = intent.getStringExtra("imagePath")
@@ -297,6 +297,13 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
                     Log.e("WeatherActivity", throwable.message.toString())
                 }
             })
+    }
+
+    private fun handleAds(){
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            showSimpleInterstitial()
+            showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        }
     }
 }
 

@@ -13,6 +13,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
@@ -54,43 +55,47 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("isComingFromSplash", "onCreate: $isShowAD")
-        if (!isShowAD) {
-            requestPermission()
-        } else {
-            Log.d(TAG, "onCreate: ")
-            showPriorityAdmobInterstitial(true, getString(R.string.admob_interistitial_search_high),
-                getString(R.string.admob_interistitial_others_one), {
-                    interstitialAdPriority = it
-                    requestPermission()
-                })
-        }
-        loadSimpleAdmobInterstitial()
-//        loadCamAdmobInterstitial()
-        loadAndReturnAd(
-            this@MainActivity,
-            resources.getString(R.string.admob_native_small)
-        ) { it2 ->
-            if (it2 != null) {
-                PhoneNumberLocator.instance.nativeAdSmall.value = it2
-            }
-        }
-        loadAndReturnAd(
-            this@MainActivity,
-            resources.getString(R.string.admob_native_large)
-        ) { it2 ->
-            if (it2 != null) {
-                PhoneNumberLocator.instance.nativeAdLarge.value = it2
-            }
-        }
 
-//        loadAd()
+        handleAds()
 
         EventBus.getDefault().register(this)
 
         initViews()
         handleClicks()
 
+    }
+
+    private fun handleAds(){
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            Log.d("isComingFromSplash", "onCreate: $isShowAD")
+            if (!isShowAD) {
+                requestPermission()
+            } else {
+                Log.d(TAG, "onCreate: ")
+                showPriorityAdmobInterstitial(true, getString(R.string.admob_splash_interistitial_high),
+                    getString(R.string.admob_splash_interistitial_low), {
+                        interstitialAdPriority = it
+                        requestPermission()
+                    })
+            }
+            loadSimpleAdmobInterstitial()
+            loadAndReturnAd(
+                this@MainActivity,
+                resources.getString(R.string.admob_native_small)
+            ) { it2 ->
+                if (it2 != null) {
+                    PhoneNumberLocator.instance.nativeAdSmall.value = it2
+                }
+            }
+            loadAndReturnAd(
+                this@MainActivity,
+                resources.getString(R.string.admob_native_large)
+            ) { it2 ->
+                if (it2 != null) {
+                    PhoneNumberLocator.instance.nativeAdLarge.value = it2
+                }
+            }
+        }
     }
 
     private fun checkPermission(): Boolean {
@@ -188,18 +193,12 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     private fun handleClicks() {
         binding.content.callLocator.setOnClickListener {
             startActivity(Intent(this, CallLocActivity::class.java))
-
         }
         binding.content.gpsTracker.setOnClickListener {
-
             startActivity(Intent(this, GpsTrackActivity::class.java))
-
-
         }
         binding.content.camAddress.setOnClickListener {
-
             startActivity(Intent(this, CamAddressActivity::class.java))
-
         }
 
 
@@ -218,16 +217,6 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     }
 
 
- /*   private fun loadAd() {
-        if (isNetworkAvailable()) {
-            binding.content.ads.beVisible()
-            PhoneNumberLocator.instance.nativeAdMain.observe(this) {
-                showLoadedNativeAd(this, binding.content.ads, R.layout.layout_admob_native_ad_withou_tmedia, it)
-            }
-        } else {
-            binding.content.ads.beGone()
-        }
-    }*/
 
     override fun onPause() {
         super.onPause()

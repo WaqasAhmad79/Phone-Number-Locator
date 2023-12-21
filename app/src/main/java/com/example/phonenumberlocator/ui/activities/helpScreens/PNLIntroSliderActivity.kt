@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
@@ -45,7 +46,8 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         binding = ActivityPnlintroSliderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadAd()
+        showAd()
+        handleAds()
         prefManager = PrefManager(this)
         if (!prefManager!!.isFirstTimeLaunch) {
             launchHomeScreen()
@@ -57,14 +59,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
-        val isShowAD = intent.getBooleanExtra("isComingFromSplash", false)
-        if (isShowAD) {
-            showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
-                getString(R.string.admob_interistitial_others_one)
-                , {
-                    interstitialAdPriority = it
-                })
-        }
+
         // layouts of all welcome sliders
         // add few more layouts if you want
         layouts = intArrayOf(
@@ -74,20 +69,6 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             R.layout.activity_app_permission
         )
 
-      /*  loadAndReturnAd(this@PNLIntroSliderActivity, resources.getString(R.string.admob_native_main_high)) {
-            if (it != null) {
-                PhoneNumberLocator.instance.nativeAdMain.value = it
-            } else {
-                loadAndReturnAd(
-                    this@PNLIntroSliderActivity,
-                    resources.getString(R.string.admob_native_main_low)
-                ) { it2 ->
-                    if (it2 != null) {
-                        PhoneNumberLocator.instance.nativeAdMain.value = it2
-                    }
-                }
-            }
-        }*/
 
 
         // adding bottom dots
@@ -107,6 +88,19 @@ class PNLIntroSliderActivity : AppCompatActivity() {
                 binding.viewPager.currentItem = current
             } else {
                 launchHomeScreen()
+            }
+        }
+    }
+
+    fun handleAds(){
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            val isShowAD = intent.getBooleanExtra("isComingFromSplash", false)
+            if (isShowAD) {
+                showPriorityAdmobInterstitial(true,getString(R.string.admob_splash_interistitial_high),
+                    getString(R.string.admob_splash_interistitial_low)
+                    , {
+                        interstitialAdPriority = it
+                    })
             }
         }
     }
@@ -290,8 +284,8 @@ class PNLIntroSliderActivity : AppCompatActivity() {
     }
 
 
-    private fun loadAd() {
-        if (isNetworkAvailable()) {
+    private fun showAd() {
+        if (isNetworkAvailable() && canLoadAndShowAd) {
             binding.ads.visibility = View.VISIBLE
             PhoneNumberLocator.instance.nativeAdBoarding.observe(this@PNLIntroSliderActivity) {
                 showLoadedNativeAd(

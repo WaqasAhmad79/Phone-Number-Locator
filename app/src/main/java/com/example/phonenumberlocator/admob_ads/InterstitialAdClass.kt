@@ -8,6 +8,7 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.google.android.gms.ads.AdError
@@ -75,6 +76,9 @@ open class InterstitialAdClass {
         context: Context, adId: String, adLoadedCallback: (InterstitialAd?) -> Unit
     ) {
         context.let {
+            if (!canLoadAndShowAd){
+                return
+            }
             InterstitialAd.load(
                 it,
                 adId,
@@ -189,6 +193,9 @@ open class InterstitialAdClass {
         } ?: run {
             showInterstitialAdLog("Loading Ad 1...")
             context.let {
+                if (!canLoadAndShowAd){
+                    return
+                }
                 InterstitialAd.load(it,
                     adId,
                     AdRequest.Builder().build(),

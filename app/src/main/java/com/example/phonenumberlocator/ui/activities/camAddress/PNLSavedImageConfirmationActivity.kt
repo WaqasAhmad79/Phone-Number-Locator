@@ -11,9 +11,11 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
 import com.example.phonenumberlocator.databinding.ActivitySavedImageConfirmationBinding
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import java.io.File
 import java.io.OutputStream
@@ -22,13 +24,16 @@ import java.io.OutputStream
 class PNLSavedImageConfirmationActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySavedImageConfirmationBinding
     private var imageBitmap: Bitmap? = null // Declare the variable here
-    private var dialog: PNLResumeLoadingDialog?=null
+    private var dialog: PNLResumeLoadingDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySavedImageConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showSimpleInterstitial()
+        if (isNetworkAvailable() && canLoadAndShowAd) {
+            showSimpleInterstitial()
+        }
+
 
         val imagePath = intent.getStringExtra("imagePath")
         if (imagePath != null) {
@@ -44,7 +49,7 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.share.setOnClickListener {
-            canShowAppOpen=true
+            canShowAppOpen = true
             if (imageBitmap != null) {
                 share(imageBitmap!!)
             }
@@ -63,6 +68,7 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
         startActivity(Intent.createChooser(shareIntent, "Share Image"))
     }
+
     private fun saveImageToGallery(bitmap: Bitmap) {
         val filename = "MyImage_${System.currentTimeMillis()}.jpg"
         val contentValues = ContentValues().apply {
@@ -97,7 +103,7 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        canShowAppOpen=false
+        canShowAppOpen = false
         super.onResume()
     }
 

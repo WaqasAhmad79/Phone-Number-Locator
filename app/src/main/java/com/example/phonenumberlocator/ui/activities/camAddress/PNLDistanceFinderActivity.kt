@@ -14,12 +14,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnldistanceFinderBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlHelper.UNIT_CM
 import com.example.phonenumberlocator.pnlHelper.UNIT_KILOMETERS
 import com.example.phonenumberlocator.pnlHelper.UNIT_METERS
@@ -69,9 +72,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    showSimpleInterstitialAdWithTimeAndCounter()
-
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
+        handleAds()
 
         mapView = findViewById(R.id.distanceMap)
         mapView.onCreate(savedInstanceState)
@@ -81,7 +82,12 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
         clickListeners()
 
     }
-
+    private fun handleAds(){
+        if (isNetworkAvailable() && canLoadAndShowAd){
+            showSimpleInterstitialAdWithTimeAndCounter()
+            showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
+        }
+    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
