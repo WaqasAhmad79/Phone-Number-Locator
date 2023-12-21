@@ -93,7 +93,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
     }
 
     fun handleAds(){
-        if (isNetworkAvailable() && canLoadAndShowAd){
+        if (isNetworkAvailable()){
             val isShowAD = intent.getBooleanExtra("isComingFromSplash", false)
             if (isShowAD) {
                 showPriorityAdmobInterstitial(true,getString(R.string.admob_splash_interistitial_high),
@@ -285,7 +285,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
 
 
     private fun showAd() {
-        if (isNetworkAvailable() && canLoadAndShowAd) {
+        if (isNetworkAvailable()) {
             binding.ads.visibility = View.VISIBLE
             PhoneNumberLocator.instance.nativeAdBoarding.observe(this@PNLIntroSliderActivity) {
                 showLoadedNativeAd(

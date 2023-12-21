@@ -55,6 +55,9 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
 
     var intent: Intent? = null
 
+    fun setAppOpenAd(){
+        OpenApp(this)
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -73,10 +76,10 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
         }
         app_class = this@PhoneNumberLocator
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-        OpenApp(this)
+        //OpenApp(this)
         // Log the Mobile Ads SDK version.
         Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
-        MobileAds.initialize(this) { }
+
 
         applicationInstance = this@PhoneNumberLocator
         instance = this@PhoneNumberLocator

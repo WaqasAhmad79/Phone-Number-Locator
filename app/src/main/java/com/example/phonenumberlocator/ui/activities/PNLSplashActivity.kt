@@ -12,7 +12,7 @@ import android.view.WindowManager
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.GDPR
+import com.example.phonenumberlocator.admob_ads.AdsConsentManager
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.isShowAD
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
@@ -26,10 +26,11 @@ import com.example.phonenumberlocator.pnlUtil.setCurrentLocale
 import com.example.phonenumberlocator.ui.MainActivity
 import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
 import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
+import com.google.android.gms.ads.MobileAds
 
 class PNLSplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPnlsplashBinding
-    private var gdpr: GDPR? = null
+
     var started = false
 
 
@@ -37,9 +38,6 @@ class PNLSplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPnlsplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        handleConsentFormAndAdsRequests()
-
         setCurrentLocale(baseConfig.appLanguage.toString())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode =
@@ -51,6 +49,28 @@ class PNLSplashActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             )
         }
+
+
+        val adsConsentManager = AdsConsentManager(this)
+
+        adsConsentManager.requestUMP(
+            true,
+            "E6AD84E326FD1B88782262A8A4AE5774",
+            true
+        ) { canRequestAds ->
+            Log.e("AdsConsentManager", "adsConsentManager response :$canRequestAds ")
+            if (canRequestAds) {
+                handleConsentFormAndAdsRequests()
+            } else {
+
+            }
+        }
+
+//        adsConsentManager.requestUMP { canRequest ->
+//            Log.e("AdsConsentManager", "adsConsentManager response :$canRequest ")
+//            runOnUiThread(this::handleConsentFormAndAdsRequests)
+//        }
+
 
         val mySharePreferences = PNLMySharePreferences(this)
         started = mySharePreferences.appStarted
@@ -66,52 +86,47 @@ class PNLSplashActivity : AppCompatActivity() {
     }
 
     private fun splashEnd() {
-            if (!baseConfig.appStarted) {
-                // The user has seen the Onboard
-                startActivity(Intent(this@PNLSplashActivity, PNLLanguageActivity::class.java))
-                finish()
-            } else if (!baseConfig.isAppIntroComplete) {
-                startActivity(
-                    Intent(
-                        this@PNLSplashActivity,
-                        PNLIntroSliderActivity::class.java
-                    ).putExtra("isComingFromSplash", true)
+        if (!baseConfig.appStarted) {
+            // The user has seen the Onboard
+            startActivity(Intent(this@PNLSplashActivity, PNLLanguageActivity::class.java))
+            finish()
+        } else if (!baseConfig.isAppIntroComplete) {
+            startActivity(
+                Intent(
+                    this@PNLSplashActivity,
+                    PNLIntroSliderActivity::class.java
+                ).putExtra("isComingFromSplash", true)
+            )
+            finish()
+        } else {
+            isShowAD = true
+            startActivity(
+                Intent(
+                    this@PNLSplashActivity,
+                    MainActivity::class.java
                 )
-                finish()
-            } else {
-                isShowAD = true
-                startActivity(
-                    Intent(
-                        this@PNLSplashActivity,
-                        MainActivity::class.java
-                    )
-                )
-                finish()
-            }
-    }
-
-    private fun handleConsentFormAndAdsRequests() {
-        gdpr = GDPR(this)
-        gdpr?.setGDPRConsent() {
-            if (it) {
-                canLoadAndShowAd = true
-                // consent done .............load ads here
-                loadPriorityAdmobInterstitial(
-                    getString(R.string.admob_splash_interistitial_high),
-                    getString(R.string.admob_splash_interistitial_low)
-                ) {
-                    interstitialAdPriority = it
-                }
-                handleAds()
-            } else {
-                canLoadAndShowAd = false
-                // consent Un_success .............do not load ads
-            }
+            )
+            finish()
         }
     }
 
+
+    private fun handleConsentFormAndAdsRequests() {
+        MobileAds.initialize(this) { }
+        PhoneNumberLocator.instance.setAppOpenAd()
+
+        // consent done .............load ads here
+        loadPriorityAdmobInterstitial(
+            getString(R.string.admob_splash_interistitial_high),
+            getString(R.string.admob_splash_interistitial_low)
+        ) {
+            interstitialAdPriority = it
+        }
+        handleAds()
+    }
+
     private fun handleAds() {
-        if (isNetworkAvailable() && canLoadAndShowAd) {
+        if (isNetworkAvailable()) {
             if (!baseConfig.appStarted) {
                 loadAndReturnAd(
                     this@PNLSplashActivity,

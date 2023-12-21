@@ -45,9 +45,8 @@ class PNLIsdStdActivity  : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPnlisdStdBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (isNetworkAvailable() && canLoadAndShowAd){
+
             showSimpleInterstitialAdWithTimeAndCounter()
-        }
 
     }
 

@@ -66,12 +66,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        if (isNetworkAvailable() && canLoadAndShowAd){
             showSimpleInterstitialAdWithTimeAndCounter()
-        }
-
-
 
         showAd()
 
@@ -228,7 +223,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     }
 
     private fun showAd() {
-        if (isNetworkAvailable() && canLoadAndShowAd) {
+        if (isNetworkAvailable()) {
             binding.ads.beVisible()
             PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
                 showLoadedNativeAd(this, binding.ads, R.layout.native_large_2, it)

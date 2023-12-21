@@ -76,9 +76,6 @@ open class InterstitialAdClass {
         context: Context, adId: String, adLoadedCallback: (InterstitialAd?) -> Unit
     ) {
         context.let {
-            if (!canLoadAndShowAd){
-                return
-            }
             InterstitialAd.load(
                 it,
                 adId,
@@ -193,9 +190,7 @@ open class InterstitialAdClass {
         } ?: run {
             showInterstitialAdLog("Loading Ad 1...")
             context.let {
-                if (!canLoadAndShowAd){
-                    return
-                }
+
                 InterstitialAd.load(it,
                     adId,
                     AdRequest.Builder().build(),

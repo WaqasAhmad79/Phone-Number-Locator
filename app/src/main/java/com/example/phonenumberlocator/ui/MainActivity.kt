@@ -66,7 +66,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     }
 
     private fun handleAds(){
-        if (isNetworkAvailable() && canLoadAndShowAd){
+        if (isNetworkAvailable()){
             Log.d("isComingFromSplash", "onCreate: $isShowAD")
             if (!isShowAD) {
                 requestPermission()

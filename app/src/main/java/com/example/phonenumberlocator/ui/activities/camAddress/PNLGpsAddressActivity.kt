@@ -300,7 +300,7 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
     }
 
     private fun handleAds(){
-        if (isNetworkAvailable() && canLoadAndShowAd){
+        if (isNetworkAvailable()){
             showSimpleInterstitial()
             showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
         }

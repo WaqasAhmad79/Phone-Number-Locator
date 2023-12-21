@@ -49,7 +49,6 @@ class OpenApp(private val globalClass: PhoneNumberLocator) : Application.Activit
         if (isAdAvailable()) {
             return
         }
-        if (canLoadAndShowAd){
             val loadCallback: AppOpenAd.AppOpenAdLoadCallback =
                 object : AppOpenAd.AppOpenAdLoadCallback() {
                     override fun onAdLoaded(ad: AppOpenAd) {
@@ -73,7 +72,6 @@ class OpenApp(private val globalClass: PhoneNumberLocator) : Application.Activit
                     loadCallback
                 )
             }
-        }
 
     }
 

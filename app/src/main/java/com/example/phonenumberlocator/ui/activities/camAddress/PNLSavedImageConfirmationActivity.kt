@@ -30,10 +30,7 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
         binding = ActivitySavedImageConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (isNetworkAvailable() && canLoadAndShowAd) {
             showSimpleInterstitial()
-        }
-
 
         val imagePath = intent.getStringExtra("imagePath")
         if (imagePath != null) {

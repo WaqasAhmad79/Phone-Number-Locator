@@ -87,7 +87,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
         clickListeners()
     }
     private fun handleAds(){
-        if (isNetworkAvailable() && canLoadAndShowAd){
+        if (isNetworkAvailable()){
             showPriorityInterstitialAdWithTimeAndCounter(
                 true,
                 getString(R.string.admob_interistitial_search_high),
@@ -371,7 +371,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
     }
 
     private fun showAd() {
-        if (isNetworkAvailable() && canLoadAndShowAd) {
+        if (isNetworkAvailable()) {
             binding.ads.beVisible()
             PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
                 showLoadedNativeAd(

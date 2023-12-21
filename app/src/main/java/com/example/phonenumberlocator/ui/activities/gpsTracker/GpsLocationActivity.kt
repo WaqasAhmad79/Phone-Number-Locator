@@ -55,9 +55,8 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
         setContentView(binding.root)
 
         showAd()
-        if (isNetworkAvailable() && canLoadAndShowAd){
+
             showSimpleInterstitialAdWithTimeAndCounter()
-        }
 
 
 
@@ -210,7 +209,7 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
     }
 
     private fun showAd() {
-        if (isNetworkAvailable() && canLoadAndShowAd) {
+        if (isNetworkAvailable()) {
             binding.ads.beVisible()
             PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
                 showLoadedNativeAd(

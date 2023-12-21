@@ -50,9 +50,8 @@ class PNLPhoneContactsActivity : PNLBaseClass<ActivityPnlphoneContactsBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (isNetworkAvailable() && canLoadAndShowAd){
+
             showSimpleInterstitialAdWithTimeAndCounter()
-        }
 
         initViews()
         handleClicks()

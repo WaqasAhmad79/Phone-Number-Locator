@@ -157,7 +157,7 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
         clickListeners()
     }
     private fun handleAds(){
-        if (isNetworkAvailable() && canLoadAndShowAd){
+        if (isNetworkAvailable()){
             showSimpleInterstitialAdWithTimeAndCounter()
 
             showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)

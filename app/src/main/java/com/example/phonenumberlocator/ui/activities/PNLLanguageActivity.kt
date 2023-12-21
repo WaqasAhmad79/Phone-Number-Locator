@@ -68,9 +68,8 @@ class PNLLanguageActivity : AppCompatActivity() {
     }
 
     private fun handleAds(){
-        if (isNetworkAvailable()&& canLoadAndShowAd){
+        if (isNetworkAvailable()){
             val lang = intent.getBooleanExtra("setting", false)
-
             if (!lang){
                 showPriorityAdmobInterstitial(true,getString(R.string.admob_interistitial_search_high),
                     getString(R.string.admob_interistitial_others_one)
@@ -230,7 +229,7 @@ class PNLLanguageActivity : AppCompatActivity() {
 
 
      private fun showAd() {
-        if (isNetworkAvailable() && canLoadAndShowAd) {
+        if (isNetworkAvailable()) {
             binding.ads.visibility = View.VISIBLE
             PhoneNumberLocator.instance.nativeAdLang.observe(this){
                 showLoadedNativeAd(this,binding.ads, R.layout.native_large_2,it)
