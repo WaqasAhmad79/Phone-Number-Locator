@@ -10,12 +10,17 @@ import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLang
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative1
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative2
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative3
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative4
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.AdsConsentManager
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.isShowAD
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
+import com.example.phonenumberlocator.admob_ads.loadHighOrLowNativeAd
 import com.example.phonenumberlocator.admob_ads.loadPriorityAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnlsplashBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
@@ -51,18 +56,18 @@ class PNLSplashActivity : AppCompatActivity() {
         }
 
 
+//51B1AB5BA7D2641277DFA65518CC6E7A for oppo
         val adsConsentManager = AdsConsentManager(this)
 
         adsConsentManager.requestUMP(
             true,
-            "E6AD84E326FD1B88782262A8A4AE5774",
-            true
+            "51B1AB5BA7D2641277DFA65518CC6E7A",
+            false
         ) { canRequestAds ->
-            Log.e("AdsConsentManager", "adsConsentManager response :$canRequestAds ")
+            Log.d("AdsConsentManager", "adsConsentManager response :$canRequestAds ")
             if (canRequestAds) {
                 handleConsentFormAndAdsRequests()
-            } else {
-
+                splashEnd()
             }
         }
 
@@ -75,39 +80,43 @@ class PNLSplashActivity : AppCompatActivity() {
         val mySharePreferences = PNLMySharePreferences(this)
         started = mySharePreferences.appStarted
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.button.beVisible()
-            binding.progressBar.beGone()
-        }, 5000)
+
         binding.button.setOnClickListener {
-            splashEnd()
+
+            startActivity(Intent(this@PNLSplashActivity, PNLLanguageActivity::class.java))
+            finish()
         }
 
     }
 
     private fun splashEnd() {
-        if (!baseConfig.appStarted) {
-            // The user has seen the Onboard
-            startActivity(Intent(this@PNLSplashActivity, PNLLanguageActivity::class.java))
-            finish()
-        } else if (!baseConfig.isAppIntroComplete) {
-            startActivity(
-                Intent(
-                    this@PNLSplashActivity,
-                    PNLIntroSliderActivity::class.java
-                ).putExtra("isComingFromSplash", true)
-            )
-            finish()
-        } else {
-            isShowAD = true
-            startActivity(
-                Intent(
-                    this@PNLSplashActivity,
-                    MainActivity::class.java
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            if (!baseConfig.appStarted) {
+                binding.button.beVisible()
+                binding.progressBar.beGone()
+                // The user has seen the Onboard
+
+            } else if (!baseConfig.isAppIntroComplete) {
+                startActivity(
+                    Intent(
+                        this@PNLSplashActivity,
+                        PNLIntroSliderActivity::class.java
+                    ).putExtra("isComingFromSplash", true)
                 )
-            )
-            finish()
-        }
+                finish()
+            } else {
+                isShowAD = true
+                startActivity(
+                    Intent(
+                        this@PNLSplashActivity,
+                        MainActivity::class.java
+                    )
+                )
+                finish()
+            }
+        }, 8000)
+
     }
 
 
@@ -120,60 +129,88 @@ class PNLSplashActivity : AppCompatActivity() {
             getString(R.string.admob_splash_interistitial_high),
             getString(R.string.admob_splash_interistitial_low)
         ) {
+            Log.d("NL", "loadAdmobInterstitialPriority successful")
             interstitialAdPriority = it
         }
         handleAds()
     }
 
     private fun handleAds() {
-        if (isNetworkAvailable()) {
-            if (!baseConfig.appStarted) {
-                loadAndReturnAd(
-                    this@PNLSplashActivity,
-                    resources.getString(R.string.admob_native_lang_high)
-                ) {
-                    if (it != null) {
-                        PhoneNumberLocator.instance.nativeAdLang.value = it
+        if (!baseConfig.appStarted) {
+            if (isNetworkAvailable()) {
+                loadHighOrLowNativeAd(
+                    this,
+                    getString(R.string.admob_native_lang_high),
+                    getString(R.string.admob_native_lang_low)
+                ) { nativeAd, adType ->
+                    Log.d("danishTest1", "loadHighOrLowNativeAd: ad:$nativeAd typr:$adType")
+                    if (nativeAd != null) {
+                        nativeAdLang.postValue(nativeAd)
                     } else {
-                        loadAndReturnAd(
-                            this@PNLSplashActivity,
-                            resources.getString(R.string.admob_native_lang_low)
-                        ) { it2 ->
-                            if (it2 != null) {
-                                PhoneNumberLocator.instance.nativeAdLang.value = it2
-                            }
-                        }
+                        nativeAdLang.postValue(null)
                     }
                 }
-            } else if (!baseConfig.isAppIntroComplete) {
-                loadAndReturnAd(
-                    this@PNLSplashActivity,
-                    resources.getString(R.string.admob_native_boarding_high)
-                ) {
-                    if (it != null) {
-                        PhoneNumberLocator.instance.nativeAdBoarding.value = it
-                    } else {
-                        loadAndReturnAd(
-                            this@PNLSplashActivity,
-                            resources.getString(R.string.admob_native_boarding_low)
-                        ) { it2 ->
-                            if (it2 != null) {
-                                PhoneNumberLocator.instance.nativeAdBoarding.value = it2
-                            }
-                        }
-                    }
-                }
+            } else {
+                nativeAdLang.postValue(null)
             }
 
-            loadPriorityAdmobInterstitial(
-                getString(R.string.admob_splash_interistitial_high),
-                getString(R.string.admob_splash_interistitial_low)
-            ) {
-                Log.d("TAG", "ad:$it ")
-                interstitialAdPriority = it
-            }
         }
-    }
 
+        if (!baseConfig.isAppIntroComplete) {
+            loadHighOrLowNativeAd(
+                this,
+                getString(R.string.admob_native_boarding_high),
+                getString(R.string.admob_native_boarding_low)
+            ) { nativeAd, adType ->
+                Log.d("danishTest1", "loadHighOrLowNativeAd: ad:$nativeAd typr:$adType")
+                if (nativeAd != null) {
+                    onBoardNative1.postValue(nativeAd)
+                } else {
+                    onBoardNative1.postValue(null)
+                }
+            }
+
+            loadHighOrLowNativeAd(
+                this,
+                getString(R.string.admob_native_boarding_high),
+                getString(R.string.admob_native_boarding_low)
+            ) { nativeAd, adType ->
+                Log.d("danishTest1", "loadHighOrLowNativeAd: ad:$nativeAd typr:$adType")
+                if (nativeAd != null) {
+                    onBoardNative2.postValue(nativeAd)
+                } else {
+                    onBoardNative2.postValue(null)
+                }
+            }
+
+            loadHighOrLowNativeAd(
+                this,
+                getString(R.string.admob_native_boarding_high),
+                getString(R.string.admob_native_boarding_low)
+            ) { nativeAd, adType ->
+                Log.d("danishTest1", "loadHighOrLowNativeAd: ad:$nativeAd typr:$adType")
+                if (nativeAd != null) {
+                    onBoardNative3.postValue(nativeAd)
+                } else {
+                    onBoardNative3.postValue(null)
+                }
+            }
+
+            loadHighOrLowNativeAd(
+                this,
+                getString(R.string.admob_native_boarding_high),
+                getString(R.string.admob_native_boarding_low)
+            ) { nativeAd, adType ->
+                Log.d("danishTest1", "loadHighOrLowNativeAd: ad:$nativeAd typr:$adType")
+                if (nativeAd != null) {
+                    onBoardNative4.postValue(nativeAd)
+                } else {
+                    onBoardNative4.postValue(null)
+                }
+            }
+
+        }
+
+    }
 
 }

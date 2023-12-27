@@ -13,18 +13,16 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.isShowAD
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
 import com.example.phonenumberlocator.admob_ads.loadSimpleAdmobInterstitial
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.admob_ads.showPriorityAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityMainBinding
-import com.example.phonenumberlocator.pnlExtensionFun.beGone
-import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlUtil.PNLAppsUtils
 import com.example.phonenumberlocator.pnlUtil.PNLEvents
@@ -37,6 +35,7 @@ import com.google.android.material.navigation.NavigationView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import kotlin.system.exitProcess
 
 class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
@@ -84,7 +83,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
                 resources.getString(R.string.admob_native_small)
             ) { it2 ->
                 if (it2 != null) {
-                    PhoneNumberLocator.instance.nativeAdSmall.value = it2
+                  nativeAdSmall.value = it2
                 }
             }
             loadAndReturnAd(
@@ -92,7 +91,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
                 resources.getString(R.string.admob_native_large)
             ) { it2 ->
                 if (it2 != null) {
-                    PhoneNumberLocator.instance.nativeAdLarge.value = it2
+                  nativeAdLarge.value = it2
                 }
             }
         }
@@ -210,8 +209,9 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
             drawer.closeDrawer(GravityCompat.START)
         } else {
             PNLExitDialog(this) {
-                finishAffinity()
-//            super.onBackPressed()
+//              finishAffinity()
+                finish()
+                exitProcess(0)
             }
         }
     }

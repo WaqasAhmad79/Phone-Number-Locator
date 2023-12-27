@@ -11,11 +11,9 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
 import com.example.phonenumberlocator.databinding.ActivitySavedImageConfirmationBinding
-import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import java.io.File
 import java.io.OutputStream

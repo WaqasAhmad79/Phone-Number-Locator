@@ -24,7 +24,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
@@ -81,7 +81,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
         super.onCreate(savedInstanceState)
 
         handleAds()
-        showAd()
+//        showAd()
 
         initViews()
         clickListeners()
@@ -373,7 +373,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
     private fun showAd() {
         if (isNetworkAvailable()) {
             binding.ads.beVisible()
-            PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
+            nativeAdLarge.observe(this) {
                 showLoadedNativeAd(
                     this,
                     binding.ads,
@@ -388,6 +388,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
 
     override fun onResume() {
         super.onResume()
+        showAd()
         canShowAppOpen =false
     }
 

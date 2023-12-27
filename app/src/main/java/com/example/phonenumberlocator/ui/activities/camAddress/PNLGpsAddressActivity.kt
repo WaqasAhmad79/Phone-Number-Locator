@@ -11,20 +11,17 @@ import android.graphics.Canvas
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
-import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlcamAddressBinding
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
@@ -273,6 +270,7 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
 
     override fun onResume() {
         super.onResume()
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
     }
     private fun convertMetersPerSecondToKilometersPerHour(speedInMetersPerSecond: Double): Double {
         return speedInMetersPerSecond * 3.6
@@ -302,7 +300,7 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
     private fun handleAds(){
         if (isNetworkAvailable()){
             showSimpleInterstitial()
-            showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
         }
     }
 }

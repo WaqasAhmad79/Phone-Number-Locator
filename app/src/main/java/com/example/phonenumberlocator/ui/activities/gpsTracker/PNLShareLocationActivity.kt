@@ -5,14 +5,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
@@ -84,7 +82,6 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
     fun handleAds(){
         if (isNetworkAvailable()){
             showSimpleInterstitialAdWithTimeAndCounter()
-            showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
         }
     }
 
@@ -275,6 +272,8 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
     override fun onResume() {
         super.onResume()
         canShowAppOpen=false
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
 
     }
 

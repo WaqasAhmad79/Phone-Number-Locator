@@ -5,17 +5,13 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
@@ -23,10 +19,8 @@ import com.example.phonenumberlocator.databinding.ActivityPnldistanceFinderBindi
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlHelper.UNIT_CM
 import com.example.phonenumberlocator.pnlHelper.UNIT_KILOMETERS
 import com.example.phonenumberlocator.pnlHelper.UNIT_METERS
-import com.example.phonenumberlocator.pnlHelper.UNIT_MILES
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -85,7 +79,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     private fun handleAds(){
         if (isNetworkAvailable()){
             showSimpleInterstitialAdWithTimeAndCounter()
-            showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
+
         }
     }
 
@@ -290,6 +284,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     override fun onResume() {
         super.onResume()
         mapView.onResume()
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
     }
 
     override fun onPause() {

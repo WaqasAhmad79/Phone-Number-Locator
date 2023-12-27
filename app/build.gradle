@@ -26,7 +26,8 @@ android {
             minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "admob_app_id", "ca-app-pub-3940256099942544~3347511713"
-            resValue "string", "admob_app_open_id", "ca-app-pub-3940256099942544/3419835294"
+//            resValue "string", "admob_app_id", "ca-app-pub-8956129614272596~8167802112"
+            resValue "string", "admob_app_open_id", "ca-app-pub-3940256099942544/9257395921"
             resValue "string", "admob_interistitial_search_high", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "admob_interistitial_others_one", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "admob_native_lang_low", "ca-app-pub-3940256099942544/1044960115"

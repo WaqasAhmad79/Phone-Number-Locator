@@ -14,7 +14,12 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.admob_ads.OpenApp
+import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
+import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
+import com.example.phonenumberlocator.admob_ads.loadPriorityAdmobInterstitial
+import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.countryIso
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlModel.PNLCountryData
 import com.example.phonenumberlocator.pnlModel.PNLCountryModel
 import com.example.tracklocation.tlUtil.readToObjectList
@@ -37,13 +42,7 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
     var countries = mutableListOf<PNLCountryModel>()
 
     var countryDataList: List<PNLCountryData> = ArrayList()
-    val nativeAdLang: MutableLiveData<NativeAd> = MutableLiveData()
-//    val nativeAdMain: MutableLiveData<NativeAd> = MutableLiveData()
-//    val nativeAdSearchHigh: MutableLiveData<NativeAd> = MutableLiveData()
-//    val nativeAdSearchLow :MutableLiveData<NativeAd> = MutableLiveData()
-    val nativeAdSmall: MutableLiveData<NativeAd> = MutableLiveData()
-    val nativeAdLarge: MutableLiveData<NativeAd> = MutableLiveData()
-    val nativeAdBoarding: MutableLiveData<NativeAd> = MutableLiveData()
+
 
     fun getDetailLanguageCategory(): List<PNLCountryData> {
         val inputStream = assets.open("country_codes.json")
@@ -51,20 +50,16 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
         return Gson().fromJson(text, Array<PNLCountryData>::class.java).toList()
     }
 
-    private var currentActivity: Activity? = null
-
     var intent: Intent? = null
 
     fun setAppOpenAd(){
         OpenApp(this)
+        Log.d(TAG, "TESTINGOpenApp setAppOpenAd: ")
     }
 
     override fun onCreate() {
         super.onCreate()
-        //bubble level
-//        PreferenceHelper.initPrefs(this)
         instance = this
-
         startKoin {
             androidLogger()
             androidContext(this@PhoneNumberLocator)
@@ -76,7 +71,6 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
         }
         app_class = this@PhoneNumberLocator
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
-        //OpenApp(this)
         // Log the Mobile Ads SDK version.
         Log.d(TAG, "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
 
@@ -127,7 +121,14 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
 
     companion object {
         lateinit var instance: PhoneNumberLocator
-        var canLoadAndShowAd = false
+        val nativeAdLang: MutableLiveData<NativeAd> = MutableLiveData()
+        val nativeAdSmall: MutableLiveData<NativeAd> = MutableLiveData()
+        val nativeAdLarge: MutableLiveData<NativeAd> = MutableLiveData()
+        val nativeAdBoarding: MutableLiveData<NativeAd> = MutableLiveData()
+        val onBoardNative1: MutableLiveData<NativeAd?> = MutableLiveData()
+        val onBoardNative2: MutableLiveData<NativeAd?> = MutableLiveData()
+        val onBoardNative3: MutableLiveData<NativeAd?> = MutableLiveData()
+        val onBoardNative4: MutableLiveData<NativeAd?> = MutableLiveData()
 
         @SuppressLint("StaticFieldLeak")
         @get:Synchronized
@@ -143,5 +144,57 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
 
     }
 
+
+ /*   private fun handleAds() {
+        if (isNetworkAvailable()) {
+            if (!baseConfig.appStarted) {
+                loadAndReturnAd(
+                    this@PhoneNumberLocator,
+                    resources.getString(R.string.admob_native_lang_high)
+                ) {
+                    Log.d("NL", "loadHighOrLowNativeAd: ad:$it ")
+                    if (it != null) {
+                        nativeAdLang.value = it
+                    } else {
+                        loadAndReturnAd(
+                            this@PhoneNumberLocator,
+                            resources.getString(R.string.admob_native_lang_low)
+                        ) { it2 ->
+                            if (it2 != null) {
+                                nativeAdLang.value = it2
+                            }
+                        }
+                    }
+                }
+            }
+
+            else if (!baseConfig.isAppIntroComplete) {
+                loadAndReturnAd(
+                    this@PhoneNumberLocator,
+                    resources.getString(R.string.admob_native_boarding_high)
+                ) {
+                    if (it != null) {
+                        nativeAdBoarding.value = it
+                    } else {
+                        loadAndReturnAd(
+                            this@PhoneNumberLocator,
+                            resources.getString(R.string.admob_native_boarding_low)
+                        ) { it2 ->
+                            if (it2 != null) {
+                                nativeAdBoarding.value = it2
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        loadPriorityAdmobInterstitial(
+            getString(R.string.admob_splash_interistitial_high),
+            getString(R.string.admob_splash_interistitial_low)
+        ) {
+            Log.d("NL", "loadAdmobInterstitialPriority successful")
+            interstitialAdPriority = it
+        }
+    }*/
 
 }

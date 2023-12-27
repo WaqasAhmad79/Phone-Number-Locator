@@ -189,6 +189,8 @@
     <string name="go" translatable="false">Go</string>
     <string name="grant_all_permissions" translatable="false">Grant all permissions to continue</string>
     <string name="permission_denied" translatable="false">You denied the permission</string>
+    <string name="permission_denied_title">Permission Denied</string>
+    <string name="lets_go">Let\'s Go</string>
 
 
 </resources>

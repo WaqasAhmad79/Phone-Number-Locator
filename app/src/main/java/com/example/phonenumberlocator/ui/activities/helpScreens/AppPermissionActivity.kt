@@ -14,7 +14,7 @@ import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlHelper.IS_PERMISSION_ON
 import com.example.phonenumberlocator.ui.MainActivity
 
-class AppPermissionActivity : AppCompatActivity() {
+/*class AppPermissionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAppPermissionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,9 +92,11 @@ class AppPermissionActivity : AppCompatActivity() {
             }
         }
     }
-}
+}*/
 
-/** permission of camera,location,read external storage,contacts**/
+/** permission of camera,location,read external storage,contacts**//*
+
+*/
 /* private fun areAllPermissionsGranted(): Boolean {
         val requiredPermissions = arrayOf(
             Manifest.permission.CAMERA,

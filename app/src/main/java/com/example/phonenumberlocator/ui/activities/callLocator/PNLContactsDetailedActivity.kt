@@ -17,7 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
@@ -68,7 +68,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
         super.onCreate(savedInstanceState)
             showSimpleInterstitialAdWithTimeAndCounter()
 
-        showAd()
+
 
         initViews()
         val myContactsHelper = PNLMyContactsHelper(this)
@@ -219,13 +219,14 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
 
     override fun onResume() {
         canShowAppOpen=false
+        showAd()
         super.onResume()
     }
 
     private fun showAd() {
         if (isNetworkAvailable()) {
             binding.ads.beVisible()
-            PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
+            nativeAdLarge.observe(this) {
                 showLoadedNativeAd(this, binding.ads, R.layout.native_large_2, it)
             }
         } else {

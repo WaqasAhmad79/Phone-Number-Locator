@@ -22,28 +22,44 @@
         android:layout_marginTop="@dimen/_3sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_next"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_next1"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_next"
+        android:id="@+id/btn_next1"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6"
+        app:layout_constraintVertical_bias="0.64"
         android:background="@drawable/next_button"
         android:backgroundTint="@color/blue"
         android:textColor="@android:color/white" >
 
         <TextView
-            android:id="@+id/btn_next1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_next"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/next"
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_done"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/lets_go"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:gravity="center"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +67,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
+   <!-- <FrameLayout
         android:id="@+id/ads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,5 +78,5 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>

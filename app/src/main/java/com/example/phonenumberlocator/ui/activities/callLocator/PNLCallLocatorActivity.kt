@@ -1,31 +1,20 @@
 package com.example.phonenumberlocator.ui.activities.callLocator
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Color
-import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.ContactsContract
-import android.telecom.TelecomManager
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
@@ -34,20 +23,12 @@ import com.example.phonenumberlocator.admob_ads.showPriorityInterstitialAdWithTi
 import com.example.phonenumberlocator.databinding.ActivityPnlcallLocatorBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
-import com.example.phonenumberlocator.pnlExtensionFun.findUserLocation
 import com.example.phonenumberlocator.pnlExtensionFun.hideKeyboard
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlExtensionFun.launchSendSMSIntent
 import com.example.phonenumberlocator.pnlExtensionFun.onTextChangeListener
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.pnlUtil.PNLDataStoreDb
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -74,7 +55,7 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         super.onCreate(savedInstanceState)
 
         handleAds()
-        showAd()
+
 
 
         initViews()
@@ -167,7 +148,7 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
     private fun showAd() {
         if (isNetworkAvailable()) {
             binding.ads.beVisible()
-            PhoneNumberLocator.instance.nativeAdSmall.observe(this) {
+            nativeAdSmall.observe(this) {
                 showLoadedNativeAd(this, binding.ads, R.layout.layout_admob_native_ad_withou_tmedia, it)
             }
         } else {
@@ -177,6 +158,7 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
 
     override fun onResume() {
         super.onResume()
+        showAd()
         canShowAppOpen = false
     }
 

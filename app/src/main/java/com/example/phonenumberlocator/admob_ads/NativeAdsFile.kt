@@ -23,7 +23,49 @@ import kotlinx.coroutines.launch
 
 const val nativeAdFlow = "nativeAdFlow"
 
+enum class NativeType {
+    HIGH, LOW, FAILED
+}
 
+@SuppressLint("InflateParams")
+fun loadHighOrLowNativeAd(
+    context: Context,
+    nativeIdHigh: String,
+    nativeIdLow: String,
+    adResult: ((NativeAd?, NativeType) -> Unit)
+) {
+    val builder = AdLoader.Builder(context, nativeIdHigh)
+    builder.forNativeAd { nativeAd ->
+        showNativeLog("NativeHigh Ad loaded...")
+        adResult.invoke(nativeAd, NativeType.HIGH)
+    }
+    val videoOptions = VideoOptions.Builder()
+        .setStartMuted(true)
+        .build()
+
+    val adOptions = NativeAdOptions.Builder()
+        .setVideoOptions(videoOptions)
+        .build()
+
+    builder.withNativeAdOptions(adOptions)
+
+    val adLoader = builder.withAdListener(object : AdListener() {
+        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+            val error =
+                "${loadAdError.domain}, code: ${loadAdError.code}, message: ${loadAdError.message}"
+            showNativeLog("failed to load NativeHigh Ad error:$error")
+            loadAndReturnAd(context, nativeIdLow) { lowNativeAd ->
+                if (lowNativeAd == null) {
+                    adResult.invoke(null, NativeType.FAILED)
+                } else {
+                    adResult.invoke(lowNativeAd, NativeType.LOW)
+                }
+            }
+
+        }
+    }).build()
+    adLoader.loadAd(AdRequest.Builder().build())
+}
 @SuppressLint("InflateParams")
 fun loadAndReturnAd(
     context: Context, nativeId: String, adResult: ((NativeAd?) -> Unit)

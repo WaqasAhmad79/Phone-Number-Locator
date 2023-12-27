@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
@@ -54,7 +54,7 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
         binding = ActivityGpsLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showAd()
+
 
             showSimpleInterstitialAdWithTimeAndCounter()
 
@@ -167,6 +167,7 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
 
     override fun onResume() {
         canShowAppOpen=false
+        showAd()
         super.onResume()
     }
     private fun shareGetAddressFromLatLong(latitude: Double, longitude: Double, callBack: (() -> Unit)? = null): String {
@@ -211,11 +212,11 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
     private fun showAd() {
         if (isNetworkAvailable()) {
             binding.ads.beVisible()
-            PhoneNumberLocator.instance.nativeAdLarge.observe(this) {
+            nativeAdLarge.observe(this) {
                 showLoadedNativeAd(
                     this,
                     binding.ads,
-                    R.layout.layout_admob_native_ad_withou_tmedia,
+                    R.layout.layout_admob_native_ad,
                     it
                 )
             }

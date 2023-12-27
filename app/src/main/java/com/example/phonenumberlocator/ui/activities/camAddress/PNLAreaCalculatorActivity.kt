@@ -8,18 +8,14 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
@@ -160,8 +156,13 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
         if (isNetworkAvailable()){
             showSimpleInterstitialAdWithTimeAndCounter()
 
-            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
         }
+    }
+
+    override fun onResume(){
+        showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
+        super.onResume()
+
     }
 
     @SuppressLint("StringFormatInvalid")

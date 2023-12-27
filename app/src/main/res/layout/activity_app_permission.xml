@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_color"
-
-    tools:context=".ui.activities.helpScreens.AppPermissionActivity">
+    android:background="@color/app_color">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -124,8 +122,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <FrameLayout
-        android:id="@+id/ads"
-        android:visibility="gone"
+        android:id="@+id/flAdNative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_13sdp"

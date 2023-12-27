@@ -2,15 +2,12 @@ package com.example.phonenumberlocator.ui.activities.gpsTracker
 
 import android.Manifest
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
@@ -27,7 +24,6 @@ import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.shareCurrentLocation
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
-import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -42,6 +38,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 @AndroidEntryPoint
 class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
 
@@ -78,7 +75,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
     fun handleAds(){
         if (isNetworkAvailable()){
             showSimpleInterstitialAdWithTimeAndCounter()
-            showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
         }
     }
 
@@ -310,6 +307,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
 
     override fun onResume() {
         super.onResume()
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
         canShowAppOpen=false
     }
 

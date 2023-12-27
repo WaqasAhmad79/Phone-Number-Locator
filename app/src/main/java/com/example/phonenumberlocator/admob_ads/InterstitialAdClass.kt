@@ -8,7 +8,6 @@ import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canLoadAndShowAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.google.android.gms.ads.AdError
