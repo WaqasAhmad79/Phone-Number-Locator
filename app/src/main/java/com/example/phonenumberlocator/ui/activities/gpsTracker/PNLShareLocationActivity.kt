@@ -77,6 +77,9 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
         }
 
         clickListeners()
+
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
     }
 
     fun handleAds(){
@@ -272,7 +275,6 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
     override fun onResume() {
         super.onResume()
         canShowAppOpen=false
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
 
 
     }

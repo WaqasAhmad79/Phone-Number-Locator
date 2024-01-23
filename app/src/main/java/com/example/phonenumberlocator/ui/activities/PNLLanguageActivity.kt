@@ -7,25 +7,22 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdBoarding
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLang
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.AdsConsentManager
 import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
-import com.example.phonenumberlocator.admob_ads.loadHighOrLowNativeAd
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
-import com.example.phonenumberlocator.admob_ads.showPriorityAdmobInterstitial
+import com.example.phonenumberlocator.admob_ads.showSplashInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
+import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
 import com.example.phonenumberlocator.pnlUtil.changeLanguage
 import com.example.phonenumberlocator.pnlUtil.refreshLanguageStrings
 import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
-import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
 import java.util.Locale
-import kotlin.math.log
 
 
 class PNLLanguageActivity : AppCompatActivity() {
@@ -41,13 +38,20 @@ class PNLLanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         handleAds()
-        showAd()
+
 
         langName = baseConfig.appLanguage
         langName?.let { updateLanguageSelection(it) }
         //binding.clEnglish.background = resources.getDrawable(R.drawable.drawablestroke)
 
         initListeners()
+
+        if(AdsConsentManager.getConsentResult(this)){
+
+            showAd()
+        }else{
+
+        }
 
         binding.tick.setOnClickListener {
             when (langName) {
@@ -71,33 +75,30 @@ class PNLLanguageActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleAds(){
-        if (isNetworkAvailable()){
+    override fun onResume() {
+        super.onResume()
+
+    }
+
+    private fun handleAds() {
+        if (isNetworkAvailable()) {
             val lang = intent.getBooleanExtra("setting", false)
-            if (!lang){
-                showPriorityAdmobInterstitial(true,getString(R.string.admob_splash_interistitial_high),
-                    getString(R.string.admob_splash_interistitial_low)
-                    , {
-                        Log.d("TAG", "onCreateAD: $it")
-                        interstitialAdPriority = it
-                    })
-            }
-            else{
-                loadHighOrLowNativeAd(
-                    this,
-                    getString(R.string.admob_native_lang_high),
-                    getString(R.string.admob_native_lang_low)
-                ) { nativeAd, adType ->
-                    Log.d("danishTest", "fromSettings: loadHighOrLowNativeAd")
-                    if (nativeAd != null) {
+            if (!lang) {
+                showSplashInterstitial()
+            } else {
+                loadAndReturnAd(
+                    this@PNLLanguageActivity, resources.getString(R.string.admob_native_lang_low)
+                ) { it2 ->
+                    if (it2 != null) {
                         showLoadedNativeAd(
                             this,
                             binding.ads,
-                            R.layout.native_large_2, nativeAd
+                            R.layout.native_large_2, it2
                         )
                     } else {
                         binding.ads.beGone()
                     }
+
                 }
             }
         }
@@ -210,12 +211,11 @@ class PNLLanguageActivity : AppCompatActivity() {
     }
 
 
-
-     private fun showAd() {
+    private fun showAd() {
         if (isNetworkAvailable()) {
             binding.ads.visibility = View.VISIBLE
-            nativeAdLang.observe(this){
-                showLoadedNativeAd(this,binding.ads, R.layout.native_large_2,it)
+            nativeAdLang.observe(this) {
+                showLoadedNativeAd(this, binding.ads, R.layout.native_large_2, it)
             }
         } else {
             binding.ads.visibility = View.GONE

@@ -99,16 +99,16 @@ class PNLIsdStdActivity  : AppCompatActivity() {
                     binding.progressBar.beGone()
                     adapter.updateData(code_list!!)
                 }
-            }
-            val id = TinyDB.getInstance(this).getIntArea(SELECTED_COUNTRY)
-            Log.d("TAG", "init: $id")
-            for (i in country_list!!) {
-                if (i.id == id) {
-                    binding.iso2.text = i.iso2
-                    binding.phoneCode.text = i.phonecode
+                val id = TinyDB.getInstance(this@PNLIsdStdActivity).getIntArea(SELECTED_COUNTRY)
+                Log.d("TAG", "init: $id")
+                for (i in country_list!!) {
+                    if (i.id == id) {
+                        binding.iso2.text = i.iso2
+                        binding.phoneCode.text = i.phonecode
+                    }
                 }
+                updateCities(id)
             }
-            updateCities(id)
         }
     }
 

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.showPriorityAdmobInterstitial
+import com.example.phonenumberlocator.admob_ads.showSplashInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnlintroSliderBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
@@ -37,11 +37,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         window.setBackgroundDrawable(drawable)
         isIncomingFromSplash = intent.getBooleanExtra("SplashNumber", false)
         if (isIncomingFromSplash) {
-            showPriorityAdmobInterstitial(
-                true,
-                getString(R.string.admob_splash_interistitial_high),
-                getString(R.string.admob_splash_interistitial_low)
-            )
+            showSplashInterstitial()
         }
         initViews()
         handleClicks()

@@ -70,6 +70,9 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
             }
         }
         clickListeners()
+
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
     }
 
     fun handleAds(){
@@ -307,7 +310,6 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
 
     override fun onResume() {
         super.onResume()
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
         canShowAppOpen=false
     }
 

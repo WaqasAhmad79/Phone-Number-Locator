@@ -1,16 +1,16 @@
 package com.example.phonenumberlocator.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.phonenumberlocator.PhoneNumberLocator
+import androidx.appcompat.app.AppCompatActivity
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
-import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
-import com.example.phonenumberlocator.admob_ads.showPriorityInterstitialAdWithTimeAndCounter
-import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
+import com.example.phonenumberlocator.admob_ads.BannerState
+import com.example.phonenumberlocator.admob_ads.loadCollapsibleBanner
 import com.example.phonenumberlocator.databinding.ActivityCallLocBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.activities.callLocator.PNLCallLocatorActivity
 import com.example.phonenumberlocator.ui.activities.callLocator.PNLIsdStdActivity
 import com.example.phonenumberlocator.ui.activities.callLocator.PNLPhoneContactsActivity
@@ -23,6 +23,12 @@ class CallLocActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         handleClicks()
+        if (isNetworkAvailable()) {
+            binding.ads.beVisible()
+            loadCollapsibleBanner(this, getString(R.string.adaptive_mob_banner_id), binding.ads)
+        } else {
+            binding.ads.beGone()
+        }
 
     }
 
@@ -53,4 +59,22 @@ class CallLocActivity : AppCompatActivity() {
         super.onPause()
         Log.d("showSimpleInterstitialAdNew8", "onPause: ")
     }
+
+  /*  fun showBannerAds() {
+        if (isNetworkAvailable()) {
+            binding.ads.beVisible()
+            loadCollapsibleBanner(this, getString(R.string.adaptive_mob_banner_id), binding.ads) {
+                if (it == BannerState.LOADED) {
+                    binding.bannerView.customBannerShimmer.stopShimmer()
+                    binding.bannerView.customBannerShimmer.beGone()
+                    binding.bannerView.bannerContainer.beVisible()
+                } else {
+                    binding.ads.beGone()
+                }
+            }
+        } else {
+            binding.ads.beGone()
+        }
+    }*/
+
 }

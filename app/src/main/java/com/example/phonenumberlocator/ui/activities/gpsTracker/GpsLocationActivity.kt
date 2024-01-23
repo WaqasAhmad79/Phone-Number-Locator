@@ -81,6 +81,9 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
             val intent = Intent(this, ShowOnMapActivity::class.java)
             startActivity(intent)
         }
+
+
+        showAd()
     }
 
 
@@ -167,7 +170,7 @@ class GpsLocationActivity: AppCompatActivity(), LocationListener {
 
     override fun onResume() {
         canShowAppOpen=false
-        showAd()
+
         super.onResume()
     }
     private fun shareGetAddressFromLatLong(latitude: Double, longitude: Double, callBack: (() -> Unit)? = null): String {

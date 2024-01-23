@@ -132,6 +132,9 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -151,6 +154,8 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
         handleAds()
         initViews()
         clickListeners()
+
+        showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
     }
     private fun handleAds(){
         if (isNetworkAvailable()){
@@ -160,7 +165,7 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
     }
 
     override fun onResume(){
-        showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
+
         super.onResume()
 
     }

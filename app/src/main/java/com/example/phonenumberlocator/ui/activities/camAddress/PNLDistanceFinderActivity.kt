@@ -75,6 +75,9 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         clickListeners()
 
+
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
+
     }
     private fun handleAds(){
         if (isNetworkAvailable()){
@@ -284,7 +287,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     override fun onResume() {
         super.onResume()
         mapView.onResume()
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
+
     }
 
     override fun onPause() {

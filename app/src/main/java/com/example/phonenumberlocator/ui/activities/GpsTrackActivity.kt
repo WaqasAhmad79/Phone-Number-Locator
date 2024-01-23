@@ -4,8 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.loadCollapsibleBanner
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityGpsTrackBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.activities.camAddress.PNLAreaCalculatorActivity
 import com.example.phonenumberlocator.ui.activities.camAddress.PNLDistanceFinderActivity
 import com.example.phonenumberlocator.ui.activities.camAddress.PNLGpsAddressActivity
@@ -22,6 +26,13 @@ class GpsTrackActivity : AppCompatActivity() {
         binding= ActivityGpsTrackBinding.inflate(layoutInflater)
         setContentView(binding.root)
         handleClicks()
+
+        if (isNetworkAvailable()){
+            binding.ads.beVisible()
+            loadCollapsibleBanner(this,getString(R.string.adaptive_mob_banner_id),binding.ads)
+        }else{
+            binding.ads.beGone()
+        }
 
     }
 

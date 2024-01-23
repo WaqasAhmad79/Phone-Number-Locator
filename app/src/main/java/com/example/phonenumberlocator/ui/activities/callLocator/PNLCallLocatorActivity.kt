@@ -13,13 +13,11 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
-import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
-import com.example.phonenumberlocator.admob_ads.showPriorityInterstitialAdWithTimeAndCounter
+import com.example.phonenumberlocator.admob_ads.showSearchInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlcallLocatorBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -60,16 +58,13 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
 
         initViews()
         clickListeners()
+        showAd()
+
     }
 
-    private fun handleAds(){
-        if(isNetworkAvailable()){
-            showPriorityInterstitialAdWithTimeAndCounter(
-                true,
-                getString(R.string.admob_interistitial_search_high),
-                getString(R.string.admob_interistitial_others_one), {
-                    interstitialAdPriority = it
-                })
+    private fun handleAds() {
+        if (isNetworkAvailable()) {
+            showSearchInterstitialAdWithTimeAndCounter()
         }
     }
 
@@ -112,6 +107,7 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
             false
         }
     }
+
     private fun searchResult() {
         counter++
         binding.etPhoneNumber.hideKeyboard(this)
@@ -149,7 +145,12 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         if (isNetworkAvailable()) {
             binding.ads.beVisible()
             nativeAdSmall.observe(this) {
-                showLoadedNativeAd(this, binding.ads, R.layout.layout_admob_native_ad_withou_tmedia, it)
+                showLoadedNativeAd(
+                    this,
+                    binding.ads,
+                    R.layout.layout_admob_native_ad_withou_tmedia,
+                    it
+                )
             }
         } else {
             binding.ads.beGone()
@@ -158,7 +159,6 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
 
     override fun onResume() {
         super.onResume()
-        showAd()
         canShowAppOpen = false
     }
 

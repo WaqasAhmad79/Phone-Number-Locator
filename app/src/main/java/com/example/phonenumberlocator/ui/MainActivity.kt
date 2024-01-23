@@ -7,22 +7,25 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
-import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.isShowAD
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
+import com.example.phonenumberlocator.admob_ads.loadCollapsibleBanner
+import com.example.phonenumberlocator.admob_ads.loadSearchAdmobInterstitial
 import com.example.phonenumberlocator.admob_ads.loadSimpleAdmobInterstitial
-import com.example.phonenumberlocator.admob_ads.showPriorityAdmobInterstitial
+import com.example.phonenumberlocator.admob_ads.showSplashInterstitial
 import com.example.phonenumberlocator.databinding.ActivityMainBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlUtil.PNLAppsUtils
 import com.example.phonenumberlocator.pnlUtil.PNLEvents
@@ -31,11 +34,17 @@ import com.example.phonenumberlocator.ui.activities.CamAddressActivity
 import com.example.phonenumberlocator.ui.activities.GpsTrackActivity
 import com.example.phonenumberlocator.ui.activities.PNLLanguageActivity
 import com.example.phonenumberlocator.ui.pnlDialog.PNLExitDialog
+import com.google.ads.mediation.admob.AdMobAdapter
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 import com.google.android.material.navigation.NavigationView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.UUID
 import kotlin.system.exitProcess
+
 
 class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
@@ -61,29 +70,33 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
         initViews()
         handleClicks()
+        if (isNetworkAvailable()){
+            binding.content.ads.beVisible()
+            loadCollapsibleBanner(this,getString(R.string.adaptive_mob_banner_id),binding.content.ads)
+        }else{
+            binding.content.ads.beGone()
+        }
+
 
     }
 
-    private fun handleAds(){
-        if (isNetworkAvailable()){
+    private fun handleAds() {
+        if (isNetworkAvailable()) {
             Log.d("isComingFromSplash", "onCreate: $isShowAD")
             if (!isShowAD) {
                 requestPermission()
             } else {
                 Log.d(TAG, "onCreate: ")
-                showPriorityAdmobInterstitial(true, getString(R.string.admob_splash_interistitial_high),
-                    getString(R.string.admob_splash_interistitial_low), {
-                        interstitialAdPriority = it
-                        requestPermission()
-                    })
+                showSplashInterstitial { requestPermission() }
             }
             loadSimpleAdmobInterstitial()
+            loadSearchAdmobInterstitial()
             loadAndReturnAd(
                 this@MainActivity,
                 resources.getString(R.string.admob_native_small)
             ) { it2 ->
                 if (it2 != null) {
-                  nativeAdSmall.value = it2
+                    nativeAdSmall.value = it2
                 }
             }
             loadAndReturnAd(
@@ -91,7 +104,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
                 resources.getString(R.string.admob_native_large)
             ) { it2 ->
                 if (it2 != null) {
-                  nativeAdLarge.value = it2
+                    nativeAdLarge.value = it2
                 }
             }
         }
@@ -142,6 +155,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     override fun onResume() {
         super.onResume()
         canShowAppOpen = false
+
     }
 
     private fun initViews() {
@@ -217,11 +231,15 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     }
 
 
-
     override fun onPause() {
         super.onPause()
         isShowAD = false
     }
+
+
+
+
+
 
 
 }

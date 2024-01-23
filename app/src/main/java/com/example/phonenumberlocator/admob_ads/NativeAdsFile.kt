@@ -27,7 +27,7 @@ enum class NativeType {
     HIGH, LOW, FAILED
 }
 
-@SuppressLint("InflateParams")
+/*@SuppressLint("InflateParams")
 fun loadHighOrLowNativeAd(
     context: Context,
     nativeIdHigh: String,
@@ -65,7 +65,7 @@ fun loadHighOrLowNativeAd(
         }
     }).build()
     adLoader.loadAd(AdRequest.Builder().build())
-}
+}*/
 @SuppressLint("InflateParams")
 fun loadAndReturnAd(
     context: Context, nativeId: String, adResult: ((NativeAd?) -> Unit)

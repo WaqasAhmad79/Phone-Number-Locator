@@ -129,6 +129,8 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
         }
 
         handleClicks()
+
+        showAd()
     }
 
     private fun initViews() {
@@ -219,7 +221,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
 
     override fun onResume() {
         canShowAppOpen=false
-        showAd()
+
         super.onResume()
     }
 

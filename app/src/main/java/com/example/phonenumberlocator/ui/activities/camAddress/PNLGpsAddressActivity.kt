@@ -117,6 +117,10 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
               share(croppedBitmap!!)
           }*/
         binding.backArrow.setOnClickListener { onBackPressed() }
+
+
+        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+
     }
 
 
@@ -270,7 +274,6 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
 
     override fun onResume() {
         super.onResume()
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
     }
     private fun convertMetersPerSecondToKilometersPerHour(speedInMetersPerSecond: Double): Double {
         return speedInMetersPerSecond * 3.6

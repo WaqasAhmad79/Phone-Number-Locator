@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -23,20 +22,18 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
-import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
-import com.example.phonenumberlocator.admob_ads.showPriorityInterstitialAdWithTimeAndCounter
+import com.example.phonenumberlocator.admob_ads.showSearchInterstitial
+import com.example.phonenumberlocator.admob_ads.showSearchInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityCallLocatorDetailsBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.findUserLocation
 import com.example.phonenumberlocator.pnlExtensionFun.hideKeyboard
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlExtensionFun.launchSendSMSIntent
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.pnlUtil.PNLDataStoreDb
@@ -49,7 +46,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
-class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBinding>() {
+class CallLocatorDetailsActivity : PNLBaseClass<ActivityCallLocatorDetailsBinding>() {
 
     private var markerOptions: MarkerOptions? = null
     private var smf: SupportMapFragment? = null
@@ -71,7 +68,6 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
     lateinit var checkInternetConnection: PNLCheckInternetConnection
 
 
-
     override fun getViewBinding(): ActivityCallLocatorDetailsBinding {
         return ActivityCallLocatorDetailsBinding.inflate(layoutInflater)
     }
@@ -81,19 +77,15 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
         super.onCreate(savedInstanceState)
 
         handleAds()
-//        showAd()
+        showAd()
 
         initViews()
         clickListeners()
     }
-    private fun handleAds(){
-        if (isNetworkAvailable()){
-            showPriorityInterstitialAdWithTimeAndCounter(
-                true,
-                getString(R.string.admob_interistitial_search_high),
-                getString(R.string.admob_interistitial_others_one), {
-                    interstitialAdPriority = it
-                })
+
+    private fun handleAds() {
+        if (isNetworkAvailable()) {
+            showSearchInterstitialAdWithTimeAndCounter()
         }
     }
 
@@ -159,11 +151,11 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
             }
         }
         binding.sendMessage.setOnClickListener {
-           canShowAppOpen = true
+            canShowAppOpen = true
             handleCLicks("Message")
         }
         binding.editContact.setOnClickListener {
-           canShowAppOpen = true
+            canShowAppOpen = true
             handleCLicks("AddNumber")
         }
         binding.blockContact.setOnClickListener {
@@ -172,6 +164,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
             startActivity(telecomManager.createManageBlockedNumbersIntent(), null);
         }
     }
+
     private fun isWhatsAppInstalled(): Boolean {
         val packageManager = packageManager
         return try {
@@ -181,6 +174,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
             false
         }
     }
+
     private fun sendWhatsAppMessage(phoneNumber: String) {
         val uri = Uri.parse("https://api.whatsapp.com/send?phone=$phoneNumber")
         val intent = Intent(Intent.ACTION_VIEW, uri)
@@ -253,6 +247,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
 //                    initCall(phoneNumber)
                     dialNumber(phoneNumber)
                 }
+
                 "Message" -> {
 //                    launchSendSMSIntent(phoneNumber)
                     if (isWhatsAppInstalled()) {
@@ -261,6 +256,7 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
                         toast(R.string.whatsapp_not_installed)
                     }
                 }
+
                 "AddNumber" -> {
                     sendToPhoneBook(phoneNumber)
                 }
@@ -346,22 +342,27 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
                     callBack.invoke(LatLng(26.8601722, 80.9221328))
                     dataStoreDb.saveInt("City", 1)
                 }
+
                 1 -> {
                     callBack.invoke(LatLng(25.593480, 85.127085))
                     dataStoreDb.saveInt("City", 2)
                 }
+
                 2 -> {
                     callBack.invoke(LatLng(23.229088, 77.410962))
                     dataStoreDb.saveInt("City", 3)
                 }
+
                 3 -> {
                     callBack.invoke(LatLng(17.391182, 78.466818))
                     dataStoreDb.saveInt("City", 4)
                 }
+
                 4 -> {
                     callBack.invoke(LatLng(23.260935, 77.412619))
                     dataStoreDb.saveInt("City", 5)
                 }
+
                 5 -> {
                     callBack.invoke(LatLng(26.449116, 80.334187))
                     dataStoreDb.saveInt("City", 0)
@@ -388,8 +389,8 @@ class CallLocatorDetailsActivity  : PNLBaseClass<ActivityCallLocatorDetailsBindi
 
     override fun onResume() {
         super.onResume()
-        showAd()
-        canShowAppOpen =false
+
+        canShowAppOpen = false
     }
 
 }

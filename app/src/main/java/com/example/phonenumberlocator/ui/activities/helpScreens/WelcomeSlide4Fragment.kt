@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.AdsConsentManager
 import com.example.phonenumberlocator.admob_ads.canShowAppOpen
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.databinding.ActivityAppPermissionBinding
@@ -48,7 +49,12 @@ class WelcomeSlide4Fragment : PNLPermissionBaseFragment() {
             }
         }
 
-        nativeAdControl()
+        if(AdsConsentManager.getConsentResult(requireContext())){
+
+            nativeAdControl()
+        }else{
+            binding.flAdNative.beGone()
+        }
     }
 
     private fun nativeAdControl() {
