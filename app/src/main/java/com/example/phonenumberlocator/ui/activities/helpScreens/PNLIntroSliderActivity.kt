@@ -68,7 +68,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         binding.tvDone.setOnClickListener {
             if (hasPermission(PERMISSION_ACCESS_FINE_LOCATION)) {
                 baseConfig.isAppIntroComplete = true
-                baseConfig.appStarted = true // TODO
+                baseConfig.appStarted = true
                 val intent = Intent(this, MainActivity::class.java)
                 if (isIncomingFromSplash) intent.putExtra("LanguageActivity", true)
                 startActivity(intent)
