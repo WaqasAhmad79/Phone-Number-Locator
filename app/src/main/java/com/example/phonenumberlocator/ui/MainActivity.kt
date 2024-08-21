@@ -234,7 +234,6 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
