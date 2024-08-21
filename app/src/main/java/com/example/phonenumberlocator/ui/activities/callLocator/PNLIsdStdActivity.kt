@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlisdStdBinding
 import com.example.phonenumberlocator.pnlAdapter.ISDDialogAdapter
 import com.example.phonenumberlocator.pnlAdapter.PNLIsdStdAdapter
 import com.example.phonenumberlocator.pnlDatabases.TinyDB
-import com.example.phonenumberlocator.pnlExtensionFun.beGone
-import com.example.phonenumberlocator.pnlExtensionFun.beVisible
-import com.example.phonenumberlocator.pnlExtensionFun.normalizeString
-import com.example.phonenumberlocator.pnlExtensionFun.onTextChangeListener
+import com.example.phonenumberlocator.pnlExtensionFun.*
 import com.example.phonenumberlocator.pnlHelper.SELECTED_COUNTRY
 import com.example.phonenumberlocator.pnlModel.PNLAreaCodeModel
 import com.example.phonenumberlocator.pnlModel.PNLAreaCountriesModel
@@ -26,7 +25,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PNLIsdStdActivity  : AppCompatActivity() {
+class PNLIsdStdActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPnlisdStdBinding
     var code_list: ArrayList<PNLAreaCodeModel>? = null
@@ -43,7 +42,12 @@ class PNLIsdStdActivity  : AppCompatActivity() {
         binding = ActivityPnlisdStdBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (RemoteConfigClass.inter_pnl_isd_std_activity
+            && isNetworkAvailable()
+            && PhoneNumberLocator.canRequestAd
+        ) {
             showSimpleInterstitialAdWithTimeAndCounter()
+        }
 
     }
 
@@ -64,9 +68,7 @@ class PNLIsdStdActivity  : AppCompatActivity() {
             Log.d("TAG", "showPopup: ${country_list?.size}")
             country_list?.let { it1 ->
                 PNLCountriesDataDialog(this, coountriesAdapter, it1) {
-//                    Log.d("TAG", "handleClicks1: dismiss$it")
                     TinyDB.getInstance(this).putInt(SELECTED_COUNTRY, it.id!!)
-//                    Log.d("TAG", "init2: $id")
                     binding.iso2.text = it.iso2
                     binding.phoneCode.text = it.phonecode
                     updateCities(it.id!!)
@@ -125,7 +127,10 @@ class PNLIsdStdActivity  : AppCompatActivity() {
                         filtered.add(city)
                     } else {
                         city.areaCode?.forEach { code ->
-                            if (code.lowercase().contains(searchQuery) || convertedName.contains(text, true)
+                            if (code.lowercase().contains(searchQuery) || convertedName.contains(
+                                    text,
+                                    true
+                                )
                             ) {
                                 filtered.add(city)
                             }
@@ -154,9 +159,7 @@ class PNLIsdStdActivity  : AppCompatActivity() {
 
     private fun updateCities(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            Log.d("arfa", "handleClicks1:${areaCodesList.size}")
             areaCodesList = arrayListOf()
-            Log.d("arfa", "handleClicks2:${areaCodesList.size}")
             for (i in code_list!!) {
                 if (i.countryId == id.toString()) {
                     areaCodesList.add(i)
@@ -165,7 +168,6 @@ class PNLIsdStdActivity  : AppCompatActivity() {
 
         }.invokeOnCompletion {
             CoroutineScope(Dispatchers.Main).launch {
-                Log.d("arfa", "handleClicks3:${areaCodesList.size}")
 
                 if (areaCodesList.isNotEmpty()) {
                     adapter.updateData(areaCodesList)

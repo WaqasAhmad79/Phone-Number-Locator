@@ -16,10 +16,13 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.PermissionChecker
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlareaCalculatorBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
@@ -155,19 +158,25 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
         initViews()
         clickListeners()
 
-        showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
+        if (RemoteConfigClass.banner_pnl_area_calculator_activity && PhoneNumberLocator.canRequestAd) {
+            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
+        } else {
+                binding.flBanner.beGone()
+        }
+
+
     }
     private fun handleAds(){
-        if (isNetworkAvailable()){
+        if (RemoteConfigClass.inter_pnl_area_calculator_activity
+            && isNetworkAvailable()
+            && PhoneNumberLocator.canRequestAd
+        ) {
             showSimpleInterstitialAdWithTimeAndCounter()
-
         }
     }
 
     override fun onResume(){
-
         super.onResume()
-
     }
 
     @SuppressLint("StringFormatInvalid")

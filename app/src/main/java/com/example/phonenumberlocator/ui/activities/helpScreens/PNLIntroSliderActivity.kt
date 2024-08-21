@@ -10,13 +10,16 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.showSplashInterstitial
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnlintroSliderBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.hasPermission
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlHelper.PERMISSION_ACCESS_FINE_LOCATION
 import com.example.phonenumberlocator.ui.MainActivity
@@ -37,7 +40,14 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         window.setBackgroundDrawable(drawable)
         isIncomingFromSplash = intent.getBooleanExtra("SplashNumber", false)
         if (isIncomingFromSplash) {
-            showSplashInterstitial()
+
+            if (RemoteConfigClass.inter_pnl_intro_slider_activity
+                && isNetworkAvailable()
+                && canRequestAd
+            ) {
+                showNormalAdmobInterstitial()
+            }
+
         }
         initViews()
         handleClicks()
@@ -58,6 +68,7 @@ class PNLIntroSliderActivity : AppCompatActivity() {
         binding.tvDone.setOnClickListener {
             if (hasPermission(PERMISSION_ACCESS_FINE_LOCATION)) {
                 baseConfig.isAppIntroComplete = true
+                baseConfig.appStarted = true // TODO
                 val intent = Intent(this, MainActivity::class.java)
                 if (isIncomingFromSplash) intent.putExtra("LanguageActivity", true)
                 startActivity(intent)
@@ -67,7 +78,6 @@ class PNLIntroSliderActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun setupIndicatorDots() {
         val numPages = binding.viewPager.adapter?.count ?: 0
@@ -110,11 +120,19 @@ class PNLIntroSliderActivity : AppCompatActivity() {
                 Log.d("TAG42", "onPageSelected: $position")
 
                 if (position == 3) {
-                    binding.btnNext.beGone()
-                    binding.tvDone.beVisible()
+                    binding.btnNext.beGone() // next button
+                    binding.btnNext1.beVisible() // the whole constraint layout
+                    binding.tvDone.beVisible() // lets go button
+                    binding.layoutDots.beVisible()
+
+                } else if (position == 2) {
+                    binding.btnNext1.beGone()
+                    binding.layoutDots.beGone()
                 } else {
                     binding.tvDone.beGone()
                     binding.btnNext.beVisible()
+                    binding.btnNext1.beVisible()
+                    binding.layoutDots.beVisible()
                 }
                 fragmentDestination = position
             }

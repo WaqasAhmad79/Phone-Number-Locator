@@ -11,19 +11,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlshareLocationBinding
-import com.example.phonenumberlocator.pnlExtensionFun.beGone
-import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
-import com.example.phonenumberlocator.pnlExtensionFun.beVisible
-import com.example.phonenumberlocator.pnlExtensionFun.copyText
-import com.example.phonenumberlocator.pnlExtensionFun.gpsStatusCheck
-import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlExtensionFun.shareCurrentLocation
-import com.example.phonenumberlocator.pnlExtensionFun.toast
+import com.example.phonenumberlocator.pnlExtensionFun.*
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -38,15 +34,16 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() {
+class PNLShareLocationActivity : PNLBaseClass<ActivityPnlshareLocationBinding>() {
 
     override fun getViewBinding(): ActivityPnlshareLocationBinding {
         return ActivityPnlshareLocationBinding.inflate(layoutInflater)
     }
+
     @Inject
     lateinit var checkInternetConnection: PNLCheckInternetConnection
 
@@ -78,14 +75,23 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
 
         clickListeners()
 
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        if (RemoteConfigClass.banner_pnl_share_location_activity && PhoneNumberLocator.canRequestAd) {
+            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id))
+        } else {
+            binding.flBanner.beGone()
+        }
 
     }
 
-    fun handleAds(){
-        if (isNetworkAvailable()){
+    fun handleAds() {
+
+        if (RemoteConfigClass.inter_pnl_share_location_activity
+            && isNetworkAvailable()
+            && canRequestAd
+        ) {
             showSimpleInterstitialAdWithTimeAndCounter()
         }
+
     }
 
     private fun initView() {
@@ -97,6 +103,7 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
                 override fun onPermissionGranted(permissionGrantedResponse: PermissionGrantedResponse) {
                     getMyLocation()
                 }
+
                 override fun onPermissionDenied(permissionDeniedResponse: PermissionDeniedResponse) {}
                 override fun onPermissionRationaleShouldBeShown(
                     permissionRequest: PermissionRequest,
@@ -125,7 +132,8 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
         binding.cardPlus.setOnClickListener {
             if (zoom < 19) zoom++
             latLng?.let { it1 ->
-                moveMapCamera(it1, zoom) }
+                moveMapCamera(it1, zoom)
+            }
         }
         binding.cardMinus.setOnClickListener {
             if (zoom > 3) zoom--
@@ -143,7 +151,7 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
         }
 
         binding.cardShare.setOnClickListener {
-            canShowAppOpen =true
+            isAppOpenEnable = true
             latLng?.let {
                 address?.let { add -> shareCurrentLocation(it, add) }
             }
@@ -182,6 +190,7 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
             Toast.makeText(this, "WhatsApp not installed", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun onSwitch3DButtonClicked(view: View) {
         // Check if the map is ready
         smf?.getMapAsync { googleMap ->
@@ -200,6 +209,7 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition))
         }
     }
+
     private fun getMyLocation() {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -224,7 +234,10 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
         smf?.getMapAsync { googleMap ->
             googleMap.clear()
             val markerOptions =
-                latLng?.let { MarkerOptions().position(it).title(resources.getString(R.string.current_location)) }
+                latLng?.let {
+                    MarkerOptions().position(it)
+                        .title(resources.getString(R.string.current_location))
+                }
             if (markerOptions != null) {
                 googleMap.addMarker(markerOptions)
             }
@@ -247,14 +260,14 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
                         )
                     }
                 }
-            }
-            else {
+            } else {
                 binding.getLocationResult.beGone()
-                toast( R.string.check_internet_connection)
+                toast(R.string.check_internet_connection)
 //                loadingDialog?.hideDialog()
             }
         }
     }
+
     fun moveMapCamera(pos: LatLng) {
         moveMapCamera(pos, zoom)
     }
@@ -274,12 +287,16 @@ class PNLShareLocationActivity: PNLBaseClass<ActivityPnlshareLocationBinding>() 
 
     override fun onResume() {
         super.onResume()
-        canShowAppOpen=false
+        isAppOpenEnable = false
 
 
     }
 
-    private fun sharegetAddressFromLatLong(latitude: Double, longitude: Double, callBack: (() -> Unit)? = null): String? {
+    private fun sharegetAddressFromLatLong(
+        latitude: Double,
+        longitude: Double,
+        callBack: (() -> Unit)? = null
+    ): String? {
         var addresses: List<Address>?
         val geocoder = Geocoder(this, Locale.getDefault())
         try {

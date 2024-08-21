@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "950811799150",
+    "project_id": "phone-tracker-4e940",
+    "storage_bucket": "phone-tracker-4e940.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950811799150:android:f34398a98ae35ade0b807f",
+        "android_client_info": {
+          "package_name": "mobile.number.trackerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0F7h0KkWxe5zk7ja0mRLjb2XShcmiLpk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

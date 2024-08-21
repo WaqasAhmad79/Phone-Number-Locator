@@ -13,7 +13,6 @@ import com.google.android.ump.UserMessagingPlatform;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
 public class AdsConsentManager {
     private static String TAG = "AdsConsentManager";
     private ConsentInformation consentInformation;
@@ -58,7 +57,7 @@ public class AdsConsentManager {
                 () -> {
                     Log.w(TAG, "requestConsentInfoUpdate Success :");
                     UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity, loadAndShowError -> {
-                        Log.w(TAG, "loadAndShowConsentFormIfRequired 3:  loadAndShowError:"+loadAndShowError);
+                                Log.w(TAG, "loadAndShowConsentFormIfRequired 3:  loadAndShowError:" + loadAndShowError);
                                 if (loadAndShowError != null) {
                                     // Consent gathering failed.
                                     Log.w(TAG, String.format("%s: %s",
@@ -97,7 +96,6 @@ public class AdsConsentManager {
 
     }
 
-
     public void showPrivacyOption(Activity activity, UMPResultListener umpResultListener) {
         UserMessagingPlatform.showPrivacyOptionsForm(activity, formError -> {
             if (formError != null) {
@@ -126,7 +124,7 @@ public class AdsConsentManager {
         if (!purposeConsents.isEmpty()) {
             String purposeOneString = String.valueOf(purposeConsents.charAt(0));
             boolean hasConsentForPurposeOne = purposeOneString.equals("1");
-            Log.w(TAG, "getConsentResult 8: hasConsentForPurposeOne"+hasConsentForPurposeOne);
+            Log.w(TAG, "getConsentResult 8: hasConsentForPurposeOne" + hasConsentForPurposeOne);
             return hasConsentForPurposeOne;
         }
         Log.w(TAG, "getConsentResult 8: true");

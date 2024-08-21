@@ -12,10 +12,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnldistanceFinderBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
@@ -27,22 +31,16 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.Polyline
-import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.gms.maps.model.*
 import java.io.File
 import java.text.NumberFormat
-import java.util.Locale
-import java.util.Stack
+import java.util.*
 
-class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>(), OnMapReadyCallback, GoogleMap.OnMapClickListener {
+class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>(),
+    OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
-    override fun getViewBinding(): ActivityPnldistanceFinderBinding =ActivityPnldistanceFinderBinding.inflate(layoutInflater)
+    override fun getViewBinding(): ActivityPnldistanceFinderBinding =
+        ActivityPnldistanceFinderBinding.inflate(layoutInflater)
 
     private lateinit var mapView: MapView
     private lateinit var map: GoogleMap
@@ -53,7 +51,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     private val redoStack: Stack<Marker> = Stack()
     private lateinit var customMarker: BitmapDescriptor
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    var REQUEST_LOCATION_PERMISSION=1
+    var REQUEST_LOCATION_PERMISSION = 1
     private var currentLatLng: LatLng? = null
     private var zoom = 16
 
@@ -76,13 +74,20 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
         clickListeners()
 
 
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id),null)
+        if (RemoteConfigClass.banner_pnl_distance_finder_activity && PhoneNumberLocator.canRequestAd) {
+            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
+        } else {
+            binding.flBanner.beGone()
+        }
 
     }
-    private fun handleAds(){
-        if (isNetworkAvailable()){
-            showSimpleInterstitialAdWithTimeAndCounter()
 
+    private fun handleAds() {
+        if (RemoteConfigClass.inter_pnl_distance_finder_activity
+            && isNetworkAvailable()
+            && canRequestAd
+        ) {
+            showSimpleInterstitialAdWithTimeAndCounter()
         }
     }
 
@@ -111,6 +116,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
         })
 
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -167,15 +173,55 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     override fun onMapClick(point: LatLng) {
         binding.clDistanceResult.beVisible()
         binding.cardAction.beVisible()
-        map.addMarker(MarkerOptions().position(point).icon(customMarker).draggable(true))?.let { markers.add(it) }
+        map.addMarker(MarkerOptions().position(point).icon(customMarker).draggable(true))
+            ?.let { markers.add(it) }
 //        map.setOnMapLongClickListener { latLng ->
 //            showCustomPopup(latLng.latitude,latLng.longitude)
 //
 //        }
         updateDistancesAndPolyline()
     }
-/** update distance without units**/
-   /* private fun updateDistancesAndPolyline() {
+    /** update distance without units**/
+    /* private fun updateDistancesAndPolyline() {
+         // Calculate the distances between all pairs of consecutive markers
+         distances.clear()
+         var totalDistance = 0f
+         for (i in 0 until markers.size - 1) {
+             val start = markers[i].position
+             val end = markers[i + 1].position
+             val distance = calculateDistance(start, end)
+             totalDistance += distance
+             distances.add(distance)
+         }
+
+         // Update the UI with the distances
+ //        val distanceText = resources.getString(R.string.total_distance)+ " " + ":" +" "+ totalDistance.toInt() + " " + "m"
+         val distanceText =""+ totalDistance.toInt() + " " + "m"
+         binding.tvDistance.text = distanceText
+
+         // Draw a polyline between all pairs of consecutive markers
+         if (markers.size >= 2) {
+             val polylineOptions = PolylineOptions()
+             polylineOptions.color(COLOR_OF_LINE)
+             polylineOptions.width(MAP_LINE_WIDTH)
+             for (i in 0 until markers.size) {
+                 polylineOptions.add(markers[i].position)
+             }
+             if (polyline != null) {
+                 polyline!!.remove()
+             }
+             polyline = map.addPolyline(polylineOptions)
+         } else {
+             if (polyline != null) {
+                 polyline!!.remove()
+                 polyline = null
+             }
+         }
+     }*/
+
+
+    /** update distance with units**/
+    private fun updateDistancesAndPolyline() {
         // Calculate the distances between all pairs of consecutive markers
         distances.clear()
         var totalDistance = 0f
@@ -187,10 +233,22 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
             distances.add(distance)
         }
 
-        // Update the UI with the distances
-//        val distanceText = resources.getString(R.string.total_distance)+ " " + ":" +" "+ totalDistance.toInt() + " " + "m"
-        val distanceText =""+ totalDistance.toInt() + " " + "m"
-        binding.tvDistance.text = distanceText
+        // Calculate the distances based on the selected units
+        val distancesInSelectedUnits = distances.map { distance ->
+            when (selectedDistanceUnits) {
+                UNIT_METERS -> distance // Already in meters
+                UNIT_KILOMETERS -> distance / 1000 // Convert to kilometers
+//                UNIT_MILES -> distance / 1609.344 // Convert to miles
+                else -> distance // Default to meters
+            }
+        }
+        // Calculate the total distance in the selected units
+        val totalDistanceInSelectedUnits = distancesInSelectedUnits.sum()
+
+        // Update the UI with the distances in the selected units
+        val totalDistanceText =
+            "${formatter_two_dec.format(totalDistanceInSelectedUnits)} $selectedDistanceUnits"
+        binding.tvDistance.text = totalDistanceText
 
         // Draw a polyline between all pairs of consecutive markers
         if (markers.size >= 2) {
@@ -210,64 +268,14 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
                 polyline = null
             }
         }
-    }*/
+    }
 
-
-    /** update distance with units**/
-   private fun updateDistancesAndPolyline() {
-       // Calculate the distances between all pairs of consecutive markers
-       distances.clear()
-       var totalDistance = 0f
-       for (i in 0 until markers.size - 1) {
-           val start = markers[i].position
-           val end = markers[i + 1].position
-           val distance = calculateDistance(start, end)
-           totalDistance += distance
-           distances.add(distance)
-       }
-
-        // Calculate the distances based on the selected units
-        val distancesInSelectedUnits = distances.map { distance ->
-            when (selectedDistanceUnits) {
-                UNIT_METERS -> distance // Already in meters
-                UNIT_KILOMETERS -> distance / 1000 // Convert to kilometers
-//                UNIT_MILES -> distance / 1609.344 // Convert to miles
-                else -> distance // Default to meters
-            }
-        }
-        // Calculate the total distance in the selected units
-        val totalDistanceInSelectedUnits = distancesInSelectedUnits.sum()
-
-        // Update the UI with the distances in the selected units
-        val totalDistanceText = "${formatter_two_dec.format(totalDistanceInSelectedUnits)} $selectedDistanceUnits"
-        binding.tvDistance.text = totalDistanceText
-
-       // Draw a polyline between all pairs of consecutive markers
-       if (markers.size >= 2) {
-           val polylineOptions = PolylineOptions()
-           polylineOptions.color(COLOR_OF_LINE)
-           polylineOptions.width(MAP_LINE_WIDTH)
-           for (i in 0 until markers.size) {
-               polylineOptions.add(markers[i].position)
-           }
-           if (polyline != null) {
-               polyline!!.remove()
-           }
-           polyline = map.addPolyline(polylineOptions)
-       } else {
-           if (polyline != null) {
-               polyline!!.remove()
-               polyline = null
-           }
-       }
-   }
-
-    private fun deleteAll(){
+    private fun deleteAll() {
         markers.forEach { it.remove() }
         markers.clear()
         polyline?.remove()
         polyline = null
-        binding.tvDistance.text="0.0"
+        binding.tvDistance.text = "0.0"
 //        binding.clDistanceResult.beGone()
     }
 
@@ -384,7 +392,8 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
 //        }
         binding.cardUndo.setOnClickListener {
             if (markers.isNotEmpty()) {
-                val removedMarker = markers.removeLast() // Remove the last added marker from the list
+                val removedMarker =
+                    markers.removeLast() // Remove the last added marker from the list
                 removedMarker.remove() // Remove the marker from the map
                 redoStack.push(removedMarker) // Push the removed marker to redoStack
                 updateDistancesAndPolyline() // Update the distances and polyline
@@ -409,32 +418,35 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
             builder.show()
         }
 
-       /* binding.cardDelete.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage(getString(R.string.deletestr))
-            builder.setPositiveButton(
-                R.string.yes
-            ) { dialog, _ ->
-                deleteAll()
-                dialog.dismiss()
-            }
-            builder.setNegativeButton(
-                R.string.no
-            ) { dialog, _ -> dialog.dismiss() }
-            builder.create().show()
+        /* binding.cardDelete.setOnClickListener {
+             val builder = AlertDialog.Builder(this)
+             builder.setMessage(getString(R.string.deletestr))
+             builder.setPositiveButton(
+                 R.string.yes
+             ) { dialog, _ ->
+                 deleteAll()
+                 dialog.dismiss()
+             }
+             builder.setNegativeButton(
+                 R.string.no
+             ) { dialog, _ -> dialog.dismiss() }
+             builder.create().show()
 
-        }*/
+         }*/
 
 //        binding.cardSave.setOnClickListener {
 //            saveButtonAction()
 //        }
 
     }
+
     private fun redoMarker() {
         if (redoStack.isNotEmpty()) {
             val redoMarker = redoStack.pop()
             redoMarker?.let {
-                val addedMarker = map.addMarker(MarkerOptions().position(it.position).icon(customMarker).draggable(true))
+                val addedMarker = map.addMarker(
+                    MarkerOptions().position(it.position).icon(customMarker).draggable(true)
+                )
                 if (addedMarker != null) {
                     markers.add(addedMarker)
                 } // Add the marker to the markers list
@@ -442,6 +454,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
             }
         }
     }
+
     private fun onSwitch3DButtonClicked(view: View) {
         // Check if the map is ready
         mapView.getMapAsync { googleMap ->
@@ -460,6 +473,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition))
         }
     }
+
     /*   private fun saveButtonAction() {
            captureMapScreenshot { file ->
                if (file != null) {
@@ -524,9 +538,11 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
         }
 
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
     }
+
     companion object {
         var marker: BitmapDescriptor? = null
         val COLOR_OF_LINE = Color.argb(128, 0, 255, 0)

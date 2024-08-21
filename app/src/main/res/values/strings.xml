@@ -18,6 +18,7 @@
     <string name="no_address_found">No Address Found</string>
     <string name="number_blocked">Number Blocked</string>
     <string name="permission_required">Permission Required</string>
+
     <!--main screen-->
     <string name="call_locator">Call Locator</string>
     <string name="contact_list">Phone Contact</string>
@@ -33,32 +34,17 @@
     <string name="recommend_for_you">Recommended for you</string>
     <string name="num_track_more_option">Number Tracker More Option</string>
 
-    <!-- &lt;!&ndash;live weather&ndash;&gt;
-    <string name="live_weather_header">Live Weather</string>
-    <string name="pressure">Pressure</string>
-    <string name="visibility">Visibility</string>
-    <string name="cloud_cover">Cloud Cover</string>
-    <string name="wind">Wind</string>
-    <string name="temp">Temperature</string>
-    <string name="humidity">Humidity</string>
-    <string name="loading">loading...</string>
-    <string name="sunrise">Sunrise</string>
-    <string name="sunset">Sunset</string>
-    <string name="cannot_find_data">Can\'t find data</string>
-    <string name="turn_on_location">Turn on location</string>
-    <string name="enable_location">Enable Location</string>
-    <string name="search_countries">Search Countries</string>
-    <string name="time_format" translatable="false">EEEE, dd MMMM yyyy hh:mm a</string>-->
-
     <!--drawer-->
     <string name="privacy_policy">Privacy policy</string>
     <string name="share">Share</string>
     <string name="rate_us">Rate us</string>
     <string name="language_setting">Language Setting</string>
     <string name="more">More Apps</string>
+
     <!--contacts-->
     <string name="contacts">Contacts</string>
     <string name="search_contact">Search Number</string>
+
     <!--live traffic-->
     <string name="live_traffic_header">Live Traffic</string>
     <string name="low">Normal</string>
@@ -124,6 +110,7 @@
     <string name="invalid_number">Invalid number</string>
     <string name="a" translatable="false">A</string>
     <string name="location">Location</string>
+
     <!--area calculator-->
     <string name="area_calculator_header">Area Calculator</string>
     <string name="area1">Area : </string>
@@ -151,7 +138,8 @@
     <string name="country_name">Country Name :</string>
     <string name="isd">ISD Code :</string>
     <string name="search">Search</string>
-    <string name="below_track_text">Search any Phone Number LOcation</string>
+    <string name="below_track_text">Search any Phone Number Location</string>
+
     <!--gps location-->
     <string name="current_gps_location">Current GPS Location</string>
     <string name="latitude">Latitude</string>
@@ -159,8 +147,10 @@
     <string name="postal_code">Postal Code :</string>
     <string name="show_location_on_map">Show Location on map</string>
     <string name="current_postal_address">Current Postal Address</string>
+
     <!--isd/std-->
     <string name="enter_city_name">Enter city name</string>
+
     <!--search number-->
     <string name="search_hint_dialog">Search...</string>
     <string name="search_contatct">Search phone number..</string>
@@ -174,6 +164,7 @@
     <string name="_0m">0m</string>
     <string name="delete">Delete</string>
     <string name="undo">Undo</string>
+
     <!--intro slider-->
     <string name="next" translatable="false">Next</string>
     <string name="start" translatable="false">Start</string>
@@ -191,6 +182,11 @@
     <string name="permission_denied" translatable="false">You denied the permission</string>
     <string name="permission_denied_title">Permission Denied</string>
     <string name="lets_go">Let\'s Go</string>
-
+    <string name="welcome">WELCOME</string>
+    <string name="phone_number_locator">Phone Number Locator</string>
+    <string name="phone_tracker">Phone Tracker</string>
+    <string name="gps_tracker_new">GPS Tracker</string>
+    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
+    <string name="view_complete_location_history">View Complete Location History</string>
 
 </resources>

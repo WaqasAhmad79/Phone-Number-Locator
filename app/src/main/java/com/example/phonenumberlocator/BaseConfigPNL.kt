@@ -3,6 +3,7 @@ package com.example.phonenumberlocator
 import android.content.Context
 import android.net.Uri
 import android.text.format.DateFormat
+import com.example.phonenumberlocator.pnlExtensionFun.getSharedPrefs
 import com.example.phonenumberlocator.pnlHelper.ACCENT_COLOR
 import com.example.phonenumberlocator.pnlHelper.APP_ICON_COLOR
 import com.example.phonenumberlocator.pnlHelper.APP_ID
@@ -133,9 +134,9 @@ import com.example.phonenumberlocator.pnlHelper.WAS_USE_ENGLISH_TOGGLED
 import com.example.phonenumberlocator.pnlHelper.WIDGET_ID_TO_MEASURE
 import com.example.phonenumberlocator.pnlHelper.WIDGET_TEXT_COLOR
 import com.example.phonenumberlocator.pnlHelper.YOUR_ALARM_SOUNDS
-import com.example.phonenumberlocator.pnlExtensionFun.getSharedPrefs
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
 open class BaseConfigPNL(val context: Context) {
     protected val prefs = context.getSharedPrefs()
@@ -166,21 +167,18 @@ open class BaseConfigPNL(val context: Context) {
 
     var appStarted: Boolean
         get() = prefs.getBoolean("show_splash_prefs", false)
-        set(appStarted) = prefs.edit().putBoolean("show_splash_prefs", appStarted).apply()
+        set(appStarted) = prefs.edit().putBoolean("show_splash_prefs", appStarted)
+            .apply()
 
     var isAppIntroComplete: Boolean
         get() = prefs.getBoolean("show_onboarding_screens_prefs", false)
-        set(appStarted) = prefs.edit().putBoolean("show_onboarding_screens_prefs", appStarted).apply()
+        set(appStarted) = prefs.edit().putBoolean("show_onboarding_screens_prefs", appStarted)
+            .apply()
 
-//for Localization
+    //for Localization
     var appLanguage: String?
         get() = prefs.getString("Language_Name", "en")
         set(appLanguage) = prefs.edit().putString("Language_Name", appLanguage).apply()
-
-
-    //calls settings prefs values
-
-    //notifications
 
     var previousTimeStamp: String?
         get() = prefs.getString(TIMEANDDATENOTIFICATION, "")
@@ -192,40 +190,40 @@ open class BaseConfigPNL(val context: Context) {
         set(previousIncomingNumber) = prefs.edit()
             .putString(PREVIOUS_INCOMMING_NUMBER, previousIncomingNumber).apply()
 
-   /* var previousIncomingNumberType: CallType
-        get() {
-            return when (prefs.getString(PREVIOUS_INCOMMING_NUMBER_TYPE, "NONE")) {
-                CallType.INCOMING_CALL.toString() -> {
-                    CallType.INCOMING_CALL
-                }
-                CallType.OUTGOING_CALL.toString() -> {
-                    CallType.OUTGOING_CALL
-                }
-                CallType.MISSED_CALL.toString() -> {
-                    CallType.MISSED_CALL
-                }
-                else -> {
-                    CallType.NONE
-                }
-            }
-        }
-        set(previousIncomingNumberType) {
-            val store = when (previousIncomingNumberType) {
-                CallType.INCOMING_CALL -> {
-                    CallType.INCOMING_CALL.toString()
-                }
-                CallType.OUTGOING_CALL -> {
-                    CallType.OUTGOING_CALL.toString()
-                }
-                CallType.MISSED_CALL -> {
-                    CallType.MISSED_CALL.toString()
-                }
-                else -> {
-                    CallType.NONE.toString()
-                }
-            }
-            prefs.edit().putString(PREVIOUS_INCOMMING_NUMBER_TYPE, store).apply()
-        }*/
+    /* var previousIncomingNumberType: CallType
+         get() {
+             return when (prefs.getString(PREVIOUS_INCOMMING_NUMBER_TYPE, "NONE")) {
+                 CallType.INCOMING_CALL.toString() -> {
+                     CallType.INCOMING_CALL
+                 }
+                 CallType.OUTGOING_CALL.toString() -> {
+                     CallType.OUTGOING_CALL
+                 }
+                 CallType.MISSED_CALL.toString() -> {
+                     CallType.MISSED_CALL
+                 }
+                 else -> {
+                     CallType.NONE
+                 }
+             }
+         }
+         set(previousIncomingNumberType) {
+             val store = when (previousIncomingNumberType) {
+                 CallType.INCOMING_CALL -> {
+                     CallType.INCOMING_CALL.toString()
+                 }
+                 CallType.OUTGOING_CALL -> {
+                     CallType.OUTGOING_CALL.toString()
+                 }
+                 CallType.MISSED_CALL -> {
+                     CallType.MISSED_CALL.toString()
+                 }
+                 else -> {
+                     CallType.NONE.toString()
+                 }
+             }
+             prefs.edit().putString(PREVIOUS_INCOMMING_NUMBER_TYPE, store).apply()
+         }*/
 
 
 //    Missed call notifications CallerIdSettingActivity
@@ -403,24 +401,24 @@ open class BaseConfigPNL(val context: Context) {
         get() = prefs.getString(OTG_REAL_PATH, "")!!
         set(OTGPath) = prefs.edit().putString(OTG_REAL_PATH, OTGPath).apply()
 
-/*
-    var sdCardPath: String
-        get() = prefs.getString(SD_CARD_PATH, getDefaultSDCardPath())!!
-        set(sdCardPath) = prefs.edit().putString(SD_CARD_PATH, sdCardPath).apply()
+    /*
+        var sdCardPath: String
+            get() = prefs.getString(SD_CARD_PATH, getDefaultSDCardPath())!!
+            set(sdCardPath) = prefs.edit().putString(SD_CARD_PATH, sdCardPath).apply()
 
-    private fun getDefaultSDCardPath() =
-        if (prefs.contains(SD_CARD_PATH)) "" else context.getSDCardPath()
-*/
+        private fun getDefaultSDCardPath() =
+            if (prefs.contains(SD_CARD_PATH)) "" else context.getSDCardPath()
+    */
 
-  /*  var internalStoragePath: String
-        get() = prefs.getString(INTERNAL_STORAGE_PATH, getDefaultInternalPath())!!
-        set(internalStoragePath) = prefs.edit()
-            .putString(INTERNAL_STORAGE_PATH, internalStoragePath).apply()
-*/
-/*
-    private fun getDefaultInternalPath() =
-        if (prefs.contains(INTERNAL_STORAGE_PATH)) "" else context.getInternalStoragePath()
-*/
+    /*  var internalStoragePath: String
+          get() = prefs.getString(INTERNAL_STORAGE_PATH, getDefaultInternalPath())!!
+          set(internalStoragePath) = prefs.edit()
+              .putString(INTERNAL_STORAGE_PATH, internalStoragePath).apply()
+  */
+    /*
+        private fun getDefaultInternalPath() =
+            if (prefs.contains(INTERNAL_STORAGE_PATH)) "" else context.getInternalStoragePath()
+    */
 
     var textColor: Int
         get() = prefs.getInt(TEXT_COLOR, context.resources.getColor(R.color.white))
@@ -429,7 +427,8 @@ open class BaseConfigPNL(val context: Context) {
     var backgroundColor: Int
         get() = prefs.getInt(
             BACKGROUND_COLOR,
-            context.resources.getColor(R.color.white))
+            context.resources.getColor(R.color.white)
+        )
         set(backgroundColor) = prefs.edit().putInt(BACKGROUND_COLOR, backgroundColor).apply()
 
     var primaryColor: Int
@@ -618,7 +617,8 @@ open class BaseConfigPNL(val context: Context) {
     var wasCustomThemeSwitchDescriptionShown: Boolean
         get() = prefs.getBoolean(WAS_CUSTOM_THEME_SWITCH_DESCRIPTION_SHOWN, false)
         set(wasCustomThemeSwitchDescriptionShown) = prefs.edit().putBoolean(
-            WAS_CUSTOM_THEME_SWITCH_DESCRIPTION_SHOWN, wasCustomThemeSwitchDescriptionShown)
+            WAS_CUSTOM_THEME_SWITCH_DESCRIPTION_SHOWN, wasCustomThemeSwitchDescriptionShown
+        )
             .apply()
 
     var wasSharedThemeForced: Boolean
@@ -689,7 +689,8 @@ open class BaseConfigPNL(val context: Context) {
     var lastUsedViewPagerPage: Int
         get() = prefs.getInt(
             LAST_USED_VIEW_PAGER_PAGE,
-            context.resources.getInteger(R.integer.default_viewpager_page))
+            context.resources.getInteger(R.integer.default_viewpager_page)
+        )
         set(lastUsedViewPagerPage) = prefs.edit()
             .putInt(LAST_USED_VIEW_PAGER_PAGE, lastUsedViewPagerPage).apply()
 
@@ -779,7 +780,8 @@ open class BaseConfigPNL(val context: Context) {
     var wasAppIconCustomizationWarningShown: Boolean
         get() = prefs.getBoolean(WAS_APP_ICON_CUSTOMIZATION_WARNING_SHOWN, false)
         set(wasAppIconCustomizationWarningShown) = prefs.edit().putBoolean(
-            WAS_APP_ICON_CUSTOMIZATION_WARNING_SHOWN, wasAppIconCustomizationWarningShown)
+            WAS_APP_ICON_CUSTOMIZATION_WARNING_SHOWN, wasAppIconCustomizationWarningShown
+        )
             .apply()
 
     var appSideloadingStatus: Int
@@ -809,7 +811,8 @@ open class BaseConfigPNL(val context: Context) {
     var wasSortingByNumericValueAdded: Boolean
         get() = prefs.getBoolean(WAS_SORTING_BY_NUMERIC_VALUE_ADDED, false)
         set(wasSortingByNumericValueAdded) = prefs.edit().putBoolean(
-            WAS_SORTING_BY_NUMERIC_VALUE_ADDED, wasSortingByNumericValueAdded).apply()
+            WAS_SORTING_BY_NUMERIC_VALUE_ADDED, wasSortingByNumericValueAdded
+        ).apply()
 
     var wasFolderLockingNoticeShown: Boolean
         get() = prefs.getBoolean(WAS_FOLDER_LOCKING_NOTICE_SHOWN, false)
@@ -867,28 +870,30 @@ open class BaseConfigPNL(val context: Context) {
 
     var defaultCountryISO: String?
         get() = prefs.getString("DEFAULT_COUNTRY_ISO_CODE", "US")
-        set(defaultCountryISO) = prefs.edit().putString("DEFAULT_COUNTRY_ISO_CODE", defaultCountryISO)
+        set(defaultCountryISO) = prefs.edit()
+            .putString("DEFAULT_COUNTRY_ISO_CODE", defaultCountryISO)
             .apply()
 
 
-//
-//    // color picker last used colors
-//    internal var colorPickerRecentColors: LinkedList<Int>
-//        get(): LinkedList<Int> {
-//            val defaultList = arrayListOf(
-//                context.resources.getColor(R.color.white),
-//                context.resources.getColor(R.color.app_color),
-//                context.resources.getColor(R.color.buttonColor),
-//                context.resources.getColor(R.color.black),
-//                context.resources.getColor(R.color.clickColor)
-//            )
-//            return LinkedList(prefs.getString(COLOR_PICKER_RECENT_COLORS, null)?.lines()
-//                ?.map { it.toInt() } ?: defaultList)
-//        }
-//        set(recentColors) = prefs.edit()
-//            .putString(COLOR_PICKER_RECENT_COLORS, recentColors.joinToString(separator = "\n"))
-//            .apply()
+    /*
 
+    //    // color picker last used colors
+    //    internal var colorPickerRecentColors: LinkedList<Int>
+    //        get(): LinkedList<Int> {
+    //            val defaultList = arrayListOf(
+    //                context.resources.getColor(R.color.white),
+    //                context.resources.getColor(R.color.app_color),
+    //                context.resources.getColor(R.color.buttonColor),
+    //                context.resources.getColor(R.color.black),
+    //                context.resources.getColor(R.color.clickColor)
+    //            )
+    //            return LinkedList(prefs.getString(COLOR_PICKER_RECENT_COLORS, null)?.lines()
+    //                ?.map { it.toInt() } ?: defaultList)
+    //        }
+    //        set(recentColors) = prefs.edit()
+    //            .putString(COLOR_PICKER_RECENT_COLORS, recentColors.joinToString(separator = "\n"))
+    //            .apply()
+    */
 
 
 }

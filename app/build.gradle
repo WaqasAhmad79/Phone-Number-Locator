@@ -5,6 +5,8 @@ plugins {
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -61,7 +63,7 @@ android {
             resValue "string", "admob_splash_interistitial_low", "ca-app-pub-8956129614272596/2915475434"
 //            resValue "string", "admob_splash_interistitial_high", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "ad_mob_banner_id", "ca-app-pub-8956129614272596/1628398204"
-            resValue "string", "adaptive_mob_banner_id", "ca-app-pub-8956129614272596/1628398204"
+//            resValue "string", "adaptive_mob_banner_id", "ca-app-pub-8956129614272596/1628398204" // commented because both banner id's are same
 
 
         }
@@ -85,18 +87,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.firebase:firebase-config-ktx:22.0.0'
+    implementation 'androidx.activity:activity:1.9.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-
     //sdp
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
     //event bus
     implementation 'org.greenrobot:eventbus:3.3.1'
 
-    // Hiltnew
+    // Hilt
     implementation "androidx.activity:activity-ktx:1.6.1"
     // Dagger Core
     implementation "com.google.dagger:dagger:2.44"
@@ -112,21 +116,22 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-service:2.5.1'
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
     implementation 'com.google.android.libraries.places:places:3.0.0'
+
     //google map services
     implementation 'com.google.maps:google-maps-services:0.11.0'
 
     //Koin View Models
-    implementation 'org.koin:koin-android-viewmodel:2.0.1'
+    implementation 'io.insert-koin:koin-android-viewmodel:2.0.1'
+
     //permission request
     implementation 'com.guolindev.permissionx:permissionx:1.5.1'
 
     //viewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0"
+
     // Easy Permissions
     implementation 'pub.devrel:easypermissions:3.0.0'
 
-    //jetbrain do asyn
-    implementation 'org.jetbrains.anko:anko-commons:0.10.8'
     //gson
     implementation 'com.google.code.gson:gson:2.9.1'
 
@@ -135,11 +140,13 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.5.0'
     implementation "androidx.room:room-runtime:2.5.0"
     kapt "androidx.room:room-compiler:2.5.0"
+
     //glide
     api 'com.github.bumptech.glide:glide:4.13.2'
     kapt 'com.github.bumptech.glide:compiler:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     //Data Store
     implementation 'androidx.datastore:datastore-preferences-core:1.0.0'
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
@@ -147,11 +154,6 @@ dependencies {
     //lottie
     def lottieVersion = "5.2.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
-
-/*    //lottie
-    def lottieVersion = "3.4.0"
-    implementation "com.airbnb.android:lottie:$lottieVersion"*/
-
 
     //Dexter map
     implementation 'com.karumi:dexter:6.2.3'
@@ -161,18 +163,27 @@ dependencies {
     implementation 'com.googlecode.libphonenumber:libphonenumber:8.13.2'
 
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10'
+
     //weather
     implementation 'com.github.KwabenBerko:OpenWeatherMap-Android-Library:2.1.0'
-//admobs
+
+    //admobs
     implementation 'com.google.android.gms:play-services-ads:22.0.0'
     implementation("com.google.android.ump:user-messaging-platform:2.1.0")
 
-// animation like lottie
+    // animation like lottie
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
     //switch /labeled switch
     implementation 'com.github.angads25:toggle:1.1.0'
 
     //shimmer effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Firebase remote config
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-analytics:20.0.0")
+    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics:18.1.0'
 }

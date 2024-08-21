@@ -1,5 +1,6 @@
 package com.example.phonenumberlocator.admob_ads
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
@@ -11,40 +12,37 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.ui.activities.PNLSplashActivity
-import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
 
+var isAppOpenEnable = false
 
-
-
+@SuppressLint("StaticFieldLeak")
 object OpenApp : Application.ActivityLifecycleCallbacks, LifecycleEventObserver {
-
     private var adVisible = false
+    var adOpenAppVisible = false
     private val TAG = "TESTINGOpenApp"
     private var appOpenAd: AppOpenAd? = null
     private var currentActivity: Activity? = null
-    private var isShowingAd = false
-
-    private var isShowingDialog = false
-    private var dialog: PNLResumeLoadingDialog? = null
+    var isShowingAd = false
+    private var dialog: ResumeLoadingDialog? = null
     private var myApplication: PhoneNumberLocator? = null
     private var fullScreenContentCallback: FullScreenContentCallback? = null
 
-    fun initialize(
-        application: PhoneNumberLocator
-    ) {
+    fun initialize(application: PhoneNumberLocator) {
         if (myApplication == null) {
             myApplication = application
             myApplication?.registerActivityLifecycleCallbacks(this)
             ProcessLifecycleOwner.get().lifecycle.addObserver(this)
+            fetchAd()
         }
     }
 
     fun fetchAd() {
+
         if (isAdAvailable()) {
             return
         }
@@ -71,39 +69,44 @@ object OpenApp : Application.ActivityLifecycleCallbacks, LifecycleEventObserver 
                 loadCallback
             )
         }
+
+
     }
 
     private fun showAdIfAvailable() {
-        if (!canShowAppOpen && !isInterstitialAdOnScreen && !isShowingAd && isAdAvailable()) {
+        if (!isAppOpenEnable && !isInterstitialAdOnScreen && !isShowingAd && isAdAvailable()) {
             fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     appOpenAd = null
                     isShowingAd = false
                     adVisible = false
+                    adOpenAppVisible = false
                     dismissDialog()
                     fetchAd()
-                    Log.d(TAG, "onAdDismissedFullScreenContent: ")
+                    Log.d(TAG, " =========onAdDismissedFullScreenContent: ")
                 }
 
                 override fun onAdFailedToShowFullScreenContent(p0: AdError) {
                     dismissDialog()
-                    Log.d(TAG, "onAdFailedToShowFullScreenContent: ")
+                    adOpenAppVisible = false
+                    Log.d(TAG, " =========onAdFailedToShowFullScreenContent: ")
                 }
 
                 override fun onAdShowedFullScreenContent() {
                     isShowingAd = true
-                    Log.d(TAG, "onAdShowedFullScreenContent: ")
+                    Log.d(TAG, " =========onAdShowedFullScreenContent: ")
                 }
             }
 
             adVisible = true
             appOpenAd?.fullScreenContentCallback = fullScreenContentCallback
             currentActivity?.let {
-                dialog = PNLResumeLoadingDialog(currentActivity)
+                dialog = ResumeLoadingDialog(currentActivity)
             }
             dismissDialog()
             showDialog()
             Log.d(TAG, "showAdIfAvailable: show")
+            adOpenAppVisible = true
             appOpenAd?.show(currentActivity!!)
         } else {
             Log.d(TAG, "showAdIfAvailable:fetchAd ")
@@ -112,8 +115,8 @@ object OpenApp : Application.ActivityLifecycleCallbacks, LifecycleEventObserver 
     }
 
     override fun onStateChanged(p0: LifecycleOwner, event: Lifecycle.Event) {
+        Log.d(TAG, "onStateChanged: ")
         if (event == Lifecycle.Event.ON_START) {
-            Log.d(TAG, "onStateChanged: ")
             currentActivity?.let {
                 if (it !is PNLSplashActivity) {
                     showAdIfAvailable()
@@ -124,8 +127,12 @@ object OpenApp : Application.ActivityLifecycleCallbacks, LifecycleEventObserver 
 
     private fun dismissDialog() {
         Log.d(TAG, "dismissDialog: ${dialog?.isShowing}")
-        if (dialog != null && dialog?.isShowing!!) {
-            dialog?.dismiss()
+        try {
+            if (dialog != null && dialog?.isShowing!!) {
+                dialog?.dismiss()
+                dialog = null
+            }
+        } catch (e: Exception) {
         }
     }
 

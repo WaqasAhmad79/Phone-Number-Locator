@@ -19,12 +19,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
-import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
+import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnlcamAddressBinding
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
+import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.ui.pnlDialog.PNLLoadingDialog
 import com.google.android.gms.location.LocationListener
@@ -35,16 +38,15 @@ import com.kwabenaberko.openweathermaplib.implementation.OpenWeatherMapHelper
 import com.kwabenaberko.openweathermaplib.implementation.callback.CurrentWeatherCallback
 import com.kwabenaberko.openweathermaplib.model.currentweather.CurrentWeather
 import dagger.hilt.android.AndroidEntryPoint
-import org.jetbrains.anko.ctx
-import org.jetbrains.anko.toast
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
+
 @AndroidEntryPoint
-class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
+class PNLGpsAddressActivity : AppCompatActivity(), LocationListener {
 
     private lateinit var binding: ActivityPnlcamAddressBinding
 
@@ -101,15 +103,16 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
  //            binding.cardShare.beVisible()
          }*/
         binding.ivSave.setOnClickListener {
-                val filePath = takeScreenshot(this)
-                if (filePath != null) {
-                    startActivity(
-                        Intent(this, PNLSavedImageConfirmationActivity::class.java)
-                        .putExtra("imagePath", filePath))
-                    finish()
-                } else {
-                    Toast.makeText(this, "Failed to save the screenshot", Toast.LENGTH_SHORT).show()
-                }
+            val filePath = takeScreenshot(this)
+            if (filePath != null) {
+                startActivity(
+                    Intent(this, PNLSavedImageConfirmationActivity::class.java)
+                        .putExtra("imagePath", filePath)
+                )
+                finish()
+            } else {
+                Toast.makeText(this, "Failed to save the screenshot", Toast.LENGTH_SHORT).show()
+            }
 
         }
         /*  binding.cardShare.setOnClickListener {
@@ -119,7 +122,7 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
         binding.backArrow.setOnClickListener { onBackPressed() }
 
 
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id))
 
     }
 
@@ -155,7 +158,7 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
                             binding.etLatitude.text = latitude.toString()
                             binding.etLongitude.text = longitude.toString()
                             Log.d("TAG", "Latitude: $latitude, Longitude: $longitude")
-                            getCurrentData(latitude,longitude)
+                            getCurrentData(latitude, longitude)
 
                             checkInternetConnection.observe(this) {
                                 if (it) {
@@ -261,7 +264,7 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
 
     private fun share(bitmap: Bitmap) {
         val pathofBmp = MediaStore.Images.Media.insertImage(
-            ctx.contentResolver, bitmap, "title", null
+            contentResolver, bitmap, "title", null
         )
         val uri = Uri.parse(pathofBmp)
         val shareIntent = Intent(Intent.ACTION_SEND)
@@ -269,15 +272,17 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Star App")
         shareIntent.putExtra(Intent.EXTRA_TEXT, "")
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
-        ctx.startActivity(Intent.createChooser(shareIntent, "hello hello"))
+        startActivity(Intent.createChooser(shareIntent, "hello hello"))
     }
 
     override fun onResume() {
         super.onResume()
     }
+
     private fun convertMetersPerSecondToKilometersPerHour(speedInMetersPerSecond: Double): Double {
         return speedInMetersPerSecond * 3.6
     }
+
     private fun getCurrentData(latitude: Double, longitude: Double) {
         helper.setUnits(Units.METRIC)
         helper.setLanguage(Languages.ENGLISH)
@@ -289,7 +294,8 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
                 @SuppressLint("SetTextI18n")
                 override fun onSuccess(currentWeather: CurrentWeather) {
                     val windSpeedMetersPerSecond = currentWeather.wind.speed
-                    val windSpeedKilometersPerHour = convertMetersPerSecondToKilometersPerHour(windSpeedMetersPerSecond)
+                    val windSpeedKilometersPerHour =
+                        convertMetersPerSecondToKilometersPerHour(windSpeedMetersPerSecond)
                     binding.tvWind.text = "${windSpeedKilometersPerHour.roundToInt()} km/h"
                     binding.tvTemp.text = currentWeather.main.tempMax.roundToInt().toString() + "°C"
                 }
@@ -300,10 +306,12 @@ class PNLGpsAddressActivity: AppCompatActivity(), LocationListener {
             })
     }
 
-    private fun handleAds(){
-        if (isNetworkAvailable()){
-            showSimpleInterstitial()
-
+    private fun handleAds() {
+        if (RemoteConfigClass.inter_pnl_gps_address_activity
+            && isNetworkAvailable()
+            && PhoneNumberLocator.canRequestAd
+        ) {
+            showNormalAdmobInterstitial()
         }
     }
 }

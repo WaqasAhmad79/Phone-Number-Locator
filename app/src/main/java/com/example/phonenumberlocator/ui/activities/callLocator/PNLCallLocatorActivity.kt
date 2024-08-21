@@ -13,18 +13,12 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
-import com.example.phonenumberlocator.admob_ads.showSearchInterstitialAdWithTimeAndCounter
+import com.example.phonenumberlocator.admob_ads.*
 import com.example.phonenumberlocator.databinding.ActivityPnlcallLocatorBinding
-import com.example.phonenumberlocator.pnlExtensionFun.beGone
-import com.example.phonenumberlocator.pnlExtensionFun.beVisible
-import com.example.phonenumberlocator.pnlExtensionFun.hideKeyboard
-import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlExtensionFun.onTextChangeListener
-import com.example.phonenumberlocator.pnlExtensionFun.toast
+import com.example.phonenumberlocator.pnlExtensionFun.*
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.pnlUtil.PNLDataStoreDb
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,7 +37,6 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
     @Inject
     lateinit var checkInternetConnection: PNLCheckInternetConnection
 
-
     override fun getViewBinding(): ActivityPnlcallLocatorBinding {
         return ActivityPnlcallLocatorBinding.inflate(layoutInflater)
     }
@@ -52,22 +45,22 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        handleAds()
-
-
-
+        handleAds() // for interstitial
         initViews()
         clickListeners()
-        showAd()
+        showAd() // for native ads
 
     }
 
     private fun handleAds() {
-        if (isNetworkAvailable()) {
-            showSearchInterstitialAdWithTimeAndCounter()
-        }
-    }
 
+        if (RemoteConfigClass.inter_pnl_call_locator_activity
+            && isNetworkAvailable()
+            && PhoneNumberLocator.canRequestAd) {
+            showSimpleInterstitialAdWithTimeAndCounter()
+        }
+
+    }
 
     private fun initViews() {
         phoneNumber = intent.getStringExtra("number")
@@ -141,16 +134,19 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         }
     }
 
-    private fun showAd() {
-        if (isNetworkAvailable()) {
-            binding.ads.beVisible()
-            nativeAdSmall.observe(this) {
-                showLoadedNativeAd(
-                    this,
-                    binding.ads,
-                    R.layout.layout_admob_native_ad_withou_tmedia,
-                    it
-                )
+    private fun showAd() { // for native ads
+        if (RemoteConfigClass.native_pnl_call_locator_activity) {
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+                binding.ads.beVisible()
+                nativeAdSmall.observe(this) {
+                    showLoadedNativeAd(
+                        this,
+                        binding.ads,
+                        binding.includeShimmer.shimmerContainerNative,
+                        R.layout.layout_admob_native_ad_withou_tmedia,
+                        it
+                    )
+                }
             }
         } else {
             binding.ads.beGone()
@@ -159,7 +155,7 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
 
     override fun onResume() {
         super.onResume()
-        canShowAppOpen = false
+        isAppOpenEnable = false
     }
 
 }

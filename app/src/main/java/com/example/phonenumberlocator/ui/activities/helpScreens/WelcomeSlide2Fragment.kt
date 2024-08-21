@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative3
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative4
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
 import com.example.phonenumberlocator.databinding.FragmentWelcomeSlide2Binding
-import com.example.phonenumberlocator.pnlExtensionFun.beGone
-import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-
 
 class WelcomeSlide2Fragment : Fragment() {
     private lateinit var binding: FragmentWelcomeSlide2Binding
@@ -37,22 +37,45 @@ class WelcomeSlide2Fragment : Fragment() {
         Log.d("TAG42", "onResume: OnboardingScreen2Fragment")
     }
 
+
     private fun nativeAdControl() {
-        activity?.let {
-            if (it.isNetworkAvailable()) {
-                binding.flAdNative.beVisible()
-                PhoneNumberLocator.onBoardNative2.observe(viewLifecycleOwner){ nad->
-                    nad?.let {ad->
-                        showLoadedNativeAd(
-                            requireActivity(),
-                            binding.flAdNative,
-                            R.layout.layout_admob_native_ad, ad
-                        )
-                    }
+
+        // Loading ad for the onboarding welcome slide 3
+        if (
+            RemoteConfigClass.native_welcome_three
+            && PhoneNumberLocator.canRequestAd
+            && requireContext().isNetworkAvailable()
+        ) {
+            loadAndReturnAd(
+                requireActivity(),
+                resources.getString(R.string.admob_native_boarding_low)
+            ) { it2 ->
+                if (it2 != null) {
+                    onBoardNative3.value = it2
+                } else {
+                    onBoardNative3.postValue(null)
                 }
-            } else {
-                binding.flAdNative.beGone()
             }
         }
+
+        // Loading ad for the onboarding welcome slide 4
+        if (
+            RemoteConfigClass.native_welcome_four
+            && PhoneNumberLocator.canRequestAd
+            && requireContext().isNetworkAvailable()
+        ) {
+            loadAndReturnAd(
+                requireActivity(), resources.getString(R.string.admob_native_boarding_low)
+            ) { it2 ->
+                if (it2 != null) {
+                    onBoardNative4.value = it2
+                } else {
+                    onBoardNative4.postValue(null)
+                }
+            }
+        }
+
+
     }
+
 }

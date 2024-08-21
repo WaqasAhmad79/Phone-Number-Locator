@@ -329,10 +329,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
+        android:visibility="gone"
         android:layout_marginVertical="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        >
+        <include
+            android:id="@+id/includeShimmer"
+            layout="@layout/loading_custom_native_admob_media_small" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

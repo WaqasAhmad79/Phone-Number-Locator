@@ -1,8 +1,6 @@
 package com.example.phonenumberlocator.ui.activities.callLocator
 
 import android.Manifest
-import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -17,20 +15,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlcontactsDetailedBinding
 import com.example.phonenumberlocator.pnlAppCallModels.RecentCallsDetailModel
-import com.example.phonenumberlocator.pnlExtensionFun.beGone
-import com.example.phonenumberlocator.pnlExtensionFun.beVisible
-import com.example.phonenumberlocator.pnlExtensionFun.checkIsValidNumber
-import com.example.phonenumberlocator.pnlExtensionFun.countryIso
-import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlExtensionFun.launchEditContactIntent
-import com.example.phonenumberlocator.pnlExtensionFun.normalizePhoneNumber
+import com.example.phonenumberlocator.pnlExtensionFun.*
 import com.example.phonenumberlocator.pnlModel.PNLMyContact
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.pnlUtil.PNLDataStoreDb
@@ -41,7 +35,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 
@@ -50,6 +43,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
 
     override fun getViewBinding(): ActivityPnlcontactsDetailedBinding =
         ActivityPnlcontactsDetailedBinding.inflate(layoutInflater)
+
     private var countryName: String? = null
     private val CALL_PERMISSION_REQUEST_CODE = 1
 
@@ -66,8 +60,13 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            showSimpleInterstitialAdWithTimeAndCounter()
 
+        if (RemoteConfigClass.inter_pnl_contacts_detailed_activity
+            && isNetworkAvailable()
+            && canRequestAd
+        ) {
+            showSimpleInterstitialAdWithTimeAndCounter()
+        }
 
 
         initViews()
@@ -91,8 +90,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
                             if (it.normalizedNumber == formatted || it.normalizedNumber == recentDetailModel.phoneNumber.normalizePhoneNumber() || cfn == formatted) {
                                 userContact = contact
                                 Log.d(
-                                    "fetchContact",
-                                    "userContact Exist= ${recentDetailModel.name}"
+                                    "fetchContact", "userContact Exist= ${recentDetailModel.name}"
                                 )
                                 return@getAvailableContacts
                             }
@@ -120,7 +118,7 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
             PhoneNumberLocator.instance.findCountryByDialCode("+${swissNumberProto.countryCode}") { countryModel ->
                 binding.txtAddressDetail.text = countryModel.name
                 Log.d(TAG, "onCreate3: ${countryModel.name}")
-                countryName=countryModel.name
+                countryName = countryModel.name
                 Log.d(TAG, "onCreate2: ${countryModel.name}")
 
             }
@@ -161,23 +159,20 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
         binding.backArrow.setOnClickListener { finish() }
 
         binding.editContact.setOnClickListener {
-            canShowAppOpen=true
+            isAppOpenEnable = true
             userContact?.let {
                 launchEditContactIntent(it)
             }
         }
 
         binding.makeCall.setOnClickListener {
-            canShowAppOpen=true
+            isAppOpenEnable = true
             if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.CALL_PHONE
+                    this, Manifest.permission.CALL_PHONE
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.CALL_PHONE),
-                    CALL_PERMISSION_REQUEST_CODE
+                    this, arrayOf(Manifest.permission.CALL_PHONE), CALL_PERMISSION_REQUEST_CODE
                 )
             } else {
                 userContact?.phoneNumbers?.first()?.normalizedNumber?.let { it1 -> dialNumber(it1) }
@@ -185,13 +180,13 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
         }
 
         binding.blockContact.setOnClickListener {
-            canShowAppOpen=true
-            val telecomManager= getSystemService(Context.TELECOM_SERVICE) as TelecomManager
+            isAppOpenEnable = true
+            val telecomManager = getSystemService(Context.TELECOM_SERVICE) as TelecomManager
             startActivity(telecomManager.createManageBlockedNumbersIntent(), null);
         }
 
         binding.sendMessage.setOnClickListener {
-            canShowAppOpen=true
+            isAppOpenEnable = true
             userContact?.let {
                 val phoneNumber = it.phoneNumbers.first().normalizedNumber
                 if (isWhatsAppInstalled()) {
@@ -220,16 +215,24 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     }
 
     override fun onResume() {
-        canShowAppOpen=false
+        isAppOpenEnable = false
 
         super.onResume()
     }
 
     private fun showAd() {
-        if (isNetworkAvailable()) {
-            binding.ads.beVisible()
-            nativeAdLarge.observe(this) {
-                showLoadedNativeAd(this, binding.ads, R.layout.native_large_2, it)
+        if (RemoteConfigClass.native_pnl_contacts_detailed_activity) {
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+                binding.ads.beVisible()
+                nativeAdLarge.observe(this) {
+                    showLoadedNativeAd(
+                        this,
+                        binding.ads,
+                        binding.includeShimmer.shimmerContainerNative,
+                        R.layout.native_large_2,
+                        it
+                    )
+                }
             }
         } else {
             binding.ads.beGone()

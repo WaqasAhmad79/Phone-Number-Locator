@@ -1,5 +1,6 @@
 package com.example.phonenumberlocator.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -11,16 +12,14 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLang
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative1
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative2
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative3
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative4
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.AdsConsentManager
 import com.example.phonenumberlocator.admob_ads.OpenApp
-import com.example.phonenumberlocator.admob_ads.isShowAD
+import com.example.phonenumberlocator.admob_ads.OpenApp.isShowingAd
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
-import com.example.phonenumberlocator.admob_ads.loadSplashAdmobInterstitial
+import com.example.phonenumberlocator.admob_ads.loadNormalAdmobInterstitial
+import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.databinding.ActivityPnlsplashBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
@@ -29,10 +28,9 @@ import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
 import com.example.phonenumberlocator.pnlUtil.setCurrentLocale
 import com.example.phonenumberlocator.ui.MainActivity
-import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
-import com.google.android.gms.ads.MobileAds
 
 class PNLSplashActivity : AppCompatActivity() {
+    private val TAG = "PNLSplashActivity"
     private lateinit var binding: ActivityPnlsplashBinding
 
     var started = false
@@ -53,39 +51,7 @@ class PNLSplashActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             )
         }
-
-
-//51B1AB5BA7D2641277DFA65518CC6E7A for oppo
-        val adsConsentManager = AdsConsentManager(this)
-
-
-//        adsConsentManager.requestUMP(
-//            true,
-////            "0254F76DB20D82B091C239339F2DE723",
-//            "ADBD1C00EB2F9B3B519E880F72F8F341",
-//            true
-//        ) { canRequestAds ->
-//            runOnUiThread(this::splashEnd)
-//            Log.e("AdsConsentManager", "adsConsentManager response :$canRequestAds ")
-//            if (canRequestAds) {
-//                handleConsentFormAndAdsRequests()
-//            } else {
-//                splashEnd()
-//            }
-//        }
-
-
-        adsConsentManager.requestUMP { canRequest ->
-            Log.e("AdsConsentManager", "adsConsentManager response :$canRequest ")
-            runOnUiThread(this::splashEnd)
-            if (canRequest) {
-                handleConsentFormAndAdsRequests()
-            } else {
-                splashEnd()
-            }
-        }
-
-
+        startSplash()
         val mySharePreferences = PNLMySharePreferences(this)
         started = mySharePreferences.appStarted
 
@@ -97,6 +63,46 @@ class PNLSplashActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
+    fun startSplash() {
+
+        RemoteConfigClass.fetchRecord(this) {
+            Log.d(TAG, "startSplash: Remote config success")
+            val adsConsentManager = AdsConsentManager(this)
+
+
+            // Ads consent for testing
+
+            /*        adsConsentManager.requestUMP(
+                        true,
+            //            "0254F76DB20D82B091C239339F2DE723",// your testing device id
+                        true
+                    ) { canRequestAds ->
+                        PhoneNumberLocator.canRequestAd=canRequestAds
+                        runOnUiThread(this::splashEnd)
+                        Log.e("AdsConsentManager", "adsConsentManager response :$canRequestAds ")
+                        if (canRequestAds) {
+                            handleConsentFormAndAdsRequests()
+                        } else {
+                            splashEnd()
+                        }
+                    }*/
+
+
+            // Ads consent for release build
+            adsConsentManager.requestUMP { canRequest ->
+                Log.e("$TAG AdsConsentManager", "adsConsentManager response :$canRequest ")
+                PhoneNumberLocator.canRequestAd = canRequest
+                runOnUiThread(this::splashEnd)
+                if (canRequest) {
+                    handleConsentFormAndAdsRequests()
+                } else {
+                    splashEnd()
+                }
+            }
+        }
+    }
+
     private fun splashEnd() {
         Handler(Looper.getMainLooper()).postDelayed({
 
@@ -106,14 +112,15 @@ class PNLSplashActivity : AppCompatActivity() {
                 // The user has seen the Onboard
 
             } else if (!baseConfig.isAppIntroComplete) {
+
                 startActivity(
                     Intent(
-                        this@PNLSplashActivity, PNLIntroSliderActivity::class.java
+                        this@PNLSplashActivity, PNLLanguageActivity::class.java
                     ).putExtra("isComingFromSplash", true)
                 )
                 finish()
             } else {
-                isShowAD = true
+                isShowingAd = true
                 startActivity(
                     Intent(
                         this@PNLSplashActivity, MainActivity::class.java
@@ -125,73 +132,59 @@ class PNLSplashActivity : AppCompatActivity() {
 
     }
 
-
     private fun handleConsentFormAndAdsRequests() {
         PhoneNumberLocator.instance.let {
-            OpenApp.initialize(it)
-            OpenApp.fetchAd()
+
+            if (RemoteConfigClass.App_Open_Ad && PhoneNumberLocator.canRequestAd) {
+                OpenApp.initialize(it)
+                OpenApp.fetchAd()
+            }
+
         }
 
         // consent done .............load ads here
-        loadSplashAdmobInterstitial()
+        Log.d(TAG, "handleConsentFormAndAdsRequests: ${RemoteConfigClass.interSplash}")
+
+        if (RemoteConfigClass.interSplash && PhoneNumberLocator.canRequestAd) {
+            loadNormalAdmobInterstitial(getString(R.string.admob_splash_interistitial_low))
+        }
+
         handleAds()
     }
 
     private fun handleAds() {
+        if (RemoteConfigClass.interSplash || RemoteConfigClass.interOtherHome) {
+            if (PhoneNumberLocator.canRequestAd) {
+                loadNormalAdmobInterstitial(getString(R.string.admob_splash_interistitial_low))
+            }
+        }
+
         if (!baseConfig.appStarted) {
-            if (isNetworkAvailable()) {
-                loadAndReturnAd(
-                    this@PNLSplashActivity, resources.getString(R.string.admob_native_lang_low)
-                ) { it2 ->
-                    if (it2 != null) {
-                        nativeAdLang.value = it2
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
+                if (RemoteConfigClass.banner_splash) { // Banner Splash
+                    binding.ads.beVisible()
+                    showBannerAdmob(binding.ads, this, getString(R.string.ad_mob_banner_id))
+                } else {
+                    binding.ads.beGone()
+                }
+
+                if (RemoteConfigClass.native_language) { // Native Language Ad
+
+                    loadAndReturnAd(
+                        this@PNLSplashActivity, resources.getString(R.string.admob_native_lang_low)
+                    ) { it2 ->
+                        Log.d("Native_language_ad ", "value: $it2")
+                        if (it2 != null) {
+                            nativeAdLang.value = it2
+                        }
                     }
                 }
             } else {
+                binding.ads.beGone()
                 nativeAdLang.postValue(null)
-            }
-        }
-//        loadAndReturnAd(
-//            this@PNLSplashActivity, resources.getString(R.string.admob_native_main_low)
-//        ) { it2 ->
-//            if (it2 != null) {
-//                nativeAdMain.value = it2
-//            }
-//        }
-        if (!baseConfig.isAppIntroComplete) {
-            loadAndReturnAd(
-                this@PNLSplashActivity, resources.getString(R.string.admob_native_boarding_low)
-            ) { it2 ->
-                if (it2 != null) {
-                    onBoardNative1.value = it2
-                }
-            }
-
-            loadAndReturnAd(
-                this@PNLSplashActivity, resources.getString(R.string.admob_native_boarding_low)
-            ) { it2 ->
-                if (it2 != null) {
-                    onBoardNative2.value = it2
-                }
-            }
-
-            loadAndReturnAd(
-                this@PNLSplashActivity, resources.getString(R.string.admob_native_boarding_low)
-            ) { it2 ->
-                if (it2 != null) {
-                    onBoardNative3.value = it2
-                }
-            }
-
-            loadAndReturnAd(
-                this@PNLSplashActivity, resources.getString(R.string.admob_native_boarding_low)
-            ) { it2 ->
-                if (it2 != null) {
-                    onBoardNative4.value = it2
-                }
             }
         }
 
     }
-
 }

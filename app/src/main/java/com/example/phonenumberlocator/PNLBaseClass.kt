@@ -29,7 +29,7 @@ import com.example.phonenumberlocator.pnlExtensionFun.getPermissionString
 import com.example.phonenumberlocator.pnlExtensionFun.hasNotificationListenerGranted
 import com.example.phonenumberlocator.pnlExtensionFun.hasPermission
 import com.example.phonenumberlocator.pnlExtensionFun.showErrorToast
-import org.jetbrains.anko.toast
+import com.example.phonenumberlocator.pnlExtensionFun.toast
 
 
 abstract class PNLBaseClass<B : ViewBinding> : AppCompatActivity() {

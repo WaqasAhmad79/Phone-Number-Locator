@@ -95,6 +95,10 @@ fun Context.toast(str: Int) {
     Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
 }
 
+fun Context.toast(str: String) {
+    Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
+}
+
 fun Context.getAdjustedPrimaryColor() = when {
     isWhiteTheme() || isBlackAndWhiteTheme() -> baseConfig.accentColor
     else -> baseConfig.primaryColor

@@ -18,6 +18,7 @@ import com.example.phonenumberlocator.pnlModel.PNLCountryModel
 import com.example.tracklocation.tlUtil.readToObjectList
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.nativead.NativeAd
+import com.google.firebase.FirebaseApp
 import com.google.gson.Gson
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -30,11 +31,10 @@ import java.io.BufferedReader
 
 
 @HiltAndroidApp
-class PhoneNumberLocator: Application(), LifecycleObserver {
+class PhoneNumberLocator : Application(), LifecycleObserver {
     var countries = mutableListOf<PNLCountryModel>()
 
     var countryDataList: List<PNLCountryData> = ArrayList()
-
 
     fun getDetailLanguageCategory(): List<PNLCountryData> {
         val inputStream = assets.open("country_codes.json")
@@ -65,7 +65,7 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         // Log the Mobile Ads SDK version.
         Log.d("TAG", "Google Mobile Ads SDK Version: " + MobileAds.getVersion())
-
+        FirebaseApp.initializeApp(this)
 
         applicationInstance = this@PhoneNumberLocator
         instance = this@PhoneNumberLocator
@@ -113,13 +113,28 @@ class PhoneNumberLocator: Application(), LifecycleObserver {
 
     companion object {
         lateinit var instance: PhoneNumberLocator
+
+        // first language screen
         val nativeAdLang: MutableLiveData<NativeAd> = MutableLiveData()
-        val nativeAdSmall: MutableLiveData<NativeAd> = MutableLiveData()
-        val nativeAdLarge: MutableLiveData<NativeAd> = MutableLiveData()
+        val nativeAdLangDup: MutableLiveData<NativeAd> = MutableLiveData()
+
+        //second language screen
+        val nativeAdLangOther: MutableLiveData<NativeAd> = MutableLiveData()
+        val nativeAdLangOtherDup: MutableLiveData<NativeAd> = MutableLiveData()
+
+        //Welcome screen ads
+        val nativeAdWelcome: MutableLiveData<NativeAd> = MutableLiveData()
+        val nativeAdWelcomeDup: MutableLiveData<NativeAd> = MutableLiveData()
+
         val onBoardNative1: MutableLiveData<NativeAd?> = MutableLiveData()
-        val onBoardNative2: MutableLiveData<NativeAd?> = MutableLiveData()
+        //        val onBoardNative2: MutableLiveData<NativeAd?> = MutableLiveData()
         val onBoardNative3: MutableLiveData<NativeAd?> = MutableLiveData()
         val onBoardNative4: MutableLiveData<NativeAd?> = MutableLiveData()
+
+        val nativeAdSmall: MutableLiveData<NativeAd> = MutableLiveData()
+        val nativeAdLarge: MutableLiveData<NativeAd> = MutableLiveData()
+
+        var canRequestAd = false
 
         @SuppressLint("StaticFieldLeak")
         @get:Synchronized

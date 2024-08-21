@@ -6,14 +6,18 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLang
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLangDup
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLangOther
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdWelcome
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.AdsConsentManager
-import com.example.phonenumberlocator.admob_ads.interstitialAdPriority
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
-import com.example.phonenumberlocator.admob_ads.showSplashInterstitial
+import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
@@ -21,16 +25,14 @@ import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
 import com.example.phonenumberlocator.pnlUtil.changeLanguage
 import com.example.phonenumberlocator.pnlUtil.refreshLanguageStrings
-import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
+import com.example.phonenumberlocator.ui.MainActivity
 import java.util.Locale
-
 
 class PNLLanguageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPnllanguageBinding
     private var lang: String = "English"
     private val mySharePreferences = PNLMySharePreferences(this@PNLLanguageActivity)
     private var langName: String? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,19 +41,12 @@ class PNLLanguageActivity : AppCompatActivity() {
 
         handleAds()
 
-
-        langName = baseConfig.appLanguage
-        langName?.let { updateLanguageSelection(it) }
-        //binding.clEnglish.background = resources.getDrawable(R.drawable.drawablestroke)
-
-        initListeners()
-
-        if(AdsConsentManager.getConsentResult(this)){
-
+        if (PhoneNumberLocator.canRequestAd) {
             showAd()
-        }else{
-
         }
+
+        langName = null
+        initListeners()
 
         binding.tick.setOnClickListener {
             when (langName) {
@@ -71,36 +66,103 @@ class PNLLanguageActivity : AppCompatActivity() {
                 "ja" -> setLocaleAndChangeLanguage("ja")
                 "ko" -> setLocaleAndChangeLanguage("ko")
                 "th" -> setLocaleAndChangeLanguage("th")
-            }
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    private fun handleAds() {
-        if (isNetworkAvailable()) {
-            val lang = intent.getBooleanExtra("setting", false)
-            if (!lang) {
-                showSplashInterstitial()
-            } else {
-                loadAndReturnAd(
-                    this@PNLLanguageActivity, resources.getString(R.string.admob_native_lang_low)
-                ) { it2 ->
-                    if (it2 != null) {
-                        showLoadedNativeAd(
-                            this,
-                            binding.ads,
-                            R.layout.native_large_2, it2
-                        )
-                    } else {
-                        binding.ads.beGone()
-                    }
-
+                else -> {
+                    Toast.makeText(
+                        this@PNLLanguageActivity,
+                        "Please select a language first",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+        }
+
+    }
+
+
+    private fun handleAds() {
+        if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+            val lang = intent.getBooleanExtra( // if true it means that we are coming from settings
+                "setting",
+                false
+            )
+            if (!lang) {
+                if (RemoteConfigClass.inter_pnl_language_activity) {
+                    showNormalAdmobInterstitial()
+                }
+
+
+            } else {
+                if (RemoteConfigClass.native_language) {
+                    loadAndReturnAd(
+                        this@PNLLanguageActivity,
+                        resources.getString(R.string.admob_native_lang_low)
+                    ) { it2 ->
+                        if (it2 != null) {
+                            if (RemoteConfigClass.native_language && PhoneNumberLocator.canRequestAd) {
+                                showLoadedNativeAd(
+                                    this,
+                                    binding.ads,
+                                    binding.includeShimmer.shimmerContainerNative,
+                                    R.layout.native_large_2,
+                                    it2
+                                )
+                            }
+                        } else {
+                            binding.ads.beGone()
+                        }
+                    }
+                }
+            }
+
+
+            // Native language duplicate ad load first screen
+            if (RemoteConfigClass.native_dup_language_activity) {
+                loadAndReturnAd(
+                    this@PNLLanguageActivity, resources.getString(R.string.admob_native_lang_low)
+                ) { it1 ->
+                    Log.d("Native_dup_language_ad ", "value: $it1")
+                    if (it1 != null) {
+                        nativeAdLangDup.value = it1
+                    }
+                }
+            } else {
+                nativeAdLangDup.value = null
+            }
+
+
+            // Native first ad load for welcome screen (native_welcome_screen_activity)
+            if (!lang) { //  don't load the welcome screen ad if coming from the settings
+                if (!baseConfig.isAppIntroComplete) { // don't load the welcome screen ad if app intro is complete i.e second run of app
+                    if (RemoteConfigClass.native_welcome_screen_activity) {
+                        loadAndReturnAd(
+                            this@PNLLanguageActivity,
+                            resources.getString(R.string.admob_native_large)
+                        ) { it1 ->
+                            Log.d("nativeAdWelcome ", "value: $it1")
+                            if (it1 != null) {
+                                nativeAdWelcome.value = it1
+                            }
+                        }
+                    } else {
+                        nativeAdWelcome.value = null
+                    }
+                }
+            }
+
+            // Native language other Ad load second language screen
+            if (RemoteConfigClass.native_language_other_activity) {
+                loadAndReturnAd(
+                    this@PNLLanguageActivity, resources.getString(R.string.admob_native_lang_low)
+                ) { it1 ->
+                    if (it1 != null) {
+                        nativeAdLangOther.value = it1
+                    }
+                }
+            } else {
+                nativeAdLangOther.value = null
+            }
+
+
         }
     }
 
@@ -145,14 +207,14 @@ class PNLLanguageActivity : AppCompatActivity() {
 
         langName = selectedLanguage
         val lowercaseLangName = langName?.toLowerCase(Locale.ROOT) ?: ""
-        Log.d(
-            "LanguageDebug",
-            "Selected Language Name: $langName, Lowercase Language Name: $lowercaseLangName"
-        )
         val langIndex = langNameIndex(lowercaseLangName)
         clIds.forEach { it.background = null }
+
         clIds[langIndex].background =
             resources.getDrawable(R.drawable.drawablestroke)
+
+        // Show the second ad when a language is selected
+        showSecondAdDup()
     }
 
     private fun langNameIndex(language: String): Int {
@@ -178,20 +240,31 @@ class PNLLanguageActivity : AppCompatActivity() {
         return if (index >= 0) index else 0 // Fallback to the first language if not found
     }
 
-
     private fun setLocaleAndChangeLanguage(language: String) {
         baseConfig.appLanguage = language
         setLocale(language)
         changeLanguage(language)
         refreshLanguageStrings()
+        if (language == "en" || language == "hi") {
 
-        if (!baseConfig.appStarted) {
-            baseConfig.appStarted = true
-            startActivity(Intent(this@PNLLanguageActivity, PNLIntroSliderActivity::class.java))
+            // Start PNLLanguageDuplicateActivity activity
+            val intent = Intent(this@PNLLanguageActivity, PNLLanguageDuplicateActivity::class.java)
+            intent.putExtra("selectedLanguage", language)
+            startActivity(intent)
+
+        } else if (!baseConfig.appStarted) {
+            startActivity(Intent(this@PNLLanguageActivity, WelcomeScreenActivity::class.java))
             finish()
         } else {
+            startActivity(
+                Intent(
+                    this@PNLLanguageActivity,
+                    MainActivity::class.java
+                )
+            )
             finish()
         }
+
     }
 
     private fun setLocale(language: String) {
@@ -210,15 +283,41 @@ class PNLLanguageActivity : AppCompatActivity() {
         editor.apply()
     }
 
-
     private fun showAd() {
-        if (isNetworkAvailable()) {
-            binding.ads.visibility = View.VISIBLE
-            nativeAdLang.observe(this) {
-                showLoadedNativeAd(this, binding.ads, R.layout.native_large_2, it)
+        if (RemoteConfigClass.native_language) {
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+                binding.ads.visibility = View.VISIBLE
+                nativeAdLang.observe(this) {
+                    showLoadedNativeAd(
+                        this,
+                        binding.ads,
+                        binding.includeShimmer.shimmerContainerNative,
+                        R.layout.native_large_2,
+                        it
+                    )
+                }
             }
         } else {
             binding.ads.visibility = View.GONE
+        }
+    }
+
+    private fun showSecondAdDup() {
+        if (RemoteConfigClass.native_dup_language_activity) {
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+                binding.ads.visibility = View.VISIBLE
+                nativeAdLangDup.observe(this) { nativeAd ->
+                    showLoadedNativeAd(
+                        this,
+                        binding.ads,
+                        binding.includeShimmer.shimmerContainerNative,
+                        R.layout.native_large_2,
+                        nativeAd
+                    )
+                }
+            }
+        } else {
+            binding.ads.beGone()
         }
     }
 }

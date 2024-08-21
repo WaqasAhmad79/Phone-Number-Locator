@@ -155,4 +155,10 @@
     <string name="_0m">0मीटर</string>
     <string name="delete">हटाएं</string>
     <string name="undo">पूर्ववत करें</string>
+    <string name="welcome">WELCOME</string>
+    <string name="phone_number_locator">Phone Number Locator</string>
+    <string name="phone_tracker">Phone Tracker</string>
+    <string name="gps_tracker_new">GPS Tracker</string>
+    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
+    <string name="view_complete_location_history">View Complete Location History</string>
 </resources>

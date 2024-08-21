@@ -11,9 +11,12 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
-import com.example.phonenumberlocator.admob_ads.showSimpleInterstitial
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
+import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivitySavedImageConfirmationBinding
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import java.io.File
 import java.io.OutputStream
@@ -28,7 +31,12 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
         binding = ActivitySavedImageConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-            showSimpleInterstitial()
+        if (RemoteConfigClass.inter_pnl_saved_image_confirmation_activity
+            && isNetworkAvailable()
+            && canRequestAd
+        ) {
+            showNormalAdmobInterstitial()
+        }
 
         val imagePath = intent.getStringExtra("imagePath")
         if (imagePath != null) {
@@ -44,7 +52,7 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.share.setOnClickListener {
-            canShowAppOpen = true
+            isAppOpenEnable = true
             if (imageBitmap != null) {
                 share(imageBitmap!!)
             }
@@ -98,7 +106,7 @@ class PNLSavedImageConfirmationActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        canShowAppOpen = false
+        isAppOpenEnable = false
         super.onResume()
     }
 

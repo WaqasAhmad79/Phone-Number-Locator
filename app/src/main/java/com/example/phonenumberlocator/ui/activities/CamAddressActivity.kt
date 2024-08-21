@@ -8,10 +8,13 @@ import android.os.Environment
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
-import com.example.phonenumberlocator.admob_ads.loadCollapsibleBanner
-import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
+import com.example.phonenumberlocator.admob_ads.AdsConsentManager
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
+import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.databinding.ActivityCamAdresBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -22,8 +25,7 @@ import com.example.phonenumberlocator.ui.activities.camAddress.PNLGpsAddressActi
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 class CamAddressActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCamAdresBinding
@@ -36,14 +38,26 @@ class CamAddressActivity : AppCompatActivity() {
         binding = ActivityCamAdresBinding.inflate(layoutInflater)
         setContentView(binding.root)
         handleClicks()
-        if (isNetworkAvailable()){
-            binding.ads.beVisible()
-            loadCollapsibleBanner(this,getString(R.string.adaptive_mob_banner_id),binding.ads)
-        }else{
+        handleBannerAd()
+
+    }
+
+    fun handleBannerAd() {
+        if (RemoteConfigClass.banner_cam_address_activity) {
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+                binding.ads.beVisible()
+                val config = BannerAdConfig(
+                    getString(R.string.ad_mob_banner_id), true, true, true
+                )
+                val bannerAdHelperClass = BannerAdHelper(this, this, config)
+                bannerAdHelperClass.myView = binding.ads
+                bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+                bannerAdHelperClass.showBannerAdmob()
+            }
+
+        } else {
             binding.ads.beGone()
         }
-
-
     }
 
     private fun handleClicks() {
@@ -51,9 +65,8 @@ class CamAddressActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.gpsAddress.setOnClickListener {
-            canShowAppOpen = true
+            isAppOpenEnable = true
             dispatchTakePictureIntent()
-
         }
         binding.areaCalculator.setOnClickListener {
 
@@ -120,7 +133,7 @@ class CamAddressActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        canShowAppOpen=false
+        isAppOpenEnable = false
         super.onResume()
     }
 

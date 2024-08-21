@@ -39,10 +39,9 @@
             android:layout_marginEnd="8dp"
             android:src="@drawable/ic_check"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".095" />
+            app:layout_constraintWidth_percent="0.12" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -50,17 +49,17 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/_5sdp"
         android:background="#f1f1f1"
-       android:layout_marginVertical="@dimen/_5sdp"
         app:layout_constraintBottom_toTopOf="@+id/ads"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout15">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -403,7 +402,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_5sdp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <androidx.cardview.widget.CardView
@@ -516,7 +515,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_5sdp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <androidx.cardview.widget.CardView
@@ -629,7 +628,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_5sdp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <androidx.cardview.widget.CardView
@@ -744,7 +743,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_5sdp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <androidx.cardview.widget.CardView
@@ -859,7 +858,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_5sdp"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible">
 
 
                 <androidx.cardview.widget.CardView
@@ -982,15 +981,20 @@
         android:layout_marginVertical="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/includeShimmer"
+            layout="@layout/loading_custom_native_admob_media_small" />
+    </FrameLayout>
 
 
- <!--   <FrameLayout
-        android:id="@+id/ads"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="@dimen/_225sdp"
-        android:layout_marginHorizontal="@dimen/_5sdp"
-        app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <!--   <FrameLayout
+           android:id="@+id/ads"
+           android:layout_width="match_parent"
+           android:visibility="gone"
+           android:layout_height="@dimen/_225sdp"
+           android:layout_marginHorizontal="@dimen/_5sdp"
+           app:layout_constraintBottom_toBottomOf="parent"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,22 +7,23 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
-import com.example.phonenumberlocator.admob_ads.isShowAD
+import com.example.phonenumberlocator.admob_ads.OpenApp.isShowingAd
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
+import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
-import com.example.phonenumberlocator.admob_ads.loadCollapsibleBanner
-import com.example.phonenumberlocator.admob_ads.loadSearchAdmobInterstitial
-import com.example.phonenumberlocator.admob_ads.loadSimpleAdmobInterstitial
-import com.example.phonenumberlocator.admob_ads.showSplashInterstitial
+import com.example.phonenumberlocator.admob_ads.showExitAdmobInterstitial
+import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityMainBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -33,17 +34,12 @@ import com.example.phonenumberlocator.ui.activities.CallLocActivity
 import com.example.phonenumberlocator.ui.activities.CamAddressActivity
 import com.example.phonenumberlocator.ui.activities.GpsTrackActivity
 import com.example.phonenumberlocator.ui.activities.PNLLanguageActivity
+import com.example.phonenumberlocator.ui.activities.ThankyouScreenActivity
 import com.example.phonenumberlocator.ui.pnlDialog.PNLExitDialog
-import com.google.ads.mediation.admob.AdMobAdapter
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
 import com.google.android.material.navigation.NavigationView
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.util.UUID
-import kotlin.system.exitProcess
 
 
 class MainActivity : PNLBaseClass<ActivityMainBinding>() {
@@ -63,50 +59,68 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         handleAds()
-
         EventBus.getDefault().register(this)
-
         initViews()
         handleClicks()
-        if (isNetworkAvailable()){
-            binding.content.ads.beVisible()
-            loadCollapsibleBanner(this,getString(R.string.adaptive_mob_banner_id),binding.content.ads)
-        }else{
+        handleBannerAd()
+    }
+
+    fun handleBannerAd() {
+        if (RemoteConfigClass.banner_main_activity) {
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+                binding.content.ads.beVisible()
+                val config = BannerAdConfig(
+                    getString(R.string.ad_mob_banner_id), true, true, true
+                )
+                val bannerAdHelperClass = BannerAdHelper(this, this, config)
+                bannerAdHelperClass.myView = binding.content.ads
+                bannerAdHelperClass.shimmer = binding.content.bannerView.customBannerShimmer
+                bannerAdHelperClass.showBannerAdmob()
+            }
+        } else {
             binding.content.ads.beGone()
         }
-
-
     }
 
     private fun handleAds() {
         if (isNetworkAvailable()) {
-            Log.d("isComingFromSplash", "onCreate: $isShowAD")
-            if (!isShowAD) {
+
+            Log.d("isComingFromSplash", "onCreate: $isShowingAd")
+            if (!isShowingAd) {
                 requestPermission()
             } else {
                 Log.d(TAG, "onCreate: ")
-                showSplashInterstitial { requestPermission() }
+                showNormalAdmobInterstitial { requestPermission() }
             }
-            loadSimpleAdmobInterstitial()
-            loadSearchAdmobInterstitial()
-            loadAndReturnAd(
-                this@MainActivity,
-                resources.getString(R.string.admob_native_small)
-            ) { it2 ->
-                if (it2 != null) {
-                    nativeAdSmall.value = it2
+
+            if (RemoteConfigClass.native_pnl_call_locator_activity && PhoneNumberLocator.canRequestAd) {
+                loadAndReturnAd(
+                    this@MainActivity,
+                    resources.getString(R.string.admob_native_small)
+                ) { it2 ->
+                    if (it2 != null) {
+                        nativeAdSmall.value = it2
+                    }
                 }
             }
-            loadAndReturnAd(
-                this@MainActivity,
-                resources.getString(R.string.admob_native_large)
-            ) { it2 ->
-                if (it2 != null) {
-                    nativeAdLarge.value = it2
+
+            if (
+                (RemoteConfigClass.native_call_locator_details_activity
+                        || RemoteConfigClass.native_gps_location_activity
+                        || RemoteConfigClass.native_pnl_contacts_detailed_activity)
+                && (PhoneNumberLocator.canRequestAd)
+            ) {
+                loadAndReturnAd(
+                    this@MainActivity,
+                    resources.getString(R.string.admob_native_large)
+                ) { it2 ->
+                    if (it2 != null) {
+                        nativeAdLarge.value = it2
+                    }
                 }
             }
+
         }
     }
 
@@ -138,7 +152,9 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -154,7 +170,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     override fun onResume() {
         super.onResume()
-        canShowAppOpen = false
+        isAppOpenEnable = false
 
     }
 
@@ -167,7 +183,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
         navDrawerView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_privacy -> {
-                    canShowAppOpen = true
+                    isAppOpenEnable = true
                     val browserIntent = Intent(
                         Intent.ACTION_VIEW,
                         Uri.parse(resources.getString(R.string.privacy_policy_link))
@@ -177,13 +193,13 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
                 }
 
                 R.id.nav_share -> {
-                    canShowAppOpen = true
+                    isAppOpenEnable = true
                     PNLAppsUtils.shareApp(this)
                     true
                 }
 
                 R.id.nav_rate -> {
-                    canShowAppOpen = true
+                    isAppOpenEnable = true
                     PNLAppsUtils.rateUs(this)
                     true
                 }
@@ -204,6 +220,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     @SuppressLint("SuspiciousIndentation")
     private fun handleClicks() {
+
         binding.content.callLocator.setOnClickListener {
             startActivity(Intent(this, CallLocActivity::class.java))
         }
@@ -214,32 +231,46 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
             startActivity(Intent(this, CamAddressActivity::class.java))
         }
 
-
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
-            PNLExitDialog(this) {
-//              finishAffinity()
-                finish()
-                exitProcess(0)
+
+            if (RemoteConfigClass.inter_exit_app_activity) {
+                showExitAdmobInterstitial(
+                    {
+                        // go to ThankyouScreenActivity if ad shown successfully
+                        startActivity(Intent(this, ThankyouScreenActivity::class.java))
+//                        finish()
+                    }, {
+
+                        // Show only exit dialog if the ad failed to show and exit app
+                        PNLExitDialog(this) {
+//                            finish()
+//                            exitProcess(0)
+                        }
+
+                    },
+                    {
+
+                    }
+                )
+            } else {
+                PNLExitDialog(this) {
+//                    finish()
+//                    exitProcess(0)
+                }
             }
         }
     }
 
-
     override fun onPause() {
         super.onPause()
-        isShowAD = false
+        isShowingAd = false
     }
-
-
-
-
-
-
 
 }

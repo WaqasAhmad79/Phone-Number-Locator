@@ -8,21 +8,15 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
+import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.canShowAppOpen
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlfindAddressBinding
-import com.example.phonenumberlocator.pnlExtensionFun.beGone
-import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
-import com.example.phonenumberlocator.pnlExtensionFun.beVisible
-import com.example.phonenumberlocator.pnlExtensionFun.copyText
-import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
-import com.example.phonenumberlocator.pnlExtensionFun.gpsStatusCheck
-import com.example.phonenumberlocator.pnlExtensionFun.hideKeyboard
-import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
-import com.example.phonenumberlocator.pnlExtensionFun.shareCurrentLocation
-import com.example.phonenumberlocator.pnlExtensionFun.toast
+import com.example.phonenumberlocator.pnlExtensionFun.*
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -45,6 +39,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
     override fun getViewBinding(): ActivityPnlfindAddressBinding {
         return ActivityPnlfindAddressBinding.inflate(layoutInflater)
     }
+
     @Inject
     lateinit var checkInternetConnection: PNLCheckInternetConnection
 
@@ -61,7 +56,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-         handleAds()
+        handleAds()
 
         gpsStatusCheck() {
             if (it) {
@@ -71,15 +66,23 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
         }
         clickListeners()
 
-        showBannerAdmob(binding.flBanner,this,getString(R.string.ad_mob_banner_id))
+        if (RemoteConfigClass.banner_pnl_find_address_activity && PhoneNumberLocator.canRequestAd) {
+            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id))
+        } else {
+            binding.flBanner.beGone()
+        }
 
     }
 
-    fun handleAds(){
-        if (isNetworkAvailable()){
-            showSimpleInterstitialAdWithTimeAndCounter()
+    fun handleAds() {
 
+        if (RemoteConfigClass.inter_pnl_find_address_activity
+            && isNetworkAvailable()
+            && canRequestAd
+        ) {
+            showSimpleInterstitialAdWithTimeAndCounter()
         }
+
     }
 
     private fun initView() {
@@ -91,6 +94,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
                 override fun onPermissionGranted(permissionGrantedResponse: PermissionGrantedResponse) {
                     getMyLocation()
                 }
+
                 override fun onPermissionDenied(permissionDeniedResponse: PermissionDeniedResponse) {}
                 override fun onPermissionRationaleShouldBeShown(
                     permissionRequest: PermissionRequest,
@@ -100,7 +104,6 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
                 }
             }).check()
     }
-
 
     private fun clickListeners() {
 
@@ -131,7 +134,8 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
         binding.cardPlus.setOnClickListener {
             if (zoom < 19) zoom++
             latLng?.let { it1 ->
-                moveMapCamera(it1, zoom) }
+                moveMapCamera(it1, zoom)
+            }
         }
 
         binding.cardMinus.setOnClickListener {
@@ -157,7 +161,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
         }
 
         binding.cardShare.setOnClickListener {
-            canShowAppOpen =true
+            isAppOpenEnable = true
             latLng?.let {
                 address?.let { add -> shareCurrentLocation(it, add) }
             }
@@ -178,6 +182,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
 
 
     }
+
     private fun onSwitch3DButtonClicked(view: View) {
         // Check if the map is ready
         smf?.getMapAsync { googleMap ->
@@ -196,6 +201,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(newCameraPosition))
         }
     }
+
     private fun moveMapCamera(pos: LatLng, zoom: Int) {
         Log.d(TAG, "moveCamera zoom: $zoom")
         Log.d(TAG, "moveCamera zoom.toFloat: ${zoom.toFloat()}")
@@ -268,7 +274,10 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
         smf?.getMapAsync { googleMap ->
             googleMap.clear()
             val markerOptions =
-                latLng?.let { MarkerOptions().position(it).title(resources.getString(R.string.current_location)) }
+                latLng?.let {
+                    MarkerOptions().position(it)
+                        .title(resources.getString(R.string.current_location))
+                }
             if (markerOptions != null) {
                 googleMap.addMarker(markerOptions)
             }
@@ -310,7 +319,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
 
     override fun onResume() {
         super.onResume()
-        canShowAppOpen=false
+        isAppOpenEnable = false
     }
 
 }
