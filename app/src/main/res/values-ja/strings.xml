@@ -1,180 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">電話番号ロケーター</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
+
     <!--splash-->
-    <string name="let_s_start">Let\'s start</string>
-    <string name="splash_text">This action can contain ads</string>
+    <string name="let_s_start">始めましょう</string>
+    <string name="splash_text">このアクションには広告が含まれる場合があります</string>
 
     <!--context-->
-    <string name="no_app_found">No app found</string>
-    <string name="no_post_notifications_permissions">Permission to post notifications is required</string>
-    <string name="unknown_error_occurred">An unknown error occurred</string>
-    <string name="current_location">Current Location</string>
-    <string name="simple_commons" translatable="false">Simple Commons</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="no_address_found">No Address Found</string>
-    <string name="number_blocked">Number Blocked</string>
-    <string name="permission_required">Permission Required</string>
-    <!--main screen-->
-    <string name="call_locator">Call Locator</string>
-    <string name="contact_list">Phone Contact</string>
-    <string name="gps_tracker">GPS Tracker</string>
-    <string name="area_calculator">Area Calculator</string>
-    <string name="share_loc">Share Location</string>
-    <string name="isd_std_code">ISD / STD Code</string>
-    <string name="cam_address">Cam Address</string>
-    <string name="gps_location">GPS Location</string>
-    <string name="find_address">Find Address</string>
-    <string name="gps_address">GPS Address</string>
-    <string name="distance_finder">Distance Finder</string>
-    <string name="recommend_for_you">Recommended for you</string>
-    <string name="num_track_more_option">Number Tracker More Option</string>
+    <string name="no_app_found">アプリが見つかりません</string>
+    <string name="no_post_notifications_permissions">通知を投稿するには許可が必要です</string>
+    <string name="unknown_error_occurred">不明なエラーが発生しました</string>
+    <string name="current_location">現在地</string>
+    <string name="simple_commons">シンプルコモンズ</string>
+    <string name="copied_to_clipboard">クリップボードにコピーされました</string>
+    <string name="no_address_found">住所が見つかりません</string>
+    <string name="number_blocked">ブロックされた番号</string>
+    <string name="permission_required">許可が必要です</string>
 
-    <!-- &lt;!&ndash;live weather&ndash;&gt;
-     <string name="live_weather_header">Live Weather</string>
-     <string name="pressure">Pressure</string>
-     <string name="visibility">Visibility</string>
-     <string name="cloud_cover">Cloud Cover</string>
-     <string name="wind">Wind</string>
-     <string name="temp">Temperature</string>
-     <string name="humidity">Humidity</string>
-     <string name="loading">loading...</string>
-     <string name="sunrise">Sunrise</string>
-     <string name="sunset">Sunset</string>
-     <string name="cannot_find_data">Can\'t find data</string>
-     <string name="turn_on_location">Turn on location</string>
-     <string name="enable_location">Enable Location</string>
-     <string name="search_countries">Search Countries</string>
-     <string name="time_format" translatable="false">EEEE, dd MMMM yyyy hh:mm a</string>-->
+    <!--main screen-->
+    <string name="call_locator">コールロケーター</string>
+    <string name="contact_list">電話連絡先</string>
+    <string name="gps_tracker">GPSトラッカー</string>
+    <string name="area_calculator">面積計算機</string>
+    <string name="share_loc">位置情報を共有する</string>
+    <string name="isd_std_code">ISD / STD コード</string>
+    <string name="cam_address">カムアドレス</string>
+    <string name="gps_location">GPS位置情報</string>
+    <string name="find_address">住所の検索</string>
+    <string name="gps_address">GPSアドレス</string>
+    <string name="distance_finder">距離測定器</string>
+    <string name="recommend_for_you">あなたにおすすめ</string>
+    <string name="num_track_more_option">ナンバートラッカーのその他のオプション</string>
 
     <!--drawer-->
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="share">Share</string>
-    <string name="rate_us">Rate us</string>
-    <string name="language_setting">Language Setting</string>
-    <string name="more">More Apps</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="share">共有</string>
+    <string name="rate_us">評価してください</string>
+    <string name="language_setting">言語設定</string>
+    <string name="more">その他のアプリ</string>
+
     <!--contacts-->
-    <string name="contacts">Contacts</string>
-    <string name="search_contact">Search Number</string>
+    <string name="contacts">連絡先</string>
+    <string name="search_contact">検索番号</string>
+
     <!--live traffic-->
-    <string name="live_traffic_header">Live Traffic</string>
-    <string name="low">Normal</string>
-    <string name="moderate">Medium</string>
-    <string name="heavy">Heavy</string>
-    <string name="copy">Copy</string>
-    <string name="address_copied">Address copied</string>
-    <string name="please_wait">Please wait</string>
+    <string name="live_traffic_header">ライブ交通状況</string>
+    <string name="low">普通</string>
+    <string name="moderate">中くらい</string>
+    <string name="heavy">重い</string>
+    <string name="copy">コピー</string>
+    <string name="address_copied">アドレスをコピーしました</string>
+    <string name="please_wait">お待ちください</string>
 
     <!--share location-->
-    <string name="copy_share">Copy to Clipboard</string>
-    <string name="whatsapp">Whatsapp</string>
-    <string name="share_location_header">Share Location</string>
-    <string name="share_location">Share</string>
-    <string name="address">Address : </string>
-    <string name="city">City : </string>
-    <string name="country">Country : </string>
-    <string name="navigate">Navigate</string>
-    <string name="already_on_destination">Already on Destination</string>
+    <string name="copy_share">クリップボードにコピー</string>
+    <string name="whatsapp">ワッツアップ</string>
+    <string name="share_location_header">位置情報を共有する</string>
+    <string name="share_location">共有</string>
+    <string name="address">住所 ：</string>
+    <string name="city">市 ：</string>
+    <string name="country">国 ：</string>
+    <string name="navigate">ナビゲート</string>
+    <string name="already_on_destination">すでに目的地にいます</string>
 
     <!--permission-->
-    <string name="check_internet_connection">Please check internet connection</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="location_permission_denied">Permission denied</string>
-    <string name="delete_str">Are you sure you want to delete?</string>
-    <string name="already_destination">You are already at the destination.</string>
+    <string name="check_internet_connection">インターネット接続を確認してください</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="location_permission_denied">許可が拒否されました</string>
+    <string name="delete_str">削除してもよろしいですか?</string>
+    <string name="already_destination">あなたはすでに目的地にいます。</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">Find Address</string>
-    <string name="lati">Lat :</string>
-    <string name="longi">Long :</string>
-    <string name="get_location">Get Location</string>
-    <string name="copy_to_clipboard">Copy</string>
-    <string name="navigation">Navigation</string>
-    <string name="lat_long">latitude/longitude</string>
-    <string name="degrees">Degrees (DMS)</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
-    <string name="empty_measurement">Empty measurements</string>
-    <string name="saved_measures">Saved Measures</string>
-    <string name="item_saved">Item saved successfully!</string>
-    <string name="no_history">No History found</string>
-    <string name="loading_ads">Loading Ad...</string>
-    <string name="exit_text">Are you sure you want to exit?</string>
-    <string name="exit">Exit</string>
-    <string name="enter_lat">Enter Latitude</string>
-    <string name="enter_long">Enter Longitude</string>
+    <string name="gps_coordinates_header">住所の検索</string>
+    <string name="lati">緯度:</string>
+    <string name="longi">長さ ：</string>
+    <string name="get_location">位置情報を取得</string>
+    <string name="copy_to_clipboard">コピー</string>
+    <string name="navigation">ナビゲーション</string>
+    <string name="lat_long">緯度/経度</string>
+    <string name="degrees">学位 (DMS)</string>
+    <string name="cancel">キャンセル</string>
+    <string name="ok">わかりました</string>
+    <string name="empty_measurement">空の測定値</string>
+    <string name="saved_measures">保存されたメジャー</string>
+    <string name="item_saved">アイテムは正常に保存されました。</string>
+    <string name="no_history">履歴が見つかりませんでした</string>
+    <string name="loading_ads">広告を読み込んでいます...</string>
+    <string name="exit_text">終了してもよろしいですか?</string>
+    <string name="exit">出口</string>
+    <string name="enter_lat">緯度を入力してください</string>
+    <string name="enter_long">経度を入力してください</string>
 
     <!--number locator-->
-    <string name="search_number">Search Number</string>
-    <string name="enter_phone_number">Enter phone number</string>
-    <string name="network_name">Mobile Network</string>
-    <string name="call">Call</string>
-    <string name="message">Message</string>
-    <string name="create">Edit</string>
-    <string name="block">Block</string>
-    <string name="name">Unknown</string>
-    <string name="name_title">Name :</string>
-    <string name="country_">Country</string>
-    <string name="network">Network : </string>
-    <string name="edit">Edit</string>
-    <string name="invalid_number">Invalid number</string>
-    <string name="a" translatable="false">A</string>
-    <string name="location">Location</string>
+    <string name="search_number">検索番号</string>
+    <string name="enter_phone_number">電話番号を入力してください</string>
+    <string name="network_name">モバイルネットワーク</string>
+    <string name="call">電話</string>
+    <string name="message">メッセージ</string>
+    <string name="create">編集</string>
+    <string name="block">ブロック</string>
+    <string name="name">未知</string>
+    <string name="name_title">名前 ：</string>
+    <string name="country_">国</string>
+    <string name="network">ネットワーク:</string>
+    <string name="edit">編集</string>
+    <string name="invalid_number">無効な番号です</string>
+    <string name="a">あ</string>
+    <string name="location">位置</string>
+
     <!--area calculator-->
-    <string name="area_calculator_header">Area Calculator</string>
-    <string name="area1">Area : </string>
-    <string name="error">Error: %s</string>
-    <string name="area">Area</string>
-    <string name="perimeter">Perimeter :</string>
-    <string name="available_units_of_area">Available Units of Area</string>
+    <string name="area_calculator_header">面積計算機</string>
+    <string name="area1">エリア ：</string>
+    <string name="error">エラー: %s</string>
+    <string name="area">エリア</string>
+    <string name="perimeter">周囲長:</string>
+    <string name="available_units_of_area">利用可能な面積単位</string>
 
     <!--cam address-->
-    <string name="cam_address_header">Cam Address</string>
-    <string name="lat">Lat :</string>
-    <string name="log">Long :</string>
-    <string name="congo">Congratulation</string>
-    <string name="image_saved_successfully">Image Saved Successfully</string>
-    <string name="done">Done</string>
-    <string name="saved">Saved in Gallery</string>
-    <string name="language">Language</string>
+    <string name="cam_address_header">カムアドレス</string>
+    <string name="lat">緯度:</string>
+    <string name="log">長さ ：</string>
+    <string name="congo">おめでとうございます</string>
+    <string name="image_saved_successfully">画像が正常に保存されました</string>
+    <string name="done">終わり</string>
+    <string name="saved">ギャラリーに保存されました</string>
+    <string name="language">言語</string>
 
     <!--isd code-->
-    <string name="isd_code_header">ISD Code</string>
-    <string name="find_isd_code">Find the ISD Codes</string>
-    <string name="select_country">Select Country</string>
-    <string name="select_your_country">Select your Country</string>
-    <string name="search_country_by_name">Search country by name</string>
-    <string name="country_name">Country Name :</string>
-    <string name="isd">ISD Code :</string>
-    <string name="search">Search</string>
-    <string name="below_track_text">Search any Phone Number LOcation</string>
+    <string name="isd_code_header">ISDコード</string>
+    <string name="find_isd_code">ISD コードを見つける</string>
+    <string name="select_country">国を選択してください</string>
+    <string name="select_your_country">国を選択してください</string>
+    <string name="search_country_by_name">国を名前で検索する</string>
+    <string name="country_name">国名 :</string>
+    <string name="isd">ISD コード:</string>
+    <string name="search">検索</string>
+    <string name="below_track_text">任意の電話番号の場所を検索</string>
+
     <!--gps location-->
-    <string name="current_gps_location">Current GPS Location</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="postal_code">Postal Code :</string>
-    <string name="show_location_on_map">Show Location on map</string>
-    <string name="current_postal_address">Current Postal Address</string>
+    <string name="current_gps_location">現在の GPS 位置</string>
+    <string name="latitude">緯度</string>
+    <string name="longitude">経度</string>
+    <string name="postal_code">郵便番号 ：</string>
+    <string name="show_location_on_map">地図上に場所を表示</string>
+    <string name="current_postal_address">現在の住所</string>
+
     <!--isd/std-->
-    <string name="enter_city_name">Enter city name</string>
+    <string name="enter_city_name">都市名を入力してください</string>
+
     <!--search number-->
-    <string name="search_hint_dialog">Search...</string>
-    <string name="search_contatct">Search phone number..</string>
-    <string name="mobile_number">Mobile Num :</string>
-    <string name="select_country_code">Select Country Code</string>
-    <string name="find_location">Find Location</string>
-    <string name="whatsapp_not_installed">WhatsApp is not installed on this device.</string>
+    <string name="search_hint_dialog">検索...</string>
+    <string name="search_contatct">電話番号検索..</string>
+    <string name="mobile_number">携帯電話番号:</string>
+    <string name="select_country_code">国コードを選択してください</string>
+    <string name="find_location">場所を探す</string>
+    <string name="whatsapp_not_installed">WhatsApp はこのデバイスにインストールされていません。</string>
 
     <!--distance finder-->
-    <string name="distance1">Distance :</string>
+    <string name="distance1">距離 ：</string>
     <string name="_0m">0m</string>
-    <string name="delete">Delete</string>
-    <string name="undo">Undo</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
-    <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="delete">消去</string>
+    <string name="undo">元に戻す</string>
+
+    <!--intro slider-->
+    <string name="next">次</string>
+    <string name="start">始める</string>
+    <string name="slide_1_title">電話の位置を探す</string>
+    <string name="slide_1_desc">任意の電話番号を簡単に検索して特定できます\\n場所の番号の詳細を地図上に表示します</string>
+    <string name="slide_2_title">GPSトラッカー</string>
+    <string name="slide_2_desc">GPS 位置を特定し、ライブ マップで\\n任意の位置の座標を検索します</string>
+    <string name="slide_3_title">現在位置を取得する</string>
+    <string name="slide_3_desc">さまざまな方法で現在地を検索 \\n名前または住所だけを使用して</string>
+    <string name="slide_4_title">携帯電話番号\\n場所</string>
+    <string name="device_location">デバイスの位置</string>
+    <string name="slide_4_desc">携帯電話番号の位置情報には\\nデバイスの位置情報へのアクセス許可が必要です</string>
+    <string name="go">行く</string>
+    <string name="grant_all_permissions">続行するにはすべての権限を付与してください</string>
+    <string name="permission_denied">あなたは許可を拒否しました</string>
+    <string name="permission_denied_title">許可が拒否されました</string>
+    <string name="lets_go">さあ行こう</string>
+
+    <!--other-->
+    <string name="welcome">いらっしゃいませ</string>
+    <string name="phone_number_locator">電話番号ロケーター</string>
+    <string name="phone_tracker">電話トラッカー</string>
+    <string name="gps_tracker_new">GPSトラッカー</string>
+    <string name="locate_your_loved_ones_in_real_time">リアルタイムで愛する人を見つける</string>
+    <string name="view_complete_location_history">完全なロケーション履歴を表示する</string>
+    <string name="thankyou">ありがとう</string>
+
 </resources>

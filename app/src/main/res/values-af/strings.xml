@@ -1,164 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">Telefoonnommer Locator</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
 
     <!--splash-->
-    <string name="let_s_start">Laat ons begin</string>
+    <string name="let_s_start">Kom ons begin</string>
     <string name="splash_text">Hierdie aksie kan advertensies bevat</string>
 
     <!--context-->
     <string name="no_app_found">Geen toepassing gevind nie</string>
-    <string name="no_post_notifications_permissions">Toestemming om kennisgewings te plaas is nodig</string>
-    <string name="unknown_error_occurred">’n Onbekende fout het voorgekom</string>
-    <string name="current_location">Huidige Ligging</string>
-    <string name="simple_commons" translatable="false">Eenvoudige Commons</string>
+    <string name="no_post_notifications_permissions">Toestemming om kennisgewings te plaas word vereis</string>
+    <string name="unknown_error_occurred">\'n Onbekende fout het voorgekom</string>
+    <string name="current_location">Huidige ligging</string>
+    <string name="simple_commons">Eenvoudige Commons</string>
     <string name="copied_to_clipboard">Gekopieer na knipbord</string>
-    <string name="no_address_found">Geen Adres Gevind</string>
-    <string name="number_blocked">Nommer Geblokkeer</string>
-    <string name="permission_required">Toestemming Vereis</string>
+    <string name="no_address_found">Geen adres gevind nie</string>
+    <string name="number_blocked">Nommer geblokkeer</string>
+    <string name="permission_required">Toestemming vereis</string>
+
     <!--main screen-->
-    <string name="call_locator">Skakel Lokator</string>
+    <string name="call_locator">Bel Locator</string>
     <string name="contact_list">Telefoon Kontak</string>
-    <string name="gps_tracker">GPS Opvolger</string>
-    <string name="area_calculator">Gebiedsberekenaar</string>
-    <string name="share_loc">Deel Ligging</string>
-    <string name="isd_std_code">ISD / STD Kode</string>
-    <string name="cam_address">Kamera Adres</string>
-    <string name="gps_location">GPS Ligging</string>
-    <string name="find_address">Vind Adres</string>
-    <string name="gps_address">GPS Adres</string>
-    <string name="distance_finder">Afstandvinder</string>
-    <string name="recommend_for_you">Aanbeveel vir jou</string>
-    <string name="num_track_more_option">Nommer Opvolger Meer Opsie</string>
+    <string name="gps_tracker">GPS Tracker</string>
+    <string name="area_calculator">Area Sakrekenaar</string>
+    <string name="share_loc">Deel ligging</string>
+    <string name="isd_std_code">ISD / STD-kode</string>
+    <string name="cam_address">Kameraadres</string>
+    <string name="gps_location">GPS-ligging</string>
+    <string name="find_address">Vind adres</string>
+    <string name="gps_address">GPS-adres</string>
+    <string name="distance_finder">Afstandsoeker</string>
+    <string name="recommend_for_you">Vir jou aanbeveel</string>
+    <string name="num_track_more_option">Number Tracker Meer Opsie</string>
 
     <!--drawer-->
     <string name="privacy_policy">Privaatheidsbeleid</string>
     <string name="share">Deel</string>
-    <string name="rate_us">Bepaal ons</string>
+    <string name="rate_us">Beoordeel ons</string>
     <string name="language_setting">Taalinstelling</string>
-    <string name="more">Meer Toepassings</string>
+    <string name="more">Meer toepassings</string>
+
     <!--contacts-->
     <string name="contacts">Kontakte</string>
-    <string name="search_contact">Soek Nommer</string>
+    <string name="search_contact">Soeknommer</string>
+
     <!--live traffic-->
-    <string name="live_traffic_header">Lewende Verkeer</string>
+    <string name="live_traffic_header">Regstreekse verkeer</string>
     <string name="low">Normaal</string>
-    <string name="moderate">Gemiddeld</string>
+    <string name="moderate">Medium</string>
     <string name="heavy">Swaar</string>
     <string name="copy">Kopieer</string>
     <string name="address_copied">Adres gekopieer</string>
     <string name="please_wait">Wag asseblief</string>
 
     <!--share location-->
-    <string name="copy_share">Kopieer na Knipbord</string>
+    <string name="copy_share">Kopieer na knipbord</string>
     <string name="whatsapp">Whatsapp</string>
-    <string name="share_location_header">Deel Ligging</string>
+    <string name="share_location_header">Deel ligging</string>
     <string name="share_location">Deel</string>
-    <string name="address">Adres : </string>
-    <string name="city">Stad : </string>
-    <string name="country">Land : </string>
+    <string name="address">Adres:</string>
+    <string name="city">Stad:</string>
+    <string name="country">Land:</string>
     <string name="navigate">Navigeer</string>
-    <string name="already_on_destination">Reeds op Bestemming</string>
+    <string name="already_on_destination">Reeds op Destination</string>
 
     <!--permission-->
-    <string name="check_internet_connection">Kontrolleer asseblief internetverbinding</string>
+    <string name="check_internet_connection">Kontroleer asseblief internetverbinding</string>
     <string name="yes">Ja</string>
     <string name="no">Nee</string>
     <string name="location_permission_denied">Toestemming geweier</string>
-    <string name="delete_str">Is jy seker jy wil dit verwyder?</string>
+    <string name="delete_str">Is jy seker jy wil uitvee?</string>
     <string name="already_destination">Jy is reeds by die bestemming.</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">Vind Adres</string>
-    <string name="lati">Breedtegraad :</string>
-    <string name="longi">Lengtegraad :</string>
-    <string name="get_location">Kry Ligging</string>
+    <string name="gps_coordinates_header">Vind adres</string>
+    <string name="lati">Lat:</string>
+    <string name="longi">lank:</string>
+    <string name="get_location">Kry ligging</string>
     <string name="copy_to_clipboard">Kopieer</string>
     <string name="navigation">Navigasie</string>
     <string name="lat_long">breedtegraad/lengtegraad</string>
     <string name="degrees">Grade (DMS)</string>
     <string name="cancel">Kanselleer</string>
-    <string name="ok">OK</string>
-    <string name="empty_measurement">Leë metings</string>
-    <string name="saved_measures">Opgeslane Metings</string>
+    <string name="ok">Goed</string>
+    <string name="empty_measurement">Leë mates</string>
+    <string name="saved_measures">Gestoorde maatreëls</string>
     <string name="item_saved">Item suksesvol gestoor!</string>
-    <string name="no_history">Geen Geskiedenis gevind nie</string>
-    <string name="loading_ads">Advertensie laai...</string>
-    <string name="exit_text">Is jy seker jy wil uittree?</string>
-    <string name="exit">Uittree</string>
-    <string name="enter_lat">Voer Breedtegraad in</string>
-    <string name="enter_long">Voer Lengtegraad in</string>
+    <string name="no_history">Geen geskiedenis gevind nie</string>
+    <string name="loading_ads">Laai tans advertensie …</string>
+    <string name="exit_text">Is jy seker jy wil uitgaan?</string>
+    <string name="exit">Verlaat</string>
+    <string name="enter_lat">Voer Latitude in</string>
+    <string name="enter_long">Voer lengtegraad in</string>
 
     <!--number locator-->
-    <string name="search_number">Soek Nommer</string>
+    <string name="search_number">Soeknommer</string>
     <string name="enter_phone_number">Voer telefoonnommer in</string>
-    <string name="network_name">Mobiele Netwerk</string>
-    <string name="call">Skakel</string>
+    <string name="network_name">Mobiele netwerk</string>
+    <string name="call">Bel</string>
     <string name="message">Boodskap</string>
     <string name="create">Wysig</string>
-    <string name="block">Blokkeer</string>
+    <string name="block">Blok</string>
     <string name="name">Onbekend</string>
-    <string name="name_title">Naam :</string>
+    <string name="name_title">Naam:</string>
     <string name="country_">Land</string>
-    <string name="network">Netwerk : </string>
+    <string name="network">Netwerk:</string>
     <string name="edit">Wysig</string>
     <string name="invalid_number">Ongeldige nommer</string>
-    <string name="a" translatable="false">A</string>
+    <string name="a">A</string>
     <string name="location">Ligging</string>
+
     <!--area calculator-->
-    <string name="area_calculator_header">Gebiedsberekenaar</string>
-    <string name="area1">Gebied : </string>
+    <string name="area_calculator_header">Area Sakrekenaar</string>
+    <string name="area1">Area:</string>
     <string name="error">Fout: %s</string>
     <string name="area">Gebied</string>
-    <string name="perimeter">Omtrek :</string>
-    <string name="available_units_of_area">Beskikbare Eenheid van Gebied</string>
+    <string name="perimeter">Omtrek:</string>
+    <string name="available_units_of_area">Beskikbare oppervlakte-eenhede</string>
 
     <!--cam address-->
-    <string name="cam_address_header">Kamera Adres</string>
-    <string name="lat">Breedte :</string>
-    <string name="log">Lengte :</string>
-    <string name="congo">Gelukwensing</string>
-    <string name="image_saved_successfully">Beeld Suksesvol Gestoor</string>
-    <string name="done">Gedoen</string>
+    <string name="cam_address_header">Kameraadres</string>
+    <string name="lat">Lat:</string>
+    <string name="log">lank:</string>
+    <string name="congo">Baie geluk</string>
+    <string name="image_saved_successfully">Prent is suksesvol gestoor</string>
+    <string name="done">Klaar</string>
     <string name="saved">Gestoor in Galery</string>
     <string name="language">Taal</string>
 
     <!--isd code-->
-    <string name="isd_code_header">ISD Kode</string>
-    <string name="find_isd_code">Vind die ISD Kodes</string>
+    <string name="isd_code_header">ISD-kode</string>
+    <string name="find_isd_code">Vind die ISD-kodes</string>
     <string name="select_country">Kies Land</string>
-    <string name="select_your_country">Kies jou Land</string>
-    <string name="search_country_by_name">Soek land volgens naam</string>
-    <string name="country_name">Land Naam :</string>
-    <string name="isd">ISD Kode :</string>
+    <string name="select_your_country">Kies jou land</string>
+    <string name="search_country_by_name">Soek land op naam</string>
+    <string name="country_name">Land Naam:</string>
+    <string name="isd">ISD kode:</string>
     <string name="search">Soek</string>
-    <string name="below_track_text">Soek enige foonnommer se Ligging</string>
+    <string name="below_track_text">Soek enige telefoonnommerligging</string>
+
     <!--gps location-->
-    <string name="current_gps_location">Huidige GPS Ligging</string>
+    <string name="current_gps_location">Huidige GPS-ligging</string>
     <string name="latitude">Breedtegraad</string>
     <string name="longitude">Lengtegraad</string>
-    <string name="postal_code">Poskode :</string>
-    <string name="show_location_on_map">Wys Ligging op kaart</string>
-    <string name="current_postal_address">Huidige Posadres</string>
+    <string name="postal_code">Poskode:</string>
+    <string name="show_location_on_map">Wys ligging op kaart</string>
+    <string name="current_postal_address">Huidige posadres</string>
+
     <!--isd/std-->
-    <string name="enter_city_name">Voer stadsnaam in</string>
+    <string name="enter_city_name">Voer die naam van die stad in</string>
+
     <!--search number-->
     <string name="search_hint_dialog">Soek...</string>
     <string name="search_contatct">Soek telefoonnommer..</string>
-    <string name="mobile_number">Foonnommer :</string>
-    <string name="select_country_code">Kies Landkode</string>
-    <string name="find_location">Vind Ligging</string>
+    <string name="mobile_number">Mobiele nommer:</string>
+    <string name="select_country_code">Kies landkode</string>
+    <string name="find_location">Vind ligging</string>
     <string name="whatsapp_not_installed">WhatsApp is nie op hierdie toestel geïnstalleer nie.</string>
 
     <!--distance finder-->
-    <string name="distance1">Afstand :</string>
+    <string name="distance1">Afstand:</string>
     <string name="_0m">0m</string>
-    <string name="delete">Verwyder</string>
-    <string name="undo">Ongedoen maak</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
+    <string name="delete">Vee uit</string>
+    <string name="undo">Ontdoen</string>
+
+    <!--intro slider-->
+    <string name="next">Volgende</string>
+    <string name="start">Begin</string>
+    <string name="slide_1_title">Vind telefoonligging</string>
+    <string name="slide_1_desc">Vind en vind maklik enige foonnommer\\nLigging Wys besonderhede van nommer op kaart</string>
+    <string name="slide_2_title">GPS Tracker</string>
+    <string name="slide_2_desc">Vind GPS-ligging en vind koördinate\\n van enige ligging met regstreekse kaart</string>
+    <string name="slide_3_title">Kry huidige ligging</string>
+    <string name="slide_3_desc">Vind jou huidige ligging op verskillende maniere \\nDeur net sy naam of adres te gebruik</string>
+    <string name="slide_4_title">Selfoonnommer\\nLigging</string>
+    <string name="device_location">Toestel se ligging</string>
+    <string name="slide_4_desc">Mobiele nommerligging vereis\\ntoestemming om toegang tot toestel se ligging te kry</string>
+    <string name="go">Gaan</string>
+    <string name="grant_all_permissions">Gee alle toestemmings om voort te gaan</string>
+    <string name="permission_denied">Jy het die toestemming geweier</string>
+    <string name="permission_denied_title">Toestemming geweier</string>
+    <string name="lets_go">Kom ons gaan</string>
+
+    <!--other-->
+    <string name="welcome">WELKOM</string>
+    <string name="phone_number_locator">Telefoonnommer Locator</string>
+    <string name="phone_tracker">Telefoon Tracker</string>
     <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="locate_your_loved_ones_in_real_time">Vind u geliefdes intyds</string>
+    <string name="view_complete_location_history">Bekyk volledige ligginggeskiedenis</string>
+    <string name="thankyou">Dankie</string>
+
 </resources>

@@ -1,180 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">Định vị số điện thoại</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
+
     <!--splash-->
-    <string name="let_s_start">Let\'s start</string>
-    <string name="splash_text">This action can contain ads</string>
+    <string name="let_s_start">Hãy bắt đầu</string>
+    <string name="splash_text">Hành động này có thể chứa quảng cáo</string>
 
     <!--context-->
-    <string name="no_app_found">No app found</string>
-    <string name="no_post_notifications_permissions">Permission to post notifications is required</string>
-    <string name="unknown_error_occurred">An unknown error occurred</string>
-    <string name="current_location">Current Location</string>
-    <string name="simple_commons" translatable="false">Simple Commons</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="no_address_found">No Address Found</string>
-    <string name="number_blocked">Number Blocked</string>
-    <string name="permission_required">Permission Required</string>
-    <!--main screen-->
-    <string name="call_locator">Call Locator</string>
-    <string name="contact_list">Phone Contact</string>
-    <string name="gps_tracker">GPS Tracker</string>
-    <string name="area_calculator">Area Calculator</string>
-    <string name="share_loc">Share Location</string>
-    <string name="isd_std_code">ISD / STD Code</string>
-    <string name="cam_address">Cam Address</string>
-    <string name="gps_location">GPS Location</string>
-    <string name="find_address">Find Address</string>
-    <string name="gps_address">GPS Address</string>
-    <string name="distance_finder">Distance Finder</string>
-    <string name="recommend_for_you">Recommended for you</string>
-    <string name="num_track_more_option">Number Tracker More Option</string>
+    <string name="no_app_found">Không tìm thấy ứng dụng nào</string>
+    <string name="no_post_notifications_permissions">Cần có quyền đăng thông báo</string>
+    <string name="unknown_error_occurred">Đã xảy ra lỗi không xác định</string>
+    <string name="current_location">Vị trí hiện tại</string>
+    <string name="simple_commons">chung đơn giản</string>
+    <string name="copied_to_clipboard">Đã sao chép vào bảng nhớ tạm</string>
+    <string name="no_address_found">Không tìm thấy địa chỉ</string>
+    <string name="number_blocked">Số bị chặn</string>
+    <string name="permission_required">Cần có sự cho phép</string>
 
-    <!-- &lt;!&ndash;live weather&ndash;&gt;
-     <string name="live_weather_header">Live Weather</string>
-     <string name="pressure">Pressure</string>
-     <string name="visibility">Visibility</string>
-     <string name="cloud_cover">Cloud Cover</string>
-     <string name="wind">Wind</string>
-     <string name="temp">Temperature</string>
-     <string name="humidity">Humidity</string>
-     <string name="loading">loading...</string>
-     <string name="sunrise">Sunrise</string>
-     <string name="sunset">Sunset</string>
-     <string name="cannot_find_data">Can\'t find data</string>
-     <string name="turn_on_location">Turn on location</string>
-     <string name="enable_location">Enable Location</string>
-     <string name="search_countries">Search Countries</string>
-     <string name="time_format" translatable="false">EEEE, dd MMMM yyyy hh:mm a</string>-->
+    <!--main screen-->
+    <string name="call_locator">Định vị cuộc gọi</string>
+    <string name="contact_list">Điện thoại Liên hệ</string>
+    <string name="gps_tracker">Trình theo dõi GPS</string>
+    <string name="area_calculator">Máy tính diện tích</string>
+    <string name="share_loc">Chia sẻ vị trí</string>
+    <string name="isd_std_code">Mã ISD/STD</string>
+    <string name="cam_address">Địa chỉ Cam</string>
+    <string name="gps_location">Vị trí GPS</string>
+    <string name="find_address">Tìm địa chỉ</string>
+    <string name="gps_address">Địa chỉ GPS</string>
+    <string name="distance_finder">Công cụ tìm khoảng cách</string>
+    <string name="recommend_for_you">Được đề xuất cho bạn</string>
+    <string name="num_track_more_option">Tùy chọn theo dõi số khác</string>
 
     <!--drawer-->
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="share">Share</string>
-    <string name="rate_us">Rate us</string>
-    <string name="language_setting">Language Setting</string>
-    <string name="more">More Apps</string>
+    <string name="privacy_policy">Chính sách bảo mật</string>
+    <string name="share">Chia sẻ</string>
+    <string name="rate_us">Đánh giá chúng tôi</string>
+    <string name="language_setting">Cài đặt ngôn ngữ</string>
+    <string name="more">Nhiều ứng dụng hơn</string>
+
     <!--contacts-->
-    <string name="contacts">Contacts</string>
-    <string name="search_contact">Search Number</string>
+    <string name="contacts">Danh bạ</string>
+    <string name="search_contact">Số tìm kiếm</string>
+
     <!--live traffic-->
-    <string name="live_traffic_header">Live Traffic</string>
-    <string name="low">Normal</string>
-    <string name="moderate">Medium</string>
-    <string name="heavy">Heavy</string>
-    <string name="copy">Copy</string>
-    <string name="address_copied">Address copied</string>
-    <string name="please_wait">Please wait</string>
+    <string name="live_traffic_header">Giao thông trực tiếp</string>
+    <string name="low">Bình thường</string>
+    <string name="moderate">Trung bình</string>
+    <string name="heavy">Nặng</string>
+    <string name="copy">Sao chép</string>
+    <string name="address_copied">Đã sao chép địa chỉ</string>
+    <string name="please_wait">Vui lòng chờ</string>
 
     <!--share location-->
-    <string name="copy_share">Copy to Clipboard</string>
+    <string name="copy_share">Sao chép vào Clipboard</string>
     <string name="whatsapp">Whatsapp</string>
-    <string name="share_location_header">Share Location</string>
-    <string name="share_location">Share</string>
-    <string name="address">Address : </string>
-    <string name="city">City : </string>
-    <string name="country">Country : </string>
-    <string name="navigate">Navigate</string>
-    <string name="already_on_destination">Already on Destination</string>
+    <string name="share_location_header">Chia sẻ vị trí</string>
+    <string name="share_location">Chia sẻ</string>
+    <string name="address">Địa chỉ :</string>
+    <string name="city">Thành phố :</string>
+    <string name="country">Quốc gia :</string>
+    <string name="navigate">Điều hướng</string>
+    <string name="already_on_destination">Đã đến đích</string>
 
     <!--permission-->
-    <string name="check_internet_connection">Please check internet connection</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="location_permission_denied">Permission denied</string>
-    <string name="delete_str">Are you sure you want to delete?</string>
-    <string name="already_destination">You are already at the destination.</string>
+    <string name="check_internet_connection">Vui lòng kiểm tra kết nối internet</string>
+    <string name="yes">Đúng</string>
+    <string name="no">KHÔNG</string>
+    <string name="location_permission_denied">Quyền bị từ chối</string>
+    <string name="delete_str">Bạn có chắc chắn muốn xóa không?</string>
+    <string name="already_destination">Bạn đã đến đích rồi.</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">Find Address</string>
-    <string name="lati">Lat :</string>
-    <string name="longi">Long :</string>
-    <string name="get_location">Get Location</string>
-    <string name="copy_to_clipboard">Copy</string>
-    <string name="navigation">Navigation</string>
-    <string name="lat_long">latitude/longitude</string>
-    <string name="degrees">Degrees (DMS)</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
-    <string name="empty_measurement">Empty measurements</string>
-    <string name="saved_measures">Saved Measures</string>
-    <string name="item_saved">Item saved successfully!</string>
-    <string name="no_history">No History found</string>
-    <string name="loading_ads">Loading Ad...</string>
-    <string name="exit_text">Are you sure you want to exit?</string>
-    <string name="exit">Exit</string>
-    <string name="enter_lat">Enter Latitude</string>
-    <string name="enter_long">Enter Longitude</string>
+    <string name="gps_coordinates_header">Tìm địa chỉ</string>
+    <string name="lati">Lạt :</string>
+    <string name="longi">Dài :</string>
+    <string name="get_location">Nhận vị trí</string>
+    <string name="copy_to_clipboard">Sao chép</string>
+    <string name="navigation">Điều hướng</string>
+    <string name="lat_long">vĩ độ/kinh độ</string>
+    <string name="degrees">Bằng cấp (DMS)</string>
+    <string name="cancel">Hủy bỏ</string>
+    <string name="ok">Được rồi</string>
+    <string name="empty_measurement">Số đo trống</string>
+    <string name="saved_measures">Các biện pháp đã lưu</string>
+    <string name="item_saved">Mục đã được lưu thành công!</string>
+    <string name="no_history">Không tìm thấy lịch sử</string>
+    <string name="loading_ads">Đang tải quảng cáo...</string>
+    <string name="exit_text">Bạn có chắc chắn muốn thoát không?</string>
+    <string name="exit">Ra</string>
+    <string name="enter_lat">Nhập vĩ độ</string>
+    <string name="enter_long">Nhập kinh độ</string>
 
     <!--number locator-->
-    <string name="search_number">Search Number</string>
-    <string name="enter_phone_number">Enter phone number</string>
-    <string name="network_name">Mobile Network</string>
-    <string name="call">Call</string>
-    <string name="message">Message</string>
-    <string name="create">Edit</string>
-    <string name="block">Block</string>
-    <string name="name">Unknown</string>
-    <string name="name_title">Name :</string>
-    <string name="country_">Country</string>
-    <string name="network">Network : </string>
-    <string name="edit">Edit</string>
-    <string name="invalid_number">Invalid number</string>
-    <string name="a" translatable="false">A</string>
-    <string name="location">Location</string>
+    <string name="search_number">Số tìm kiếm</string>
+    <string name="enter_phone_number">Nhập số điện thoại</string>
+    <string name="network_name">Mạng di động</string>
+    <string name="call">Gọi</string>
+    <string name="message">Tin nhắn</string>
+    <string name="create">Biên tập</string>
+    <string name="block">Khối</string>
+    <string name="name">Không xác định</string>
+    <string name="name_title">Tên :</string>
+    <string name="country_">Quốc gia</string>
+    <string name="network">Mạng :</string>
+    <string name="edit">Biên tập</string>
+    <string name="invalid_number">Số không hợp lệ</string>
+    <string name="a">MỘT</string>
+    <string name="location">Vị trí</string>
+
     <!--area calculator-->
-    <string name="area_calculator_header">Area Calculator</string>
-    <string name="area1">Area : </string>
-    <string name="error">Error: %s</string>
-    <string name="area">Area</string>
-    <string name="perimeter">Perimeter :</string>
-    <string name="available_units_of_area">Available Units of Area</string>
+    <string name="area_calculator_header">Máy tính diện tích</string>
+    <string name="area1">Khu vực :</string>
+    <string name="error">Lỗi: %s</string>
+    <string name="area">Khu vực</string>
+    <string name="perimeter">Chu vi:</string>
+    <string name="available_units_of_area">Đơn vị diện tích có sẵn</string>
 
     <!--cam address-->
-    <string name="cam_address_header">Cam Address</string>
-    <string name="lat">Lat :</string>
-    <string name="log">Long :</string>
-    <string name="congo">Congratulation</string>
-    <string name="image_saved_successfully">Image Saved Successfully</string>
-    <string name="done">Done</string>
-    <string name="saved">Saved in Gallery</string>
-    <string name="language">Language</string>
+    <string name="cam_address_header">Địa chỉ Cam</string>
+    <string name="lat">Lạt :</string>
+    <string name="log">Dài :</string>
+    <string name="congo">Xin chúc mừng</string>
+    <string name="image_saved_successfully">Đã lưu hình ảnh thành công</string>
+    <string name="done">Xong</string>
+    <string name="saved">Đã lưu trong Thư viện</string>
+    <string name="language">Ngôn ngữ</string>
 
     <!--isd code-->
-    <string name="isd_code_header">ISD Code</string>
-    <string name="find_isd_code">Find the ISD Codes</string>
-    <string name="select_country">Select Country</string>
-    <string name="select_your_country">Select your Country</string>
-    <string name="search_country_by_name">Search country by name</string>
-    <string name="country_name">Country Name :</string>
-    <string name="isd">ISD Code :</string>
-    <string name="search">Search</string>
-    <string name="below_track_text">Search any Phone Number LOcation</string>
+    <string name="isd_code_header">Mã ISD</string>
+    <string name="find_isd_code">Tìm mã ISD</string>
+    <string name="select_country">Chọn quốc gia</string>
+    <string name="select_your_country">Chọn quốc gia của bạn</string>
+    <string name="search_country_by_name">Tìm kiếm quốc gia theo tên</string>
+    <string name="country_name">Tên quốc gia:</string>
+    <string name="isd">Mã ISD:</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="below_track_text">Tìm kiếm bất kỳ vị trí số điện thoại nào</string>
+
     <!--gps location-->
-    <string name="current_gps_location">Current GPS Location</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="postal_code">Postal Code :</string>
-    <string name="show_location_on_map">Show Location on map</string>
-    <string name="current_postal_address">Current Postal Address</string>
+    <string name="current_gps_location">Vị trí GPS hiện tại</string>
+    <string name="latitude">Vĩ độ</string>
+    <string name="longitude">Kinh độ</string>
+    <string name="postal_code">Mã bưu chính:</string>
+    <string name="show_location_on_map">Hiển thị vị trí trên bản đồ</string>
+    <string name="current_postal_address">Địa chỉ bưu chính hiện tại</string>
+
     <!--isd/std-->
-    <string name="enter_city_name">Enter city name</string>
+    <string name="enter_city_name">Nhập tên thành phố</string>
+
     <!--search number-->
-    <string name="search_hint_dialog">Search...</string>
-    <string name="search_contatct">Search phone number..</string>
-    <string name="mobile_number">Mobile Num :</string>
-    <string name="select_country_code">Select Country Code</string>
-    <string name="find_location">Find Location</string>
-    <string name="whatsapp_not_installed">WhatsApp is not installed on this device.</string>
+    <string name="search_hint_dialog">Tìm kiếm...</string>
+    <string name="search_contatct">Tìm kiếm số điện thoại..</string>
+    <string name="mobile_number">Số di động:</string>
+    <string name="select_country_code">Chọn mã quốc gia</string>
+    <string name="find_location">Tìm vị trí</string>
+    <string name="whatsapp_not_installed">WhatsApp chưa được cài đặt trên thiết bị này.</string>
 
     <!--distance finder-->
-    <string name="distance1">Distance :</string>
+    <string name="distance1">Khoảng cách :</string>
     <string name="_0m">0m</string>
-    <string name="delete">Delete</string>
-    <string name="undo">Undo</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
-    <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="delete">Xóa bỏ</string>
+    <string name="undo">Hoàn tác</string>
+
+    <!--intro slider-->
+    <string name="next">Kế tiếp</string>
+    <string name="start">Bắt đầu</string>
+    <string name="slide_1_title">Tìm vị trí điện thoại</string>
+    <string name="slide_1_desc">Dễ dàng tìm và định vị bất kỳ số điện thoại nào\\nVị trí Hiển thị chi tiết về số trên bản đồ</string>
+    <string name="slide_2_title">Trình theo dõi GPS</string>
+    <string name="slide_2_desc">Xác định vị trí GPS và tìm tọa độ\\n của bất kỳ vị trí nào bằng Bản đồ trực tiếp</string>
+    <string name="slide_3_title">Nhận vị trí hiện tại</string>
+    <string name="slide_3_desc">Tìm vị trí hiện tại của bạn bằng nhiều cách khác nhau \\nChỉ sử dụng tên hoặc địa chỉ của vị trí đó</string>
+    <string name="slide_4_title">Số di động\\nVị trí</string>
+    <string name="device_location">Vị trí của thiết bị</string>
+    <string name="slide_4_desc">Vị trí số điện thoại di động yêu cầu\\nquyền truy cập Vị trí của thiết bị</string>
+    <string name="go">Đi</string>
+    <string name="grant_all_permissions">Cấp tất cả các quyền để tiếp tục</string>
+    <string name="permission_denied">Bạn đã từ chối sự cho phép</string>
+    <string name="permission_denied_title">Quyền bị từ chối</string>
+    <string name="lets_go">Đi thôi</string>
+
+    <!--other-->
+    <string name="welcome">CHÀO MỪNG</string>
+    <string name="phone_number_locator">Định vị số điện thoại</string>
+    <string name="phone_tracker">Theo dõi điện thoại</string>
+    <string name="gps_tracker_new">Trình theo dõi GPS</string>
+    <string name="locate_your_loved_ones_in_real_time">Xác định vị trí những người thân yêu của bạn trong thời gian thực</string>
+    <string name="view_complete_location_history">Xem toàn bộ lịch sử vị trí</string>
+    <string name="thankyou">Cảm ơn</string>
+
 </resources>

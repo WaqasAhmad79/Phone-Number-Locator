@@ -1,165 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">محدد رقم الهاتف</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
 
     <!--splash-->
     <string name="let_s_start">لنبدأ</string>
-    <string name="splash_text">هذا الإجراء قد يحتوي على إعلانات</string>
+    <string name="splash_text">يمكن أن يحتوي هذا الإجراء على إعلانات</string>
 
     <!--context-->
-    <string name="no_app_found">لم يتم العثور على تطبيق</string>
-    <string name="no_post_notifications_permissions">الإذن المطلوب لنشر الإشعارات مطلوب</string>
+    <string name="no_app_found">لم يتم العثور على التطبيق</string>
+    <string name="no_post_notifications_permissions">مطلوب إذن لنشر الإخطارات</string>
     <string name="unknown_error_occurred">حدث خطأ غير معروف</string>
     <string name="current_location">الموقع الحالي</string>
-    <string name="simple_commons" translatable="false">سيمبل كومونز</string>
-    <string name="copied_to_clipboard">تم نسخه إلى الحافظة</string>
+    <string name="simple_commons">المشاعات البسيطة</string>
+    <string name="copied_to_clipboard">تم النسخ إلى الحافظة</string>
     <string name="no_address_found">لم يتم العثور على عنوان</string>
-    <string name="number_blocked">تم حظر الرقم</string>
+    <string name="number_blocked">الرقم محظور</string>
     <string name="permission_required">الإذن مطلوب</string>
+
     <!--main screen-->
-    <string name="call_locator">محدد المكالمة</string>
-    <string name="contact_list">قائمة الاتصال</string>
-    <string name="gps_tracker">متتبع GPS</string>
-    <string name="area_calculator">حاسب المساحة</string>
+    <string name="call_locator">محدد موقع المكالمة</string>
+    <string name="contact_list">الاتصال الهاتفي</string>
+    <string name="gps_tracker">جهاز تعقب GPS</string>
+    <string name="area_calculator">حاسبة المنطقة</string>
     <string name="share_loc">مشاركة الموقع</string>
-    <string name="isd_std_code">كود ISD / STD</string>
-    <string name="cam_address">عنوان الكاميرا</string>
+    <string name="isd_std_code">رمز ISD/STD</string>
+    <string name="cam_address">عنوان كام</string>
     <string name="gps_location">موقع GPS</string>
     <string name="find_address">البحث عن العنوان</string>
-    <string name="gps_address">عنوان GPS</string>
-    <string name="distance_finder">محدد المسافة</string>
+    <string name="gps_address">عنوان نظام تحديد المواقع</string>
+    <string name="distance_finder">مكتشف المسافة</string>
     <string name="recommend_for_you">موصى به لك</string>
-    <string name="num_track_more_option">خيارات أكثر لمتتبع الأرقام</string>
+    <string name="num_track_more_option">المزيد من الخيارات لتعقب الأرقام</string>
 
     <!--drawer-->
     <string name="privacy_policy">سياسة الخصوصية</string>
-    <string name="share">مشاركة</string>
+    <string name="share">يشارك</string>
     <string name="rate_us">قيمنا</string>
     <string name="language_setting">إعداد اللغة</string>
-    <string name="more">تطبيقات أخرى</string>
+    <string name="more">المزيد من التطبيقات</string>
+
     <!--contacts-->
-    <string name="contacts">جهات الاتصال</string>
-    <string name="search_contact">البحث عن الرقم</string>
+    <string name="contacts">اتصالات</string>
+    <string name="search_contact">رقم البحث</string>
+
     <!--live traffic-->
-    <string name="live_traffic_header">حركة المرور المباشرة</string>
-    <string name="low">عادي</string>
-    <string name="moderate">متوسط</string>
-    <string name="heavy">كثيف</string>
-    <string name="copy">نسخ</string>
+    <string name="live_traffic_header">حركة المرور الحية</string>
+    <string name="low">طبيعي</string>
+    <string name="moderate">واسطة</string>
+    <string name="heavy">ثقيل</string>
+    <string name="copy">ينسخ</string>
     <string name="address_copied">تم نسخ العنوان</string>
-    <string name="please_wait">يرجى الانتظار</string>
+    <string name="please_wait">انتظر من فضلك</string>
 
     <!--share location-->
     <string name="copy_share">نسخ إلى الحافظة</string>
-    <string name="whatsapp">واتساب</string>
+    <string name="whatsapp">واتس اب</string>
     <string name="share_location_header">مشاركة الموقع</string>
-    <string name="share_location">مشاركة</string>
-    <string name="address">العنوان : </string>
-    <string name="city">المدينة : </string>
-    <string name="country">البلد : </string>
-    <string name="navigate">التنقل</string>
-    <string name="already_on_destination">بالفعل في الوجهة</string>
+    <string name="share_location">يشارك</string>
+    <string name="address">عنوان :</string>
+    <string name="city">مدينة :</string>
+    <string name="country">دولة :</string>
+    <string name="navigate">انتقل</string>
+    <string name="already_on_destination">بالفعل على الوجهة</string>
 
     <!--permission-->
-    <string name="check_internet_connection">يرجى التحقق من اتصال الإنترنت</string>
+    <string name="check_internet_connection">يرجى التحقق من الاتصال بالإنترنت</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
     <string name="location_permission_denied">تم رفض الإذن</string>
-    <string name="delete_str">هل أنت متأكد من أنك تريد الحذف؟</string>
+    <string name="delete_str">هل أنت متأكد أنك تريد الحذف؟</string>
     <string name="already_destination">أنت بالفعل في الوجهة.</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">العثور على العنوان</string>
+    <string name="gps_coordinates_header">البحث عن العنوان</string>
     <string name="lati">خط العرض :</string>
-    <string name="longi">خط الطول :</string>
-    <string name="get_location">الحصول على الموقع</string>
-    <string name="copy_to_clipboard">نسخ</string>
-    <string name="navigation">التنقل</string>
+    <string name="longi">طويل :</string>
+    <string name="get_location">احصل على الموقع</string>
+    <string name="copy_to_clipboard">ينسخ</string>
+    <string name="navigation">ملاحة</string>
     <string name="lat_long">خط العرض/خط الطول</string>
     <string name="degrees">الدرجات (DMS)</string>
-    <string name="cancel">إلغاء</string>
-    <string name="ok">موافق</string>
-    <string name="empty_measurement">القياسات فارغة</string>
-    <string name="saved_measures">القياسات المحفوظة</string>
+    <string name="cancel">يلغي</string>
+    <string name="ok">نعم</string>
+    <string name="empty_measurement">قياسات فارغة</string>
+    <string name="saved_measures">التدابير المحفوظة</string>
     <string name="item_saved">تم حفظ العنصر بنجاح!</string>
-    <string name="no_history">لم يتم العثور على سجلات</string>
-    <string name="loading_ads">جاري تحميل الإعلان...</string>
-    <string name="exit_text">هل أنت متأكد من أنك تريد الخروج؟</string>
-    <string name="exit">خروج</string>
+    <string name="no_history">لم يتم العثور على التاريخ</string>
+    <string name="loading_ads">جارٍ تحميل الإعلان...</string>
+    <string name="exit_text">هل أنت متأكد أنك تريد الخروج؟</string>
+    <string name="exit">مخرج</string>
     <string name="enter_lat">أدخل خط العرض</string>
     <string name="enter_long">أدخل خط الطول</string>
 
     <!--number locator-->
-    <string name="search_number">البحث عن الرقم</string>
+    <string name="search_number">رقم البحث</string>
     <string name="enter_phone_number">أدخل رقم الهاتف</string>
-    <string name="network_name">شبكة الجوال</string>
-    <string name="call">اتصال</string>
+    <string name="network_name">شبكة الهاتف المحمول</string>
+    <string name="call">يتصل</string>
     <string name="message">رسالة</string>
-    <string name="create">تحرير</string>
-    <string name="block">حظر</string>
+    <string name="create">يحرر</string>
+    <string name="block">حاجز</string>
     <string name="name">مجهول</string>
-    <string name="name_title">الاسم :</string>
-    <string name="country_">البلد</string>
-    <string name="network">الشبكة : </string>
-    <string name="edit">تحرير</string>
-    <string name="invalid_number">رقم غير صحيح</string>
-    <string name="a" translatable="false">أ</string>
-    <string name="location">الموقع</string>
+    <string name="name_title">اسم :</string>
+    <string name="country_">دولة</string>
+    <string name="network">شبكة :</string>
+    <string name="edit">يحرر</string>
+    <string name="invalid_number">رقم غير صالح</string>
+    <string name="a">أ</string>
+    <string name="location">موقع</string>
+
     <!--area calculator-->
-    <string name="area_calculator_header">حاسب المساحة</string>
-    <string name="area1">المساحة : </string>
-    <string name="error">خطأ: %s</string>
-    <string name="area">المساحة</string>
-    <string name="perimeter">المحيط :</string>
+    <string name="area_calculator_header">حاسبة المنطقة</string>
+    <string name="area1">منطقة :</string>
+    <string name="error">الخطأ: %s</string>
+    <string name="area">منطقة</string>
+    <string name="perimeter">محيط :</string>
     <string name="available_units_of_area">وحدات المساحة المتاحة</string>
 
     <!--cam address-->
-    <string name="cam_address_header">عنوان الكاميرا</string>
+    <string name="cam_address_header">عنوان كام</string>
     <string name="lat">خط العرض :</string>
-    <string name="log">خط الطول :</string>
+    <string name="log">طويل :</string>
     <string name="congo">تهانينا</string>
     <string name="image_saved_successfully">تم حفظ الصورة بنجاح</string>
-    <string name="done">تم</string>
+    <string name="done">منتهي</string>
     <string name="saved">تم الحفظ في المعرض</string>
-    <string name="language">اللغة</string>
+    <string name="language">لغة</string>
 
     <!--isd code-->
-    <string name="isd_code_header">كود ISD</string>
-    <string name="find_isd_code">البحث عن أكواد ISD</string>
+    <string name="isd_code_header">كود اي اس دي</string>
+    <string name="find_isd_code">ابحث عن رموز ISD</string>
     <string name="select_country">اختر البلد</string>
     <string name="select_your_country">اختر بلدك</string>
-    <string name="search_country_by_name">البحث عن البلد بالاسم</string>
+    <string name="search_country_by_name">البحث عن الدولة بالاسم</string>
     <string name="country_name">اسم البلد :</string>
-    <string name="isd">كود ISD :</string>
-    <string name="search">بحث</string>
-    <string name="below_track_text">البحث عن أي رقم هاتف موقعه</string>
+    <string name="isd">كود اي اس دي :</string>
+    <string name="search">يبحث</string>
+    <string name="below_track_text">البحث في أي موقع رقم الهاتف</string>
+
     <!--gps location-->
-    <string name="current_gps_location">الموقع الحالي بواسطة GPS</string>
+    <string name="current_gps_location">موقع GPS الحالي</string>
     <string name="latitude">خط العرض</string>
     <string name="longitude">خط الطول</string>
-    <string name="postal_code">الرمز البريدي :</string>
+    <string name="postal_code">رمز بريدي :</string>
     <string name="show_location_on_map">عرض الموقع على الخريطة</string>
     <string name="current_postal_address">العنوان البريدي الحالي</string>
+
     <!--isd/std-->
     <string name="enter_city_name">أدخل اسم المدينة</string>
+
     <!--search number-->
-    <string name="search_hint_dialog">بحث...</string>
+    <string name="search_hint_dialog">يبحث...</string>
     <string name="search_contatct">البحث عن رقم الهاتف..</string>
     <string name="mobile_number">رقم الجوال :</string>
-    <string name="select_country_code">اختر رمز البلد</string>
+    <string name="select_country_code">حدد رمز البلد</string>
     <string name="find_location">البحث عن الموقع</string>
-    <string name="whatsapp_not_installed">تطبيق واتساب غير مثبت على هذا الجهاز.</string>
+    <string name="whatsapp_not_installed">لم يتم تثبيت الواتساب على هذا الجهاز.</string>
 
     <!--distance finder-->
-    <string name="distance1">المسافة :</string>
-    <string name="_0m">0م</string>
-    <string name="delete">حذف</string>
+    <string name="distance1">مسافة :</string>
+    <string name="_0m">0 م</string>
+    <string name="delete">يمسح</string>
     <string name="undo">تراجع</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
-    <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+
+    <!--intro slider-->
+    <string name="next">التالي</string>
+    <string name="start">يبدأ</string>
+    <string name="slide_1_title">البحث عن موقع الهاتف</string>
+    <string name="slide_1_desc">يمكنك العثور بسهولة على أي رقم هاتف وتحديد موقعه\\nالموقع إظهار تفاصيل الرقم على الخريطة</string>
+    <string name="slide_2_title">جهاز تعقب GPS</string>
+    <string name="slide_2_desc">حدد موقع GPS وابحث عن إحداثيات\\n أي موقع باستخدام الخريطة المباشرة</string>
+    <string name="slide_3_title">احصل على الموقع الحالي</string>
+    <string name="slide_3_desc">ابحث عن موقعك الحالي بطرق مختلفة \\nباستخدام اسمه أو عنوانه فقط</string>
+    <string name="slide_4_title">رقم الجوال\\nالموقع</string>
+    <string name="device_location">موقع الجهاز</string>
+    <string name="slide_4_desc">يتطلب موقع رقم الجوال إذنًا للوصول إلى موقع الجهاز</string>
+    <string name="go">يذهب</string>
+    <string name="grant_all_permissions">منح كافة الأذونات للمتابعة</string>
+    <string name="permission_denied">لقد رفضت الإذن</string>
+    <string name="permission_denied_title">تم رفض الإذن</string>
+    <string name="lets_go">دعنا نذهب</string>
+
+    <!--other-->
+    <string name="welcome">مرحباً</string>
+    <string name="phone_number_locator">محدد رقم الهاتف</string>
+    <string name="phone_tracker">تعقب الهاتف</string>
+    <string name="gps_tracker_new">جهاز تعقب GPS</string>
+    <string name="locate_your_loved_ones_in_real_time">حدد مكان أحبائك في الوقت الفعلي</string>
+    <string name="view_complete_location_history">عرض سجل المواقع الكامل</string>
+    <string name="thankyou">شكرًا لك</string>
 
 </resources>

@@ -1,180 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">فون نمبر لوکیٹر</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
+
     <!--splash-->
-    <string name="let_s_start">Let\'s start</string>
-    <string name="splash_text">This action can contain ads</string>
+    <string name="let_s_start">آئیے شروع کرتے ہیں۔</string>
+    <string name="splash_text">اس کارروائی میں اشتہارات شامل ہو سکتے ہیں۔</string>
 
     <!--context-->
-    <string name="no_app_found">No app found</string>
-    <string name="no_post_notifications_permissions">Permission to post notifications is required</string>
-    <string name="unknown_error_occurred">An unknown error occurred</string>
-    <string name="current_location">Current Location</string>
-    <string name="simple_commons" translatable="false">Simple Commons</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="no_address_found">No Address Found</string>
-    <string name="number_blocked">Number Blocked</string>
-    <string name="permission_required">Permission Required</string>
-    <!--main screen-->
-    <string name="call_locator">Call Locator</string>
-    <string name="contact_list">Phone Contact</string>
-    <string name="gps_tracker">GPS Tracker</string>
-    <string name="area_calculator">Area Calculator</string>
-    <string name="share_loc">Share Location</string>
-    <string name="isd_std_code">ISD / STD Code</string>
-    <string name="cam_address">Cam Address</string>
-    <string name="gps_location">GPS Location</string>
-    <string name="find_address">Find Address</string>
-    <string name="gps_address">GPS Address</string>
-    <string name="distance_finder">Distance Finder</string>
-    <string name="recommend_for_you">Recommended for you</string>
-    <string name="num_track_more_option">Number Tracker More Option</string>
+    <string name="no_app_found">کوئی ایپ نہیں ملی</string>
+    <string name="no_post_notifications_permissions">اطلاعات پوسٹ کرنے کے لیے اجازت درکار ہے۔</string>
+    <string name="unknown_error_occurred">ایک نامعلوم خرابی پیش آگئی</string>
+    <string name="current_location">موجودہ مقام</string>
+    <string name="simple_commons">سادہ العام</string>
+    <string name="copied_to_clipboard">کلپ بورڈ پر کاپی ہو گیا۔</string>
+    <string name="no_address_found">کوئی پتہ نہیں ملا</string>
+    <string name="number_blocked">نمبر بلاک</string>
+    <string name="permission_required">اجازت درکار ہے۔</string>
 
-    <!-- &lt;!&ndash;live weather&ndash;&gt;
-     <string name="live_weather_header">Live Weather</string>
-     <string name="pressure">Pressure</string>
-     <string name="visibility">Visibility</string>
-     <string name="cloud_cover">Cloud Cover</string>
-     <string name="wind">Wind</string>
-     <string name="temp">Temperature</string>
-     <string name="humidity">Humidity</string>
-     <string name="loading">loading...</string>
-     <string name="sunrise">Sunrise</string>
-     <string name="sunset">Sunset</string>
-     <string name="cannot_find_data">Can\'t find data</string>
-     <string name="turn_on_location">Turn on location</string>
-     <string name="enable_location">Enable Location</string>
-     <string name="search_countries">Search Countries</string>
-     <string name="time_format" translatable="false">EEEE, dd MMMM yyyy hh:mm a</string>-->
+    <!--main screen-->
+    <string name="call_locator">لوکیٹر کو کال کریں۔</string>
+    <string name="contact_list">فون رابطہ</string>
+    <string name="gps_tracker">GPS ٹریکر</string>
+    <string name="area_calculator">ایریا کیلکولیٹر</string>
+    <string name="share_loc">مقام کا اشتراک کریں۔</string>
+    <string name="isd_std_code">آئی ایس ڈی / ایس ٹی ڈی کوڈ</string>
+    <string name="cam_address">کیم ایڈریس</string>
+    <string name="gps_location">GPS مقام</string>
+    <string name="find_address">پتہ تلاش کریں۔</string>
+    <string name="gps_address">GPS ایڈریس</string>
+    <string name="distance_finder">فاصلہ تلاش کرنے والا</string>
+    <string name="recommend_for_you">آپ کے لیے تجویز کردہ</string>
+    <string name="num_track_more_option">نمبر ٹریکر مزید آپشن</string>
 
     <!--drawer-->
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="share">Share</string>
-    <string name="rate_us">Rate us</string>
-    <string name="language_setting">Language Setting</string>
-    <string name="more">More Apps</string>
+    <string name="privacy_policy">رازداری کی پالیسی</string>
+    <string name="share">شیئر کریں۔</string>
+    <string name="rate_us">ہمیں درجہ دیں۔</string>
+    <string name="language_setting">زبان کی ترتیب</string>
+    <string name="more">مزید ایپس</string>
+
     <!--contacts-->
-    <string name="contacts">Contacts</string>
-    <string name="search_contact">Search Number</string>
+    <string name="contacts">رابطے</string>
+    <string name="search_contact">نمبر تلاش کریں۔</string>
+
     <!--live traffic-->
-    <string name="live_traffic_header">Live Traffic</string>
-    <string name="low">Normal</string>
-    <string name="moderate">Medium</string>
-    <string name="heavy">Heavy</string>
-    <string name="copy">Copy</string>
-    <string name="address_copied">Address copied</string>
-    <string name="please_wait">Please wait</string>
+    <string name="live_traffic_header">لائیو ٹریفک</string>
+    <string name="low">نارمل</string>
+    <string name="moderate">درمیانہ</string>
+    <string name="heavy">بھاری</string>
+    <string name="copy">کاپی</string>
+    <string name="address_copied">پتہ کاپی ہو گیا۔</string>
+    <string name="please_wait">برائے مہربانی انتظار کریں۔</string>
 
     <!--share location-->
-    <string name="copy_share">Copy to Clipboard</string>
-    <string name="whatsapp">Whatsapp</string>
-    <string name="share_location_header">Share Location</string>
-    <string name="share_location">Share</string>
-    <string name="address">Address : </string>
-    <string name="city">City : </string>
-    <string name="country">Country : </string>
-    <string name="navigate">Navigate</string>
-    <string name="already_on_destination">Already on Destination</string>
+    <string name="copy_share">کلپ بورڈ پر کاپی کریں۔</string>
+    <string name="whatsapp">واٹس ایپ</string>
+    <string name="share_location_header">مقام کا اشتراک کریں۔</string>
+    <string name="share_location">شیئر کریں۔</string>
+    <string name="address">پتہ:</string>
+    <string name="city">شہر:</string>
+    <string name="country">ملک:</string>
+    <string name="navigate">نیویگیٹ کریں۔</string>
+    <string name="already_on_destination">پہلے ہی منزل پر ہے۔</string>
 
     <!--permission-->
-    <string name="check_internet_connection">Please check internet connection</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="location_permission_denied">Permission denied</string>
-    <string name="delete_str">Are you sure you want to delete?</string>
-    <string name="already_destination">You are already at the destination.</string>
+    <string name="check_internet_connection">براہ کرم انٹرنیٹ کنیکشن چیک کریں۔</string>
+    <string name="yes">جی ہاں</string>
+    <string name="no">نہیں</string>
+    <string name="location_permission_denied">اجازت نامنظور</string>
+    <string name="delete_str">کیا آپ واقعی حذف کرنا چاہتے ہیں؟</string>
+    <string name="already_destination">آپ پہلے ہی منزل پر ہیں۔</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">Find Address</string>
-    <string name="lati">Lat :</string>
-    <string name="longi">Long :</string>
-    <string name="get_location">Get Location</string>
-    <string name="copy_to_clipboard">Copy</string>
-    <string name="navigation">Navigation</string>
-    <string name="lat_long">latitude/longitude</string>
-    <string name="degrees">Degrees (DMS)</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
-    <string name="empty_measurement">Empty measurements</string>
-    <string name="saved_measures">Saved Measures</string>
-    <string name="item_saved">Item saved successfully!</string>
-    <string name="no_history">No History found</string>
-    <string name="loading_ads">Loading Ad...</string>
-    <string name="exit_text">Are you sure you want to exit?</string>
-    <string name="exit">Exit</string>
-    <string name="enter_lat">Enter Latitude</string>
-    <string name="enter_long">Enter Longitude</string>
+    <string name="gps_coordinates_header">پتہ تلاش کریں۔</string>
+    <string name="lati">لاطینی:</string>
+    <string name="longi">طویل:</string>
+    <string name="get_location">مقام حاصل کریں۔</string>
+    <string name="copy_to_clipboard">کاپی</string>
+    <string name="navigation">نیویگیشن</string>
+    <string name="lat_long">عرض البلد/طول البلد</string>
+    <string name="degrees">ڈگریاں (DMS)</string>
+    <string name="cancel">منسوخ کریں۔</string>
+    <string name="ok">ٹھیک ہے</string>
+    <string name="empty_measurement">خالی پیمائش</string>
+    <string name="saved_measures">محفوظ شدہ اقدامات</string>
+    <string name="item_saved">آئٹم کامیابی کے ساتھ محفوظ ہو گیا!</string>
+    <string name="no_history">کوئی تاریخ نہیں ملی</string>
+    <string name="loading_ads">اشتہار لوڈ ہو رہا ہے...</string>
+    <string name="exit_text">کیا آپ واقعی باہر نکلنا چاہتے ہیں؟</string>
+    <string name="exit">باہر نکلیں۔</string>
+    <string name="enter_lat">عرض البلد داخل کریں۔</string>
+    <string name="enter_long">طول البلد درج کریں۔</string>
 
     <!--number locator-->
-    <string name="search_number">Search Number</string>
-    <string name="enter_phone_number">Enter phone number</string>
-    <string name="network_name">Mobile Network</string>
-    <string name="call">Call</string>
-    <string name="message">Message</string>
-    <string name="create">Edit</string>
-    <string name="block">Block</string>
-    <string name="name">Unknown</string>
-    <string name="name_title">Name :</string>
-    <string name="country_">Country</string>
-    <string name="network">Network : </string>
-    <string name="edit">Edit</string>
-    <string name="invalid_number">Invalid number</string>
-    <string name="a" translatable="false">A</string>
-    <string name="location">Location</string>
+    <string name="search_number">نمبر تلاش کریں۔</string>
+    <string name="enter_phone_number">فون نمبر درج کریں۔</string>
+    <string name="network_name">موبائل نیٹ ورک</string>
+    <string name="call">کال کریں۔</string>
+    <string name="message">پیغام</string>
+    <string name="create">ترمیم کریں۔</string>
+    <string name="block">بلاک</string>
+    <string name="name">نامعلوم</string>
+    <string name="name_title">نام:</string>
+    <string name="country_">ملک</string>
+    <string name="network">نیٹ ورک:</string>
+    <string name="edit">ترمیم کریں۔</string>
+    <string name="invalid_number">غلط نمبر</string>
+    <string name="a">اے</string>
+    <string name="location">مقام</string>
+
     <!--area calculator-->
-    <string name="area_calculator_header">Area Calculator</string>
-    <string name="area1">Area : </string>
-    <string name="error">Error: %s</string>
-    <string name="area">Area</string>
-    <string name="perimeter">Perimeter :</string>
-    <string name="available_units_of_area">Available Units of Area</string>
+    <string name="area_calculator_header">ایریا کیلکولیٹر</string>
+    <string name="area1">علاقہ:</string>
+    <string name="error">خرابی: %s</string>
+    <string name="area">علاقہ</string>
+    <string name="perimeter">دائرہ:</string>
+    <string name="available_units_of_area">رقبے کی دستیاب اکائیاں</string>
 
     <!--cam address-->
-    <string name="cam_address_header">Cam Address</string>
-    <string name="lat">Lat :</string>
-    <string name="log">Long :</string>
-    <string name="congo">Congratulation</string>
-    <string name="image_saved_successfully">Image Saved Successfully</string>
-    <string name="done">Done</string>
-    <string name="saved">Saved in Gallery</string>
-    <string name="language">Language</string>
+    <string name="cam_address_header">کیم ایڈریس</string>
+    <string name="lat">لاطینی:</string>
+    <string name="log">طویل:</string>
+    <string name="congo">مبارک ہو۔</string>
+    <string name="image_saved_successfully">تصویر کامیابی سے محفوظ ہو گئی۔</string>
+    <string name="done">ہو گیا</string>
+    <string name="saved">گیلری میں محفوظ کیا گیا۔</string>
+    <string name="language">زبان</string>
 
     <!--isd code-->
-    <string name="isd_code_header">ISD Code</string>
-    <string name="find_isd_code">Find the ISD Codes</string>
-    <string name="select_country">Select Country</string>
-    <string name="select_your_country">Select your Country</string>
-    <string name="search_country_by_name">Search country by name</string>
-    <string name="country_name">Country Name :</string>
-    <string name="isd">ISD Code :</string>
-    <string name="search">Search</string>
-    <string name="below_track_text">Search any Phone Number LOcation</string>
+    <string name="isd_code_header">آئی ایس ڈی کوڈ</string>
+    <string name="find_isd_code">ISD کوڈز تلاش کریں۔</string>
+    <string name="select_country">ملک منتخب کریں۔</string>
+    <string name="select_your_country">اپنا ملک منتخب کریں۔</string>
+    <string name="search_country_by_name">نام سے ملک تلاش کریں۔</string>
+    <string name="country_name">ملک کا نام:</string>
+    <string name="isd">آئی ایس ڈی کوڈ:</string>
+    <string name="search">تلاش کریں۔</string>
+    <string name="below_track_text">کسی بھی فون نمبر کی جگہ تلاش کریں۔</string>
+
     <!--gps location-->
-    <string name="current_gps_location">Current GPS Location</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="postal_code">Postal Code :</string>
-    <string name="show_location_on_map">Show Location on map</string>
-    <string name="current_postal_address">Current Postal Address</string>
+    <string name="current_gps_location">موجودہ GPS مقام</string>
+    <string name="latitude">عرض بلد</string>
+    <string name="longitude">طول البلد</string>
+    <string name="postal_code">پوسٹل کوڈ:</string>
+    <string name="show_location_on_map">نقشے پر مقام دکھائیں۔</string>
+    <string name="current_postal_address">موجودہ ڈاک کا پتہ</string>
+
     <!--isd/std-->
-    <string name="enter_city_name">Enter city name</string>
+    <string name="enter_city_name">شہر کا نام درج کریں۔</string>
+
     <!--search number-->
-    <string name="search_hint_dialog">Search...</string>
-    <string name="search_contatct">Search phone number..</string>
-    <string name="mobile_number">Mobile Num :</string>
-    <string name="select_country_code">Select Country Code</string>
-    <string name="find_location">Find Location</string>
-    <string name="whatsapp_not_installed">WhatsApp is not installed on this device.</string>
+    <string name="search_hint_dialog">تلاش کریں...</string>
+    <string name="search_contatct">فون نمبر تلاش کریں..</string>
+    <string name="mobile_number">موبائل نمبر:</string>
+    <string name="select_country_code">ملک کا کوڈ منتخب کریں۔</string>
+    <string name="find_location">مقام تلاش کریں۔</string>
+    <string name="whatsapp_not_installed">اس ڈیوائس پر WhatsApp انسٹال نہیں ہے۔</string>
 
     <!--distance finder-->
-    <string name="distance1">Distance :</string>
+    <string name="distance1">فاصلہ:</string>
     <string name="_0m">0m</string>
-    <string name="delete">Delete</string>
-    <string name="undo">Undo</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
-    <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="delete">حذف کریں۔</string>
+    <string name="undo">کالعدم</string>
+
+    <!--intro slider-->
+    <string name="next">اگلا</string>
+    <string name="start">شروع کریں۔</string>
+    <string name="slide_1_title">فون کا مقام تلاش کریں۔</string>
+    <string name="slide_1_desc">آسانی سے کوئی بھی فون نمبر تلاش کریں اور تلاش کریں\\nمقام نقشے پر نمبر کی تفصیلات دکھائیں</string>
+    <string name="slide_2_title">GPS ٹریکر</string>
+    <string name="slide_2_desc">جی پی ایس لوکیشن کا پتہ لگائیں اور لائیو میپ کے ساتھ کسی بھی مقام کے کوآرڈینیٹس تلاش کریں۔</string>
+    <string name="slide_3_title">موجودہ مقام حاصل کریں۔</string>
+    <string name="slide_3_desc">اپنے موجودہ مقام کو مختلف طریقوں سے تلاش کریں \\nصرف اس کا نام یا پتہ استعمال کرتے ہوئے</string>
+    <string name="slide_4_title">موبائل نمبر\\nمقام</string>
+    <string name="device_location">ڈیوائس کا مقام</string>
+    <string name="slide_4_desc">موبائل نمبر کے مقام کو\\nآلہ کے مقام تک رسائی کے لیے اجازت درکار ہے۔</string>
+    <string name="go">جاؤ</string>
+    <string name="grant_all_permissions">جاری رکھنے کے لیے تمام اجازتیں دیں۔</string>
+    <string name="permission_denied">آپ نے اجازت دینے سے انکار کر دیا۔</string>
+    <string name="permission_denied_title">اجازت نامنظور</string>
+    <string name="lets_go">چلو چلتے ہیں۔</string>
+
+    <!--other-->
+    <string name="welcome">خوش آمدید</string>
+    <string name="phone_number_locator">فون نمبر لوکیٹر</string>
+    <string name="phone_tracker">فون ٹریکر</string>
+    <string name="gps_tracker_new">GPS ٹریکر</string>
+    <string name="locate_your_loved_ones_in_real_time">اپنے پیاروں کو حقیقی وقت میں تلاش کریں۔</string>
+    <string name="view_complete_location_history">مقام کی مکمل تاریخ دیکھیں</string>
+    <string name="thankyou">شکریہ</string>
+
 </resources>

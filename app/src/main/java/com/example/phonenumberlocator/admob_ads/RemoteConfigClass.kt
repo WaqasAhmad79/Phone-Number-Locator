@@ -47,7 +47,6 @@ object RemoteConfigClass {
     // Native Ads
     var native_language: Boolean = true
     var native_welcome_one: Boolean = true
-
     var native_welcome_three: Boolean = true
     var native_welcome_four: Boolean = true
     var native_pnl_call_locator_activity: Boolean = true
@@ -59,6 +58,7 @@ object RemoteConfigClass {
     var native_language_other_dup_activity: Boolean = true
     var native_welcome_screen_activity: Boolean = true
     var native_welcome_screen_dup_activity: Boolean = true
+    var native_exit_ad: Boolean = true
 
 
     //configurations
@@ -149,6 +149,8 @@ object RemoteConfigClass {
                 remoteConfig["native_welcome_screen_dup_activity"].asBoolean()
             inter_exit_app_activity =
                 remoteConfig["inter_exit_app_activity"].asBoolean()
+            native_exit_ad =
+                remoteConfig["native_exit_ad"].asBoolean()
 
 
             callBack.invoke(task.isSuccessful)

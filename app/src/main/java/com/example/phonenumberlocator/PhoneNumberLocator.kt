@@ -127,12 +127,15 @@ class PhoneNumberLocator : Application(), LifecycleObserver {
         val nativeAdWelcomeDup: MutableLiveData<NativeAd> = MutableLiveData()
 
         val onBoardNative1: MutableLiveData<NativeAd?> = MutableLiveData()
-        //        val onBoardNative2: MutableLiveData<NativeAd?> = MutableLiveData()
+
         val onBoardNative3: MutableLiveData<NativeAd?> = MutableLiveData()
         val onBoardNative4: MutableLiveData<NativeAd?> = MutableLiveData()
 
         val nativeAdSmall: MutableLiveData<NativeAd> = MutableLiveData()
         val nativeAdLarge: MutableLiveData<NativeAd> = MutableLiveData()
+
+        // Native AdExit
+        val nativeAdExit: MutableLiveData<NativeAd> = MutableLiveData()
 
         var canRequestAd = false
 

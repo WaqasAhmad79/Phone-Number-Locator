@@ -46,6 +46,9 @@
         android:theme="@style/Base.Theme.PhoneNumberLocator"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.DrawerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.ThankyouScreenActivity"
             android:exported="false" />
         <activity

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name" translatable="false">Phone Number Locator</string>
+    <string name="app_name">Phone Number Locator</string>
 
-    <string name="privacy_policy_link" translatable="false">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
-    <string name="account_name" translatable="false">OneLocate.ly</string>
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
 
     <!--splash-->
     <string name="let_s_start">Let\'s start</string>
@@ -13,7 +13,7 @@
     <string name="no_post_notifications_permissions">Permission to post notifications is required</string>
     <string name="unknown_error_occurred">An unknown error occurred</string>
     <string name="current_location">Current Location</string>
-    <string name="simple_commons" translatable="false">Simple Commons</string>
+    <string name="simple_commons">Simple Commons</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
     <string name="no_address_found">No Address Found</string>
     <string name="number_blocked">Number Blocked</string>
@@ -108,7 +108,7 @@
     <string name="network">Network : </string>
     <string name="edit">Edit</string>
     <string name="invalid_number">Invalid number</string>
-    <string name="a" translatable="false">A</string>
+    <string name="a">A</string>
     <string name="location">Location</string>
 
     <!--area calculator-->
@@ -166,27 +166,30 @@
     <string name="undo">Undo</string>
 
     <!--intro slider-->
-    <string name="next" translatable="false">Next</string>
-    <string name="start" translatable="false">Start</string>
-    <string name="slide_1_title" translatable="false">Find Phone Location</string>
-    <string name="slide_1_desc" translatable="false">Easily Find and Locate any Phone Number\nLocation Show Details of Number on Map </string>
-    <string name="slide_2_title" translatable="false">GPS Tracker</string>
-    <string name="slide_2_desc" translatable="false">Locate GPS Location and find Coordinates\n of any Location with Live Map</string>
-    <string name="slide_3_title" translatable="false">Get Current Location</string>
-    <string name="slide_3_desc" translatable="false">Find  Your Current Location by different ways \nUsing just its name or address</string>
-    <string name="slide_4_title" translatable="false">Mobile Number\nLocation</string>
-    <string name="device_location" translatable="false">Device\'s Location</string>
-    <string name="slide_4_desc" translatable="false">Mobile Number Location requires\npermission to access device\'s  Location</string>
-    <string name="go" translatable="false">Go</string>
-    <string name="grant_all_permissions" translatable="false">Grant all permissions to continue</string>
-    <string name="permission_denied" translatable="false">You denied the permission</string>
+    <string name="next">Next</string>
+    <string name="start">Start</string>
+    <string name="slide_1_title">Find Phone Location</string>
+    <string name="slide_1_desc">Easily Find and Locate any Phone Number\nLocation Show Details of Number on Map </string>
+    <string name="slide_2_title">GPS Tracker</string>
+    <string name="slide_2_desc">Locate GPS Location and find Coordinates\n of any Location with Live Map</string>
+    <string name="slide_3_title">Get Current Location</string>
+    <string name="slide_3_desc">Find  Your Current Location by different ways \nUsing just its name or address</string>
+    <string name="slide_4_title">Mobile Number\nLocation</string>
+    <string name="device_location">Device\'s Location</string>
+    <string name="slide_4_desc">Mobile Number Location requires\npermission to access device\'s  Location</string>
+    <string name="go">Go</string>
+    <string name="grant_all_permissions">Grant all permissions to continue</string>
+    <string name="permission_denied">You denied the permission</string>
     <string name="permission_denied_title">Permission Denied</string>
     <string name="lets_go">Let\'s Go</string>
+
+    <!--other-->
     <string name="welcome">WELCOME</string>
     <string name="phone_number_locator">Phone Number Locator</string>
     <string name="phone_tracker">Phone Tracker</string>
     <string name="gps_tracker_new">GPS Tracker</string>
     <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
     <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="thankyou">Thank You</string>
 
 </resources>

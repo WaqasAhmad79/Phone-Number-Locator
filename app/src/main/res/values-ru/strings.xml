@@ -1,180 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">Поиск номера телефона</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
+
     <!--splash-->
-    <string name="let_s_start">Let\'s start</string>
-    <string name="splash_text">This action can contain ads</string>
+    <string name="let_s_start">Давайте начнем</string>
+    <string name="splash_text">Это действие может содержать рекламу</string>
 
     <!--context-->
-    <string name="no_app_found">No app found</string>
-    <string name="no_post_notifications_permissions">Permission to post notifications is required</string>
-    <string name="unknown_error_occurred">An unknown error occurred</string>
-    <string name="current_location">Current Location</string>
-    <string name="simple_commons" translatable="false">Simple Commons</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="no_address_found">No Address Found</string>
-    <string name="number_blocked">Number Blocked</string>
-    <string name="permission_required">Permission Required</string>
-    <!--main screen-->
-    <string name="call_locator">Call Locator</string>
-    <string name="contact_list">Phone Contact</string>
-    <string name="gps_tracker">GPS Tracker</string>
-    <string name="area_calculator">Area Calculator</string>
-    <string name="share_loc">Share Location</string>
-    <string name="isd_std_code">ISD / STD Code</string>
-    <string name="cam_address">Cam Address</string>
-    <string name="gps_location">GPS Location</string>
-    <string name="find_address">Find Address</string>
-    <string name="gps_address">GPS Address</string>
-    <string name="distance_finder">Distance Finder</string>
-    <string name="recommend_for_you">Recommended for you</string>
-    <string name="num_track_more_option">Number Tracker More Option</string>
+    <string name="no_app_found">Приложение не найдено</string>
+    <string name="no_post_notifications_permissions">Требуется разрешение на публикацию уведомлений.</string>
+    <string name="unknown_error_occurred">Произошла неизвестная ошибка</string>
+    <string name="current_location">Текущее местоположение</string>
+    <string name="simple_commons">Простое сообщество</string>
+    <string name="copied_to_clipboard">Скопировано в буфер обмена</string>
+    <string name="no_address_found">Адрес не найден</string>
+    <string name="number_blocked">Номер заблокирован</string>
+    <string name="permission_required">Требуется разрешение</string>
 
-    <!-- &lt;!&ndash;live weather&ndash;&gt;
-     <string name="live_weather_header">Live Weather</string>
-     <string name="pressure">Pressure</string>
-     <string name="visibility">Visibility</string>
-     <string name="cloud_cover">Cloud Cover</string>
-     <string name="wind">Wind</string>
-     <string name="temp">Temperature</string>
-     <string name="humidity">Humidity</string>
-     <string name="loading">loading...</string>
-     <string name="sunrise">Sunrise</string>
-     <string name="sunset">Sunset</string>
-     <string name="cannot_find_data">Can\'t find data</string>
-     <string name="turn_on_location">Turn on location</string>
-     <string name="enable_location">Enable Location</string>
-     <string name="search_countries">Search Countries</string>
-     <string name="time_format" translatable="false">EEEE, dd MMMM yyyy hh:mm a</string>-->
+    <!--main screen-->
+    <string name="call_locator">Поиск звонков</string>
+    <string name="contact_list">Контактный телефон</string>
+    <string name="gps_tracker">GPS трекер</string>
+    <string name="area_calculator">Калькулятор площади</string>
+    <string name="share_loc">Поделиться местоположением</string>
+    <string name="isd_std_code">Код ISD/STD</string>
+    <string name="cam_address">Адрес камеры</string>
+    <string name="gps_location">GPS-местоположение</string>
+    <string name="find_address">Найти адрес</string>
+    <string name="gps_address">GPS-адрес</string>
+    <string name="distance_finder">Поиск расстояния</string>
+    <string name="recommend_for_you">Рекомендуется для вас</string>
+    <string name="num_track_more_option">Номерной трекер, дополнительные возможности</string>
 
     <!--drawer-->
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="share">Share</string>
-    <string name="rate_us">Rate us</string>
-    <string name="language_setting">Language Setting</string>
-    <string name="more">More Apps</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="share">Делиться</string>
+    <string name="rate_us">Оцените нас</string>
+    <string name="language_setting">Настройка языка</string>
+    <string name="more">Больше приложений</string>
+
     <!--contacts-->
-    <string name="contacts">Contacts</string>
-    <string name="search_contact">Search Number</string>
+    <string name="contacts">Контакты</string>
+    <string name="search_contact">Номер поиска</string>
+
     <!--live traffic-->
-    <string name="live_traffic_header">Live Traffic</string>
-    <string name="low">Normal</string>
-    <string name="moderate">Medium</string>
-    <string name="heavy">Heavy</string>
-    <string name="copy">Copy</string>
-    <string name="address_copied">Address copied</string>
-    <string name="please_wait">Please wait</string>
+    <string name="live_traffic_header">Живой трафик</string>
+    <string name="low">Нормальный</string>
+    <string name="moderate">Середина</string>
+    <string name="heavy">Тяжелый</string>
+    <string name="copy">Копировать</string>
+    <string name="address_copied">Адрес скопирован</string>
+    <string name="please_wait">пожалуйста, подождите</string>
 
     <!--share location-->
-    <string name="copy_share">Copy to Clipboard</string>
-    <string name="whatsapp">Whatsapp</string>
-    <string name="share_location_header">Share Location</string>
-    <string name="share_location">Share</string>
-    <string name="address">Address : </string>
-    <string name="city">City : </string>
-    <string name="country">Country : </string>
-    <string name="navigate">Navigate</string>
-    <string name="already_on_destination">Already on Destination</string>
+    <string name="copy_share">Копировать в буфер обмена</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="share_location_header">Поделиться местоположением</string>
+    <string name="share_location">Делиться</string>
+    <string name="address">Адрес :</string>
+    <string name="city">Город :</string>
+    <string name="country">Страна :</string>
+    <string name="navigate">Навигация</string>
+    <string name="already_on_destination">Уже в пункте назначения</string>
 
     <!--permission-->
-    <string name="check_internet_connection">Please check internet connection</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="location_permission_denied">Permission denied</string>
-    <string name="delete_str">Are you sure you want to delete?</string>
-    <string name="already_destination">You are already at the destination.</string>
+    <string name="check_internet_connection">Пожалуйста, проверьте подключение к Интернету</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="location_permission_denied">Доступ запрещен</string>
+    <string name="delete_str">Вы уверены, что хотите удалить?</string>
+    <string name="already_destination">Вы уже в пункте назначения.</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">Find Address</string>
-    <string name="lati">Lat :</string>
-    <string name="longi">Long :</string>
-    <string name="get_location">Get Location</string>
-    <string name="copy_to_clipboard">Copy</string>
-    <string name="navigation">Navigation</string>
-    <string name="lat_long">latitude/longitude</string>
-    <string name="degrees">Degrees (DMS)</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
-    <string name="empty_measurement">Empty measurements</string>
-    <string name="saved_measures">Saved Measures</string>
-    <string name="item_saved">Item saved successfully!</string>
-    <string name="no_history">No History found</string>
-    <string name="loading_ads">Loading Ad...</string>
-    <string name="exit_text">Are you sure you want to exit?</string>
-    <string name="exit">Exit</string>
-    <string name="enter_lat">Enter Latitude</string>
-    <string name="enter_long">Enter Longitude</string>
+    <string name="gps_coordinates_header">Найти адрес</string>
+    <string name="lati">Лат:</string>
+    <string name="longi">Длинный :</string>
+    <string name="get_location">Получить местоположение</string>
+    <string name="copy_to_clipboard">Копировать</string>
+    <string name="navigation">Навигация</string>
+    <string name="lat_long">широта/долгота</string>
+    <string name="degrees">Степени (DMS)</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">Хорошо</string>
+    <string name="empty_measurement">Пустые измерения</string>
+    <string name="saved_measures">Сохраненные измерения</string>
+    <string name="item_saved">Товар успешно сохранен!</string>
+    <string name="no_history">История не найдена</string>
+    <string name="loading_ads">Загрузка объявления...</string>
+    <string name="exit_text">Вы уверены, что хотите выйти?</string>
+    <string name="exit">Выход</string>
+    <string name="enter_lat">Введите широту</string>
+    <string name="enter_long">Введите долготу</string>
 
     <!--number locator-->
-    <string name="search_number">Search Number</string>
-    <string name="enter_phone_number">Enter phone number</string>
-    <string name="network_name">Mobile Network</string>
-    <string name="call">Call</string>
-    <string name="message">Message</string>
-    <string name="create">Edit</string>
-    <string name="block">Block</string>
-    <string name="name">Unknown</string>
-    <string name="name_title">Name :</string>
-    <string name="country_">Country</string>
-    <string name="network">Network : </string>
-    <string name="edit">Edit</string>
-    <string name="invalid_number">Invalid number</string>
-    <string name="a" translatable="false">A</string>
-    <string name="location">Location</string>
+    <string name="search_number">Номер поиска</string>
+    <string name="enter_phone_number">Введите номер телефона</string>
+    <string name="network_name">Мобильная сеть</string>
+    <string name="call">Вызов</string>
+    <string name="message">Сообщение</string>
+    <string name="create">Редактировать</string>
+    <string name="block">Блокировать</string>
+    <string name="name">Неизвестный</string>
+    <string name="name_title">Имя :</string>
+    <string name="country_">Страна</string>
+    <string name="network">Сеть :</string>
+    <string name="edit">Редактировать</string>
+    <string name="invalid_number">Неверный номер</string>
+    <string name="a">А</string>
+    <string name="location">Расположение</string>
+
     <!--area calculator-->
-    <string name="area_calculator_header">Area Calculator</string>
-    <string name="area1">Area : </string>
-    <string name="error">Error: %s</string>
-    <string name="area">Area</string>
-    <string name="perimeter">Perimeter :</string>
-    <string name="available_units_of_area">Available Units of Area</string>
+    <string name="area_calculator_header">Калькулятор площади</string>
+    <string name="area1">Область :</string>
+    <string name="error">Ошибка: %s</string>
+    <string name="area">Область</string>
+    <string name="perimeter">Периметр:</string>
+    <string name="available_units_of_area">Доступные единицы площади</string>
 
     <!--cam address-->
-    <string name="cam_address_header">Cam Address</string>
-    <string name="lat">Lat :</string>
-    <string name="log">Long :</string>
-    <string name="congo">Congratulation</string>
-    <string name="image_saved_successfully">Image Saved Successfully</string>
-    <string name="done">Done</string>
-    <string name="saved">Saved in Gallery</string>
-    <string name="language">Language</string>
+    <string name="cam_address_header">Адрес камеры</string>
+    <string name="lat">Лат:</string>
+    <string name="log">Длинный :</string>
+    <string name="congo">Поздравление</string>
+    <string name="image_saved_successfully">Изображение успешно сохранено</string>
+    <string name="done">Сделанный</string>
+    <string name="saved">Сохранено в галерее</string>
+    <string name="language">Язык</string>
 
     <!--isd code-->
-    <string name="isd_code_header">ISD Code</string>
-    <string name="find_isd_code">Find the ISD Codes</string>
-    <string name="select_country">Select Country</string>
-    <string name="select_your_country">Select your Country</string>
-    <string name="search_country_by_name">Search country by name</string>
-    <string name="country_name">Country Name :</string>
-    <string name="isd">ISD Code :</string>
-    <string name="search">Search</string>
-    <string name="below_track_text">Search any Phone Number LOcation</string>
+    <string name="isd_code_header">ИСД-код</string>
+    <string name="find_isd_code">Найдите коды ISD</string>
+    <string name="select_country">Выберите страну</string>
+    <string name="select_your_country">Выберите свою страну</string>
+    <string name="search_country_by_name">Поиск страны по названию</string>
+    <string name="country_name">Название страны:</string>
+    <string name="isd">Код ИСД:</string>
+    <string name="search">Поиск</string>
+    <string name="below_track_text">Поиск любого местоположения по номеру телефона</string>
+
     <!--gps location-->
-    <string name="current_gps_location">Current GPS Location</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="postal_code">Postal Code :</string>
-    <string name="show_location_on_map">Show Location on map</string>
-    <string name="current_postal_address">Current Postal Address</string>
+    <string name="current_gps_location">Текущее местоположение GPS</string>
+    <string name="latitude">Широта</string>
+    <string name="longitude">Долгота</string>
+    <string name="postal_code">Почтовый индекс :</string>
+    <string name="show_location_on_map">Показать местоположение на карте</string>
+    <string name="current_postal_address">Текущий почтовый адрес</string>
+
     <!--isd/std-->
-    <string name="enter_city_name">Enter city name</string>
+    <string name="enter_city_name">Введите название города</string>
+
     <!--search number-->
-    <string name="search_hint_dialog">Search...</string>
-    <string name="search_contatct">Search phone number..</string>
-    <string name="mobile_number">Mobile Num :</string>
-    <string name="select_country_code">Select Country Code</string>
-    <string name="find_location">Find Location</string>
-    <string name="whatsapp_not_installed">WhatsApp is not installed on this device.</string>
+    <string name="search_hint_dialog">Поиск...</string>
+    <string name="search_contatct">Поиск номера телефона..</string>
+    <string name="mobile_number">Мобильный номер:</string>
+    <string name="select_country_code">Выберите код страны</string>
+    <string name="find_location">Найти местоположение</string>
+    <string name="whatsapp_not_installed">WhatsApp не установлен на этом устройстве.</string>
 
     <!--distance finder-->
-    <string name="distance1">Distance :</string>
-    <string name="_0m">0m</string>
-    <string name="delete">Delete</string>
-    <string name="undo">Undo</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
-    <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="distance1">Расстояние:</string>
+    <string name="_0m">0 м</string>
+    <string name="delete">Удалить</string>
+    <string name="undo">Отменить</string>
+
+    <!--intro slider-->
+    <string name="next">Следующий</string>
+    <string name="start">Начинать</string>
+    <string name="slide_1_title">Найти местоположение телефона</string>
+    <string name="slide_1_desc">Легко находите и находите любой номер телефона\\nМестоположение Показать подробную информацию о номере на карте</string>
+    <string name="slide_2_title">GPS трекер</string>
+    <string name="slide_2_desc">Найдите местоположение по GPS и найдите координаты\\n любого места с помощью живой карты.</string>
+    <string name="slide_3_title">Получить текущее местоположение</string>
+    <string name="slide_3_desc">Найдите свое текущее местоположение разными способами \\nИспользуя только имя или адрес</string>
+    <string name="slide_4_title">Номер мобильного телефона\\nМестоположение</string>
+    <string name="device_location">Местоположение устройства</string>
+    <string name="slide_4_desc">Для определения местоположения мобильного номера требуется\\nразрешение на доступ к местоположению устройства.</string>
+    <string name="go">Идти</string>
+    <string name="grant_all_permissions">Предоставьте все разрешения, чтобы продолжить</string>
+    <string name="permission_denied">Вы отказали в разрешении</string>
+    <string name="permission_denied_title">Доступ запрещен</string>
+    <string name="lets_go">Пойдем</string>
+
+    <!--other-->
+    <string name="welcome">ДОБРО ПОЖАЛОВАТЬ</string>
+    <string name="phone_number_locator">Поиск номера телефона</string>
+    <string name="phone_tracker">Телефонный трекер</string>
+    <string name="gps_tracker_new">GPS трекер</string>
+    <string name="locate_your_loved_ones_in_real_time">Найдите своих близких в режиме реального времени</string>
+    <string name="view_complete_location_history">Просмотреть полную историю местоположений</string>
+    <string name="thankyou">Спасибо</string>
+
 </resources>

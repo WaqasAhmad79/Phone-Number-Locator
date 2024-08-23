@@ -1,180 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">Pencari Nomor Telepon</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
+
     <!--splash-->
-    <string name="let_s_start">Let\'s start</string>
-    <string name="splash_text">This action can contain ads</string>
+    <string name="let_s_start">Mari kita mulai</string>
+    <string name="splash_text">Tindakan ini dapat berisi iklan</string>
 
     <!--context-->
-    <string name="no_app_found">No app found</string>
-    <string name="no_post_notifications_permissions">Permission to post notifications is required</string>
-    <string name="unknown_error_occurred">An unknown error occurred</string>
-    <string name="current_location">Current Location</string>
-    <string name="simple_commons" translatable="false">Simple Commons</string>
-    <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="no_address_found">No Address Found</string>
-    <string name="number_blocked">Number Blocked</string>
-    <string name="permission_required">Permission Required</string>
-    <!--main screen-->
-    <string name="call_locator">Call Locator</string>
-    <string name="contact_list">Phone Contact</string>
-    <string name="gps_tracker">GPS Tracker</string>
-    <string name="area_calculator">Area Calculator</string>
-    <string name="share_loc">Share Location</string>
-    <string name="isd_std_code">ISD / STD Code</string>
-    <string name="cam_address">Cam Address</string>
-    <string name="gps_location">GPS Location</string>
-    <string name="find_address">Find Address</string>
-    <string name="gps_address">GPS Address</string>
-    <string name="distance_finder">Distance Finder</string>
-    <string name="recommend_for_you">Recommended for you</string>
-    <string name="num_track_more_option">Number Tracker More Option</string>
+    <string name="no_app_found">Tidak ada aplikasi yang ditemukan</string>
+    <string name="no_post_notifications_permissions">Izin untuk mengirim pemberitahuan diperlukan</string>
+    <string name="unknown_error_occurred">Terjadi kesalahan yang tidak diketahui</string>
+    <string name="current_location">Lokasi Saat Ini</string>
+    <string name="simple_commons">Kesamaan Sederhana</string>
+    <string name="copied_to_clipboard">Disalin ke papan klip</string>
+    <string name="no_address_found">Tidak Ada Alamat yang Ditemukan</string>
+    <string name="number_blocked">Nomor Diblokir</string>
+    <string name="permission_required">Izin Diperlukan</string>
 
-    <!-- &lt;!&ndash;live weather&ndash;&gt;
-     <string name="live_weather_header">Live Weather</string>
-     <string name="pressure">Pressure</string>
-     <string name="visibility">Visibility</string>
-     <string name="cloud_cover">Cloud Cover</string>
-     <string name="wind">Wind</string>
-     <string name="temp">Temperature</string>
-     <string name="humidity">Humidity</string>
-     <string name="loading">loading...</string>
-     <string name="sunrise">Sunrise</string>
-     <string name="sunset">Sunset</string>
-     <string name="cannot_find_data">Can\'t find data</string>
-     <string name="turn_on_location">Turn on location</string>
-     <string name="enable_location">Enable Location</string>
-     <string name="search_countries">Search Countries</string>
-     <string name="time_format" translatable="false">EEEE, dd MMMM yyyy hh:mm a</string>-->
+    <!--main screen-->
+    <string name="call_locator">Pencari Panggilan</string>
+    <string name="contact_list">Kontak Telepon</string>
+    <string name="gps_tracker">Pelacak GPS</string>
+    <string name="area_calculator">Kalkulator Area</string>
+    <string name="share_loc">Bagikan Lokasi</string>
+    <string name="isd_std_code">Kode ISD/STD</string>
+    <string name="cam_address">Alamat Kamera</string>
+    <string name="gps_location">Lokasi GPS</string>
+    <string name="find_address">Temukan Alamat</string>
+    <string name="gps_address">Alamat GPS</string>
+    <string name="distance_finder">Pencari Jarak</string>
+    <string name="recommend_for_you">Direkomendasikan untuk Anda</string>
+    <string name="num_track_more_option">Pelacak Nomor Opsi Lainnya</string>
 
     <!--drawer-->
-    <string name="privacy_policy">Privacy policy</string>
-    <string name="share">Share</string>
-    <string name="rate_us">Rate us</string>
-    <string name="language_setting">Language Setting</string>
-    <string name="more">More Apps</string>
+    <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="share">Membagikan</string>
+    <string name="rate_us">Nilai kami</string>
+    <string name="language_setting">Pengaturan Bahasa</string>
+    <string name="more">Aplikasi Lainnya</string>
+
     <!--contacts-->
-    <string name="contacts">Contacts</string>
-    <string name="search_contact">Search Number</string>
+    <string name="contacts">Kontak</string>
+    <string name="search_contact">Nomor Pencarian</string>
+
     <!--live traffic-->
-    <string name="live_traffic_header">Live Traffic</string>
+    <string name="live_traffic_header">Lalu Lintas Langsung</string>
     <string name="low">Normal</string>
-    <string name="moderate">Medium</string>
-    <string name="heavy">Heavy</string>
-    <string name="copy">Copy</string>
-    <string name="address_copied">Address copied</string>
-    <string name="please_wait">Please wait</string>
+    <string name="moderate">Sedang</string>
+    <string name="heavy">Berat</string>
+    <string name="copy">Menyalin</string>
+    <string name="address_copied">Alamat disalin</string>
+    <string name="please_wait">Harap tunggu</string>
 
     <!--share location-->
-    <string name="copy_share">Copy to Clipboard</string>
-    <string name="whatsapp">Whatsapp</string>
-    <string name="share_location_header">Share Location</string>
-    <string name="share_location">Share</string>
-    <string name="address">Address : </string>
-    <string name="city">City : </string>
-    <string name="country">Country : </string>
-    <string name="navigate">Navigate</string>
-    <string name="already_on_destination">Already on Destination</string>
+    <string name="copy_share">Salin ke Papan Klip</string>
+    <string name="whatsapp">ada apa</string>
+    <string name="share_location_header">Bagikan Lokasi</string>
+    <string name="share_location">Membagikan</string>
+    <string name="address">Alamat :</string>
+    <string name="city">Kota :</string>
+    <string name="country">Negara :</string>
+    <string name="navigate">Navigasi</string>
+    <string name="already_on_destination">Sudah Sampai di Tujuan</string>
 
     <!--permission-->
-    <string name="check_internet_connection">Please check internet connection</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="location_permission_denied">Permission denied</string>
-    <string name="delete_str">Are you sure you want to delete?</string>
-    <string name="already_destination">You are already at the destination.</string>
+    <string name="check_internet_connection">Silakan periksa koneksi internet</string>
+    <string name="yes">Ya</string>
+    <string name="no">TIDAK</string>
+    <string name="location_permission_denied">Izin ditolak</string>
+    <string name="delete_str">Apakah Anda yakin ingin menghapus?</string>
+    <string name="already_destination">Anda sudah sampai di tempat tujuan.</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">Find Address</string>
-    <string name="lati">Lat :</string>
-    <string name="longi">Long :</string>
-    <string name="get_location">Get Location</string>
-    <string name="copy_to_clipboard">Copy</string>
-    <string name="navigation">Navigation</string>
-    <string name="lat_long">latitude/longitude</string>
-    <string name="degrees">Degrees (DMS)</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
-    <string name="empty_measurement">Empty measurements</string>
-    <string name="saved_measures">Saved Measures</string>
-    <string name="item_saved">Item saved successfully!</string>
-    <string name="no_history">No History found</string>
-    <string name="loading_ads">Loading Ad...</string>
-    <string name="exit_text">Are you sure you want to exit?</string>
-    <string name="exit">Exit</string>
-    <string name="enter_lat">Enter Latitude</string>
-    <string name="enter_long">Enter Longitude</string>
+    <string name="gps_coordinates_header">Temukan Alamat</string>
+    <string name="lati">lintang :</string>
+    <string name="longi">Panjang :</string>
+    <string name="get_location">Dapatkan Lokasi</string>
+    <string name="copy_to_clipboard">Menyalin</string>
+    <string name="navigation">Navigasi</string>
+    <string name="lat_long">lintang/bujur</string>
+    <string name="degrees">Derajat (DMS)</string>
+    <string name="cancel">Membatalkan</string>
+    <string name="ok">Oke</string>
+    <string name="empty_measurement">Pengukuran kosong</string>
+    <string name="saved_measures">Tindakan Tersimpan</string>
+    <string name="item_saved">Barang berhasil disimpan!</string>
+    <string name="no_history">Tidak ada Riwayat yang ditemukan</string>
+    <string name="loading_ads">Memuat Iklan...</string>
+    <string name="exit_text">Apakah Anda yakin ingin keluar?</string>
+    <string name="exit">KELUAR</string>
+    <string name="enter_lat">Masukkan Lintang</string>
+    <string name="enter_long">Masukkan Bujur</string>
 
     <!--number locator-->
-    <string name="search_number">Search Number</string>
-    <string name="enter_phone_number">Enter phone number</string>
-    <string name="network_name">Mobile Network</string>
-    <string name="call">Call</string>
-    <string name="message">Message</string>
-    <string name="create">Edit</string>
-    <string name="block">Block</string>
-    <string name="name">Unknown</string>
-    <string name="name_title">Name :</string>
-    <string name="country_">Country</string>
-    <string name="network">Network : </string>
-    <string name="edit">Edit</string>
-    <string name="invalid_number">Invalid number</string>
-    <string name="a" translatable="false">A</string>
-    <string name="location">Location</string>
+    <string name="search_number">Nomor Pencarian</string>
+    <string name="enter_phone_number">Masukkan nomor telepon</string>
+    <string name="network_name">Jaringan Seluler</string>
+    <string name="call">Panggilan</string>
+    <string name="message">Pesan</string>
+    <string name="create">Sunting</string>
+    <string name="block">Memblokir</string>
+    <string name="name">Tidak dikenal</string>
+    <string name="name_title">Nama :</string>
+    <string name="country_">Negara</string>
+    <string name="network">Jaringan :</string>
+    <string name="edit">Sunting</string>
+    <string name="invalid_number">Nomor tidak valid</string>
+    <string name="a">A</string>
+    <string name="location">Lokasi</string>
+
     <!--area calculator-->
-    <string name="area_calculator_header">Area Calculator</string>
-    <string name="area1">Area : </string>
-    <string name="error">Error: %s</string>
-    <string name="area">Area</string>
-    <string name="perimeter">Perimeter :</string>
-    <string name="available_units_of_area">Available Units of Area</string>
+    <string name="area_calculator_header">Kalkulator Area</string>
+    <string name="area1">Daerah :</string>
+    <string name="error">Kesalahan: %s</string>
+    <string name="area">Daerah</string>
+    <string name="perimeter">Keliling :</string>
+    <string name="available_units_of_area">Satuan Luas yang Tersedia</string>
 
     <!--cam address-->
-    <string name="cam_address_header">Cam Address</string>
-    <string name="lat">Lat :</string>
-    <string name="log">Long :</string>
-    <string name="congo">Congratulation</string>
-    <string name="image_saved_successfully">Image Saved Successfully</string>
-    <string name="done">Done</string>
-    <string name="saved">Saved in Gallery</string>
-    <string name="language">Language</string>
+    <string name="cam_address_header">Alamat Kamera</string>
+    <string name="lat">lintang :</string>
+    <string name="log">Panjang :</string>
+    <string name="congo">Selamat</string>
+    <string name="image_saved_successfully">Gambar Berhasil Disimpan</string>
+    <string name="done">Selesai</string>
+    <string name="saved">Disimpan di Galeri</string>
+    <string name="language">Bahasa</string>
 
     <!--isd code-->
-    <string name="isd_code_header">ISD Code</string>
-    <string name="find_isd_code">Find the ISD Codes</string>
-    <string name="select_country">Select Country</string>
-    <string name="select_your_country">Select your Country</string>
-    <string name="search_country_by_name">Search country by name</string>
-    <string name="country_name">Country Name :</string>
-    <string name="isd">ISD Code :</string>
-    <string name="search">Search</string>
-    <string name="below_track_text">Search any Phone Number LOcation</string>
+    <string name="isd_code_header">Kode ISD</string>
+    <string name="find_isd_code">Temukan Kode ISD</string>
+    <string name="select_country">Pilih Negara</string>
+    <string name="select_your_country">Pilih Negara Anda</string>
+    <string name="search_country_by_name">Cari negara berdasarkan nama</string>
+    <string name="country_name">Nama Negara :</string>
+    <string name="isd">Kode ISD :</string>
+    <string name="search">Mencari</string>
+    <string name="below_track_text">Cari Lokasi Nomor Telepon mana pun</string>
+
     <!--gps location-->
-    <string name="current_gps_location">Current GPS Location</string>
-    <string name="latitude">Latitude</string>
-    <string name="longitude">Longitude</string>
-    <string name="postal_code">Postal Code :</string>
-    <string name="show_location_on_map">Show Location on map</string>
-    <string name="current_postal_address">Current Postal Address</string>
+    <string name="current_gps_location">Lokasi GPS Saat Ini</string>
+    <string name="latitude">Lintang</string>
+    <string name="longitude">Garis bujur</string>
+    <string name="postal_code">Kode Pos :</string>
+    <string name="show_location_on_map">Tampilkan Lokasi di peta</string>
+    <string name="current_postal_address">Alamat Pos Saat Ini</string>
+
     <!--isd/std-->
-    <string name="enter_city_name">Enter city name</string>
+    <string name="enter_city_name">Masukkan nama kota</string>
+
     <!--search number-->
-    <string name="search_hint_dialog">Search...</string>
-    <string name="search_contatct">Search phone number..</string>
-    <string name="mobile_number">Mobile Num :</string>
-    <string name="select_country_code">Select Country Code</string>
-    <string name="find_location">Find Location</string>
-    <string name="whatsapp_not_installed">WhatsApp is not installed on this device.</string>
+    <string name="search_hint_dialog">Mencari...</string>
+    <string name="search_contatct">Cari nomor telepon..</string>
+    <string name="mobile_number">Nomor Ponsel:</string>
+    <string name="select_country_code">Pilih Kode Negara</string>
+    <string name="find_location">Temukan Lokasi</string>
+    <string name="whatsapp_not_installed">WhatsApp tidak diinstal pada perangkat ini.</string>
 
     <!--distance finder-->
-    <string name="distance1">Distance :</string>
+    <string name="distance1">Jarak :</string>
     <string name="_0m">0m</string>
-    <string name="delete">Delete</string>
-    <string name="undo">Undo</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
-    <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="delete">Menghapus</string>
+    <string name="undo">Membuka</string>
+
+    <!--intro slider-->
+    <string name="next">Berikutnya</string>
+    <string name="start">Awal</string>
+    <string name="slide_1_title">Temukan Lokasi Telepon</string>
+    <string name="slide_1_desc">Temukan dan Temukan Nomor Telepon dengan Mudah\\nLokasi Tampilkan Detail Nomor di Peta</string>
+    <string name="slide_2_title">Pelacak GPS</string>
+    <string name="slide_2_desc">Temukan Lokasi GPS dan temukan Koordinat\\n Lokasi mana pun dengan Peta Langsung</string>
+    <string name="slide_3_title">Dapatkan Lokasi Saat Ini</string>
+    <string name="slide_3_desc">Temukan Lokasi Anda Saat Ini dengan berbagai cara \\nHanya menggunakan nama atau alamatnya</string>
+    <string name="slide_4_title">Nomor Ponsel\\nLokasi</string>
+    <string name="device_location">Lokasi Perangkat</string>
+    <string name="slide_4_desc">Lokasi Nomor Ponsel memerlukan\\nizin untuk mengakses Lokasi perangkat</string>
+    <string name="go">Pergi</string>
+    <string name="grant_all_permissions">Berikan semua izin untuk melanjutkan</string>
+    <string name="permission_denied">Anda menolak izinnya</string>
+    <string name="permission_denied_title">Izin Ditolak</string>
+    <string name="lets_go">Ayo Pergi</string>
+
+    <!--other-->
+    <string name="welcome">SELAMAT DATANG</string>
+    <string name="phone_number_locator">Pencari Nomor Telepon</string>
+    <string name="phone_tracker">Pelacak Telepon</string>
+    <string name="gps_tracker_new">Pelacak GPS</string>
+    <string name="locate_your_loved_ones_in_real_time">Temukan Orang yang Anda Cintai secara Real-Time</string>
+    <string name="view_complete_location_history">Lihat Riwayat Lokasi Lengkap</string>
+    <string name="thankyou">Terima kasih</string>
+
 </resources>

@@ -1,164 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Phone Number Locator</string>
+    <string name="app_name">फ़ोन नंबर लोकेटर</string>
+
+    <string name="privacy_policy_link">https://sites.google.com/view/smart-tool-apps-tech-privacy/home</string>
+    <string name="account_name">OneLocate.ly</string>
 
     <!--splash-->
-    <string name="let_s_start">आइए शुरू करें</string>
-    <string name="splash_text">इस क्रिया में विज्ञापन हो सकते हैं</string>
+    <string name="let_s_start">चलो शुरू करो</string>
+    <string name="splash_text">इस क्रिया में विज्ञापन शामिल हो सकते हैं</string>
 
     <!--context-->
     <string name="no_app_found">कोई ऐप नहीं मिला</string>
-    <string name="no_post_notifications_permissions">सूचनाएँ पोस्ट करने की अनुमति आवश्यक है</string>
+    <string name="no_post_notifications_permissions">सूचनाएं पोस्ट करने की अनुमति आवश्यक है</string>
     <string name="unknown_error_occurred">एक अज्ञात त्रुटि हुई</string>
     <string name="current_location">वर्तमान स्थान</string>
-    <string name="simple_commons" translatable="false">सिम्पल कॉमन्स</string>
+    <string name="simple_commons">सरल कॉमन्स</string>
     <string name="copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया</string>
     <string name="no_address_found">कोई पता नहीं मिला</string>
-    <string name="number_blocked">नंबर ब्लॉक किया गया</string>
-    <string name="permission_required">अनुमति आवश्यक</string>
+    <string name="number_blocked">नंबर ब्लॉक कर दिया गया</string>
+    <string name="permission_required">अनुमति आवश्यक है</string>
+
     <!--main screen-->
-    <string name="call_locator">कॉल लोकेटर</string>
-    <string name="contact_list">फोन संपर्क</string>
-    <string name="gps_tracker">GPS ट्रैकर</string>
+    <string name="call_locator">लोकेटर को कॉल करें</string>
+    <string name="contact_list">फ़ोन संपर्क</string>
+    <string name="gps_tracker">जीपीएस ट्रैकर</string>
     <string name="area_calculator">क्षेत्र कैलकुलेटर</string>
     <string name="share_loc">स्थान साझा करें</string>
-    <string name="isd_std_code">ISD / STD कोड</string>
-    <string name="cam_address">कैम एड्रेस</string>
-    <string name="gps_location">GPS स्थान</string>
-    <string name="find_address">पता ढूंढें</string>
-    <string name="gps_address">GPS पता</string>
+    <string name="isd_std_code">आईएसडी/एसटीडी कोड</string>
+    <string name="cam_address">कैम पता</string>
+    <string name="gps_location">जीपीएस स्थान</string>
+    <string name="find_address">पता खोजें</string>
+    <string name="gps_address">जीपीएस पता</string>
     <string name="distance_finder">दूरी खोजक</string>
-    <string name="recommend_for_you">आपके लिए सुझाव</string>
-    <string name="num_track_more_option">नंबर ट्रैकर के अधिक विकल्प</string>
+    <string name="recommend_for_you">आप के लिए अनुशंसित</string>
+    <string name="num_track_more_option">नंबर ट्रैकर अधिक विकल्प</string>
 
     <!--drawer-->
     <string name="privacy_policy">गोपनीयता नीति</string>
-    <string name="share">साझा करें</string>
-    <string name="rate_us">हमें रेट करें</string>
+    <string name="share">शेयर करना</string>
+    <string name="rate_us">हमें रेटिंग दें</string>
     <string name="language_setting">भाषा सेटिंग</string>
-    <string name="more">अधिक एप्लिकेशन्स</string>
+    <string name="more">और ऐप</string>
+
     <!--contacts-->
     <string name="contacts">संपर्क</string>
-    <string name="search_contact">नंबर खोजें</string>
+    <string name="search_contact">खोज संख्या</string>
+
     <!--live traffic-->
     <string name="live_traffic_header">लाइव ट्रैफिक</string>
     <string name="low">सामान्य</string>
     <string name="moderate">मध्यम</string>
     <string name="heavy">भारी</string>
-    <string name="copy">कॉपी</string>
-    <string name="address_copied">पता कॉपी हुआ</string>
+    <string name="copy">प्रतिलिपि</string>
+    <string name="address_copied">पता कॉपी किया गया</string>
     <string name="please_wait">कृपया प्रतीक्षा करें</string>
 
     <!--share location-->
     <string name="copy_share">क्लिपबोर्ड पर कॉपी करें</string>
-    <string name="whatsapp">व्हाट्सएप</string>
+    <string name="whatsapp">Whatsapp</string>
     <string name="share_location_header">स्थान साझा करें</string>
-    <string name="share_location">साझा करें</string>
-    <string name="address">पता : </string>
-    <string name="city">शहर : </string>
-    <string name="country">देश : </string>
-    <string name="navigate">नेविगेट करें</string>
+    <string name="share_location">शेयर करना</string>
+    <string name="address">पता :</string>
+    <string name="city">शहर :</string>
+    <string name="country">देश :</string>
+    <string name="navigate">नेविगेट</string>
     <string name="already_on_destination">पहले से ही गंतव्य पर</string>
 
     <!--permission-->
     <string name="check_internet_connection">कृपया इंटरनेट कनेक्शन जांचें</string>
     <string name="yes">हाँ</string>
     <string name="no">नहीं</string>
-    <string name="location_permission_denied">अनुमति निषिद्ध</string>
-    <string name="delete_str">क्या आप सुनिश्चित हैं कि आप हटाना चाहते हैं?</string>
-    <string name="already_destination">आप पहले से ही गंतव्य में हैं।</string>
+    <string name="location_permission_denied">अनुमति नहीं मिली</string>
+    <string name="delete_str">क्या आप आश्वस्त है कि आपको डिलीट करना है?</string>
+    <string name="already_destination">आप पहले से ही गंतव्य पर हैं.</string>
 
     <!--gps coordinates-->
-    <string name="gps_coordinates_header">पता ढूंढें</string>
+    <string name="gps_coordinates_header">पता खोजें</string>
     <string name="lati">अक्षांश :</string>
-    <string name="longi">देशांतर :</string>
+    <string name="longi">लंबा :</string>
     <string name="get_location">स्थान प्राप्त करें</string>
-    <string name="copy_to_clipboard">कॉपी</string>
-    <string name="navigation">नेविगेशन</string>
-    <string name="lat_long">अक्षांश / देशांतर</string>
-    <string name="degrees">डिग्री (DMS)</string>
-    <string name="cancel">रद्द करें</string>
+    <string name="copy_to_clipboard">प्रतिलिपि</string>
+    <string name="navigation">मार्गदर्शन</string>
+    <string name="lat_long">अक्षांश देशांतर</string>
+    <string name="degrees">डिग्री (डीएमएस)</string>
+    <string name="cancel">रद्द करना</string>
     <string name="ok">ठीक है</string>
     <string name="empty_measurement">खाली माप</string>
-    <string name="saved_measures">माप सहेजे गए</string>
+    <string name="saved_measures">सहेजे गए उपाय</string>
     <string name="item_saved">आइटम सफलतापूर्वक सहेजा गया!</string>
     <string name="no_history">कोई इतिहास नहीं मिला</string>
     <string name="loading_ads">विज्ञापन लोड हो रहा है...</string>
-    <string name="exit_text">क्या आप वाकई बाहर निकलना चाहते हैं?</string>
-    <string name="exit">बाहर जाएं</string>
+    <string name="exit_text">क्या आप निश्चित हैं आपकी बाहर निकलने की इच्छा है?</string>
+    <string name="exit">बाहर निकलना</string>
     <string name="enter_lat">अक्षांश दर्ज करें</string>
     <string name="enter_long">देशांतर दर्ज करें</string>
 
     <!--number locator-->
-    <string name="search_number">नंबर खोजें</string>
+    <string name="search_number">खोज संख्या</string>
     <string name="enter_phone_number">फ़ोन नंबर दर्ज करें</string>
     <string name="network_name">मोबाइल नेटवर्क</string>
-    <string name="call">कॉल</string>
+    <string name="call">पुकारना</string>
     <string name="message">संदेश</string>
-    <string name="create">संपादन करें</string>
-    <string name="block">ब्लॉक</string>
+    <string name="create">संपादन करना</string>
+    <string name="block">अवरोध पैदा करना</string>
     <string name="name">अज्ञात</string>
     <string name="name_title">नाम :</string>
     <string name="country_">देश</string>
-    <string name="network">नेटवर्क : </string>
-    <string name="edit">संपादन करें</string>
-    <string name="invalid_number">अमान्य नंबर</string>
-    <string name="a" translatable="false">ए</string>
-    <string name="location">स्थान</string>
+    <string name="network">नेटवर्क :</string>
+    <string name="edit">संपादन करना</string>
+    <string name="invalid_number">अमान्य संख्या</string>
+    <string name="a">ए</string>
+    <string name="location">जगह</string>
+
     <!--area calculator-->
     <string name="area_calculator_header">क्षेत्र कैलकुलेटर</string>
-    <string name="area1">क्षेत्र : </string>
+    <string name="area1">क्षेत्र :</string>
     <string name="error">त्रुटि: %s</string>
     <string name="area">क्षेत्र</string>
-    <string name="perimeter">परिमाप :</string>
+    <string name="perimeter">परिधि :</string>
     <string name="available_units_of_area">क्षेत्र की उपलब्ध इकाइयाँ</string>
 
     <!--cam address-->
-    <string name="cam_address_header">कैम एड्रेस</string>
+    <string name="cam_address_header">कैम पता</string>
     <string name="lat">अक्षांश :</string>
-    <string name="log">देशांतर :</string>
-    <string name="congo">बधाई हो</string>
-    <string name="image_saved_successfully">तस्वीर सफलतापूर्वक सहेजी गई</string>
-    <string name="done">किया हुआ</string>
+    <string name="log">लंबा :</string>
+    <string name="congo">बधाई</string>
+    <string name="image_saved_successfully">छवि सफलतापूर्वक सहेजी गई</string>
+    <string name="done">हो गया</string>
     <string name="saved">गैलरी में सहेजा गया</string>
     <string name="language">भाषा</string>
 
     <!--isd code-->
-    <string name="isd_code_header">ISD कोड</string>
-    <string name="find_isd_code">ISD कोड खोजें</string>
+    <string name="isd_code_header">आईएसडी कोड</string>
+    <string name="find_isd_code">आईएसडी कोड खोजें</string>
     <string name="select_country">देश चुनें</string>
-    <string name="select_your_country">अपना देश चुनें</string>
+    <string name="select_your_country">अपने देश का चयन करॊ</string>
     <string name="search_country_by_name">नाम से देश खोजें</string>
-    <string name="country_name">देश का नाम :</string>
-    <string name="isd">ISD कोड :</string>
-    <string name="search">खोजें</string>
-    <string name="below_track_text">किसी भी फ़ोन नंबर की स्थान खोजें</string>
+    <string name="country_name">देश नाम :</string>
+    <string name="isd">आईएसडी कोड:</string>
+    <string name="search">खोज</string>
+    <string name="below_track_text">कोई भी फ़ोन नंबर स्थान खोजें</string>
+
     <!--gps location-->
-    <string name="current_gps_location">वर्तमान GPS स्थान</string>
+    <string name="current_gps_location">वर्तमान जीपीएस स्थान</string>
     <string name="latitude">अक्षांश</string>
-    <string name="longitude">देशांतर</string>
-    <string name="postal_code">पोस्टल कोड :</string>
-    <string name="show_location_on_map">मानचित्र पर स्थान दिखाएं</string>
-    <string name="current_postal_address">वर्तमान पोस्टल पता</string>
+    <string name="longitude">देशान्तर</string>
+    <string name="postal_code">डाक कोड :</string>
+    <string name="show_location_on_map">मानचित्र पर स्थान दिखाएँ</string>
+    <string name="current_postal_address">वर्तमान डाक पता</string>
+
     <!--isd/std-->
     <string name="enter_city_name">शहर का नाम दर्ज करें</string>
+
     <!--search number-->
-    <string name="search_hint_dialog">खोजें...</string>
+    <string name="search_hint_dialog">खोज...</string>
     <string name="search_contatct">फ़ोन नंबर खोजें..</string>
     <string name="mobile_number">मोबाइल नंबर :</string>
     <string name="select_country_code">देश कोड चुनें</string>
     <string name="find_location">स्थान खोजें</string>
-    <string name="whatsapp_not_installed">इस डिवाइस पर WhatsApp स्थापित नहीं है।</string>
+    <string name="whatsapp_not_installed">इस डिवाइस पर WhatsApp इंस्टॉल नहीं है.</string>
 
     <!--distance finder-->
     <string name="distance1">दूरी :</string>
-    <string name="_0m">0मीटर</string>
-    <string name="delete">हटाएं</string>
-    <string name="undo">पूर्ववत करें</string>
-    <string name="welcome">WELCOME</string>
-    <string name="phone_number_locator">Phone Number Locator</string>
-    <string name="phone_tracker">Phone Tracker</string>
-    <string name="gps_tracker_new">GPS Tracker</string>
-    <string name="locate_your_loved_ones_in_real_time">Locate Your Loved Ones in Real-Time</string>
-    <string name="view_complete_location_history">View Complete Location History</string>
+    <string name="_0m">0 मी</string>
+    <string name="delete">मिटाना</string>
+    <string name="undo">पूर्ववत</string>
+
+    <!--intro slider-->
+    <string name="next">अगला</string>
+    <string name="start">शुरू</string>
+    <string name="slide_1_title">फ़ोन स्थान ढूंढें</string>
+    <string name="slide_1_desc">किसी भी फ़ोन नंबर को आसानी से ढूंढें और पता लगाएं\\nमानचित्र पर नंबर का स्थान विवरण दिखाएं</string>
+    <string name="slide_2_title">जीपीएस ट्रैकर</string>
+    <string name="slide_2_desc">जीपीएस स्थान का पता लगाएं और लाइव मानचित्र के साथ किसी भी स्थान के निर्देशांक ढूंढें</string>
+    <string name="slide_3_title">वर्तमान स्थान प्राप्त करें</string>
+    <string name="slide_3_desc">अपना वर्तमान स्थान विभिन्न तरीकों से ढूंढें \\nसिर्फ उसके नाम या पते का उपयोग करके</string>
+    <string name="slide_4_title">मोबाइल नंबर\\nस्थान</string>
+    <string name="device_location">डिवाइस का स्थान</string>
+    <string name="slide_4_desc">मोबाइल नंबर स्थान को डिवाइस के स्थान तक पहुंचने के लिए अनुमति की आवश्यकता होती है</string>
+    <string name="go">जाना</string>
+    <string name="grant_all_permissions">जारी रखने के लिए सभी अनुमतियाँ प्रदान करें</string>
+    <string name="permission_denied">आपने अनुमति देने से इनकार कर दिया</string>
+    <string name="permission_denied_title">अनुमति नहीं मिली</string>
+    <string name="lets_go">चल दर</string>
+
+    <!--other-->
+    <string name="welcome">स्वागत</string>
+    <string name="phone_number_locator">फ़ोन नंबर लोकेटर</string>
+    <string name="phone_tracker">फ़ोन ट्रैकर</string>
+    <string name="gps_tracker_new">जीपीएस ट्रैकर</string>
+    <string name="locate_your_loved_ones_in_real_time">वास्तविक समय में अपने प्रियजनों का पता लगाएं</string>
+    <string name="view_complete_location_history">संपूर्ण स्थान इतिहास देखें</string>
+    <string name="thankyou">धन्यवाद</string>
+
 </resources>

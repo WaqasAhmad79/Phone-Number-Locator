@@ -168,5 +168,9 @@
         <key>inter_exit_app_activity</key>
         <value>true</value>
     </entry>
+    <entry>
+        <key>native_exit_ad</key>
+        <value>true</value>
+    </entry>
 
 </defaults>
