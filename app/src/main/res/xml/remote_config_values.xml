@@ -13,10 +13,6 @@
         <value>true</value>
     </entry>
     <entry>
-        <key>inter_search</key>
-        <value>true</value>
-    </entry>
-    <entry>
         <key>banner_splash</key>
         <value>true</value>
     </entry>
@@ -26,10 +22,6 @@
     </entry>
     <entry>
         <key>native_welcome_one</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>native_welcome_two</key>
         <value>true</value>
     </entry>
     <entry>
