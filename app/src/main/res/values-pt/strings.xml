@@ -191,5 +191,6 @@
     <string name="locate_your_loved_ones_in_real_time">Localize seus entes queridos em tempo real</string>
     <string name="view_complete_location_history">Ver histórico de localização completo</string>
     <string name="thankyou">Obrigado</string>
+    <string name="thankyou_message">Esperamos ter ajudado você a localizar o que procurava. Sinta-se à vontade para retornar a qualquer momento para um rastreamento mais confiável. Fique seguro!</string>
 
 </resources>

@@ -191,5 +191,6 @@
     <string name="locate_your_loved_ones_in_real_time">ค้นหาคนที่คุณรักแบบเรียลไทม์</string>
     <string name="view_complete_location_history">ดูประวัติตำแหน่งที่สมบูรณ์</string>
     <string name="thankyou">ขอบคุณ</string>
+    <string name="thankyou_message">เราหวังว่าเราจะสามารถช่วยคุณค้นหาสิ่งที่คุณกำลังมองหาได้ คุณสามารถกลับมาได้ตลอดเวลาเพื่อการติดตามที่เชื่อถือได้มากขึ้น อยู่อย่างปลอดภัย!</string>
 
 </resources>

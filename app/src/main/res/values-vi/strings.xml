@@ -191,5 +191,6 @@
     <string name="locate_your_loved_ones_in_real_time">Xác định vị trí những người thân yêu của bạn trong thời gian thực</string>
     <string name="view_complete_location_history">Xem toàn bộ lịch sử vị trí</string>
     <string name="thankyou">Cảm ơn</string>
+    <string name="thankyou_message">Chúng tôi hy vọng chúng tôi có thể giúp bạn xác định được những gì bạn đang tìm kiếm. Vui lòng quay lại bất cứ lúc nào để theo dõi đáng tin cậy hơn. Giữ an toàn!</string>
 
 </resources>

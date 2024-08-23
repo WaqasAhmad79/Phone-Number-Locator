@@ -191,5 +191,6 @@
     <string name="locate_your_loved_ones_in_real_time">사랑하는 사람을 실시간으로 찾아보세요</string>
     <string name="view_complete_location_history">전체 위치 기록 보기</string>
     <string name="thankyou">감사합니다</string>
+    <string name="thankyou_message">귀하가 찾고 있던 것을 찾는 데 도움이 되었기를 바랍니다. 보다 안정적인 추적을 위해 언제든지 돌아와 주시기 바랍니다. 안전히 계세요!</string>
 
 </resources>

@@ -191,5 +191,6 @@
     <string name="locate_your_loved_ones_in_real_time">Finden Sie Ihre Lieben in Echtzeit</string>
     <string name="view_complete_location_history">Vollständigen Standortverlauf anzeigen</string>
     <string name="thankyou">Danke</string>
+    <string name="thankyou_message">Wir hoffen, dass wir Ihnen dabei helfen konnten, das Gesuchte zu finden. Für eine zuverlässigere Nachverfolgung können Sie jederzeit zurückkommen. Bleib sicher!</string>
 
 </resources>

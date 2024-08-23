@@ -59,7 +59,7 @@
         android:fontFamily="@font/poppins_light"
         android:gravity="center"
         android:includeFontPadding="false"
-        android:text="We hope we were able to help you locate what you were looking for. Feel free to return anytime for more reliable tracking. Stay safe!"
+        android:text="@string/thankyou_message"
         android:textColor="@color/dark_gray"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="@+id/text2"
