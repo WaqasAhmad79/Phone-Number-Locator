@@ -57,6 +57,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
         super.onCreate(savedInstanceState)
 
         handleAds()
+        hideNavBar()
 
         gpsStatusCheck() {
             if (it) {

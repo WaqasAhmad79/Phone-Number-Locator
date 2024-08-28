@@ -79,6 +79,19 @@ android {
         viewBinding true
         dataBinding true
     }
+    // Custom APK naming
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appName = 'PhoneNumberLocator'
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+            def buildType = variant.buildType.name
+            def newApkName = "${appName}_${versionName}(${versionCode})_${buildType}.apk"
+
+            outputFileName = newApkName
+        }
+    }
+
 }
 
 dependencies {

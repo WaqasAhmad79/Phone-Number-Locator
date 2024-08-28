@@ -11,6 +11,7 @@ import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.databinding.ActivityGpsTrackBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.activities.gpsTracker.GpsLocationActivity
 import com.example.phonenumberlocator.ui.activities.gpsTracker.PNLFindAddressActivity
@@ -27,6 +28,7 @@ class GpsTrackActivity : AppCompatActivity() {
 
         handleClicks()
         handleBannerAd()
+        hideNavBar()
 
     }
 

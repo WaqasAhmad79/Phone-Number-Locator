@@ -20,20 +20,27 @@ import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.hasPermission
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlHelper.PERMISSION_ACCESS_FINE_LOCATION
 import com.example.phonenumberlocator.ui.MainActivity
 
 class PNLIntroSliderActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityPnlintroSliderBinding
     private var fragmentDestination = 0
     var isIncomingFromSplash = false
+
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityPnlintroSliderBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        hideNavBar()
+
+
         val window: Window = window
         val drawable = resources.getDrawable(R.drawable.bg_dialog_white)
         window.statusBarColor = ContextCompat.getColor(this, R.color.app_color)

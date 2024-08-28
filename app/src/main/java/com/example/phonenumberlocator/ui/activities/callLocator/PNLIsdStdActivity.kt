@@ -41,6 +41,7 @@ class PNLIsdStdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPnlisdStdBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        hideNavBar()
 
         if (RemoteConfigClass.inter_pnl_isd_std_activity
             && isNetworkAvailable()

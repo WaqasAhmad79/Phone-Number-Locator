@@ -61,6 +61,8 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        hideNavBar()
+
         if (RemoteConfigClass.inter_pnl_contacts_detailed_activity
             && isNetworkAvailable()
             && canRequestAd

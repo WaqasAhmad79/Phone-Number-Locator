@@ -26,6 +26,7 @@ import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnlcamAddressBinding
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
@@ -66,6 +67,7 @@ class PNLGpsAddressActivity : AppCompatActivity(), LocationListener {
         binding = ActivityPnlcamAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        hideNavBar()
         handleAds()
 
         helper = OpenWeatherMapHelper("6d08bf86106efb9db72c176a21d23ebf")

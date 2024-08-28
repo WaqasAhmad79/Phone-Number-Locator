@@ -65,6 +65,7 @@ class PNLShareLocationActivity : PNLBaseClass<ActivityPnlshareLocationBinding>()
         super.onCreate(savedInstanceState)
 
         handleAds()
+        hideNavBar()
 
         gpsStatusCheck() {
             if (it) {

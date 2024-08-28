@@ -86,6 +86,7 @@
 
 
     <style name="AdsAppTheme" parent="Theme.AppCompat.Light"/>
+
     <style name="AppTheme.Ads" parent="@style/AdsAppTheme">
         <item name="android:textSize">11.0sp</item>
         <item name="android:textColor">#ffffff</item>
@@ -101,5 +102,10 @@
         <item name="android:minHeight">15.0px</item>
         <item name="android:text">Ad</item>
     </style>
+
+
+
+
+
 
 </resources>

@@ -17,6 +17,7 @@ import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.databinding.ActivityWelcomeScreenBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.activities.helpScreens.PNLIntroSliderActivity
 
@@ -31,6 +32,7 @@ class WelcomeScreenActivity : AppCompatActivity() {
 
         initListeners()
         handleAds()
+        hideNavBar()
 
     }
 

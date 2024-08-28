@@ -16,6 +16,7 @@ import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivitySavedImageConfirmationBinding
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.pnlDialog.PNLResumeLoadingDialog
 import java.io.File
@@ -23,13 +24,17 @@ import java.io.OutputStream
 
 
 class PNLSavedImageConfirmationActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivitySavedImageConfirmationBinding
     private var imageBitmap: Bitmap? = null // Declare the variable here
     private var dialog: PNLResumeLoadingDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivitySavedImageConfirmationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        hideNavBar()
 
         if (RemoteConfigClass.inter_pnl_saved_image_confirmation_activity
             && isNetworkAvailable()

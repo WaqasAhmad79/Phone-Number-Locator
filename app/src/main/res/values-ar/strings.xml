@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">عرض سجل المواقع الكامل</string>
     <string name="thankyou">شكرًا لك</string>
     <string name="thankyou_message">نأمل أن نتمكن من مساعدتك في تحديد ما كنت تبحث عنه. لا تتردد في العودة في أي وقت لتتبع أكثر موثوقية. ابقَ آمنًا!</string>
+    <string name="txt_ad">إعلان</string>
 
 </resources>

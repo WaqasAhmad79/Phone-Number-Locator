@@ -16,7 +16,11 @@ import com.example.phonenumberlocator.admob_ads.isInterstitialRecentClosed
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.ads.mediation.admob.AdMobAdapter
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 
 class BannerAdHelper(
     val activity: Activity,

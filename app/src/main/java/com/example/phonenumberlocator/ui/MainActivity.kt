@@ -25,6 +25,7 @@ import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityMainBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlUtil.PNLEvents
 import com.example.phonenumberlocator.ui.activities.CallLocActivity
@@ -38,7 +39,6 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
-
 
 class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
@@ -62,22 +62,24 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 //        initViews()
         handleClicks()
         handleBannerAd()
+        hideNavBar()
+
     }
 
     fun handleBannerAd() {
         if (RemoteConfigClass.banner_main_activity) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                binding.content.ads.beVisible()
+                binding.ads.beVisible()
                 val config = BannerAdConfig(
                     getString(R.string.ad_mob_banner_id), true, true, true
                 )
                 val bannerAdHelperClass = BannerAdHelper(this, this, config)
-                bannerAdHelperClass.myView = binding.content.ads
-                bannerAdHelperClass.shimmer = binding.content.bannerView.customBannerShimmer
+                bannerAdHelperClass.myView = binding.ads
+                bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
                 bannerAdHelperClass.showBannerAdmob()
             }
         } else {
-            binding.content.ads.beGone()
+            binding.ads.beGone()
         }
     }
 
@@ -196,16 +198,16 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
     @SuppressLint("SuspiciousIndentation")
     private fun handleClicks() {
 
-        binding.content.callLocator.setOnClickListener {
+        binding.callLocator.setOnClickListener {
             startActivity(Intent(this, CallLocActivity::class.java))
         }
-        binding.content.gpsTracker.setOnClickListener {
+        binding.gpsTracker.setOnClickListener {
             startActivity(Intent(this, GpsTrackActivity::class.java))
         }
-        binding.content.camAddress.setOnClickListener {
+        binding.camAddress.setOnClickListener {
             startActivity(Intent(this, CamAddressActivity::class.java))
         }
-        binding.content.drawerIcon.setOnClickListener {
+        binding.drawerIcon.setOnClickListener {
             startActivity(Intent(this, DrawerActivity::class.java))
         }
 
@@ -251,7 +253,6 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
             }
         }
     }
-
 
     override fun onPause() {
         super.onPause()

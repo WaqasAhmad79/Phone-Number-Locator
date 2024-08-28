@@ -22,6 +22,7 @@ import com.example.phonenumberlocator.databinding.ActivityPnldistanceFinderBindi
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlHelper.UNIT_KILOMETERS
 import com.example.phonenumberlocator.pnlHelper.UNIT_METERS
@@ -64,6 +65,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        hideNavBar()
         handleAds()
 
         mapView = findViewById(R.id.distanceMap)

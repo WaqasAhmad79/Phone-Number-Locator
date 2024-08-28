@@ -17,6 +17,7 @@ import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageDuplicateBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.MainActivity
 import java.util.Locale
@@ -34,6 +35,7 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
         handleAds()
         initLanguageIdentifier()
         initListeners()
+        hideNavBar()
 
     }
 
@@ -155,6 +157,8 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.visibility = View.VISIBLE
                 nativeAdLangOtherDup.observe(this) { nativeAd ->
+                    //
+
                     showLoadedNativeAd(
                         this,
                         binding.ads,
@@ -162,6 +166,8 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
                         R.layout.native_large_2,
                         nativeAd
                     )
+
+                    //
                 }
             }
         } else {

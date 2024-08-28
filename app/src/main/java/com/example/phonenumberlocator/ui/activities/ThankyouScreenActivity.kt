@@ -12,6 +12,7 @@ import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.databinding.ActivityThankyouScreenBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 
 class ThankyouScreenActivity : AppCompatActivity() {
@@ -26,10 +27,14 @@ class ThankyouScreenActivity : AppCompatActivity() {
         binding = ActivityThankyouScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        hideNavBar()
         showAd()
         handler.postDelayed({
             finishAffinity()
         }, 5000)
+
+
+
     }
 
     private fun showAd() { // for native ads

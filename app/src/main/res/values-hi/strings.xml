@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">संपूर्ण स्थान इतिहास देखें</string>
     <string name="thankyou">धन्यवाद</string>
     <string name="thankyou_message">हमें आशा है कि आप जो खोज रहे थे उसे ढूंढने में हम आपकी सहायता करने में सक्षम थे। अधिक विश्वसनीय ट्रैकिंग के लिए किसी भी समय बेझिझक वापस आएँ। सुरक्षित रहें!</string>
+    <string name="txt_ad">विज्ञापन</string>
 
 </resources>

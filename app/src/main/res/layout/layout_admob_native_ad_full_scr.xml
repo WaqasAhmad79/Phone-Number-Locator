@@ -3,15 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/unifiedNativeAdView"
     android:layout_width="match_parent"
-    android:layoutDirection="ltr"
+    android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layoutDirection="ltr">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/ads_stroke_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -72,14 +71,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_4sdp"
+                android:background="@drawable/back2"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:padding="@dimen/_3sdp"
-                style="@style/AdAttribution1"
-                android:textColor="#FFC107"
-                android:textSize="@dimen/_7ssp"
-                android:textStyle="bold"
+                android:padding="2dp"
+                android:text="AD"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/ad_headline"
                 app:layout_constraintTop_toBottomOf="@+id/ad_headline" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.gms.ads.nativead.MediaView
@@ -92,7 +94,7 @@
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/ad_call_to_action"

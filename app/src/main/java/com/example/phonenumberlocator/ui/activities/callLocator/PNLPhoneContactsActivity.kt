@@ -45,6 +45,7 @@ class PNLPhoneContactsActivity : PNLBaseClass<ActivityPnlphoneContactsBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideNavBar()
 
         if (RemoteConfigClass.inter_pnl_phone_contacts_activity
             && isNetworkAvailable()

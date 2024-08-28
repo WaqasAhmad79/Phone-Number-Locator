@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">完全なロケーション履歴を表示する</string>
     <string name="thankyou">ありがとう</string>
     <string name="thankyou_message">探しているものを見つけるお手伝いができれば幸いです。より信頼性の高い追跡を行うために、いつでもお気軽に戻ってください。安全を確保してください！</string>
+    <string name="txt_ad">広告</string>
 
 </resources>

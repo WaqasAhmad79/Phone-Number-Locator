@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">View Complete Location History</string>
     <string name="thankyou">Thank You</string>
     <string name="thankyou_message">We hope we were able to help you locate what you were looking for. Feel free to return anytime for more reliable tracking. Stay safe!</string>
+    <string name="txt_ad">Ad</string>
 
 </resources>

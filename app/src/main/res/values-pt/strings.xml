@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">Ver histórico de localização completo</string>
     <string name="thankyou">Obrigado</string>
     <string name="thankyou_message">Esperamos ter ajudado você a localizar o que procurava. Sinta-se à vontade para retornar a qualquer momento para um rastreamento mais confiável. Fique seguro!</string>
+    <string name="txt_ad">Anúncio</string>
 
 </resources>

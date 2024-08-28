@@ -12,11 +12,14 @@ import android.view.View
 import android.view.Window
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.FragmentActivity
 import com.example.phonenumberlocator.R
-import com.example.tracklocation.tlHelper.PNLMyContactsHelper
 import com.example.phonenumberlocator.pnlHelper.ensureBackgroundThread
 import com.example.phonenumberlocator.pnlModel.PNLMyContact
+import com.example.tracklocation.tlHelper.PNLMyContactsHelper
 import com.google.android.gms.maps.model.LatLng
 import com.permissionx.guolindev.PermissionX
 
@@ -28,11 +31,11 @@ fun Activity.launchSendSMSIntent(recipient: String) {
     }
 }
 
-
 fun Activity.launchEditContactIntent(contact: PNLMyContact) {
     ensureBackgroundThread {
         val lookupKey = PNLMyContactsHelper(this).getContactLookupKey((contact).rawId.toString())
-        val publicUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
+        val publicUri =
+            Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
         runOnUiThread {
             Intent(Intent.ACTION_EDIT).apply {
                 setDataAndType(publicUri, ContactsContract.Contacts.CONTENT_ITEM_TYPE)
@@ -43,7 +46,14 @@ fun Activity.launchEditContactIntent(contact: PNLMyContact) {
 
 }
 
-fun Activity.setupDialogStuff(view: View, dialog: AlertDialog, titleId: Int = 0, titleText: String = "", cancelOnTouchOutside: Boolean = true, callback: (() -> Unit)? = null) {
+fun Activity.setupDialogStuff(
+    view: View,
+    dialog: AlertDialog,
+    titleId: Int = 0,
+    titleText: String = "",
+    cancelOnTouchOutside: Boolean = true,
+    callback: (() -> Unit)? = null
+) {
     if (isDestroyed || isFinishing) {
         return
     }
@@ -65,8 +75,8 @@ fun Activity.setupDialogStuff(view: View, dialog: AlertDialog, titleId: Int = 0,
         getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(adjustedPrimaryColor)
         getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(adjustedPrimaryColor)
 
-       /* val bgDrawable = resources.getColoredDrawableWithColor(R.drawable.bg_call_default)
-        window?.setBackgroundDrawable(bgDrawable)*/
+        /* val bgDrawable = resources.getColoredDrawableWithColor(R.drawable.bg_call_default)
+         window?.setBackgroundDrawable(bgDrawable)*/
     }
     callback?.invoke()
 }
@@ -87,7 +97,6 @@ fun Resources.getColoredDrawableWithColor(drawableId: Int, alpha: Int = 255): Dr
     drawable.mutate().alpha = alpha
     return drawable
 }
-
 
 fun FragmentActivity.checkAndRequestPermissions(onPermissionStatus: ((Boolean) -> Unit)? = null) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -125,4 +134,27 @@ fun FragmentActivity.checkAndRequestPermissions(onPermissionStatus: ((Boolean) -
             }
     }
 
+}
+
+fun Activity.hideNavBar() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        val windowInsetController =
+            ViewCompat.getWindowInsetsController(window.decorView)
+        if (windowInsetController != null) {
+            windowInsetController.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            windowInsetController.hide(WindowInsetsCompat.Type.navigationBars())
+            if (window.decorView.rootWindowInsets != null) {
+                window.decorView.rootWindowInsets
+                    .getInsetsIgnoringVisibility(
+                        WindowInsetsCompat.Type.navigationBars()
+                    )
+            }
+            window.setDecorFitsSystemWindows(true)
+        }
+
+    } else {
+        window.decorView.systemUiVisibility =
+            (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+    }
 }

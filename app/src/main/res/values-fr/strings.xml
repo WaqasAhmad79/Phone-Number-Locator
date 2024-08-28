@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">Afficher l\'historique complet des positions</string>
     <string name="thankyou">Merci</string>
     <string name="thankyou_message">Nous espérons avoir pu vous aider à trouver ce que vous cherchiez. N\'hésitez pas à revenir à tout moment pour un suivi plus fiable. Soyez prudent!</string>
+    <string name="txt_ad">Annonce</string>
 
 </resources>

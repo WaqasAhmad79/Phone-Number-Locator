@@ -27,6 +27,7 @@ import com.example.phonenumberlocator.databinding.ActivityGpsLocationBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
@@ -55,6 +56,8 @@ class GpsLocationActivity : AppCompatActivity(), LocationListener {
         super.onCreate(savedInstanceState)
         binding = ActivityGpsLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        hideNavBar()
 
         if (RemoteConfigClass.inter_gps_location_activity
             && isNetworkAvailable()

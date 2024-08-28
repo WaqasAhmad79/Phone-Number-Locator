@@ -74,6 +74,8 @@ class CallLocatorDetailsActivity : PNLBaseClass<ActivityCallLocatorDetailsBindin
 
         initViews()
         clickListeners()
+
+        hideNavBar()
     }
 
     private fun handleAds() {

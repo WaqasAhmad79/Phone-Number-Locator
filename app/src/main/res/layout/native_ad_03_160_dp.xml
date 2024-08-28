@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.gms.ads.nativead.NativeAdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_8sdp"
+    android:background="@drawable/bg_card_ads"
+    tools:ignore="MissingDefaultResource,SpUsage">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <com.google.android.gms.ads.nativead.MediaView
+            android:id="@+id/custom_media"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/ads_padding"
+            android:layout_marginVertical="@dimen/ads_padding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/custom_media"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/custom_containerAds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/custom_ad_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:background="@drawable/bg_ads_lable"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:text="@string/txt_ad"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/custom_headline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/custom_ad_lable"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_goneMarginStart="@dimen/ads_margin_gone"
+                    tools:text="fsdjfdghsfgdjjjjjdhgdhgdhgfdfdfdhgdfhgdfhgfsdjfdghsfgdjjjjjdhgdhgdhgfdfdfdhgdfhgdfhg" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/custom_call_to_action"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/custom_ads_button_size"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bg_add_button_rounded_60"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:minWidth="50dp"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="install" />
+
+            <TextView
+                android:id="@+id/custom_body"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:maxLines="2"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginVertical="6dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/custom_call_to_action"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/custom_containerAds"
+                tools:text="adadad" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.gms.ads.nativead.NativeAdView>

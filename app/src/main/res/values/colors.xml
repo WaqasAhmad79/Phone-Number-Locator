@@ -30,6 +30,9 @@
     <color name="dot_light_screen3">#3D73DD</color>
     <color name="dot_light_screen4">#3D73DD</color>
     <color name="lightTransparent">#A1AE3636</color>
+    <color name="nads_btn_color">#3D73DD</color>
+    <color name="nads_bg_color">#00673AB7</color>
+    <color name="nads_stroke_color">#805A5656</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

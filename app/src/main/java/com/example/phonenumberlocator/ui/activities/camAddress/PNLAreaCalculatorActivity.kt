@@ -25,6 +25,7 @@ import com.example.phonenumberlocator.databinding.ActivityPnlareaCalculatorBindi
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beInvisible
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlHelper.CURRENT_UNIT
 import com.example.phonenumberlocator.pnlHelper.UNIT_ACRE
@@ -154,6 +155,7 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        hideNavBar()
         handleAds()
         initViews()
         clickListeners()

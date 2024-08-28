@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">查看完整的位置历史记录</string>
     <string name="thankyou">谢谢</string>
     <string name="thankyou_message">我们希望能够帮助您找到您正在寻找的东西。请随时返回以获得更可靠的跟踪。注意安全！</string>
+    <string name="txt_ad">广告</string>
 
 </resources>

@@ -18,6 +18,7 @@ import com.example.phonenumberlocator.databinding.ActivityShowOnMapBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.copyText
 import com.example.phonenumberlocator.pnlExtensionFun.gpsStatusCheck
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.shareCurrentLocation
 import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
@@ -56,6 +57,8 @@ class ShowOnMapActivity : PNLBaseClass<ActivityShowOnMapBinding>() {
     //    private var dialog: ResumeLoadingDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideNavBar()
+
         gpsStatusCheck() {
             if (it) {
                 initView()

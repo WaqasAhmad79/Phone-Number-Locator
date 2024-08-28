@@ -24,6 +24,7 @@ import com.example.phonenumberlocator.databinding.ActivityPnlsplashBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
 import com.example.phonenumberlocator.pnlUtil.setCurrentLocale
@@ -61,6 +62,8 @@ class PNLSplashActivity : AppCompatActivity() {
             finish()
         }
 
+        hideNavBar()
+
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -73,20 +76,20 @@ class PNLSplashActivity : AppCompatActivity() {
 
             // Ads consent for testing
 
-            /*        adsConsentManager.requestUMP(
-                        true,
-            //            "0254F76DB20D82B091C239339F2DE723",// your testing device id
-                        true
-                    ) { canRequestAds ->
-                        PhoneNumberLocator.canRequestAd=canRequestAds
-                        runOnUiThread(this::splashEnd)
-                        Log.e("AdsConsentManager", "adsConsentManager response :$canRequestAds ")
-                        if (canRequestAds) {
-                            handleConsentFormAndAdsRequests()
-                        } else {
-                            splashEnd()
-                        }
-                    }*/
+            /*  adsConsentManager.requestUMP(
+                  true,
+                  "B6DAE15C2DF0205112DDD118589C1EA7", // your testing device id
+                  true
+              ) { canRequestAds ->
+                  PhoneNumberLocator.canRequestAd = canRequestAds
+                  runOnUiThread(this::splashEnd)
+                  Log.e("AdsConsentManager", "adsConsentManager response :$canRequestAds ")
+                  if (canRequestAds) {
+                      handleConsentFormAndAdsRequests()
+                  } else {
+                      splashEnd()
+                  }
+              }*/
 
 
             // Ads consent for release build
@@ -100,6 +103,9 @@ class PNLSplashActivity : AppCompatActivity() {
                     splashEnd()
                 }
             }
+
+            /////
+
         }
     }
 
@@ -153,37 +159,36 @@ class PNLSplashActivity : AppCompatActivity() {
     }
 
     private fun handleAds() {
+
         if (RemoteConfigClass.interSplash || RemoteConfigClass.interOtherHome) {
             if (PhoneNumberLocator.canRequestAd) {
                 loadNormalAdmobInterstitial(getString(R.string.admob_splash_interistitial_low))
             }
         }
 
-        if (!baseConfig.appStarted) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+        if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
 
-                if (RemoteConfigClass.banner_splash) { // Banner Splash
-                    binding.ads.beVisible()
-                    showBannerAdmob(binding.ads, this, getString(R.string.ad_mob_banner_id))
-                } else {
-                    binding.ads.beGone()
-                }
-
-                if (RemoteConfigClass.native_language) { // Native Language Ad
-
-                    loadAndReturnAd(
-                        this@PNLSplashActivity, resources.getString(R.string.admob_native_lang_low)
-                    ) { it2 ->
-                        Log.d("Native_language_ad ", "value: $it2")
-                        if (it2 != null) {
-                            nativeAdLang.value = it2
-                        }
-                    }
-                }
+            if (RemoteConfigClass.banner_splash) { // Banner Splash
+                binding.ads.beVisible()
+                showBannerAdmob(binding.ads, this, getString(R.string.ad_mob_banner_id))
             } else {
                 binding.ads.beGone()
-                nativeAdLang.postValue(null)
             }
+
+            if (RemoteConfigClass.native_language) { // Native Language Ad
+
+                loadAndReturnAd(
+                    this@PNLSplashActivity, resources.getString(R.string.admob_native_lang_low)
+                ) { it2 ->
+                    Log.d("Native_language_ad ", "value: $it2")
+                    if (it2 != null) {
+                        nativeAdLang.value = it2
+                    }
+                }
+            }
+        } else {
+            binding.ads.beGone()
+            nativeAdLang.postValue(null)
         }
 
     }

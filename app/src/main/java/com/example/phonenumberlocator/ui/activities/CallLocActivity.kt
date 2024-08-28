@@ -12,6 +12,7 @@ import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.databinding.ActivityCallLocBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.activities.callLocator.PNLCallLocatorActivity
 import com.example.phonenumberlocator.ui.activities.callLocator.PNLIsdStdActivity
@@ -24,21 +25,22 @@ class CallLocActivity : AppCompatActivity() {
         binding = ActivityCallLocBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        handleClicks()
         handleBannerAd()
+        handleClicks()
+        hideNavBar()
     }
 
-    fun handleBannerAd() {
+    private fun handleBannerAd() {
         if (RemoteConfigClass.banner_call_loc_activity) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
                 val config = BannerAdConfig(
-                    getString(R.string.ad_mob_banner_id), true, true, true
+                    getString(R.string.ad_mob_banner_id), canShowAds = true, canReloadAds = true, isCollapsibleAd = true
                 )
                 val bannerAdHelperClass = BannerAdHelper(this, this, config)
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
-                bannerAdHelperClass.showBannerAdmob()
+                bannerAdHelperClass.loadAndShowCollapsibleBannerAd()
             }
         } else {
             binding.ads.beGone()

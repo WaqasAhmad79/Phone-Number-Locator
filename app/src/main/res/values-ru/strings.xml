@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">Просмотреть полную историю местоположений</string>
     <string name="thankyou">Спасибо</string>
     <string name="thankyou_message">Мы надеемся, что смогли помочь вам найти то, что вы искали. Не стесняйтесь вернуться в любое время для более надежного отслеживания. Будьте в безопасности!</string>
+    <string name="txt_ad">Объявление</string>
 
 </resources>

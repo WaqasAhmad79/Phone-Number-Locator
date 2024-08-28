@@ -23,32 +23,37 @@
     <dimen name="slide_title">30dp</dimen>
     <dimen name="slide_desc">16dp</dimen>
     <dimen name="desc_padding">40dp</dimen>
+    <dimen name="ads_button_size">45dp</dimen>
+    <dimen name="ads_margin_gone">6dp</dimen>
+    <dimen name="custom_ads_button_size">45dp</dimen>
+    <dimen name="sdk_native_height">130dp</dimen>
+    <dimen name="ads_padding">4dp</dimen>
 
 
-   <!-- &lt;!&ndash; BubbleLevelActivity &ndash;&gt;
-    <dimen name="level_border_width">5dip</dimen>
-    <dimen name="level_border_height">0dip</dimen>
-    &lt;!&ndash; Display &ndash;&gt;
-    <dimen name="display_padding">6dip</dimen>
-    <dimen name="display_border">1dip</dimen>
-    <dimen name="display_gap">10dip</dimen>
-    &lt;!&ndash; Sensor &ndash;&gt;
-    <dimen name="sensor_gap">5dip</dimen>
-    &lt;!&ndash; Marker &ndash;&gt;
-    <dimen name="marker_thickness">2dip</dimen>
-    &lt;!&ndash; Bubble &ndash;&gt;
-    <dimen name="bubble_padding">2dip</dimen>
-    <dimen name="bubble_padding_top">0dip</dimen>
-    <dimen name="bubble_padding_bottom">10dip</dimen>
-    <dimen name="bubble_padding_right">2dip</dimen>
-    <dimen name="bubble_padding_left">2dip</dimen>
-    &lt;!&ndash; LCD &ndash;&gt;
-    <dimen name="lcd_text">22dip</dimen>
-    <dimen name="lcd">42dip</dimen>
-    &lt;!&ndash; LOCK &ndash;&gt;
-    <dimen name="lock_text">32dip</dimen>
-    &lt;!&ndash; INFO &ndash;&gt;
-    <dimen name="info_text">12dip</dimen>
-    <dimen name="arrow_padding">1dip</dimen>
--->
+    <!-- &lt;!&ndash; BubbleLevelActivity &ndash;&gt;
+     <dimen name="level_border_width">5dip</dimen>
+     <dimen name="level_border_height">0dip</dimen>
+     &lt;!&ndash; Display &ndash;&gt;
+     <dimen name="display_padding">6dip</dimen>
+     <dimen name="display_border">1dip</dimen>
+     <dimen name="display_gap">10dip</dimen>
+     &lt;!&ndash; Sensor &ndash;&gt;
+     <dimen name="sensor_gap">5dip</dimen>
+     &lt;!&ndash; Marker &ndash;&gt;
+     <dimen name="marker_thickness">2dip</dimen>
+     &lt;!&ndash; Bubble &ndash;&gt;
+     <dimen name="bubble_padding">2dip</dimen>
+     <dimen name="bubble_padding_top">0dip</dimen>
+     <dimen name="bubble_padding_bottom">10dip</dimen>
+     <dimen name="bubble_padding_right">2dip</dimen>
+     <dimen name="bubble_padding_left">2dip</dimen>
+     &lt;!&ndash; LCD &ndash;&gt;
+     <dimen name="lcd_text">22dip</dimen>
+     <dimen name="lcd">42dip</dimen>
+     &lt;!&ndash; LOCK &ndash;&gt;
+     <dimen name="lock_text">32dip</dimen>
+     &lt;!&ndash; INFO &ndash;&gt;
+     <dimen name="info_text">12dip</dimen>
+     <dimen name="arrow_padding">1dip</dimen>
+ -->
 </resources>

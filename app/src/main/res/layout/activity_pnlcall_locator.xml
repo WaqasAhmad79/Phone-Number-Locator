@@ -202,22 +202,22 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:id="@+id/ads"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:layout_marginVertical="@dimen/_5sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/findLocation">
-            <include
-                android:id="@+id/includeShimmer"
-                layout="@layout/loading_custom_native_admob_media_small" />
-        </FrameLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/includeShimmer"
+            layout="@layout/loading_custom_native_admob_media_small" />
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

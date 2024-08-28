@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.AdsConsentManager
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
 import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
@@ -18,6 +17,7 @@ import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.databinding.ActivityCamAdresBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.ui.activities.camAddress.PNLAreaCalculatorActivity
 import com.example.phonenumberlocator.ui.activities.camAddress.PNLDistanceFinderActivity
@@ -38,6 +38,7 @@ class CamAddressActivity : AppCompatActivity() {
         binding = ActivityCamAdresBinding.inflate(layoutInflater)
         setContentView(binding.root)
         handleClicks()
+        hideNavBar()
         handleBannerAd()
 
     }

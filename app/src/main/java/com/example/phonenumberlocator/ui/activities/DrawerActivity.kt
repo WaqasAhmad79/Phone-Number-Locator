@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.databinding.ActivityDrawerBinding
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlUtil.PNLAppsUtils
 import com.example.phonenumberlocator.ui.MainActivity
 
@@ -18,8 +19,8 @@ class DrawerActivity : AppCompatActivity() {
         binding = ActivityDrawerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         initClicks()
+        hideNavBar()
 
     }
 

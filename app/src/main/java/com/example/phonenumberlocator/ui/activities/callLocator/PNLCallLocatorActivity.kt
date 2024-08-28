@@ -48,6 +48,7 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         handleAds() // for interstitial
         initViews()
         clickListeners()
+        hideNavBar()
         showAd() // for native ads
 
     }

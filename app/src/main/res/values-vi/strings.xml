@@ -192,5 +192,6 @@
     <string name="view_complete_location_history">Xem toàn bộ lịch sử vị trí</string>
     <string name="thankyou">Cảm ơn</string>
     <string name="thankyou_message">Chúng tôi hy vọng chúng tôi có thể giúp bạn xác định được những gì bạn đang tìm kiếm. Vui lòng quay lại bất cứ lúc nào để theo dõi đáng tin cậy hơn. Giữ an toàn!</string>
+    <string name="txt_ad">Quảng cáo</string>
 
 </resources>

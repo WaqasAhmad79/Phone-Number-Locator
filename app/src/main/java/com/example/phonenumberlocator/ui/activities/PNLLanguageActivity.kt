@@ -21,6 +21,7 @@ import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
 import com.example.phonenumberlocator.pnlSharedPreferencesLang.PNLMySharePreferences
 import com.example.phonenumberlocator.pnlUtil.changeLanguage
@@ -40,6 +41,7 @@ class PNLLanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         handleAds()
+        hideNavBar()
 
         if (PhoneNumberLocator.canRequestAd) {
             showAd()
