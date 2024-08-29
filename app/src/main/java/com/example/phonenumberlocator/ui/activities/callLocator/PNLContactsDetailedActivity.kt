@@ -231,24 +231,21 @@ class PNLContactsDetailedActivity : PNLBaseClass<ActivityPnlcontactsDetailedBind
     }
 
     private fun showAd() {
-        if (RemoteConfigClass.native_pnl_contacts_detailed_activity) {
-            if (isNetworkAvailable() && canRequestAd) {
-                binding.ads.beVisible()
-                val config = NativeAdConfig(
-                    resources.getString(R.string.admob_native_large),
-                    canShowAds = true,
-                    canReloadAds = true,
-                    layoutId = R.layout.native_ad_03
-                )
-                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
-                    TAG = "PNLContactsDetailedActivity"
-                    shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
-                    nativeContentView = binding.ads
-                }
-                nativeAdHelper.loadAndShowNativeAd()
+        if (RemoteConfigClass.native_pnl_contacts_detailed_activity && isNetworkAvailable() && canRequestAd) {
 
-
+            binding.ads.beVisible()
+            val config = NativeAdConfig(
+                resources.getString(R.string.admob_native_large),
+                canShowAds = true,
+                canReloadAds = true,
+                layoutId = R.layout.native_ad_03
+            )
+            val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                TAG = "PNLContactsDetailedActivity"
+                shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                nativeContentView = binding.ads
             }
+            nativeAdHelper.loadAndShowNativeAd()
         } else {
             binding.ads.beGone()
         }

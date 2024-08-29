@@ -45,8 +45,8 @@ class WelcomeSlide1Fragment : Fragment() {
 
     private fun nativeAdControl() {
         activity?.let {
-            if (RemoteConfigClass.native_welcome_one) {
-                if (it.isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+            if (RemoteConfigClass.native_welcome_one && it.isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
                     binding.flAdNative.beVisible()
                     PhoneNumberLocator.onBoardNative1.observe(viewLifecycleOwner) { nad ->
                         nad?.let { ad ->
@@ -63,11 +63,9 @@ class WelcomeSlide1Fragment : Fragment() {
                                 nativeContentView = binding.flAdNative
                             }
                             nativeAdHelper.showLoadedNativeAd(ad)
-
-
                         }
                     }
-                }
+
             } else {
                 binding.flAdNative.beGone()
             }

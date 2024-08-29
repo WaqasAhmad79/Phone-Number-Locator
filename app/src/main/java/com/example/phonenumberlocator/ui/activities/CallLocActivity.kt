@@ -31,8 +31,7 @@ class CallLocActivity : AppCompatActivity() {
     }
 
     private fun handleBannerAd() {
-        if (RemoteConfigClass.banner_call_loc_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+        if (RemoteConfigClass.banner_call_loc_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
                 val config = BannerAdConfig(
                     getString(R.string.adaptive_mob_banner_id),
@@ -48,7 +47,7 @@ class CallLocActivity : AppCompatActivity() {
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
                 bannerAdHelperClass.loadAndShowCollapsibleBannerAd()
-            }
+
         } else {
             binding.ads.beGone()
         }

@@ -31,31 +31,28 @@ class ThankyouScreenActivity : AppCompatActivity() {
         showAd()
         handler.postDelayed({
             finishAffinity()
-        }, 6000)
+        }, 4000)
 
 
     }
 
     private fun showAd() { // for native ads
-        if (RemoteConfigClass.native_exit_ad) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                binding.ads.beVisible()
+        if (RemoteConfigClass.native_exit_ad && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
 
-                val config = NativeAdConfig(
-                    resources.getString(R.string.admob_native_small),
-                    canShowAds = true,
-                    canReloadAds = true,
-                    layoutId = R.layout.native_ad_06
-                )
-                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
-                    TAG = "ThankyouScreenActivity"
-                    shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
-                    nativeContentView = binding.ads
-                }
-                nativeAdHelper.loadAndShowNativeAd()
+            binding.ads.beVisible()
 
-
+            val config = NativeAdConfig(
+                resources.getString(R.string.admob_native_small),
+                canShowAds = true,
+                canReloadAds = true,
+                layoutId = R.layout.native_ad_06
+            )
+            val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                TAG = "ThankyouScreenActivity"
+                shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                nativeContentView = binding.ads
             }
+            nativeAdHelper.loadAndShowNativeAd()
         } else {
             binding.ads.beGone()
         }

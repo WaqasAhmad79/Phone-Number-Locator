@@ -223,9 +223,8 @@ class GpsLocationActivity : AppCompatActivity(), LocationListener {
     }
 
     private fun showAd() {
-        if (RemoteConfigClass.native_gps_location_activity) {
+        if (RemoteConfigClass.native_gps_location_activity && isNetworkAvailable() && canRequestAd) {
 
-            if (isNetworkAvailable() && canRequestAd) {
                 binding.ads.beVisible()
 
                 val config = NativeAdConfig(
@@ -240,8 +239,6 @@ class GpsLocationActivity : AppCompatActivity(), LocationListener {
                     nativeContentView = binding.ads
                 }
                 nativeAdHelper.loadAndShowNativeAd()
-
-            }
 
         } else {
             binding.ads.beGone()

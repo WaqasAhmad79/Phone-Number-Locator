@@ -15,7 +15,6 @@ import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
 import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
 import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.databinding.ActivityWelcomeScreenBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
@@ -40,24 +39,24 @@ class WelcomeScreenActivity : AppCompatActivity() {
     private fun handleAds() {
 
         // showing first ad that was loaded in language screen
-        if (RemoteConfigClass.native_welcome_screen_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                binding.ads.visibility = View.VISIBLE
-                nativeAdWelcome.observe(this) { nad ->
-                    nad?.let { ad ->
-                        val config = NativeAdConfig(
-                            resources.getString(R.string.admob_native_large),
-                            canShowAds = true,
-                            canReloadAds = true,
-                            layoutId = R.layout.native_ad_03
-                        )
-                        val nativeAdHelper = NativeAdHelper(this, this, config).apply {
-                            TAG = "WelcomeScreenActivity"
-                            shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
-                            nativeContentView = binding.ads
-                        }
-                        nativeAdHelper.showLoadedNativeAd(ad)
+        if (RemoteConfigClass.native_welcome_screen_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
+            binding.ads.visibility = View.VISIBLE
+            nativeAdWelcome.observe(this) { nad ->
+                nad?.let { ad ->
+                    val config = NativeAdConfig(
+                        resources.getString(R.string.admob_native_large),
+                        canShowAds = true,
+                        canReloadAds = true,
+                        layoutId = R.layout.native_ad_03
+                    )
+                    val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                        TAG = "WelcomeScreenActivity"
+                        shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                        nativeContentView = binding.ads
                     }
+                    nativeAdHelper.showLoadedNativeAd(ad)
+
                 }
             }
         } else {
@@ -137,25 +136,23 @@ class WelcomeScreenActivity : AppCompatActivity() {
     private fun showSecondAdDup() {
 
         // to be shown on click of any one radio button
-        if (RemoteConfigClass.native_welcome_screen_dup_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                binding.ads.visibility = View.VISIBLE
-                nativeAdWelcomeDup.observe(this) { nativeAd ->
+        if (RemoteConfigClass.native_welcome_screen_dup_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
 
-                    val config = NativeAdConfig(
-                        resources.getString(R.string.admob_native_large),
-                        canShowAds = true,
-                        canReloadAds = true,
-                        layoutId = R.layout.native_ad_03
-                    )
-                    val nativeAdHelper = NativeAdHelper(this, this, config).apply {
-                        TAG = "WelcomeScreenActivity"
-                        shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
-                        nativeContentView = binding.ads
-                    }
-                    nativeAdHelper.showLoadedNativeAd(nativeAd)
+            binding.ads.visibility = View.VISIBLE
+            nativeAdWelcomeDup.observe(this) { nativeAd ->
 
+                val config = NativeAdConfig(
+                    resources.getString(R.string.admob_native_large),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    layoutId = R.layout.native_ad_03
+                )
+                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                    TAG = "WelcomeScreenActivity"
+                    shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                    nativeContentView = binding.ads
                 }
+                nativeAdHelper.showLoadedNativeAd(nativeAd)
             }
         } else {
             binding.ads.beGone()

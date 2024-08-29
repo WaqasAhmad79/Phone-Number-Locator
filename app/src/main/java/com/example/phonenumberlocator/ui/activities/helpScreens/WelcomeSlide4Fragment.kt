@@ -62,28 +62,28 @@ class WelcomeSlide4Fragment : PNLPermissionBaseFragment() {
 
     private fun nativeAdControl() {
         activity?.let {
-            if (RemoteConfigClass.native_welcome_four) {
-                if (it.isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                    binding.flAdNative.beVisible()
-                    PhoneNumberLocator.onBoardNative4.observe(viewLifecycleOwner) { nad ->
-                        nad?.let { ad ->
+            if (RemoteConfigClass.native_welcome_four && it.isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
 
-                            val config = NativeAdConfig(
-                                resources.getString(R.string.admob_native_boarding_low),
-                                canShowAds = true,
-                                canReloadAds = true,
-                                layoutId = R.layout.native_ad_03_160_dp
-                            )
-                            val nativeAdHelper = NativeAdHelper(it, this, config).apply {
-                                TAG = "WelcomeSlide4Fragment"
-                                shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
-                                nativeContentView = binding.flAdNative
-                            }
-                            nativeAdHelper.showLoadedNativeAd(ad)
+                binding.flAdNative.beVisible()
+                PhoneNumberLocator.onBoardNative4.observe(viewLifecycleOwner) { nad ->
+                    nad?.let { ad ->
 
+                        val config = NativeAdConfig(
+                            resources.getString(R.string.admob_native_boarding_low),
+                            canShowAds = true,
+                            canReloadAds = true,
+                            layoutId = R.layout.native_ad_03_160_dp
+                        )
+                        val nativeAdHelper = NativeAdHelper(it, this, config).apply {
+                            TAG = "WelcomeSlide4Fragment"
+                            shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                            nativeContentView = binding.flAdNative
                         }
+                        nativeAdHelper.showLoadedNativeAd(ad)
+
                     }
                 }
+
             } else {
                 binding.flAdNative.beGone()
             }

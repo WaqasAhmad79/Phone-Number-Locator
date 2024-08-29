@@ -63,7 +63,7 @@ class PNLLanguageActivity : AppCompatActivity() {
 
 
             } else {
-                if (RemoteConfigClass.native_language) {
+                if (RemoteConfigClass.native_language && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                     loadAndReturnAd(
                         this@PNLLanguageActivity,
                         resources.getString(R.string.admob_native_lang_low)
@@ -87,6 +87,8 @@ class PNLLanguageActivity : AppCompatActivity() {
                             binding.ads.beGone()
                         }
                     }
+                }else {
+                    binding.ads.beGone()
                 }
             }
 
@@ -289,8 +291,8 @@ class PNLLanguageActivity : AppCompatActivity() {
 
     private fun showAd() {
 
-        if (RemoteConfigClass.native_language) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+        if (RemoteConfigClass.native_language && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
 
                 binding.ads.visibility = View.VISIBLE
                 nativeAdLang.observe(this) { it2 ->
@@ -306,7 +308,7 @@ class PNLLanguageActivity : AppCompatActivity() {
                         nativeContentView = binding.ads
                     }
                     nativeAdHelper.showLoadedNativeAd(it2)
-                }
+
             }
 
         } else {
@@ -316,8 +318,8 @@ class PNLLanguageActivity : AppCompatActivity() {
 
     private fun showSecondAdDup() {
 
-        if (RemoteConfigClass.native_dup_language_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+        if (RemoteConfigClass.native_dup_language_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
 
                 binding.ads.visibility = View.VISIBLE
                 nativeAdLangDup.observe(this) { it3 ->
@@ -333,7 +335,7 @@ class PNLLanguageActivity : AppCompatActivity() {
                         nativeContentView = binding.ads
                     }
                     nativeAdHelper.showLoadedNativeAd(it3)
-                }
+
             }
         } else {
             binding.ads.beGone()

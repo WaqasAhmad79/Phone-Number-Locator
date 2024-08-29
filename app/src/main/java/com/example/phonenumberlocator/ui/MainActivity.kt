@@ -64,27 +64,27 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>(), LifecycleOwner {
     }
 
     private fun handleBannerAd() {
-        if (RemoteConfigClass.banner_main_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                binding.ads.beVisible()
+        if (RemoteConfigClass.banner_main_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
 
-                val config = BannerAdConfig(
-                    getString(R.string.ad_mob_banner_id),
-                    canShowAds = true,
-                    canReloadAds = true,
-                    isCollapsibleAd = false
-                )
+            binding.ads.beVisible()
 
-                val bannerAdHelperClass = BannerAdHelper(
-                    activity = this,
-                    lifecycleOwner = this,
-                    config = config
-                )
+            val config = BannerAdConfig(
+                getString(R.string.ad_mob_banner_id),
+                canShowAds = true,
+                canReloadAds = true,
+                isCollapsibleAd = false
+            )
 
-                bannerAdHelperClass.myView = binding.ads
-                bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
-                bannerAdHelperClass.showBannerAdmob()
-            }
+            val bannerAdHelperClass = BannerAdHelper(
+                activity = this,
+                lifecycleOwner = this,
+                config = config
+            )
+
+            bannerAdHelperClass.myView = binding.ads
+            bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+            bannerAdHelperClass.showBannerAdmob()
+
         } else {
             binding.ads.beGone()
         }

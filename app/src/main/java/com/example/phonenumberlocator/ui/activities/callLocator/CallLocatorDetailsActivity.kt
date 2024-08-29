@@ -23,13 +23,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.R
-import com.example.phonenumberlocator.admob_ads.*
+import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
 import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
+import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityCallLocatorDetailsBinding
-import com.example.phonenumberlocator.pnlExtensionFun.*
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
+import com.example.phonenumberlocator.pnlExtensionFun.findUserLocation
+import com.example.phonenumberlocator.pnlExtensionFun.hideKeyboard
+import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
+import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
+import com.example.phonenumberlocator.pnlExtensionFun.toast
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
 import com.example.phonenumberlocator.pnlUtil.PNLDataStoreDb
 import com.example.tracklocation.tlHelper.PNLMyContactsHelper
@@ -83,8 +90,9 @@ class CallLocatorDetailsActivity : PNLBaseClass<ActivityCallLocatorDetailsBindin
     private fun handleAds() {
 
         if (RemoteConfigClass.inter_call_locator_details_activity
-                && isNetworkAvailable()
-                && PhoneNumberLocator.canRequestAd) {
+            && isNetworkAvailable()
+            && PhoneNumberLocator.canRequestAd
+        ) {
             showSimpleInterstitialAdWithTimeAndCounter()
         }
 
@@ -372,25 +380,22 @@ class CallLocatorDetailsActivity : PNLBaseClass<ActivityCallLocatorDetailsBindin
     }
 
     private fun showAd() {
-        if (RemoteConfigClass.native_call_locator_details_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                Log.e(TAG, "showAd: Network available and consent given")
+        if (RemoteConfigClass.native_call_locator_details_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
 
-                val config = NativeAdConfig(
-                    resources.getString(R.string.admob_native_large),
-                    canShowAds = true,
-                    canReloadAds = true,
-                    layoutId = R.layout.native_ad_03
-                )
-                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
-                    TAG = "CallLocatorDetailsActivity"
-                    shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
-                    nativeContentView = binding.ads
-                }
-                nativeAdHelper.loadAndShowNativeAd()
+            Log.e(TAG, "showAd: Network available and consent given")
 
-
+            val config = NativeAdConfig(
+                resources.getString(R.string.admob_native_large),
+                canShowAds = true,
+                canReloadAds = true,
+                layoutId = R.layout.native_ad_03
+            )
+            val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                TAG = "CallLocatorDetailsActivity"
+                shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                nativeContentView = binding.ads
             }
+            nativeAdHelper.loadAndShowNativeAd()
         } else {
             binding.ads.beGone()
         }

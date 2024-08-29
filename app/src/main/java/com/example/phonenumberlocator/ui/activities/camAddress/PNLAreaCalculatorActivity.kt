@@ -179,8 +179,8 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
 
 
     private fun handleBannerAd() {
-        if (RemoteConfigClass.banner_pnl_area_calculator_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+        if (RemoteConfigClass.banner_pnl_area_calculator_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
                 binding.ads.beVisible()
 
                 val config = BannerAdConfig(
@@ -199,7 +199,7 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
                 bannerAdHelperClass.showBannerAdmob()
-            }
+
         } else {
             binding.ads.beGone()
         }

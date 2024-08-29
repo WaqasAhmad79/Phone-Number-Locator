@@ -146,8 +146,8 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
     }
 
     private fun showAd() { // for native ads
-        if (RemoteConfigClass.native_pnl_call_locator_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+        if (RemoteConfigClass.native_pnl_call_locator_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
                 binding.ads.beVisible()
 
                 val config = NativeAdConfig(
@@ -162,8 +162,6 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
                     nativeContentView = binding.ads
                 }
                 nativeAdHelper.loadAndShowNativeAd()
-
-            }
         } else {
             binding.ads.beGone()
         }

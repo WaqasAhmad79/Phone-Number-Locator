@@ -34,21 +34,21 @@ class GpsTrackActivity : AppCompatActivity() {
 
     fun handleBannerAd() {
 
-        if (RemoteConfigClass.banner_gps_track_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-                binding.ads.beVisible()
-                val config = BannerAdConfig(
-                    getString(R.string.adaptive_mob_banner_id), true, true, true
-                )
-                val bannerAdHelperClass = BannerAdHelper(
-                    activity = this,
-                    lifecycleOwner = this,
-                    config = config
-                )
-                bannerAdHelperClass.myView = binding.ads
-                bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
-                bannerAdHelperClass.loadAndShowCollapsibleBannerAd()
-            }
+        if (RemoteConfigClass.banner_gps_track_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
+            binding.ads.beVisible()
+            val config = BannerAdConfig(
+                getString(R.string.adaptive_mob_banner_id), true, true, true
+            )
+            val bannerAdHelperClass = BannerAdHelper(
+                activity = this,
+                lifecycleOwner = this,
+                config = config
+            )
+            bannerAdHelperClass.myView = binding.ads
+            bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+            bannerAdHelperClass.loadAndShowCollapsibleBannerAd()
+
         } else {
             binding.ads.beGone()
         }

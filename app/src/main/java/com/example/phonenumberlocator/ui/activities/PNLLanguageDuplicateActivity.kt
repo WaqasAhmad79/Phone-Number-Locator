@@ -154,8 +154,8 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
     }
 
     private fun showSecondAdDup() {
-        if (RemoteConfigClass.native_language_other_dup_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+        if (RemoteConfigClass.native_language_other_dup_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
                 binding.ads.visibility = View.VISIBLE
                 nativeAdLangOtherDup.observe(this) { nativeAd ->
                     val config = NativeAdConfig(
@@ -170,7 +170,7 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
                         nativeContentView = binding.ads
                     }
                     nativeAdHelper.showLoadedNativeAd(nativeAd)
-                }
+
             }
         } else {
             binding.ads.beGone()
@@ -179,9 +179,7 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
 
     private fun handleAds() {
         // first native ad on second language screen
-        if (RemoteConfigClass.native_language_other_activity) {
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
-
+        if (RemoteConfigClass.native_language_other_activity && isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.visibility = View.VISIBLE
                 nativeAdLangOther.observe(this) { nativeAd ->
 
@@ -197,7 +195,7 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
                         nativeContentView = binding.ads
                     }
                     nativeAdHelper.showLoadedNativeAd(nativeAd)
-                }
+
             }
         } else {
             binding.ads.beGone()
