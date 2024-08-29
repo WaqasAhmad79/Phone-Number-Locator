@@ -11,9 +11,9 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.OpenApp.adOpenAppVisible
 import com.example.phonenumberlocator.admob_ads.isInterstitialRecentClosed
-import com.example.phonenumberlocator.R
 import com.facebook.shimmer.BuildConfig
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.gms.ads.AdListener
@@ -186,11 +186,11 @@ class NativeAdHelper(
         Log.d(TAG, "populateUnifiedNativeAdView: counter $counterAdsLoading")
         shimmerLayoutView?.stopShimmer()
         shimmerLayoutView?.visibility = View.GONE
-        adView.mediaView = adView.findViewById(R.id.ad_media)
-        adView.headlineView = adView.findViewById(R.id.ad_headline)
-        adView.bodyView = adView.findViewById(R.id.ad_body)
-        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-        adView.iconView = adView.findViewById(R.id.ad_app_icon)
+        adView.mediaView = adView.findViewById(R.id.custom_media)
+        adView.headlineView = adView.findViewById(R.id.custom_headline)
+        adView.bodyView = adView.findViewById(R.id.custom_body)
+        adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
+        adView.iconView = adView.findViewById(R.id.custom_app_icon)
         nativeAd.mediaContent?.let {
             adView.mediaView?.apply {
                 mediaContent = it
@@ -201,11 +201,11 @@ class NativeAdHelper(
         }
 
         nativeAd.headline?.let {
-            (adView.headlineView as TextView).text = it
+            (adView.headlineView as TextView)?.text = it
         } ?: changeTextToEmpty(adView.headlineView as TextView)
 
         nativeAd.body?.let {
-            (adView.bodyView as TextView).text = it
+            (adView.bodyView as TextView)?.text = it
         } ?: changeTextToEmpty(adView.bodyView as TextView)
 
 
@@ -216,7 +216,7 @@ class NativeAdHelper(
         } ?: hideView(adView.iconView)
 
         nativeAd.callToAction?.let {
-            (adView.callToActionView as TextView).text = it
+            (adView.callToActionView as TextView)?.text = it
         } ?: hideView(adView.callToActionView)
 
         val starRatingView = adView.findViewById<RatingBar>(R.id.ratingBar)
@@ -229,9 +229,7 @@ class NativeAdHelper(
             } ?: myAddRating(starRatingView)
         }
 
-
         adView.setNativeAd(nativeAd)
-
 
         val vc = nativeAd.mediaContent?.videoController
 
@@ -248,7 +246,6 @@ class NativeAdHelper(
                 showNativeLog("native ad not contains video 1")
             }
         }
-
 
     }
 

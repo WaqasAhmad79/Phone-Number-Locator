@@ -16,7 +16,8 @@ import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdWelco
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
 import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
@@ -41,45 +42,13 @@ class PNLLanguageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         handleAds()
+        showAd()
         hideNavBar()
-
-        if (PhoneNumberLocator.canRequestAd) {
-            showAd()
-        }
 
         langName = null
         initListeners()
 
-        binding.tick.setOnClickListener {
-            when (langName) {
-                "en" -> setLocaleAndChangeLanguage("en")
-                "hi" -> setLocaleAndChangeLanguage("hi")
-                "ar" -> setLocaleAndChangeLanguage("ar")
-                "af" -> setLocaleAndChangeLanguage("af")
-                "pt" -> setLocaleAndChangeLanguage("pt")
-                "es" -> setLocaleAndChangeLanguage("es")
-                "fr" -> setLocaleAndChangeLanguage("fr")
-                "ur" -> setLocaleAndChangeLanguage("ur")
-                "in" -> setLocaleAndChangeLanguage("in")
-                "ru" -> setLocaleAndChangeLanguage("ru")
-                "vi" -> setLocaleAndChangeLanguage("vi")
-                "zh" -> setLocaleAndChangeLanguage("zh")
-                "de" -> setLocaleAndChangeLanguage("de")
-                "ja" -> setLocaleAndChangeLanguage("ja")
-                "ko" -> setLocaleAndChangeLanguage("ko")
-                "th" -> setLocaleAndChangeLanguage("th")
-                else -> {
-                    Toast.makeText(
-                        this@PNLLanguageActivity,
-                        "Please select a language first",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-
     }
-
 
     private fun handleAds() {
         if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
@@ -101,13 +70,18 @@ class PNLLanguageActivity : AppCompatActivity() {
                     ) { it2 ->
                         if (it2 != null) {
                             if (RemoteConfigClass.native_language && PhoneNumberLocator.canRequestAd) {
-                                showLoadedNativeAd(
-                                    this,
-                                    binding.ads,
-                                    binding.includeShimmer.shimmerContainerNative,
-                                    R.layout.native_large_2,
-                                    it2
+                                val config = NativeAdConfig(
+                                    getString(R.string.admob_native_lang_low),
+                                    canShowAds = true,
+                                    canReloadAds = true,
+                                    layoutId = R.layout.native_ad_06
                                 )
+                                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                                    TAG = "PNLLanguageActivity"
+                                    shimmerLayoutView =binding.includeShimmer.shimmerContainerNative
+                                    nativeContentView = binding.ads
+                                }
+                                nativeAdHelper.showLoadedNativeAd(it2)
                             }
                         } else {
                             binding.ads.beGone()
@@ -130,7 +104,6 @@ class PNLLanguageActivity : AppCompatActivity() {
             } else {
                 nativeAdLangDup.value = null
             }
-
 
             // Native first ad load for welcome screen (native_welcome_screen_activity)
             if (!lang) { //  don't load the welcome screen ad if coming from the settings
@@ -185,6 +158,35 @@ class PNLLanguageActivity : AppCompatActivity() {
         binding.japanese.setOnClickListener { updateLanguageSelection("ja") }
         binding.korean.setOnClickListener { updateLanguageSelection("ko") }
         binding.thai.setOnClickListener { updateLanguageSelection("th") }
+
+        binding.tick.setOnClickListener {
+            when (langName) {
+                "en" -> setLocaleAndChangeLanguage("en")
+                "hi" -> setLocaleAndChangeLanguage("hi")
+                "ar" -> setLocaleAndChangeLanguage("ar")
+                "af" -> setLocaleAndChangeLanguage("af")
+                "pt" -> setLocaleAndChangeLanguage("pt")
+                "es" -> setLocaleAndChangeLanguage("es")
+                "fr" -> setLocaleAndChangeLanguage("fr")
+                "ur" -> setLocaleAndChangeLanguage("ur")
+                "in" -> setLocaleAndChangeLanguage("in")
+                "ru" -> setLocaleAndChangeLanguage("ru")
+                "vi" -> setLocaleAndChangeLanguage("vi")
+                "zh" -> setLocaleAndChangeLanguage("zh")
+                "de" -> setLocaleAndChangeLanguage("de")
+                "ja" -> setLocaleAndChangeLanguage("ja")
+                "ko" -> setLocaleAndChangeLanguage("ko")
+                "th" -> setLocaleAndChangeLanguage("th")
+                else -> {
+                    Toast.makeText(
+                        this@PNLLanguageActivity,
+                        "Please select a language first",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
     }
 
     private fun updateLanguageSelection(selectedLanguage: String) {
@@ -286,36 +288,51 @@ class PNLLanguageActivity : AppCompatActivity() {
     }
 
     private fun showAd() {
+
         if (RemoteConfigClass.native_language) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
                 binding.ads.visibility = View.VISIBLE
-                nativeAdLang.observe(this) {
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.native_large_2,
-                        it
+                nativeAdLang.observe(this) { it2 ->
+                    val config = NativeAdConfig(
+                        getString(R.string.admob_native_lang_low),
+                        canShowAds = true,
+                        canReloadAds = true,
+                        layoutId = R.layout.native_ad_06
                     )
+                    val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                        TAG = "PNLLanguageActivity"
+                        shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                        nativeContentView = binding.ads
+                    }
+                    nativeAdHelper.showLoadedNativeAd(it2)
                 }
             }
+
         } else {
             binding.ads.visibility = View.GONE
         }
     }
 
     private fun showSecondAdDup() {
+
         if (RemoteConfigClass.native_dup_language_activity) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
                 binding.ads.visibility = View.VISIBLE
-                nativeAdLangDup.observe(this) { nativeAd ->
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.native_large_2,
-                        nativeAd
+                nativeAdLangDup.observe(this) { it3 ->
+                    val config = NativeAdConfig(
+                        getString(R.string.admob_native_lang_low),
+                        canShowAds = true,
+                        canReloadAds = true,
+                        layoutId = R.layout.native_ad_06
                     )
+                    val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                        TAG = "PNLLanguageActivity"
+                        shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                        nativeContentView = binding.ads
+                    }
+                    nativeAdHelper.showLoadedNativeAd(it3)
                 }
             }
         } else {

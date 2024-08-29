@@ -38,12 +38,12 @@ class GpsTrackActivity : AppCompatActivity() {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
                 val config = BannerAdConfig(
-                    getString(R.string.ad_mob_banner_id), true, true, true
+                    getString(R.string.adaptive_mob_banner_id), true, true, true
                 )
                 val bannerAdHelperClass = BannerAdHelper(this, this, config)
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
-                bannerAdHelperClass.showBannerAdmob()
+                bannerAdHelperClass.loadAndShowCollapsibleBannerAd()
             }
         } else {
             binding.ads.beGone()

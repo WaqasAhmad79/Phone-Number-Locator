@@ -17,6 +17,8 @@ import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.*
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
 import com.example.phonenumberlocator.databinding.ActivityPnlcallLocatorBinding
 import com.example.phonenumberlocator.pnlExtensionFun.*
 import com.example.phonenumberlocator.pnlUtil.PNLCheckInternetConnection
@@ -139,15 +141,21 @@ class PNLCallLocatorActivity : PNLBaseClass<ActivityPnlcallLocatorBinding>() {
         if (RemoteConfigClass.native_pnl_call_locator_activity) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
-                nativeAdSmall.observe(this) {
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.layout_admob_native_ad_withou_tmedia,
-                        it
-                    )
+                /*nativeAdSmall.observe(this) {
+
+                }*/
+                val config = NativeAdConfig(
+                    getString(R.string.admob_native_small),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    layoutId = R.layout.native_ad_05
+                )
+                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                    TAG = "PNLLanguageActivity"
+                    shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                    nativeContentView = binding.ads
                 }
+                nativeAdHelper.loadAndShowNativeAd()
             }
         } else {
             binding.ads.beGone()

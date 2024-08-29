@@ -63,7 +63,7 @@ android {
             resValue "string", "admob_splash_interistitial_low", "ca-app-pub-8956129614272596/2915475434"
 //            resValue "string", "admob_splash_interistitial_high", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "ad_mob_banner_id", "ca-app-pub-8956129614272596/1628398204"
-//            resValue "string", "adaptive_mob_banner_id", "ca-app-pub-8956129614272596/1628398204" // commented because both banner id's are same
+            resValue "string", "adaptive_mob_banner_id", "ca-app-pub-8956129614272596/4746570076"
 
 
         }

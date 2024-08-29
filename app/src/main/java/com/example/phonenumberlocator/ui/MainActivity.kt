@@ -95,7 +95,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
             }
 
             // native ad small loading
-            if (RemoteConfigClass.native_pnl_call_locator_activity && PhoneNumberLocator.canRequestAd) {
+          /*  if (RemoteConfigClass.native_pnl_call_locator_activity && PhoneNumberLocator.canRequestAd) {
                 loadAndReturnAd(
                     this@MainActivity,
                     resources.getString(R.string.admob_native_small)
@@ -106,7 +106,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
                 }
             } else {
                 nativeAdSmall.postValue(null)
-            }
+            }*/
 
             // native ad large loading
             if (
