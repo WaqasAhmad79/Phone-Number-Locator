@@ -15,8 +15,9 @@ import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
-import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlshareLocationBinding
 import com.example.phonenumberlocator.pnlExtensionFun.*
@@ -66,6 +67,7 @@ class PNLShareLocationActivity : PNLBaseClass<ActivityPnlshareLocationBinding>()
 
         handleAds()
         hideNavBar()
+        handleBannerAd()
 
         gpsStatusCheck() {
             if (it) {
@@ -76,11 +78,7 @@ class PNLShareLocationActivity : PNLBaseClass<ActivityPnlshareLocationBinding>()
 
         clickListeners()
 
-        if (RemoteConfigClass.banner_pnl_share_location_activity && PhoneNumberLocator.canRequestAd) {
-            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id))
-        } else {
-            binding.flBanner.beGone()
-        }
+
 
     }
 
@@ -93,6 +91,32 @@ class PNLShareLocationActivity : PNLBaseClass<ActivityPnlshareLocationBinding>()
             showSimpleInterstitialAdWithTimeAndCounter()
         }
 
+    }
+
+    private fun handleBannerAd()
+    {
+        if (RemoteConfigClass.banner_pnl_share_location_activity && canRequestAd && isNetworkAvailable()) {
+            binding.flBanner.beVisible()
+
+            val config = BannerAdConfig(
+                getString(R.string.ad_mob_banner_id),
+                canShowAds = true,
+                canReloadAds = true,
+                isCollapsibleAd = false
+            )
+
+            val bannerAdHelperClass = BannerAdHelper(
+                activity = this,
+                lifecycleOwner = this,
+                config = config
+            )
+
+            bannerAdHelperClass.myView = binding.flBanner
+            bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+            bannerAdHelperClass.showBannerAdmob()
+        } else {
+            binding.flBanner.beGone()
+        }
     }
 
     private fun initView() {

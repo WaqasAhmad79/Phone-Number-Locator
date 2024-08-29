@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.databinding.FragmentWelcomeSlide3Binding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
@@ -43,13 +45,28 @@ class WelcomeSlide3Fragment : Fragment() {
                     binding.flAdNative.beVisible()
                     PhoneNumberLocator.onBoardNative3.observe(viewLifecycleOwner) { nad ->
                         nad?.let { ad ->
-                            showLoadedNativeAd(
+
+                            /*showLoadedNativeAd(
                                 requireActivity(),
                                 binding.flAdNative,
                                 binding.includeShimmer.shimmerContainerNative,
                                 R.layout.layout_admob_native_ad_full_scr,
                                 ad
+                            )*/
+
+                            val config = NativeAdConfig(
+                                resources.getString(R.string.admob_native_boarding_low),
+                                canShowAds = true,
+                                canReloadAds = true,
+                                layoutId = R.layout.layout_admob_native_ad_full_scr
                             )
+                            val nativeAdHelper = NativeAdHelper(it, this, config).apply {
+                                TAG = "WelcomeSlide3Fragment"
+                                shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                                nativeContentView = binding.flAdNative
+                            }
+                            nativeAdHelper.showLoadedNativeAd(ad)
+
                         }
                     }
                 }

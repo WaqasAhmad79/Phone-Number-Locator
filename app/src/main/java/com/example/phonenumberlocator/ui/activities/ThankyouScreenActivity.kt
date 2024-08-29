@@ -5,10 +5,10 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdExit
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
 import com.example.phonenumberlocator.databinding.ActivityThankyouScreenBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.beVisible
@@ -31,8 +31,7 @@ class ThankyouScreenActivity : AppCompatActivity() {
         showAd()
         handler.postDelayed({
             finishAffinity()
-        }, 5000)
-
+        }, 6000)
 
 
     }
@@ -41,15 +40,21 @@ class ThankyouScreenActivity : AppCompatActivity() {
         if (RemoteConfigClass.native_exit_ad) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
-                nativeAdExit.observe(this) { it2 ->
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.layout_admob_native_ad_withou_tmedia,
-                        it2
-                    )
+
+                val config = NativeAdConfig(
+                    resources.getString(R.string.admob_native_small),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    layoutId = R.layout.native_ad_06
+                )
+                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                    TAG = "ThankyouScreenActivity"
+                    shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                    nativeContentView = binding.ads
                 }
+                nativeAdHelper.loadAndShowNativeAd()
+
+
             }
         } else {
             binding.ads.beGone()

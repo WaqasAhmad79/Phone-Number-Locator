@@ -12,6 +12,8 @@ import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
@@ -58,6 +60,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
 
         handleAds()
         hideNavBar()
+        handleBannerAd()
 
         gpsStatusCheck() {
             if (it) {
@@ -67,11 +70,7 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
         }
         clickListeners()
 
-        if (RemoteConfigClass.banner_pnl_find_address_activity && PhoneNumberLocator.canRequestAd) {
-            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id))
-        } else {
-            binding.flBanner.beGone()
-        }
+
 
     }
 
@@ -82,6 +81,32 @@ class PNLFindAddressActivity : PNLBaseClass<ActivityPnlfindAddressBinding>() {
             && canRequestAd
         ) {
             showSimpleInterstitialAdWithTimeAndCounter()
+        }
+
+    }
+
+    private fun handleBannerAd(){
+        if (RemoteConfigClass.banner_pnl_find_address_activity && canRequestAd && isNetworkAvailable()) {
+            binding.flBanner.beVisible()
+
+            val config = BannerAdConfig(
+                getString(R.string.ad_mob_banner_id),
+                canShowAds = true,
+                canReloadAds = true,
+                isCollapsibleAd = false
+            )
+
+            val bannerAdHelperClass = BannerAdHelper(
+                activity = this,
+                lifecycleOwner = this,
+                config = config
+            )
+
+            bannerAdHelperClass.myView = binding.flBanner
+            bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+            bannerAdHelperClass.showBannerAdmob()
+        } else {
+            binding.flBanner.beGone()
         }
 
     }

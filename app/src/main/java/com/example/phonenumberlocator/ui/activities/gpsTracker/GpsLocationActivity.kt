@@ -15,13 +15,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityGpsLocationBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
@@ -35,7 +34,7 @@ import com.example.phonenumberlocator.ui.pnlDialog.PNLLoadingDialog
 import com.google.android.gms.location.LocationListener
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -226,17 +225,22 @@ class GpsLocationActivity : AppCompatActivity(), LocationListener {
     private fun showAd() {
         if (RemoteConfigClass.native_gps_location_activity) {
 
-            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+            if (isNetworkAvailable() && canRequestAd) {
                 binding.ads.beVisible()
-                nativeAdLarge.observe(this) {
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.layout_admob_native_ad,
-                        it
-                    )
+
+                val config = NativeAdConfig(
+                    resources.getString(R.string.admob_native_large),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    layoutId = R.layout.native_ad_03
+                )
+                val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                    TAG = "PNLContactsDetailedActivity"
+                    shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                    nativeContentView = binding.ads
                 }
+                nativeAdHelper.loadAndShowNativeAd()
+
             }
 
         } else {

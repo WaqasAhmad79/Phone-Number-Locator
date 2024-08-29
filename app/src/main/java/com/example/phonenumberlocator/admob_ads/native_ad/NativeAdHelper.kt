@@ -205,7 +205,7 @@ class NativeAdHelper(
         } ?: changeTextToEmpty(adView.headlineView as TextView)
 
         nativeAd.body?.let {
-            (adView.bodyView as TextView)?.text = it
+            (adView?.bodyView as TextView)?.text = it
         } ?: changeTextToEmpty(adView.bodyView as TextView)
 
 

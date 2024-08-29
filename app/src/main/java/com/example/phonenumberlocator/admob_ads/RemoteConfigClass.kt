@@ -43,6 +43,7 @@ object RemoteConfigClass {
     var banner_pnl_area_calculator_activity: Boolean = true
     var banner_pnl_distance_finder_activity: Boolean = true
     var banner_pnl_find_address_activity: Boolean = true
+    var banner_pnl_gps_address_activity: Boolean = true
 
     // Native Ads
     var native_language: Boolean = true
@@ -151,6 +152,8 @@ object RemoteConfigClass {
                 remoteConfig["inter_exit_app_activity"].asBoolean()
             native_exit_ad =
                 remoteConfig["native_exit_ad"].asBoolean()
+            banner_pnl_gps_address_activity =
+                remoteConfig["banner_pnl_gps_address_activity"].asBoolean()
 
 
             callBack.invoke(task.isSuccessful)

@@ -35,9 +35,16 @@ class CallLocActivity : AppCompatActivity() {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
                 val config = BannerAdConfig(
-                    getString(R.string.adaptive_mob_banner_id), canShowAds = true, canReloadAds = true, isCollapsibleAd = true
+                    getString(R.string.adaptive_mob_banner_id),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    isCollapsibleAd = true
                 )
-                val bannerAdHelperClass = BannerAdHelper(this, this, config)
+                val bannerAdHelperClass = BannerAdHelper(
+                    activity = this,
+                    lifecycleOwner = this,
+                    config = config
+                )
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
                 bannerAdHelperClass.loadAndShowCollapsibleBannerAd()

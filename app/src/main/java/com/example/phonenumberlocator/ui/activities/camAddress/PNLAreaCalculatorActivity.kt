@@ -19,6 +19,8 @@ import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.admob_ads.showBannerAdmob
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnlareaCalculatorBinding
@@ -156,15 +158,12 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
         super.onCreate(savedInstanceState)
 
         hideNavBar()
+        handleBannerAd()
         handleAds()
         initViews()
         clickListeners()
 
-        if (RemoteConfigClass.banner_pnl_area_calculator_activity && PhoneNumberLocator.canRequestAd) {
-            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
-        } else {
-                binding.flBanner.beGone()
-        }
+
 
 
     }
@@ -176,6 +175,37 @@ class PNLAreaCalculatorActivity : PNLBaseClass<ActivityPnlareaCalculatorBinding>
             showSimpleInterstitialAdWithTimeAndCounter()
         }
     }
+
+
+
+    private fun handleBannerAd() {
+        if (RemoteConfigClass.banner_pnl_area_calculator_activity) {
+            if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+                binding.ads.beVisible()
+
+                val config = BannerAdConfig(
+                    getString(R.string.ad_mob_banner_id),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    isCollapsibleAd = false
+                )
+
+                val bannerAdHelperClass = BannerAdHelper(
+                    activity = this,
+                    lifecycleOwner = this,
+                    config = config
+                )
+
+                bannerAdHelperClass.myView = binding.ads
+                bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+                bannerAdHelperClass.showBannerAdmob()
+            }
+        } else {
+            binding.ads.beGone()
+        }
+    }
+
+
 
     override fun onResume(){
         super.onResume()

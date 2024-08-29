@@ -12,11 +12,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.example.phonenumberlocator.PNLBaseClass
-import com.example.phonenumberlocator.PhoneNumberLocator
 import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
-import com.example.phonenumberlocator.admob_ads.showBannerAdmob
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.admob_ads.showSimpleInterstitialAdWithTimeAndCounter
 import com.example.phonenumberlocator.databinding.ActivityPnldistanceFinderBinding
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
@@ -32,10 +32,18 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.Polyline
+import com.google.android.gms.maps.model.PolylineOptions
 import java.io.File
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
+import java.util.Stack
 
 class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>(),
     OnMapReadyCallback, GoogleMap.OnMapClickListener {
@@ -67,6 +75,7 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
 
         hideNavBar()
         handleAds()
+        handleBannerAd()
 
         mapView = findViewById(R.id.distanceMap)
         mapView.onCreate(savedInstanceState)
@@ -76,12 +85,6 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
         clickListeners()
 
 
-        if (RemoteConfigClass.banner_pnl_distance_finder_activity && PhoneNumberLocator.canRequestAd) {
-            showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id), null)
-        } else {
-            binding.flBanner.beGone()
-        }
-
     }
 
     private fun handleAds() {
@@ -90,6 +93,32 @@ class PNLDistanceFinderActivity : PNLBaseClass<ActivityPnldistanceFinderBinding>
             && canRequestAd
         ) {
             showSimpleInterstitialAdWithTimeAndCounter()
+        }
+    }
+
+
+    private fun handleBannerAd() {
+        if (RemoteConfigClass.banner_pnl_distance_finder_activity && isNetworkAvailable() && canRequestAd) {
+            binding.ads.beVisible()
+
+            val config = BannerAdConfig(
+                getString(R.string.ad_mob_banner_id),
+                canShowAds = true,
+                canReloadAds = true,
+                isCollapsibleAd = false
+            )
+
+            val bannerAdHelperClass = BannerAdHelper(
+                activity = this,
+                lifecycleOwner = this,
+                config = config
+            )
+
+            bannerAdHelperClass.myView = binding.ads
+            bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+            bannerAdHelperClass.showBannerAdmob()
+        } else {
+            binding.ads.beGone()
         }
     }
 

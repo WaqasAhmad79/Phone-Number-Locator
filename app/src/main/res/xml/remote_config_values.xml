@@ -164,5 +164,9 @@
         <key>native_exit_ad</key>
         <value>true</value>
     </entry>
+    <entry>
+        <key>banner_pnl_gps_address_activity</key>
+        <value>true</value>
+    </entry>
 
 </defaults>

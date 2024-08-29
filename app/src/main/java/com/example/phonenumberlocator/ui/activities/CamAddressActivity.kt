@@ -43,14 +43,23 @@ class CamAddressActivity : AppCompatActivity() {
 
     }
 
-    fun handleBannerAd() {
+    private fun handleBannerAd() {
         if (RemoteConfigClass.banner_cam_address_activity) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
                 val config = BannerAdConfig(
-                    getString(R.string.ad_mob_banner_id), true, true, true
+                    getString(R.string.ad_mob_banner_id),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    isCollapsibleAd = false
                 )
-                val bannerAdHelperClass = BannerAdHelper(this, this, config)
+
+                val bannerAdHelperClass = BannerAdHelper(
+                    activity = this,
+                    lifecycleOwner = this,
+                    config = config
+                )
+
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
                 bannerAdHelperClass.showBannerAdmob()

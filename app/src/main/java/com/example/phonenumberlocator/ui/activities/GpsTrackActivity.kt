@@ -40,7 +40,11 @@ class GpsTrackActivity : AppCompatActivity() {
                 val config = BannerAdConfig(
                     getString(R.string.adaptive_mob_banner_id), true, true, true
                 )
-                val bannerAdHelperClass = BannerAdHelper(this, this, config)
+                val bannerAdHelperClass = BannerAdHelper(
+                    activity = this,
+                    lifecycleOwner = this,
+                    config = config
+                )
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
                 bannerAdHelperClass.loadAndShowCollapsibleBannerAd()

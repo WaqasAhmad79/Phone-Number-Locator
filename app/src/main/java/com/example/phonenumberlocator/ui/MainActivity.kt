@@ -8,18 +8,15 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
 import com.example.phonenumberlocator.PNLBaseClass
 import com.example.phonenumberlocator.PhoneNumberLocator
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdExit
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLarge
-import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdSmall
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.OpenApp.isShowingAd
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
 import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.admob_ads.isAppOpenEnable
-import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
 import com.example.phonenumberlocator.admob_ads.showExitAdmobInterstitial
 import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityMainBinding
@@ -40,7 +37,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
 
-class MainActivity : PNLBaseClass<ActivityMainBinding>() {
+class MainActivity : PNLBaseClass<ActivityMainBinding>(), LifecycleOwner {
 
     override fun getViewBinding(): ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
 
@@ -66,14 +63,24 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     }
 
-    fun handleBannerAd() {
+    private fun handleBannerAd() {
         if (RemoteConfigClass.banner_main_activity) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.beVisible()
+
                 val config = BannerAdConfig(
-                    getString(R.string.ad_mob_banner_id), true, true, true
+                    getString(R.string.ad_mob_banner_id),
+                    canShowAds = true,
+                    canReloadAds = true,
+                    isCollapsibleAd = false
                 )
-                val bannerAdHelperClass = BannerAdHelper(this, this, config)
+
+                val bannerAdHelperClass = BannerAdHelper(
+                    activity = this,
+                    lifecycleOwner = this,
+                    config = config
+                )
+
                 bannerAdHelperClass.myView = binding.ads
                 bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
                 bannerAdHelperClass.showBannerAdmob()
@@ -94,52 +101,19 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
                 showNormalAdmobInterstitial { requestPermission() }
             }
 
-            // native ad small loading
-          /*  if (RemoteConfigClass.native_pnl_call_locator_activity && PhoneNumberLocator.canRequestAd) {
-                loadAndReturnAd(
-                    this@MainActivity,
-                    resources.getString(R.string.admob_native_small)
-                ) { it2 ->
-                    if (it2 != null) {
-                        nativeAdSmall.value = it2
-                    }
-                }
-            } else {
-                nativeAdSmall.postValue(null)
-            }*/
-
-            // native ad large loading
-            if (
-                (RemoteConfigClass.native_call_locator_details_activity
-                        || RemoteConfigClass.native_gps_location_activity
-                        || RemoteConfigClass.native_pnl_contacts_detailed_activity)
-                && (PhoneNumberLocator.canRequestAd)
-            ) {
-                loadAndReturnAd(
-                    this@MainActivity,
-                    resources.getString(R.string.admob_native_large)
-                ) { it2 ->
-                    if (it2 != null) {
-                        nativeAdLarge.value = it2
-                    }
-                }
-            } else {
-                nativeAdLarge.postValue(null)
-            }
-
-//            nativeAdExit loading
-            if (RemoteConfigClass.native_exit_ad && PhoneNumberLocator.canRequestAd) {
-                loadAndReturnAd(
-                    this@MainActivity,
-                    resources.getString(R.string.admob_native_small)
-                ) { it2 ->
-                    if (it2 != null) {
-                        nativeAdExit.value = it2
-                    }
-                }
-            } else {
-                nativeAdExit.postValue(null)
-            }
+            /*//            nativeAdExit loading
+                        if (RemoteConfigClass.native_exit_ad && PhoneNumberLocator.canRequestAd) {
+                            loadAndReturnAd(
+                                this@MainActivity,
+                                resources.getString(R.string.admob_native_small)
+                            ) { it2 ->
+                                if (it2 != null) {
+                                    nativeAdExit.value = it2
+                                }
+                            }
+                        } else {
+                            nativeAdExit.postValue(null)
+                        }*/
 
         }
     }
@@ -194,7 +168,6 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
     }
 
-
     @SuppressLint("SuspiciousIndentation")
     private fun handleClicks() {
 
@@ -219,37 +192,36 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>() {
 
         if (RemoteConfigClass.inter_exit_app_activity) {
 
-            showExitAdmobInterstitial(
-                {
-                    // go to ThankyouScreenActivity if ad shown successfully
-                    startActivity(Intent(this, ThankyouScreenActivity::class.java))
-                    finish()
-                }, {
-
-                    // Show only exit dialog if the ad failed to show and exit app
-                    nativeAdExit.observe(this) { ad ->
-                        if (ad != null) {
-                            PNLExitDialog(this, {
-                                finish()
-                                exitProcess(0)
-                            }, ad)
+            if (isNetworkAvailable()) {
+                showExitAdmobInterstitial(
+                    {
+                        // go to ThankyouScreenActivity if ad shown successfully
+                        startActivity(Intent(this, ThankyouScreenActivity::class.java))
+                        finish()
+                    }, {
+                        // Show only exit dialog if the ad failed to show and exit app
+                        PNLExitDialog(this) {
+                            finish()
+                            exitProcess(0)
                         }
+                    },
+                    {
+
                     }
+                )
 
-                },
-                {
-
+            } else {
+                // Show only exit dialog if the ad failed to show and exit app
+                PNLExitDialog(this) {
+                    finish()
+                    exitProcess(0)
                 }
-            )
+            }
         } else {
             // Show only exit dialog if the inter ad remote is off
-            nativeAdExit.observe(this) { ad ->
-                if (ad != null) {
-                    PNLExitDialog(this, {
-                        finish()
-                        exitProcess(0)
-                    }, ad)
-                }
+            PNLExitDialog(this) {
+                finish()
+                exitProcess(0)
             }
         }
     }

@@ -198,7 +198,7 @@
 
         <include
             android:id="@+id/includeShimmer"
-            layout="@layout/loading_custom_native_admob_media_small" />
+            layout="@layout/native_ad_03_loading" />
 
     </FrameLayout>
 

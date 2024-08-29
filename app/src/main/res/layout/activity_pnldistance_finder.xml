@@ -424,12 +424,20 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <FrameLayout
-                android:id="@+id/fl_banner"
+                android:id="@+id/ads"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:background="@drawable/ads_stroke_bg"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <include
+                    android:id="@+id/bannerView"
+                    layout="@layout/banner_ad_layout_view" />
+
+
+            </FrameLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="ltr"
     android:background="@color/app_color"
+    android:layoutDirection="ltr"
     tools:context=".ui.activities.camAddress.PNLAreaCalculatorActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -42,29 +43,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <!--    <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cardUnit"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/iv_unit"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/small_margin"
-                    android:src="@drawable/measuring_tape"
+            <!--    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cardUnit"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
-            </androidx.constraintlayout.widget.ConstraintLayout>-->
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_unit"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/small_margin"
+                        android:src="@drawable/measuring_tape"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <!--    <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cardSave"
@@ -100,42 +101,42 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_10sdp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
-            app:layout_constraintTop_toBottomOf="@id/cardViewResult"/>
+            app:layout_constraintTop_toBottomOf="@id/cardViewResult" />
 
-      <!--  <androidx.cardview.widget.CardView
-            android:id="@+id/card_map_simple"
-            android:layout_width="@dimen/_28sdp"
-            android:layout_height="@dimen/_28sdp"
-            android:elevation="@dimen/_8sdp"
-            app:cardBackgroundColor="@color/transparent"
-            app:cardCornerRadius="@dimen/_14sdp"
-            app:cardElevation="@dimen/_8sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/areaMap"
-            app:layout_constraintEnd_toEndOf="@+id/card_myLocation"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewResult"
-            app:layout_constraintVertical_bias="0.1">
+        <!--  <androidx.cardview.widget.CardView
+              android:id="@+id/card_map_simple"
+              android:layout_width="@dimen/_28sdp"
+              android:layout_height="@dimen/_28sdp"
+              android:elevation="@dimen/_8sdp"
+              app:cardBackgroundColor="@color/transparent"
+              app:cardCornerRadius="@dimen/_14sdp"
+              app:cardElevation="@dimen/_8sdp"
+              app:layout_constraintBottom_toBottomOf="@+id/areaMap"
+              app:layout_constraintEnd_toEndOf="@+id/card_myLocation"
+              app:layout_constraintTop_toBottomOf="@+id/cardViewResult"
+              app:layout_constraintVertical_bias="0.1">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:background="@drawable/search_btn_bg">
+              <androidx.constraintlayout.widget.ConstraintLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_gravity="center"
+                  android:background="@drawable/search_btn_bg">
 
-                <ImageView
-                    android:id="@+id/iv_layer_simple"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:padding="3dp"
-                    android:src="@drawable/three_d_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>-->
+                  <ImageView
+                      android:id="@+id/iv_layer_simple"
+                      android:layout_width="@dimen/_24sdp"
+                      android:layout_height="@dimen/_24sdp"
+                      android:layout_centerVertical="true"
+                      android:layout_gravity="center"
+                      android:padding="3dp"
+                      android:src="@drawable/three_d_icon"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:tint="@color/white" />
+              </androidx.constraintlayout.widget.ConstraintLayout>
+          </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_map_3d"
@@ -161,11 +162,11 @@
                     android:layout_height="@dimen/_24sdp"
                     android:padding="@dimen/small_margin"
                     android:src="@drawable/three_d"
-                    app:tint="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -174,10 +175,10 @@
             android:layout_width="@dimen/_28sdp"
             android:layout_height="@dimen/_28sdp"
             android:elevation="@dimen/_8sdp"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/blue"
             app:cardCornerRadius="@dimen/_14sdp"
             app:cardElevation="@dimen/_8sdp"
-            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/card_plus"
             app:layout_constraintEnd_toEndOf="@+id/card_myLocation"
             app:layout_constraintTop_toBottomOf="@+id/header"
@@ -194,12 +195,11 @@
                     android:layout_height="@dimen/_24sdp"
                     android:padding="@dimen/small_margin"
                     android:src="@drawable/two_d"
-                    app:tint="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:tint="@color/white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -243,11 +243,11 @@
             android:id="@+id/card_minus"
             android:layout_width="@dimen/_28sdp"
             android:layout_height="@dimen/_28sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
             android:elevation="@dimen/_8sdp"
             app:cardBackgroundColor="@color/transparent"
             app:cardCornerRadius="@dimen/_14sdp"
             app:cardElevation="@dimen/_8sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="@+id/card_myLocation"
             app:layout_constraintTop_toBottomOf="@+id/card_plus">
 
@@ -284,8 +284,8 @@
             app:cardElevation="@dimen/_8sdp"
             app:layout_constraintBottom_toTopOf="@+id/card_plus"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.35"
-            app:layout_constraintTop_toTopOf="@+id/areaMap">
+            app:layout_constraintTop_toTopOf="@+id/areaMap"
+            app:layout_constraintVertical_bias="0.35">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -313,24 +313,23 @@
             android:id="@+id/cardViewResult"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/action_button"
-            android:layout_marginVertical="@dimen/_5sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@+id/header"
-            >
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:background="@drawable/action_button"
+            app:layout_constraintTop_toBottomOf="@+id/header">
 
             <TextView
                 android:id="@+id/resultArea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/area1"
-                android:textSize="@dimen/_14sdp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/montserrat_medium"
                 android:layout_marginHorizontal="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/area1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"  />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvArea"
@@ -339,8 +338,8 @@
                 android:layout_marginStart="@dimen/_4sdp"
                 android:fontFamily="@font/poppins_regular"
                 android:text=""
-                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/resultArea"
                 app:layout_constraintStart_toEndOf="@+id/resultArea"
                 app:layout_constraintTop_toTopOf="@+id/resultArea" />
@@ -349,35 +348,34 @@
                 android:id="@+id/cardUnit"
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="match_parent"
-                android:src="@drawable/drop_down"
-                app:tint="@color/white"
                 android:padding="@dimen/_5sdp"
+                android:src="@drawable/drop_down"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:tint="@color/white" />
 
 
-           <!-- <TextView
-                android:id="@+id/tvPerimeterTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:text="@string/perimeter"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/resultArea"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!-- <TextView
+                 android:id="@+id/tvPerimeterTitle"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginHorizontal="@dimen/_10sdp"
+                 android:text="@string/perimeter"
+                 android:textColor="@color/white"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toEndOf="@+id/resultArea"
+                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvPerimeter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4sdp"
-                android:text=""
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/tvPerimeterTitle"
-                app:layout_constraintStart_toEndOf="@+id/tvPerimeterTitle"
-                app:layout_constraintTop_toTopOf="@+id/tvPerimeterTitle" />-->
+             <TextView
+                 android:id="@+id/tvPerimeter"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="@dimen/_4sdp"
+                 android:text=""
+                 android:textColor="@color/white"
+                 app:layout_constraintBottom_toBottomOf="@+id/tvPerimeterTitle"
+                 app:layout_constraintStart_toEndOf="@+id/tvPerimeterTitle"
+                 app:layout_constraintTop_toTopOf="@+id/tvPerimeterTitle" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -457,15 +455,18 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <FrameLayout
-                android:id="@+id/fl_banner"
+                android:id="@+id/ads"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:background="@drawable/ads_stroke_bg"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <include
+                    android:id="@+id/bannerView"
+                    layout="@layout/banner_ad_layout_view" />
+            </FrameLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

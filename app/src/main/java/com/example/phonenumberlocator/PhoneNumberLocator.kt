@@ -130,6 +130,7 @@ class PhoneNumberLocator : Application(), LifecycleObserver {
         val onBoardNative3: MutableLiveData<NativeAd?> = MutableLiveData()
         val onBoardNative4: MutableLiveData<NativeAd?> = MutableLiveData()
 
+        //not used now
         val nativeAdSmall: MutableLiveData<NativeAd> = MutableLiveData()
         val nativeAdLarge: MutableLiveData<NativeAd> = MutableLiveData()
 

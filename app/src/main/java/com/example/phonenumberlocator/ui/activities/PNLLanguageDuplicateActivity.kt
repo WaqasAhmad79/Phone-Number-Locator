@@ -13,7 +13,8 @@ import com.example.phonenumberlocator.PhoneNumberLocator.Companion.nativeAdLangO
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
-import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
 import com.example.phonenumberlocator.databinding.ActivityPnllanguageDuplicateBinding
 import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
@@ -157,17 +158,18 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.visibility = View.VISIBLE
                 nativeAdLangOtherDup.observe(this) { nativeAd ->
-                    //
-
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.native_large_2,
-                        nativeAd
+                    val config = NativeAdConfig(
+                        getString(R.string.admob_native_lang_low),
+                        canShowAds = true,
+                        canReloadAds = true,
+                        layoutId = R.layout.native_ad_06
                     )
-
-                    //
+                    val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                        TAG = "PNLLanguageDuplicateActivity"
+                        shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                        nativeContentView = binding.ads
+                    }
+                    nativeAdHelper.showLoadedNativeAd(nativeAd)
                 }
             }
         } else {
@@ -176,19 +178,25 @@ class PNLLanguageDuplicateActivity : AppCompatActivity() {
     }
 
     private fun handleAds() {
-
         // first native ad on second language screen
         if (RemoteConfigClass.native_language_other_activity) {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
+
                 binding.ads.visibility = View.VISIBLE
                 nativeAdLangOther.observe(this) { nativeAd ->
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.native_large_2,
-                        nativeAd
+
+                    val config = NativeAdConfig(
+                        getString(R.string.admob_native_lang_low),
+                        canShowAds = true,
+                        canReloadAds = true,
+                        layoutId = R.layout.native_ad_06
                     )
+                    val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                        TAG = "PNLLanguageDuplicateActivity"
+                        shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                        nativeContentView = binding.ads
+                    }
+                    nativeAdHelper.showLoadedNativeAd(nativeAd)
                 }
             }
         } else {

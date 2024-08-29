@@ -419,14 +419,13 @@
         android:layout_marginHorizontal="@dimen/_13sdp"
         android:layout_marginVertical="@dimen/_5sdp"
         android:background="@drawable/ad_place_holder"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <include
             android:id="@+id/includeShimmer"
-            layout="@layout/loading_custom_native_admob_media_small" />
+            layout="@layout/native_ad_03_loading" />
     </FrameLayout>
 
 

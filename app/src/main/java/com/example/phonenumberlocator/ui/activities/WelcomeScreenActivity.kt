@@ -13,9 +13,10 @@ import com.example.phonenumberlocator.PhoneNumberLocator.Companion.onBoardNative
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
 import com.example.phonenumberlocator.admob_ads.loadAndReturnAd
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdConfig
+import com.example.phonenumberlocator.admob_ads.native_ad.NativeAdHelper
 import com.example.phonenumberlocator.admob_ads.showLoadedNativeAd
 import com.example.phonenumberlocator.databinding.ActivityWelcomeScreenBinding
-import com.example.phonenumberlocator.pnlExtensionFun.baseConfig
 import com.example.phonenumberlocator.pnlExtensionFun.beGone
 import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
@@ -44,13 +45,18 @@ class WelcomeScreenActivity : AppCompatActivity() {
                 binding.ads.visibility = View.VISIBLE
                 nativeAdWelcome.observe(this) { nad ->
                     nad?.let { ad ->
-                        showLoadedNativeAd(
-                            this,
-                            binding.ads,
-                            binding.includeShimmer.shimmerContainerNative,
-                            R.layout.layout_admob_native_ad,
-                            ad
+                        val config = NativeAdConfig(
+                            resources.getString(R.string.admob_native_large),
+                            canShowAds = true,
+                            canReloadAds = true,
+                            layoutId = R.layout.native_ad_03
                         )
+                        val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                            TAG = "WelcomeScreenActivity"
+                            shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                            nativeContentView = binding.ads
+                        }
+                        nativeAdHelper.showLoadedNativeAd(ad)
                     }
                 }
             }
@@ -135,13 +141,20 @@ class WelcomeScreenActivity : AppCompatActivity() {
             if (isNetworkAvailable() && PhoneNumberLocator.canRequestAd) {
                 binding.ads.visibility = View.VISIBLE
                 nativeAdWelcomeDup.observe(this) { nativeAd ->
-                    showLoadedNativeAd(
-                        this,
-                        binding.ads,
-                        binding.includeShimmer.shimmerContainerNative,
-                        R.layout.layout_admob_native_ad,
-                        nativeAd
+
+                    val config = NativeAdConfig(
+                        resources.getString(R.string.admob_native_large),
+                        canShowAds = true,
+                        canReloadAds = true,
+                        layoutId = R.layout.native_ad_03
                     )
+                    val nativeAdHelper = NativeAdHelper(this, this, config).apply {
+                        TAG = "WelcomeScreenActivity"
+                        shimmerLayoutView = binding.includeShimmer.shimmerContainerNative
+                        nativeContentView = binding.ads
+                    }
+                    nativeAdHelper.showLoadedNativeAd(nativeAd)
+
                 }
             }
         } else {

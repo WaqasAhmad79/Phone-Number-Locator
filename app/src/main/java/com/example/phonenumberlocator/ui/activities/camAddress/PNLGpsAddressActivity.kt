@@ -19,12 +19,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.phonenumberlocator.PhoneNumberLocator
+import com.example.phonenumberlocator.PhoneNumberLocator.Companion.canRequestAd
 import com.example.phonenumberlocator.R
 import com.example.phonenumberlocator.admob_ads.RemoteConfigClass
-import com.example.phonenumberlocator.admob_ads.showBannerAdmob
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdConfig
+import com.example.phonenumberlocator.admob_ads.banner_ad.BannerAdHelper
 import com.example.phonenumberlocator.admob_ads.showNormalAdmobInterstitial
 import com.example.phonenumberlocator.databinding.ActivityPnlcamAddressBinding
+import com.example.phonenumberlocator.pnlExtensionFun.beGone
+import com.example.phonenumberlocator.pnlExtensionFun.beVisible
 import com.example.phonenumberlocator.pnlExtensionFun.getAddressFromLatLong
 import com.example.phonenumberlocator.pnlExtensionFun.hideNavBar
 import com.example.phonenumberlocator.pnlExtensionFun.isNetworkAvailable
@@ -69,6 +72,7 @@ class PNLGpsAddressActivity : AppCompatActivity(), LocationListener {
 
         hideNavBar()
         handleAds()
+        handleBannerAd()
 
         helper = OpenWeatherMapHelper("6d08bf86106efb9db72c176a21d23ebf")
         val imagePath = intent.getStringExtra("imagePath")
@@ -123,8 +127,6 @@ class PNLGpsAddressActivity : AppCompatActivity(), LocationListener {
           }*/
         binding.backArrow.setOnClickListener { onBackPressed() }
 
-
-        showBannerAdmob(binding.flBanner, this, getString(R.string.ad_mob_banner_id))
 
     }
 
@@ -311,9 +313,36 @@ class PNLGpsAddressActivity : AppCompatActivity(), LocationListener {
     private fun handleAds() {
         if (RemoteConfigClass.inter_pnl_gps_address_activity
             && isNetworkAvailable()
-            && PhoneNumberLocator.canRequestAd
+            && canRequestAd
         ) {
             showNormalAdmobInterstitial()
+
+        }
+    }
+
+
+    private fun handleBannerAd() {
+        if (RemoteConfigClass.banner_pnl_gps_address_activity && canRequestAd && isNetworkAvailable()) {
+            binding.flBanner.beVisible()
+
+            val config = BannerAdConfig(
+                getString(R.string.ad_mob_banner_id),
+                canShowAds = true,
+                canReloadAds = true,
+                isCollapsibleAd = false
+            )
+
+            val bannerAdHelperClass = BannerAdHelper(
+                activity = this,
+                lifecycleOwner = this,
+                config = config
+            )
+
+            bannerAdHelperClass.myView = binding.flBanner
+            bannerAdHelperClass.shimmer = binding.bannerView.customBannerShimmer
+            bannerAdHelperClass.showBannerAdmob()
+        } else {
+            binding.flBanner.beGone()
         }
     }
 }

@@ -395,7 +395,12 @@
         android:layout_height="@dimen/_50sdp"
         android:background="@drawable/ads_stroke_bg"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/_5sdp"/>
+        android:layout_marginBottom="@dimen/_5sdp">
+
+        <include
+            android:id="@+id/bannerView"
+            layout="@layout/banner_ad_layout_view" />
+    </FrameLayout>
 
 
 
