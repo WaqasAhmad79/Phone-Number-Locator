@@ -123,6 +123,7 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>(), LifecycleOwner {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
+            Manifest.permission.POST_NOTIFICATIONS,
             Manifest.permission.READ_CONTACTS
         )
 
@@ -140,7 +141,9 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>(), LifecycleOwner {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA,
+            Manifest.permission.POST_NOTIFICATIONS,
             Manifest.permission.READ_CONTACTS
+
         )
         requestPermissions(permissionsToRequest, 1)
     }

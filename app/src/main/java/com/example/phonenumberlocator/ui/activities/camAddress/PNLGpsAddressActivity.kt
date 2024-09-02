@@ -75,6 +75,7 @@ class PNLGpsAddressActivity : AppCompatActivity(), LocationListener {
         handleBannerAd()
 
         helper = OpenWeatherMapHelper("6d08bf86106efb9db72c176a21d23ebf")
+
         val imagePath = intent.getStringExtra("imagePath")
         if (imagePath != null) {
             // Load the image using the imagePath
@@ -82,6 +83,7 @@ class PNLGpsAddressActivity : AppCompatActivity(), LocationListener {
             val imageBitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
             binding.clickImage.setImageBitmap(imageBitmap)
         }
+
         // Set click listener on take picture button
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         // Check for location permission

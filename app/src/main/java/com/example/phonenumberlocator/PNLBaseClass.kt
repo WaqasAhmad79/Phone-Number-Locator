@@ -35,7 +35,7 @@ import com.example.phonenumberlocator.pnlExtensionFun.toast
 abstract class PNLBaseClass<B : ViewBinding> : AppCompatActivity() {
 
     lateinit var binding: B
-    open val TAG = "TESTING"
+    open val  TAG = "TESTING"
 
     var actionOnPermissionHandlePermission: ((granted: Boolean) -> Unit)? = null
     private val GENERIC_PERM_HANDLER = 100

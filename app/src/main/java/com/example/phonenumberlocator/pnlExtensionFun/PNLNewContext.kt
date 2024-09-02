@@ -141,8 +141,8 @@ fun Context.hasPermission(permId: Int) = ContextCompat.checkSelfPermission(
 ) == PackageManager.PERMISSION_GRANTED
 
 fun getPermissionString(id: Int) = when (id) {
-    PERMISSION_READ_STORAGE -> Manifest.permission.READ_EXTERNAL_STORAGE
-    PERMISSION_WRITE_STORAGE -> Manifest.permission.WRITE_EXTERNAL_STORAGE
+   /* PERMISSION_READ_STORAGE -> Manifest.permission.READ_EXTERNAL_STORAGE*/
+/*    PERMISSION_WRITE_STORAGE -> Manifest.permission.WRITE_EXTERNAL_STORAGE*/
     PERMISSION_READ_CONTACTS -> Manifest.permission.READ_CONTACTS
     PERMISSION_WRITE_CONTACTS -> Manifest.permission.WRITE_CONTACTS
     PERMISSION_READ_CALENDAR -> Manifest.permission.READ_CALENDAR
