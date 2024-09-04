@@ -95,25 +95,27 @@ class MainActivity : PNLBaseClass<ActivityMainBinding>(), LifecycleOwner {
 
             Log.d("isComingFromSplash", "onCreate: $isShowingAd")
             if (!isShowingAd) {
-                requestPermission()
+                if (!checkPermission()) {
+                    requestPermission()
+                }
             } else {
                 Log.d(TAG, "onCreate: ")
-                showNormalAdmobInterstitial { requestPermission() }
-            }
+//                showNormalAdmobInterstitial { requestPermission() }
+                showNormalAdmobInterstitial(
 
-            /*//            nativeAdExit loading
-                        if (RemoteConfigClass.native_exit_ad && PhoneNumberLocator.canRequestAd) {
-                            loadAndReturnAd(
-                                this@MainActivity,
-                                resources.getString(R.string.admob_native_small)
-                            ) { it2 ->
-                                if (it2 != null) {
-                                    nativeAdExit.value = it2
-                                }
-                            }
-                        } else {
-                            nativeAdExit.postValue(null)
-                        }*/
+                    closeListener = {
+                        if (!checkPermission()) {
+                            requestPermission()
+                        }
+                    },
+                    failListener = {
+                        if (!checkPermission()) {
+                            requestPermission()
+                        }
+                    },
+                    showListener = {}
+                )
+            }
 
         }
     }
